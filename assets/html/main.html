@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="assets/css/main.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/middlebody.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/rightpage.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/box.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/form.css" rel="stylesheet" type="text/css">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,600;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="icon" type="image/x-icon" href="assets/images/logo2.png">
+</head>
+
+<body>
+    <section class="side-nav-bar y-axis-flex full-light-theme">
+        <img class="top-header-icon" src="assets/images/logo1.png" alt="app-icon">
+        <div class="common-i-tag icons-wrapper y-axis-flex">
+            <i class="fa-solid fa-bars-progress"></i>
+            <p class="icon-label">Projects</p>
+        </div>
+        <div class="common-i-tag icons-wrapper y-axis-flex">
+            <i class="fa-solid fa-list-check"></i>
+            <p class="icon-label">Tasks</p>
+        </div>
+        <div class="common-i-tag icons-wrapper y-axis-flex">
+            <i class="fa-solid fa-book"></i>
+            <p class="icon-label">Docs</p>
+        </div>
+        <div class="common-i-tag icons-wrapper y-axis-flex">
+            <i class="fa-solid fa-user-group"></i>
+            <p class="icon-label">Chat</p>
+        </div>
+        <div class="common-i-tag icons-wrapper y-axis-flex">
+            <i class="fa-solid fa-gear"></i>
+            <p class="icon-label">Settings</p>
+        </div>
+        
+    </section>
+
+    <section class="middle-main-section light-theme">
+        <header class="top-header x-axis-flex full-light-theme">
+            <img class="top-header-icon mobile-top-header-icon" src="assets/images/logo1.png" alt="app-icon">
+            <h1 class="top-head-tag">Task Manager</h1>
+            <div class="top-profile-image"></div>
+        </header>
+    
+        <section class="main-body x-axis-flex light-theme">
+            <section class="middle-body">
+                <section class="project-section">
+                    <header class="project-section-header common-middle-section-header x-axis-flex">
+                        <h1 class="common-middle-section-heading">Projects</h1>
+                        <div class="full-filter-wrapper">
+                            <label for="filter-input" class="filter-label"><i class="bi bi-funnel filter-button"></i></label>
+                            <input type="checkbox" id="filter-input">
+                            <ul class="filter-options-wrapper full-light-theme">
+                                <li class="filter-option">Yet to start</li>
+                                <li class="filter-option">On Progress</li>
+                                <li class="filter-option">Completed</li>
+                            </ul>
+                        </div>
+                        <button type="button" class="common-button add-project-task-button">New</button>
+                    </header>
+
+                    <section class="common-middle-section-body semi-light-theme x-axis-flex">
+                        <section class="main-projects-and-tasks-section common-pro-and-task-section yet-to-start-section y-axis-flex">
+                            <p class="common-pro-and-task-heading">Yet to start</p>
+                            <section class="box-wrapper y-axis-flex">
+                                <!-- Main box starts here  -->
+                                <div class="main-box y-axis-flex">
+                                    <div class="top-box-detail x-axis-flex">
+                                        <h2 class="box-name">Project Name</h2>
+                                        <div class="three-dots-wrapper">
+                                            <label for="three-dots" class="three-dot-label"><i class="fa-solid fa-ellipsis"></i></label>
+                                            <input type="checkbox" id="three-dots">
+                                            <ul class="three-dots-options-wrapper light-theme">
+                                                <li class="three-dots-option">Yet to start</li>
+                                                <li class="three-dots-option">On Progress</li>
+                                                <li class="three-dots-option">Completed</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="box-description">
+                                        Whereas recognition of the inherent dignity
+                                    </div>  
+                                    <div class="box-percentage-wrapper">
+                                        <div class="box-percentage-value">50</div>
+                                    </div>
+                                    <div class="all-people-wrapper x-axis-flex">
+                                        <div class="person-image-wrapper person-1">
+                                            <div class="person-image"></div>
+                                        </div>
+                                        <div class="person-image-wrapper person-2">
+                                            <div class="person-image"></div>
+                                        </div>
+                                        <div class="person-image-wrapper person-3">
+                                            <div class="person-image"></div>
+                                        </div>
+                                        <div class="person-image-wrapper more-person">
+                                            <div>+2</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Main box ends here  -->
+                                <div class="main-box"></div>
+                                <div class="main-box"></div>
+                                <div class="main-box"></div>
+                            </section>
+                        </section>
+                        <section class="in-progress-section common-pro-and-task-section y-axis-flex">
+                            <p class="common-pro-and-task-heading">In progress</p>
+                            <section class="box-wrapper y-axis-flex">
+                                <div class="main-box"></div>
+                                <div class="main-box"></div>
+                            </section>
+                        </section>
+                        <section class="completed-section common-pro-and-task-section y-axis-flex">
+                            <p class="common-pro-and-task-heading">Completed</p>
+                            <section class="box-wrapper y-axis-flex">
+                                <div class="main-box"></div>
+                                <div class="main-box"></div>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <!-- Right side section starts here -->
+            <section class="right-side-sections y-axis-flex full-light-theme">
+                <i id="right-side-section-close-button" class="fa-solid fa-xmark"></i>
+                <div class="user-profile-top-details y-axis-flex">
+                    <div class="big-profile-image"></div>
+                    <h2>Lee Everett</h2>
+                </div>
+                <!-- Right side section body starts here -->
+                <div class="right-section-body y-axis-flex">
+                    <div class="statistics-body y-axis-flex">
+                        <div class="percentage-circle">
+                            <span class="stats-percentage-value">100%</span>
+                        </div>
+                        <div class="stats-values-wrapper y-axis-flex">
+                            <h2 class="current-section-heading">Projects</h2>
+                            <div class="all-progress-values-wrappers x-axis-flex">
+                                <div class="common-stat-box total-box y-axis-flex">
+                                    <h3>Total</h3>
+                                    <p class="common-stat-values">24</p>
+                                </div>
+                                <div class="common-stat-box in-progress-box y-axis-flex">
+                                    <h3>In progress</h3>
+                                    <p class="common-stat-values">24</p>
+                                </div>
+                                <div class="common-stat-box completed-box y-axis-flex">
+                                    <h3>Completed</h3>
+                                    <p class="common-stat-values">24</p>
+                                </div>
+                                <div class="common-stat-box new-box y-axis-flex">
+                                    <h3>New</h3>
+                                    <p class="common-stat-values">24</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Right side section body ends here -->
+            </section>
+            <!-- Right side section ends here -->
+            <section class="adding-form y-axis-flex full-light-theme">
+                <i id="form-adding-section-close-button" class="fa-solid fa-xmark"></i>
+                <div class="common-input-wrapper name-adding-wrapper y-axis-flex">
+                    <label for="adding-name-input-id">Name</label>
+                    <input type="text" required id="adding-name-input-id" class="common-input adding-name-input">
+                </div>
+                <div class="common-input-wrapper from-date-adding-wrapper y-axis-flex">
+                    <label for="adding-from-date-input-id">From Date</label>
+                    <input type="date" required id="adding-from-date-input-id" class="common-input adding-from-date-input">
+                </div>
+                <div class="common-input-wrapper last-date-adding-wrapper y-axis-flex">
+                    <label for="adding-last-date-input-id">Last Date</label>
+                    <input type="date" required id="adding-last-date-input-id" class="common-input adding-last-date-input">
+                </div>
+                <div class="common-input-wrapper x-axis-flex">
+                    <label for="adding-name-input-id">Name</label>
+                    <div class="people-adding-wrapper">
+                        <label for="people-adding-input" class="people-adding-label">Add</i></label>
+                        <input type="checkbox" id="people-adding-input">
+                        <ul class="people-options-wrapper full-light-theme">
+                            <input type="search" class="people-search-input">
+                            <li class="people-option x-axis-flex">
+                                <div class="people-search-image"></div>
+                                <p>Bharath</p>
+                            </li>
+                            <li class="people-option x-axis-flex">
+                                <div class="people-search-image"></div>
+                                <p>Basid</p>
+                            </li>
+                            <li class="people-option x-axis-flex">
+                                <div class="people-search-image"></div>
+                                <p>Bharathi Raja</p>
+                            </li>
+                            <li class="people-option x-axis-flex">
+                                <div class="people-search-image"></div>
+                                <p>Bharathi Raja</p>
+                            </li>
+                            <li class="people-option x-axis-flex">
+                                <div class="people-search-image"></div>
+                                <p>Bharathi Raja</p>
+                            </li>
+                            <li class="people-option x-axis-flex">
+                                <div class="people-search-image"></div>
+                                <p>Bharathi Raja</p>
+                            </li>
+                            <li class="people-option x-axis-flex">
+                                <div class="people-search-image"></div>
+                                <p>Bharathi Raja</p>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="common-input-wrapper desc-adding-wrapper y-axis-flex">
+                    <label for="adding-desc-input-id">Description</label>
+                    <div class="common-input" contenteditable="true" id="adding-desc-input-id"></div>
+                </div>
+                <button type="button" class="common-button add-button">Create</button>
+            </section>
+        </section>
+    </section>
+</body>
+
+<!-- Main scripts starts here-->
+<script src="assets/js/mainscripts/utility.js"></script>
+<script src="assets/js/mainscripts/mainview.js"></script>
+<script src="assets/js/mainscripts/maincontroller.js"></script>
+<!-- Main scripts ends here-->
+
+</html>

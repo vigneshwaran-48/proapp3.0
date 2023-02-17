@@ -1,0 +1,98 @@
+.main-box{
+    padding: 10px;
+    justify-content: space-between;
+}
+.top-box-detail{
+    width: 100%;
+    justify-content: space-between;
+}
+.three-dots-wrapper{
+    width: 30px;
+    padding: 0px 10px;
+    position: relative;
+    cursor: pointer;
+}
+.three-dot-label{
+    cursor: pointer;
+}
+.three-dots-wrapper:hover {
+    background-color: rgb(235, 237, 239);
+}
+#three-dots{
+    display: none;
+}
+.three-dots-options-wrapper{
+    position: absolute;
+    top: 100%;
+    right: 0%;
+    height: 0;
+    width: 150px;
+    overflow: hidden;
+    padding: 0;
+    transition: 0.5s;
+    border-radius: 15px;
+}
+.three-dots-option{
+    padding: 10px;
+}
+.three-dots-option:hover {
+    background-color: white;
+}
+#three-dots:checked + .three-dots-options-wrapper{
+    height: 130px;
+}
+.box-description{
+    height: 70px;
+    overflow: scroll;
+}
+.box-description::-webkit-scrollbar {
+    display: none;
+}
+.box-percentage-wrapper{
+    width: 100%;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.box-percentage-value{
+    font-size: 14px;
+    width: 50%;
+    padding: 0px 10px;
+    background-color: rgb(68,146,240);
+    border-radius: 10px;
+    color: white;
+}
+.all-people-wrapper{
+    width: 100%;
+    justify-content: flex-start;
+    position: relative;
+    height: 40px;
+}
+.person-image-wrapper{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: white;
+    position: absolute;
+}
+.person-image{
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-image: url("/ProApp/assets/images/user.png");
+    background-size: cover;
+}
+.person-1{
+    left: 25px;
+}
+.person-2{
+    left: 45px;
+}
+.person-3{
+    left: 65px;
+}
+.more-person{
+    left: 85px;
+    line-height: 40px;
+    text-align: center;
+    background-color: rgb(221,221,223);
+}
