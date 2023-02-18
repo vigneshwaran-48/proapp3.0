@@ -22,6 +22,26 @@
 </head>
 
 <body>
+    <div class="error-message-wrapper x-axis-flex full-light-theme">
+        <div class="error-symbol x-axis-flex"><i class="fa-regular fa-circle-xmark"></i></div>
+        <div class="error-message y-axis-flex">
+            <h3>Error</h3>
+            <p class="error-message-for-user"></p>
+        </div>
+        <div class="error-close-button">
+            <span class="error-message-close-button">Close</span>
+        </div>
+    </div>
+    <div class="success-message-wrapper x-axis-flex full-light-theme">
+        <div class="success-symbol x-axis-flex"><i class="fa-regular fa-circle-check"></i></div>
+        <div class="success-message y-axis-flex">
+            <h3>Success</h3>
+            <p class="success-message-for-user"></p>
+        </div>
+        <div class="success-close-button">
+            <span class="success-message-close-button">Close</span>
+        </div>
+    </div>
     <section class="side-nav-bar y-axis-flex full-light-theme">
         <img class="top-header-icon" src="assets/images/logo1.png" alt="app-icon">
         <div class="common-i-tag icons-wrapper y-axis-flex">
@@ -83,9 +103,9 @@
                                             <label for="three-dots" class="three-dot-label"><i class="fa-solid fa-ellipsis"></i></label>
                                             <input type="checkbox" id="three-dots">
                                             <ul class="three-dots-options-wrapper light-theme">
-                                                <li class="three-dots-option">Yet to start</li>
-                                                <li class="three-dots-option">On Progress</li>
-                                                <li class="three-dots-option">Completed</li>
+                                                <li class="three-dots-option">Edit</li>
+                                                <li class="three-dots-option">More Info</li>
+                                                <li class="three-dots-option">Complete</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -193,35 +213,21 @@
                         <input type="checkbox" id="people-adding-input">
                         <ul class="people-options-wrapper full-light-theme">
                             <input type="search" class="people-search-input">
-                            <li class="people-option x-axis-flex">
+                            <label for="1" class="people-option x-axis-flex">
                                 <div class="people-search-image"></div>
                                 <p>Bharath</p>
-                            </li>
-                            <li class="people-option x-axis-flex">
+                                <input type="checkbox" name="selected-people" value="person1" id="1" class="people-search-result-input-tag">
+                            </label>
+                            <label for="2" class="people-option x-axis-flex">
                                 <div class="people-search-image"></div>
                                 <p>Basid</p>
-                            </li>
-                            <li class="people-option x-axis-flex">
+                                <input type="checkbox" name="selected-people" value="person2" id="2" class="people-search-result-input-tag">
+                            </label>
+                            <label for="3" class="people-option x-axis-flex">
                                 <div class="people-search-image"></div>
                                 <p>Bharathi Raja</p>
-                            </li>
-                            <li class="people-option x-axis-flex">
-                                <div class="people-search-image"></div>
-                                <p>Bharathi Raja</p>
-                            </li>
-                            <li class="people-option x-axis-flex">
-                                <div class="people-search-image"></div>
-                                <p>Bharathi Raja</p>
-                            </li>
-                            <li class="people-option x-axis-flex">
-                                <div class="people-search-image"></div>
-                                <p>Bharathi Raja</p>
-                            </li>
-                            <li class="people-option x-axis-flex">
-                                <div class="people-search-image"></div>
-                                <p>Bharathi Raja</p>
-                            </li>
-
+                                <input type="checkbox" name="selected-people" value="person3" id="3" class="people-search-result-input-tag">
+                            </label>
                         </ul>
                     </div>
                 </div>
@@ -241,4 +247,14 @@
 <script src="assets/js/mainscripts/maincontroller.js"></script>
 <!-- Main scripts ends here-->
 
+<!-- Form scripts starts here -->
+<script src="assets/js/formscripts/formview.js"></script>
+<script src="assets/js/formscripts/formcontroller.js"></script>
+<!-- Form scripts ends here -->
+
+<!-- Project script starts here -->
+<script src="assets/js/projectscripts/projectview.js"></script>
+<script src="assets/js/projectscripts/projectmodel.js"></script>
+<script src="assets/js/projectscripts/projectcontroller.js"></script>
+<!-- Project script ends here -->
 </html>

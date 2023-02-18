@@ -91,6 +91,9 @@
 #form-adding-section-close-button:hover {
     background-color: rgb(235, 237, 239);
 }
+.people-search-result-input-tag{
+    display: none;
+}
 @media screen and (max-height: 820px){
     #adding-desc-input-id{
         height: 130px;
