@@ -17,7 +17,31 @@ let getCurrentUserDetails = () => {
         USERNAME = temp.currentUserName;
         CURRENTUSERPHOTO= temp.imagePath;
         _(".top-profile-image").style.backgroundImage = `url(/ProApp/assets/images/usersImages/${CURRENTUSERPHOTO})`;
-        // _(".bottom-icon-profile").style.backgroundImage = `url(/ProApp/assets/images/usersImages/${CURRENTUSERPHOTO})`;
+        _(".big-profile-image").style.backgroundImage = `url(/ProApp/assets/images/usersImages/${CURRENTUSERPHOTO})`;
     }
 }
+
+let sendGetRequest = (url, onloadFunction) => {
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", url);
+    xhr.send();
+    xhr.onload = onloadFunction;
+}
+let sendPostRequest = (url, data, onloadFunction) => {
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url);
+    xhr.send(data);
+    xhr.onload = onloadFunction;
+}
+let resetProjects = () => {
+    sendGetRequest("/ProApp/project/getall", function(){
+        ProjectModel.resetProject();
+        JSON.parse(this.response).forEach(elem => {
+            ProjectModel.addProject(elem, false);
+        });
+        ProjectView.renderProjects(ProjectModel.getProjectsArray());
+    });
+}
+
 getCurrentUserDetails();
+resetProjects();

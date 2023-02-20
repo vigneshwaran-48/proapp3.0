@@ -3,6 +3,8 @@ package com.databases.project;
 import java.sql.*;
 import org.json.simple.*;
 
+import com.databases.users.RetrieveUser;
+
 /**
  * This class contains methods to add and delete project.
  */
@@ -54,7 +56,8 @@ public class Project {
             resJsObj.put("fromDate", fromdate);
             resJsObj.put("toDate", todate);
             resJsObj.put("createdBy", createdBy);
-            resJsObj.put("users", userDetails);
+            resJsObj.put("percentage", 0);
+            resJsObj.put("users", new RetrieveUser().getUserDetailByPid(con, pid));
         } 
         catch (Exception e) {
             e.printStackTrace();

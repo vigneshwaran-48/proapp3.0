@@ -5,6 +5,7 @@ let FormController = (view => {
         _(view.getDomStrings().descInputTag).innerText = "";
         _(view.getDomStrings().fromDateInputTag).valueAsDate = new Date();
         _(view.getDomStrings().toDateInputTag).valueAsDate = new Date();
+        _(view.getDomStrings().peopleAddingLabel).checked = false;
         document.getElementsByName("selected-people").forEach(elem => elem.checked = false);
     }
     let getPeopleArray = peopleInput => peopleInput.map(elem => elem.id);
@@ -33,8 +34,14 @@ let FormController = (view => {
         }
         else {
             MainView.showErrorMessage("Please fill all the details in the form");
+            return {
+                status: false
+            }
         }
     }
+    _(view.getDomStrings().peopleSearchInput).addEventListener("input", event => {
+        view.renderSearchPeople(event.target.value);
+    });
     return {
         validateForm : validateForm
     }

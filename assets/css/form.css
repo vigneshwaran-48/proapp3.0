@@ -49,6 +49,9 @@
     transition: 0.5s;
     background-color: rgb(235, 237, 239);
 }
+.search-people-wrapper{
+    padding: 0;
+}
 .people-search-image{
     width: 30px;
     height: 30px;
@@ -91,8 +94,18 @@
 #form-adding-section-close-button:hover {
     background-color: rgb(235, 237, 239);
 }
-.people-search-result-input-tag{
-    display: none;
+.selected-people-display{
+    width: 100px;
+    position: relative;
+    height: 35px;
+}
+.selected-people-small-image{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-image: url(/ProApp/assets/images/user.png);
+    background-size: cover;
+    position: absolute;
 }
 @media screen and (max-height: 820px){
     #adding-desc-input-id{

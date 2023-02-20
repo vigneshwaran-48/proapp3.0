@@ -1,5 +1,7 @@
 let ProjectModel = (() => {
 
+    let projectsArray = [];
+
     let Project = function(id, projectName, projectDesc, status, fromDate, toDate, users, createdBy, percentage){
         this.id = id;
         this.projectName = projectName;
@@ -26,35 +28,34 @@ let ProjectModel = (() => {
             users : users,
             createdBy : tempCreated
         }
-        
         formData.append("data", JSON.stringify(tempObj));
         
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "/ProApp/project/add");
-        xhr.send(formData);
-        xhr.onload = () => {
-            let serverObject = JSON.parse(xhr.response); 
+        sendPostRequest("/ProApp/project/add", formData, function(){
+            let serverObject = JSON.parse(this.response); 
             let project = changeServerObject(serverObject);
             projectsArray.push(project);
+            ProjectView.renderProjects(projectsArray);
             MainView.showSuccessMessage("project added succesfully");
-            // ProjectView.renderProjects(ProjectModel.getProjectsArray());
-        }
-    }
-    let projectsArray = [];
-
-    let getProjectsArray = () => projectsArray.slice();
-    
-    let getIndexOfProject = id => {
-        return projectsArray.findIndex(elem => {
-            return elem.id == id;
         });
     }
+    
+    let getProjectsArray = () => projectsArray.slice();
+    
+    let getIndexOfProject = id => projectsArray.findIndex(elem => elem.id == id);
+    
     let resetProject = () => projectsArray = [];
     
     let removeProject = id => projectsArray.splice(getIndexOfProject(id), 1);
 
     //This method split the object and give details to addProjectToServer.
-    let addProject = projectDetails => addProjectToServer(projectDetails.name, projectDetails.description, projectDetails.fromDate, projectDetails.toDate, projectDetails.people);
+    let addProject = (projectDetails, isNew) => {
+        if(isNew){
+            addProjectToServer(projectDetails.name, projectDetails.description, projectDetails.fromDate, projectDetails.toDate, projectDetails.people);
+        }
+        else {
+            projectsArray.push(projectDetails);
+        }
+    }
     
     let changeStatus = (status, id) => projectsArray[getIndexOfProject(id)].status = status;
       

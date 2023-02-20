@@ -210,6 +210,26 @@
         <url-pattern>/task/user/changestatus</url-pattern>
     </servlet-mapping>
 
+    <!-- security constraints starts here -->
+    <!-- <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Testing</web-resource-name>
+            <url-pattern>/home</url-pattern>
+            <http-method>GET</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>admin</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+
+    </security-constraint>
+
+    <login-config>
+        <auth-method>BASIC</auth-method>
+    </login-config> -->
+    <!-- security constraints ends here -->
 
     <!-- Login Filter -->
     <filter>

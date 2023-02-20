@@ -18,7 +18,7 @@
 .three-dots-wrapper:hover {
     background-color: rgb(235, 237, 239);
 }
-#three-dots{
+.three-dots{
     display: none;
 }
 .three-dots-options-wrapper{
@@ -41,8 +41,14 @@
 #three-dots:checked + .three-dots-options-wrapper{
     height: 130px;
 }
+.show-box-options{
+    height: 130px;
+}
 .box-description{
     height: 70px;
+    width: 100%;
+    padding: 10px;
+    text-align: left;
     overflow: scroll;
 }
 .box-description::-webkit-scrollbar {
@@ -78,7 +84,8 @@
     width: 38px;
     height: 38px;
     border-radius: 50%;
-    background-image: url("/ProApp/assets/images/user.png");
+    background-color: rgba(0, 0, 0, 0.1);
+    /* background-image: url("/ProApp/assets/images/user.png"); */
     background-size: cover;
 }
 .person-1{

@@ -19,7 +19,7 @@ public class LoginChecker {
         
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/proapp", "todouser",
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/proapp", "vicky",
                 "vi99g@NESH");
             PreparedStatement ps;
             ResultSet rs;

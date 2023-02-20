@@ -94,18 +94,18 @@
                     <section class="common-middle-section-body semi-light-theme x-axis-flex">
                         <section class="main-projects-and-tasks-section common-pro-and-task-section yet-to-start-section y-axis-flex">
                             <p class="common-pro-and-task-heading">Yet to start</p>
-                            <section class="box-wrapper y-axis-flex">
+                            <section class="yet-to-start-box-wrapper box-wrapper y-axis-flex">
                                 <!-- Main box starts here  -->
                                 <div class="main-box y-axis-flex">
                                     <div class="top-box-detail x-axis-flex">
                                         <h2 class="box-name">Project Name</h2>
                                         <div class="three-dots-wrapper">
                                             <label for="three-dots" class="three-dot-label"><i class="fa-solid fa-ellipsis"></i></label>
-                                            <input type="checkbox" id="three-dots">
+                                            <input type="checkbox" class="three-dots">
                                             <ul class="three-dots-options-wrapper light-theme">
-                                                <li class="three-dots-option">Edit</li>
-                                                <li class="three-dots-option">More Info</li>
-                                                <li class="three-dots-option">Complete</li>
+                                                <li class="three-dots-option three-dots-edit-option">Edit</li>
+                                                <li class="three-dots-option three-dots-more-info">More Info</li>
+                                                <li class="three-dots-option three-dots-complete-option">Complete</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -117,7 +117,7 @@
                                     </div>
                                     <div class="all-people-wrapper x-axis-flex">
                                         <div class="person-image-wrapper person-1">
-                                            <div class="person-image"></div>
+                                            <div class="person-images"></div>
                                         </div>
                                         <div class="person-image-wrapper person-2">
                                             <div class="person-image"></div>
@@ -138,14 +138,14 @@
                         </section>
                         <section class="in-progress-section common-pro-and-task-section y-axis-flex">
                             <p class="common-pro-and-task-heading">In progress</p>
-                            <section class="box-wrapper y-axis-flex">
+                            <section class="in-progress-box-wrapper box-wrapper y-axis-flex">
                                 <div class="main-box"></div>
                                 <div class="main-box"></div>
                             </section>
                         </section>
                         <section class="completed-section common-pro-and-task-section y-axis-flex">
                             <p class="common-pro-and-task-heading">Completed</p>
-                            <section class="box-wrapper y-axis-flex">
+                            <section class="completed-box-wrapper box-wrapper y-axis-flex">
                                 <div class="main-box"></div>
                                 <div class="main-box"></div>
                             </section>
@@ -207,27 +207,22 @@
                     <input type="date" required id="adding-last-date-input-id" class="common-input adding-last-date-input">
                 </div>
                 <div class="common-input-wrapper x-axis-flex">
-                    <label for="adding-name-input-id">Name</label>
-                    <div class="people-adding-wrapper">
+                    <label for="adding-name-input-id">People</label>
+                    <div class="people-adding-wrapper x-axis-flex">
+                        <div class="selected-people-display">
+                            <!-- <div class="selected-people-small-image"></div> -->
+                        </div>
                         <label for="people-adding-input" class="people-adding-label">Add</i></label>
                         <input type="checkbox" id="people-adding-input">
                         <ul class="people-options-wrapper full-light-theme">
                             <input type="search" class="people-search-input">
-                            <label for="1" class="people-option x-axis-flex">
-                                <div class="people-search-image"></div>
-                                <p>Bharath</p>
-                                <input type="checkbox" name="selected-people" value="person1" id="1" class="people-search-result-input-tag">
-                            </label>
-                            <label for="2" class="people-option x-axis-flex">
-                                <div class="people-search-image"></div>
-                                <p>Basid</p>
-                                <input type="checkbox" name="selected-people" value="person2" id="2" class="people-search-result-input-tag">
-                            </label>
-                            <label for="3" class="people-option x-axis-flex">
-                                <div class="people-search-image"></div>
-                                <p>Bharathi Raja</p>
-                                <input type="checkbox" name="selected-people" value="person3" id="3" class="people-search-result-input-tag">
-                            </label>
+                            <ul class="search-people-wrapper">
+                                <!-- <label for="1" class="people-option x-axis-flex">
+                                    <div class="people-search-image"></div>
+                                    <p>Bharath</p>
+                                    <input type="checkbox" name="selected-people" value="person1" id="1" class="people-search-result-input-tag">
+                                </label> -->
+                            </ul>
                         </ul>
                     </div>
                 </div>

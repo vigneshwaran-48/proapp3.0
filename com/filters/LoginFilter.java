@@ -36,7 +36,7 @@ public class LoginFilter extends HttpFilter{
                     session.setAttribute("password", password);
                     // //System.out.println("from lpgin");
                     Class.forName("com.mysql.cj.jdbc.Driver");
-                    Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/proapp", "todouser", "vi99g@NESH");
+                    Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/proapp", "vicky", "vi99g@NESH");
                     session.setAttribute("uid", new RetrieveUser().getUidByEmail(conn, email));
                     session.setAttribute("userName", new RetrieveUser().getUnameByEmail(conn, email));
                     response.getWriter().append("Success");

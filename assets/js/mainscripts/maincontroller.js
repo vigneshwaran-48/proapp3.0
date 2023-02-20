@@ -29,7 +29,6 @@ let MainController = (view => {
         _(view.getDomStrings().formCreatingButton).addEventListener("click", event => {
             let result = FormController.validateForm();
             if(result.status){
-                console.log(result.formDetails); 
                 ProjectController.addProject(result.formDetails);
             }
         });
