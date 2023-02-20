@@ -32,6 +32,7 @@ let ProjectModel = (() => {
         
         sendPostRequest("/ProApp/project/add", formData, function(){
             let serverObject = JSON.parse(this.response); 
+            serverObject.status = "Yet To Start";
             let project = changeServerObject(serverObject);
             projectsArray.push(project);
             ProjectView.renderProjects(projectsArray);
@@ -58,13 +59,26 @@ let ProjectModel = (() => {
     }
     
     let changeStatus = (status, id) => projectsArray[getIndexOfProject(id)].status = status;
-      
+
+    let getTotalCount = () => projectsArray.length;
+
+    let getStatCount = constraint => {
+        return projectsArray.filter(elem => {
+            return elem.status == constraint;
+        }).length;
+    }
+    let getSectionName = () => "Projects";
+    
     return {
         getProjectsArray : getProjectsArray,
+        changeServerObject : changeServerObject,
         removeProject : removeProject,
         changeStatus : changeStatus,
         addProject : addProject,
         getIndexOfProject : getIndexOfProject,
-        resetProject : resetProject
+        resetProject : resetProject,
+        getSectionName : getSectionName,
+        getTotalCount :  getTotalCount,
+        getStatCount : getStatCount
     }
 })();

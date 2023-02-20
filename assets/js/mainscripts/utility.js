@@ -18,6 +18,7 @@ let getCurrentUserDetails = () => {
         CURRENTUSERPHOTO= temp.imagePath;
         _(".top-profile-image").style.backgroundImage = `url(/ProApp/assets/images/usersImages/${CURRENTUSERPHOTO})`;
         _(".big-profile-image").style.backgroundImage = `url(/ProApp/assets/images/usersImages/${CURRENTUSERPHOTO})`;
+        _(".current-user-name").textContent = USERNAME;
     }
 }
 
@@ -37,9 +38,10 @@ let resetProjects = () => {
     sendGetRequest("/ProApp/project/getall", function(){
         ProjectModel.resetProject();
         JSON.parse(this.response).forEach(elem => {
-            ProjectModel.addProject(elem, false);
+            ProjectModel.addProject(ProjectModel.changeServerObject(elem), false);
         });
         ProjectView.renderProjects(ProjectModel.getProjectsArray());
+        MainView.loadStatisticsData();
     });
 }
 

@@ -35,7 +35,7 @@ let FormView = (() => {
         sendGetRequest("user/getusers?id=all", function(){
             resetPeopleSearchView(_(domStrings.peopleSearchWrapper));
             JSON.parse(this.response).forEach(elem => {
-                if(elem.userName.toLowerCase().includes(searchInput.toLowerCase()) && !isPersonResultAvailable(elem.userId)){
+                if(elem.userName.toLowerCase().includes(searchInput.toLowerCase()) && !isPersonResultAvailable(elem.userId) && elem.userId != USERID){
                     let labelTag = document.createElement("label");
                     let inputTag = document.createElement("input");
                     let imageDiv = document.createElement("div");

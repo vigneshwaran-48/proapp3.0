@@ -18,6 +18,8 @@ let FormController = (view => {
         let peopleInput = Array.from(document.getElementsByName("selected-people")).filter(elem => {
             return elem.checked;
         });
+        let people = getPeopleArray(peopleInput);
+        people.push(USERID);
 
         if(nameInput.length && descInput.length && peopleInput.length){
             resetForm();
@@ -28,7 +30,7 @@ let FormController = (view => {
                     description : descInput,
                     fromDate : fromDateInput,
                     toDate : toDateInput,
-                    people : getPeopleArray(peopleInput)
+                    people : people
                 }
             }
         }

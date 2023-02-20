@@ -38,7 +38,7 @@ let ProjectView = (() => {
         projects.forEach(elem => {
             //Creating elements starts here
             let parentTag;
-            if(elem.status = "Yet To Start"){
+            if(elem.status == "Yet To Start"){
                 parentTag = _(domStrings.yetToStartSection);
             }
             else if (elem.status == "On Progress"){
@@ -47,7 +47,6 @@ let ProjectView = (() => {
             else if (elem.status == "Completed"){
                 parentTag = _(domStrings.completedSection);
             }
-            console.log(parentTag);
             let mainBox = document.createElement("div");
 
             let topBoxDetail = document.createElement("div");
@@ -90,7 +89,7 @@ let ProjectView = (() => {
             threeDotsOption2.classList.add(domStrings.threeDotsOption);
             threeDotsOption2.classList.add(domStrings.threeDotsMoreInfoOption);
             threeDotsOption2.id = elem.id;
-            threeDotsOption3.classList.add(domStrings.threeDotsCompleteOption);
+            threeDotsOption3.classList.add(domStrings.threeDotsOption);
             threeDotsOption3.classList.add(domStrings.threeDotsCompleteOption);
             threeDotsOption3.id = elem.id;
 
@@ -135,8 +134,8 @@ let ProjectView = (() => {
             threeDotsOption1.textContent = "Edit";
             threeDotsOption2.textContent = "More Info";
             threeDotsOption3.textContent = "Complete";
-            boxPercentageValue.textContent = elem.percentage;
-            boxPercentageValue.style.width = elem.percentage;
+            boxPercentageValue.textContent = elem.percentage + "%";
+            boxPercentageValue.style.width = elem.percentage + "%";
 
             //Setting contents of the created element ends here
 
@@ -151,7 +150,12 @@ let ProjectView = (() => {
                     event.target.nextElementSibling.nextElementSibling.classList.toggle(domStrings.showBoxOptions);
                 }
             })
-            threeDotsOptionsWrapper.append(threeDotsOption1, threeDotsOption2, threeDotsOption3);
+            if(USERID == elem.createdBy){
+                threeDotsOptionsWrapper.append(threeDotsOption1, threeDotsOption2, threeDotsOption3);
+            }
+            else {
+                threeDotsOptionsWrapper.append(threeDotsOption2, threeDotsOption3);
+            }
             threeDotsWrapper.append(threeDotsLabel, threeDotsInput, threeDotsOptionsWrapper);
 
             topBoxDetail.append(boxName, threeDotsWrapper);
