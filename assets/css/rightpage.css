@@ -39,11 +39,18 @@
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    border: 10px solid green;
     text-align: center;
 }
+.inner-stat-circle{
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background-color: white;
+}
+.percentage-circle{
+    background-image: conic-gradient(green 90deg, red 270deg);
+}
 .stats-percentage-value{
-    line-height: 200px;
     font-size: 25px;
 }
 .stats-values-wrapper{

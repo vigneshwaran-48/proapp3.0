@@ -19,7 +19,9 @@ let MainView = (() => {
         totalStats : ".total-number-of-stats",
         inProgressStats : ".in-progress-stats",
         completedStats : ".completed-stats",
-        yetToStartStats : ".yet-to-start-stats"
+        yetToStartStats : ".yet-to-start-stats",
+        statCircleValue : ".stats-percentage-value",
+        statOuterCircle : ".percentage-circle"
     }
     let getDomStrings = () => domStrings;
 
@@ -46,17 +48,29 @@ let MainView = (() => {
         // else {
         //     currentSection 
         // }
+        let total = currentSection.getTotalCount();
+        let completed = currentSection.getStatCount("Completed");
         _(domStrings.statsSectionName).textContent = currentSection.getSectionName();
-        _(domStrings.totalStats).textContent = currentSection.getTotalCount();
+        _(domStrings.totalStats).textContent = total;
         _(domStrings.inProgressStats).textContent = currentSection.getStatCount("On Progress");
-        _(domStrings.completedStats).textContent = currentSection.getStatCount("Completed");
+        _(domStrings.completedStats).textContent = completed;
         _(domStrings.yetToStartStats).textContent = currentSection.getStatCount("Yet To Start");
+        loadStatisticsCircle(total, completed);
+    }
+    let loadStatisticsCircle = (total, completed) => {
+        let percentage = Math.round((completed / total) * 100);
+        let degree = percentage / 100 * 360;
+
+
+        _(domStrings.statCircleValue).textContent = percentage + "%";
+        console.log(degree);
+        _(domStrings.statOuterCircle).style.background = `conic-gradient(green ${degree}deg, red ${360 - degree}deg)`;
     }
     
     return {
         getDomStrings : getDomStrings,
         showErrorMessage : showErrorMessage,
         showSuccessMessage : showSuccessMessage,
-        loadStatisticsData : loadStatisticsData
+        loadStatisticsData : loadStatisticsData,
     }
 })();
