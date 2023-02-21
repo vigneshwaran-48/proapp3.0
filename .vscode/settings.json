@@ -1,0 +1,9 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "WEB-INF/lib/json-simple-1.1.jar",
+        "WEB-INF/lib/javax.servlet-api-4.0.1.jar",
+        "WEB-INF/lib/mysql-connector-java-8.0.30.jar",
+        "WEB-INF/lib/websocket-api.jar"
+    ]
+}

@@ -41,8 +41,11 @@ let FormController = (view => {
             }
         }
     }
+    _(view.getDomStrings().peopleAddingLabel).addEventListener("click", event => {
+        view.renderSearchPeople(event.target.value, true, _(view.getDomStrings().peopleSearchWrapper));
+    });
     _(view.getDomStrings().peopleSearchInput).addEventListener("input", event => {
-        view.renderSearchPeople(event.target.value);
+        view.renderSearchPeople(event.target.value, false, _(view.getDomStrings().peopleSearchWrapper));
     });
     return {
         validateForm : validateForm

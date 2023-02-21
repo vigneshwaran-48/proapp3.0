@@ -12,6 +12,7 @@ let ProjectView = (() => {
         iconClass1 : "fa-solid",
         iconClass2 : "fa-ellipsis",
         showBoxOptions : "show-box-options",
+        showNormalUserBoxOption : "show-normal-user-box-option",
         threeDotsInputId : "three-dots",
         threeDotsOptionsWrapper : "three-dots-options-wrapper",
         threeDotsOption : "three-dots-option",
@@ -27,6 +28,7 @@ let ProjectView = (() => {
         threeDotsCompleteOption : "three-dots-complete-option"
     }
     let getDomStrings = () => domStrings;
+    
     
     let renderProjects = projects => {
 
@@ -85,13 +87,13 @@ let ProjectView = (() => {
             threeDotsOptionsWrapper.classList.add("light-theme");
             threeDotsOption1.classList.add(domStrings.threeDotsOption);
             threeDotsOption1.classList.add(domStrings.threeDotsEditOption);
-            threeDotsOption1.id = elem.id;
+            threeDotsOption1.id = "edit" + elem.id;
             threeDotsOption2.classList.add(domStrings.threeDotsOption);
             threeDotsOption2.classList.add(domStrings.threeDotsMoreInfoOption);
-            threeDotsOption2.id = elem.id;
+            threeDotsOption2.id = "more" + elem.id;
             threeDotsOption3.classList.add(domStrings.threeDotsOption);
             threeDotsOption3.classList.add(domStrings.threeDotsCompleteOption);
-            threeDotsOption3.id = elem.id;
+            threeDotsOption3.id = "complete" + elem.id;
 
             boxDescription.classList.add(domStrings.boxDescription);
             boxPercentageWrapper.classList.add(domStrings.boxPercentageWrapper);
@@ -121,6 +123,7 @@ let ProjectView = (() => {
                         allPeopleWrapper.append(personImageWrapper);
                     }
                     else {
+                        console.log(imageCount);
                         allPeopleWrapper.children[3].children[0].textContent = "+" + (imageCount - 3);
                     }
                 }
@@ -137,24 +140,63 @@ let ProjectView = (() => {
             boxPercentageValue.textContent = elem.percentage + "%";
             boxPercentageValue.style.width = elem.percentage + "%";
 
+            threeDotsWrapper.addEventListener("click", event => {
+                if(event.target.id.startsWith("more")){
+                    _(MainView.getDomStrings().fullDescriptionSection).classList.add(MainView.getDomStrings().showFromRightToLeft);
+                    MainView.renderDescriptionDetails(event.target.id.slice(4), true);
+                    event.target.parentElement.classList.remove(domStrings.showBoxOptions);
+                }
+                else if (event.target.id.startsWith("complete")){
+                    console.log("completed action ........");
+                    event.target.parentElement.classList.remove(domStrings.showBoxOptions);
+                }
+                else if (event.target.id.startsWith("edit")){
+                    _(MainView.getDomStrings().fullEditSection).classList.add(MainView.getDomStrings().showFromRightToLeft);
+                    MainView.renderEditSection(event.target.id.slice(4), true);
+                    event.target.parentElement.classList.remove(domStrings.showBoxOptions);
+                }
+                else {
+                    if(event.target.tagName == "I"){
+                        event.preventDefault();
+                        event.stopPropagation();
+                        if(event.target.parentElement.nextElementSibling.nextElementSibling.children.length > 1){
+                            event.target.parentElement.nextElementSibling.nextElementSibling.classList.toggle(domStrings.showBoxOptions); 
+                        }
+                        else {
+                            event.target.parentElement.nextElementSibling.nextElementSibling.classList.toggle(domStrings.showNormalUserBoxOption);
+                        }
+                    }
+                    else if (event.target.tagName == "DIV"){
+                        if(event.target.children[2].children.length > 1){
+                            event.target.children[2].classList.toggle(domStrings.showBoxOptions);
+                        }
+                        else {
+                            event.target.children[2].classList.toggle(domStrings.showNormalUserBoxOption);
+                        }
+                    }
+                    else {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        if(event.target.nextElementSibling.nextElementSibling.children.length > 1){
+                            event.target.nextElementSibling.nextElementSibling.classList.toggle(domStrings.showBoxOptions);
+                        }
+                        else {
+                            event.target.nextElementSibling.nextElementSibling.classList.toggle(domStrings.showNormalUserBoxOption);
+                        }
+                    }
+                }
+            });
+
             //Setting contents of the created element ends here
 
             //Appending elements to its respective parent element starts here
             threeDotsLabel.append(iTag);
-            threeDotsLabel.addEventListener("click", event => {
-                console.log(event.target.tagName);
-                if(event.target.tagName == "I"){
-                    event.target.parentElement.nextElementSibling.nextElementSibling.classList.toggle(domStrings.showBoxOptions);
-                }
-                else {
-                    event.target.nextElementSibling.nextElementSibling.classList.toggle(domStrings.showBoxOptions);
-                }
-            })
+
             if(USERID == elem.createdBy){
                 threeDotsOptionsWrapper.append(threeDotsOption1, threeDotsOption2, threeDotsOption3);
             }
             else {
-                threeDotsOptionsWrapper.append(threeDotsOption2, threeDotsOption3);
+                threeDotsOptionsWrapper.append(threeDotsOption2);
             }
             threeDotsWrapper.append(threeDotsLabel, threeDotsInput, threeDotsOptionsWrapper);
 

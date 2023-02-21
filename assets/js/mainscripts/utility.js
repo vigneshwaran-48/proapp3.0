@@ -6,6 +6,7 @@ let CURRENTSECTION = "Project";
 let USERID;
 let USERNAME;
 let CURRENTUSERPHOTO;
+let webSocket;
 
 let getCurrentUserDetails = () => {
     let xhr = new XMLHttpRequest();
@@ -19,9 +20,15 @@ let getCurrentUserDetails = () => {
         _(".top-profile-image").style.backgroundImage = `url(/ProApp/assets/images/usersImages/${CURRENTUSERPHOTO})`;
         _(".big-profile-image").style.backgroundImage = `url(/ProApp/assets/images/usersImages/${CURRENTUSERPHOTO})`;
         _(".current-user-name").textContent = USERNAME;
+        webSocket = new WebSocket("ws://10.52.0.38:8787/ProApp/chat?uid=" + USERID);
+        webSocket.onmessage = (event) => {
+            MainView.showPopUpSymbol(JSON.parse(event.data).description);
+        }
     }
 }
-
+let playNotificationSound = () => {
+    new Audio("assets/audio/notification_sound.mp3").play();
+}
 let sendGetRequest = (url, onloadFunction) => {
     let xhr = new XMLHttpRequest();
     xhr.open("GET", url);

@@ -37,6 +37,12 @@ let ProjectModel = (() => {
             projectsArray.push(project);
             ProjectView.renderProjects(projectsArray);
             MainView.showSuccessMessage("project added succesfully");
+            sendMessage(JSON.stringify({
+                messageType: "projectUpdate",
+                projectId : project.id,
+                userId : USERID,
+                description : "you have been added to a project by " + USERNAME
+            }))
         });
     }
     
@@ -56,6 +62,12 @@ let ProjectModel = (() => {
         else {
             projectsArray.push(projectDetails);
         }
+    }
+
+    let getDataById = id => {
+        return projectsArray.find(elem => {
+            return elem.id == id;
+        })
     }
     
     let changeStatus = (status, id) => projectsArray[getIndexOfProject(id)].status = status;
@@ -79,6 +91,7 @@ let ProjectModel = (() => {
         resetProject : resetProject,
         getSectionName : getSectionName,
         getTotalCount :  getTotalCount,
-        getStatCount : getStatCount
+        getStatCount : getStatCount,
+        getDataById : getDataById
     }
 })();

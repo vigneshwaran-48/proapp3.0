@@ -44,6 +44,9 @@
 .show-box-options{
     height: 130px;
 }
+.show-normal-user-box-option{
+    height: 38px;
+}
 .box-description{
     height: 70px;
     width: 100%;

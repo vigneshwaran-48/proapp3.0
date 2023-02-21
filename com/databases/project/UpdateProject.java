@@ -47,15 +47,18 @@ public class UpdateProject {
                 totalCount++;
             }
             //System.out.println("completedCount:" + completedCount + "totalCount:" + totalCount +"on progress ="+onProgressCount);
-            if (totalCount == completedCount) {
-                stmt.executeUpdate("update projects set status = 'Completed' where pid = " + pid);
-            } else if (completedCount > 0) {
-                stmt.executeUpdate("update projects set status = 'On Progress' where pid = " + pid);
-            } else if (onProgressCount > 0) {
-                stmt.executeUpdate("update projects set status = 'On Progress' where pid = " + pid);
-            } else if (completedCount == 0) {
-                stmt.executeUpdate("update projects set status = 'Yet To Start' where pid = " + pid);
-            } 
+            if (totalCount>0){
+                if (totalCount == completedCount) {
+                    stmt.executeUpdate("update projects set status = 'Completed' where pid = " + pid);
+                } else if (completedCount > 0) {
+                    stmt.executeUpdate("update projects set status = 'On Progress' where pid = " + pid);
+                } else if (onProgressCount > 0) {
+                    stmt.executeUpdate("update projects set status = 'On Progress' where pid = " + pid);
+                } else if (completedCount == 0) {
+                    stmt.executeUpdate("update projects set status = 'Yet To Start' where pid = " + pid);
+                } 
+            }
+            
         } catch (Exception e) {
             e.printStackTrace();
         }

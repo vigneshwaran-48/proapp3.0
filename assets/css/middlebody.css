@@ -35,10 +35,12 @@
     position: relative;
     padding: 15px 5px;
     display: none;
+    cursor: pointer;
 }
 .filter-button{
     padding: 0px 10px;
     font-size: 20px;
+    cursor: pointer;
 }
 .filter-options-wrapper{
     width: 120px;
@@ -50,11 +52,13 @@
     overflow: hidden;
     transition: 0.5s;
     border-radius: 10px;
+    cursor: pointer;
 }
 .filter-option{
     padding: 10px;
     list-style-type: none;
     transition: 0.5s;
+    cursor: pointer;
 }
 .filter-option:hover {
     background-color: rgba(0, 0, 0, 0.2)
@@ -97,11 +101,9 @@
 }
 /* body section styling ends here */
 
-@media screen and (max-width: 1650px) {
-    .full-filter-wrapper{
-        display: block;
-    }
-}
+/* @media screen and (max-width: 1650px) {
+    
+} */
 @media screen and (max-width:1240px) {
     .main-projects-and-tasks-section{
         width: 100%;
@@ -116,10 +118,14 @@
         flex-wrap: wrap;
         padding: 5px;
     }
+    .full-filter-wrapper{
+        display: block;
+    }
     .main-box{
         margin: 10px 10px;
     }
-    .in-progress-section, .completed-section{
+    .in-progress-section, .completed-section, .yet-to-start-section{
+        width: 100%;
         display: none;
     }
     .common-pro-and-task-heading{
@@ -136,4 +142,7 @@
     .common-middle-section-body{
         height: 90%;
     }
+}
+.show-box-wrapper-section{
+    display: flex;
 }

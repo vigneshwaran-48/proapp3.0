@@ -1,4 +1,4 @@
-.adding-form{
+.adding-form, .box-description-section, .box-edit-section{
     position: absolute;
     transition: 0.5s;
     width: 100%;
@@ -10,7 +10,7 @@
     right: 0;
     width: 100%;
 }
-.common-input-wrapper{
+.common-input-wrapper, .common-desc-wrapper, .common-edit-wrapper{
     width: 100%;
     padding: 10px;
     justify-content: space-between;
@@ -24,21 +24,21 @@
     width: 100%;
     padding: 10px;
 }
-.adding-name-input{
+.adding-name-input, .box-desc-name{
     width: 100%;
 }
-#adding-desc-input-id{
+#adding-desc-input-id, .desc-description-value, #edit-desc-input-id{
     height: 200px;
     overflow: scroll;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
-#adding-desc-input-id::-webkit-scrollbar{
+#adding-desc-input-id::-webkit-scrollbar, #edit-desc-input-id::-webkit-scrollbar{
     display: none;
 }
 .people-adding-wrapper{
     position: relative;
 }
-.people-options-wrapper{
+.people-options-wrapper, .box-desc-people-options-wrapper, .people-edit-options-wrapper{
     position: absolute;
     top: 100%;
     right: 0;
@@ -49,33 +49,41 @@
     transition: 0.5s;
     background-color: rgb(235, 237, 239);
 }
-.search-people-wrapper{
+.search-people-wrapper, .desc-search-people-wrapper, .edit-search-people-wrapper{
     padding: 0;
 }
-.people-search-image{
+.people-search-image, .desc-people-search-image{
     width: 30px;
     height: 30px;
     border-radius: 50%;
     background-image: url(/ProApp/assets/images/user.png);
     background-size: cover;
 }
-#people-adding-input{
+#people-adding-input, #people-show-input, #people-edit-input{
     display: none;
 }
 #people-adding-input:checked + .people-options-wrapper{
     height: 200px;
     overflow: scroll;
 }
-.people-options-wrapper::-webkit-scrollbar{
+#people-show-input:checked + .box-desc-people-options-wrapper{
+    height: 200px;
+    overflow: scroll;
+}
+#people-edit-input:checked + .people-edit-options-wrapper{
+    height: 200px;
+    overflow: scroll;
+}
+.people-options-wrapper::-webkit-scrollbar, .box-desc-people-options-wrapper::-webkit-scrollbar, .edit-search-people-wrapper::-webkit-scrollbar, .people-edit-options-wrapper::-webkit-scrollbar{
     display: none;
 }
-.people-option{
+.people-option, .desc-people-option{
     justify-content: space-between;
     width: 100%;
     padding: 10px 5px;
     border-radius: 10px;
 }
-.people-search-input{
+.people-search-input, .people-edit-search-input{
     font-size: 20px;
     padding: 5px;
     outline: none;
@@ -85,11 +93,15 @@
 .people-option:hover {
     background-color: white;
 }
-#form-adding-section-close-button{
+.people-show-label{
+    font-size: 20px;
+}
+#form-adding-section-close-button, #box-desc-section-close-button, #box-edit-section-close-button{
     position: absolute;
     top: 0;
     right: 0;
     padding: 10px;
+    cursor: pointer;
 }
 #form-adding-section-close-button:hover {
     background-color: rgb(235, 237, 239);
@@ -107,13 +119,26 @@
     background-size: cover;
     position: absolute;
 }
+.common-desc-wrapper-value{
+    font-size: 20px;
+    margin: 10px 0px;
+}
+.desc-description-value{
+    width: 100%;
+}
+.desc-description-value::-webkit-scrollbar{
+    display: none;
+}
+.box-desc-name-value{
+    font-size: 25px;
+}
 @media screen and (max-height: 820px){
-    #adding-desc-input-id{
+    #adding-desc-input-id, .desc-description-value, #edit-desc-input-id{
         height: 130px;
     }
 }
 @media screen and (max-height: 700px){
-    #adding-desc-input-id{
+    #adding-desc-input-id, .desc-description-value, #edit-desc-input-id{
         height: 100px;
     }
 }

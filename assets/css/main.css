@@ -32,9 +32,10 @@ body{
 .semi-light-theme {
     background-color: rgb(246,246,248);
 }
-.error-message-wrapper, .success-message-wrapper{
+.error-message-wrapper, .success-message-wrapper, .pop-up-message-wrapper{
     width: 300px;
     position: fixed;
+    transform: translate(-50%, -50%);
     top: -100px;
     height: 80px;
     left: 49%;
@@ -45,11 +46,11 @@ body{
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     transition: 0.5s;
 }
-.error-message, .success-message{
+.error-message, .success-message, .pop-up-message{
     align-items: flex-start;
     padding: 0px 10px;
 }
-.error-symbol, .success-symbol{
+.error-symbol, .success-symbol, .pop-up-symbol{
     height: 100%;
     font-size: 30px;
     color: red;
@@ -59,10 +60,14 @@ body{
     color: green;
     border-left: 7px solid green;
 }
+.pop-up-symbol{
+    color: rgb(64,142,238);
+    border-left: 7px solid rgb(64,142,238);
+}
 .fa-circle-xmark, .fa-circle-check{
     padding-left: 10px;   
 }
-.error-close-button, .success-close-button{
+.error-close-button, .success-close-button, .pop-up-close-button{
     padding-right: 10px;
     color: rgba(0, 0, 0, 0.3);
     transition: 0.5s;
@@ -72,6 +77,9 @@ body{
 }
 .success-close-button:hover {
     color: green;
+}
+.pop-up-close-button:hover {
+    color: rgb(64,142,238);   
 }
 .show-popup-message {
     top: 100px;
@@ -134,6 +142,7 @@ body{
     border-radius: 50%;
     background-image: url(/ProApp/assets/images/user.png);
     background-size: cover;
+    cursor: pointer;
 }
 @media screen and (max-width: 1660px) {
     .right-side-sections {

@@ -12,7 +12,11 @@ let FormView = (() => {
         peopleSearchWrapper : ".search-people-wrapper",
         selectedPeopleImageDiv : "selected-people-small-image",
         selectedPeopleImageWrapper : ".selected-people-display",
-        peopleAddingLabel : "#people-adding-input"
+        peopleAddingLabel : "#people-adding-input",
+        editName : "#box-edit-name-id",
+        editFromDateId : "#edit-from-date-input-id",
+        editLastDateId : "#edit-last-date-input-id",
+        editDescInputTag : "#edit-desc-input-id",
     }
     
     let resetPeopleSearchView = wrapper => {
@@ -31,11 +35,12 @@ let FormView = (() => {
         }
         return false;
     }
-    let renderSearchPeople = searchInput => {
+    let renderSearchPeople = (searchInput, renderFull, addToElement) => {
+        addToElement.innerHTML = "";
         sendGetRequest("user/getusers?id=all", function(){
             resetPeopleSearchView(_(domStrings.peopleSearchWrapper));
             JSON.parse(this.response).forEach(elem => {
-                if(elem.userName.toLowerCase().includes(searchInput.toLowerCase()) && !isPersonResultAvailable(elem.userId) && elem.userId != USERID){
+                if(((elem.userName.toLowerCase().includes(searchInput.toLowerCase()) && !isPersonResultAvailable(elem.userId) || searchInput.length == 0) || renderFull) && elem.userId != USERID){
                     let labelTag = document.createElement("label");
                     let inputTag = document.createElement("input");
                     let imageDiv = document.createElement("div");
@@ -56,7 +61,7 @@ let FormView = (() => {
                     imageDiv.style.backgroundImage = `url(/ProApp/assets/images/usersImages/${elem.imagePath})`;
 
                     labelTag.append(imageDiv, p, inputTag);
-                    _(domStrings.peopleSearchWrapper).append(labelTag);
+                    addToElement.append(labelTag);
                 }
             });
         });

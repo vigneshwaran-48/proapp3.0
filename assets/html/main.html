@@ -42,6 +42,16 @@
             <span class="success-message-close-button">Close</span>
         </div>
     </div>
+    <div class="pop-up-message-wrapper x-axis-flex full-light-theme">
+        <div class="pop-up-symbol x-axis-flex"><i class="fa-regular fa-circle-check"></i></div>
+        <div class="pop-up-message y-axis-flex">
+            <h3>Notification</h3>
+            <p class="pop-up-message-for-user"></p>
+        </div>
+        <div class="pop-up-close-button">
+            <span class="pop-up-message-close-button">Close</span>
+        </div>
+    </div>
     <section class="side-nav-bar y-axis-flex full-light-theme">
         <img class="top-header-icon" src="assets/images/logo1.png" alt="app-icon">
         <div class="common-i-tag icons-wrapper y-axis-flex">
@@ -83,71 +93,31 @@
                             <label for="filter-input" class="filter-label"><i class="bi bi-funnel filter-button"></i></label>
                             <input type="checkbox" id="filter-input">
                             <ul class="filter-options-wrapper full-light-theme">
-                                <li class="filter-option">Yet to start</li>
-                                <li class="filter-option">On Progress</li>
-                                <li class="filter-option">Completed</li>
+                                <li class="filter-option yet-to-start-button">Yet to start</li>
+                                <li class="filter-option in-progress-button">On Progress</li>
+                                <li class="filter-option completed-box-button">Completed</li>
                             </ul>
                         </div>
                         <button type="button" class="common-button add-project-task-button">New</button>
                     </header>
 
                     <section class="common-middle-section-body semi-light-theme x-axis-flex">
-                        <section class="main-projects-and-tasks-section common-pro-and-task-section yet-to-start-section y-axis-flex">
+                        <section class="main-projects-and-tasks-section common-pro-and-task-section yet-to-start-section show-box-wrapper-section y-axis-flex">
                             <p class="common-pro-and-task-heading">Yet to start</p>
                             <section class="yet-to-start-box-wrapper box-wrapper y-axis-flex">
-                                <!-- Main box starts here  -->
-                                <div class="main-box y-axis-flex">
-                                    <div class="top-box-detail x-axis-flex">
-                                        <h2 class="box-name">Project Name</h2>
-                                        <div class="three-dots-wrapper">
-                                            <label for="three-dots" class="three-dot-label"><i class="fa-solid fa-ellipsis"></i></label>
-                                            <input type="checkbox" class="three-dots">
-                                            <ul class="three-dots-options-wrapper light-theme">
-                                                <li class="three-dots-option three-dots-edit-option">Edit</li>
-                                                <li class="three-dots-option three-dots-more-info">More Info</li>
-                                                <li class="three-dots-option three-dots-complete-option">Complete</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="box-description">
-                                        Whereas recognition of the inherent dignity
-                                    </div>  
-                                    <div class="box-percentage-wrapper">
-                                        <div class="box-percentage-value">50</div>
-                                    </div>
-                                    <div class="all-people-wrapper x-axis-flex">
-                                        <div class="person-image-wrapper person-1">
-                                            <div class="person-images"></div>
-                                        </div>
-                                        <div class="person-image-wrapper person-2">
-                                            <div class="person-image"></div>
-                                        </div>
-                                        <div class="person-image-wrapper person-3">
-                                            <div class="person-image"></div>
-                                        </div>
-                                        <div class="person-image-wrapper more-person">
-                                            <div>+2</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Main box ends here  -->
-                                <div class="main-box"></div>
-                                <div class="main-box"></div>
-                                <div class="main-box"></div>
+                                <h2>No projects in yet to start</h2>
                             </section>
                         </section>
                         <section class="in-progress-section common-pro-and-task-section y-axis-flex">
                             <p class="common-pro-and-task-heading">In progress</p>
                             <section class="in-progress-box-wrapper box-wrapper y-axis-flex">
-                                <div class="main-box"></div>
-                                <div class="main-box"></div>
+                                <h2>No projects in progress</h2>
                             </section>
                         </section>
                         <section class="completed-section common-pro-and-task-section y-axis-flex">
                             <p class="common-pro-and-task-heading">Completed</p>
                             <section class="completed-box-wrapper box-wrapper y-axis-flex">
-                                <div class="main-box"></div>
-                                <div class="main-box"></div>
+                                <h2>No projects in completed</h2>
                             </section>
                         </section>
                     </section>
@@ -194,6 +164,8 @@
                 <!-- Right side section body ends here -->
             </section>
             <!-- Right side section ends here -->
+
+            <!-- Box adding form starts here -->
             <section class="adding-form y-axis-flex full-light-theme">
                 <i id="form-adding-section-close-button" class="fa-solid fa-xmark"></i>
                 <div class="common-input-wrapper name-adding-wrapper y-axis-flex">
@@ -226,6 +198,76 @@
                 </div>
                 <button type="button" class="common-button add-button">Create</button>
             </section>
+            <!-- Box adding form ends here -->
+
+            <!-- Box description starts here -->
+            <section class="box-description-section y-axis-flex full-light-theme">
+                <i id="box-desc-section-close-button" class="fa-solid fa-xmark"></i>
+                <div class="common-desc-wrapper box-desc-name y-axis-flex">
+                    <h2>Name</h2>
+                    <p class="box-desc-name-value common-desc-wrapper-value">testing project name</p>
+                </div>
+                <div class="common-desc-wrapper box-desc-from-date y-axis-flex">
+                    <h2>From Date</h2>
+                    <p class="common-desc-wrapper-value desc-from-date-value">12|02|2023</p>
+                </div>
+                <div class="common-desc-wrapper box-desc-last-date y-axis-flex">
+                    <h2>Last Date</h2>
+                    <p class="common-desc-wrapper-value desc-last-date-value">12|02|2023</p>
+                </div>
+                <div class="common-desc-wrapper x-axis-flex">
+                    <h2 for="adding-name-input-id">People</h2>
+                    <div class="people-adding-wrapper x-axis-flex">
+                        <div class="selected-people-display"></div>
+                        <label for="people-show-input" class="people-show-label">show</i></label>
+                        <input type="checkbox" id="people-show-input">
+                        <ul class="box-desc-people-options-wrapper full-light-theme">
+                            <input type="search" class="people-search-input desc-people-search-input">
+                            <ul class="desc-search-people-wrapper"></ul>
+                        </ul>
+                    </div>
+                </div>
+                <div class="common-desc-wrapper desc-description-wrapper y-axis-flex">
+                    <h2>Description</h2>
+                    <p class="common-desc-wrapper-value desc-description-value"></p>
+                </div>
+            </section>
+            <!-- Box description ends here -->
+
+            <!-- Box edit section starts here -->
+            <section class="box-edit-section y-axis-flex full-light-theme">
+                <i id="box-edit-section-close-button" class="fa-solid fa-xmark"></i>
+                <div class="common-edit-wrapper name-edit-wrapper y-axis-flex">
+                    <label for="box-edit-name-id">Name</label>
+                    <input type="text" required id="box-edit-name-id" class="common-input adding-name-input">
+                </div>
+                <div class="common-input-wrapper from-date-adding-wrapper y-axis-flex">
+                    <label for="edit-from-date-input-id">From Date</label>
+                    <input type="date" required id="edit-from-date-input-id" class="common-input adding-from-date-input">
+                </div>
+                <div class="common-input-wrapper last-date-adding-wrapper y-axis-flex">
+                    <label for="edit-last-date-input-id">Last Date</label>
+                    <input type="date" required id="edit-last-date-input-id" class="common-input adding-last-date-input">
+                </div>
+                <div class="common-input-wrapper x-axis-flex">
+                    <label for="edit-name-input-id">People</label>
+                    <div class="people-adding-wrapper x-axis-flex">
+                        <div class="selected-people-display"></div>
+                        <label for="people-edit-input" class="people-edit-label">Add</i></label>
+                        <input type="checkbox" id="people-edit-input">
+                        <ul class="people-edit-options-wrapper full-light-theme">
+                            <input type="search" class="people-edit-search-input">
+                            <ul class="edit-search-people-wrapper"></ul>
+                        </ul>
+                    </div>
+                </div>
+                <div class="common-input-wrapper edit-description-wrapper y-axis-flex">
+                    <label for="edit-desc-input-id">Description</label>
+                    <div class="common-input" contenteditable="true" id="edit-desc-input-id"></div>
+                </div>
+                <button type="button" class="common-button edit-box-button">Update</button>
+            </section>
+            <!-- Box edit section ends here -->
         </section>
     </section>
 </body>
@@ -246,4 +288,8 @@
 <script src="assets/js/projectscripts/projectmodel.js"></script>
 <script src="assets/js/projectscripts/projectcontroller.js"></script>
 <!-- Project script ends here -->
+
+<!-- Web socket scripts starts here -->
+<script src="assets/js/websocketscript/weblogic.js"></script>
+<!-- Web socket scripts ends here -->
 </html>

@@ -3,6 +3,7 @@ let MainController = (view => {
     let init = () => {
         //Adding this listener for right side section
         _(view.getDomStrings().topSmallImage).addEventListener("click", event => {
+            view.loadStatisticsData();
             _(view.getDomStrings().rightSection).classList.toggle(view.getDomStrings().showFromRightToLeft);
         });
 
@@ -30,6 +31,8 @@ let MainController = (view => {
             let result = FormController.validateForm();
             if(result.status){
                 ProjectController.addProject(result.formDetails);
+                _(view.getDomStrings().rightSideCloseButton).click();
+                _(view.getDomStrings().fullFormSection).classList.remove(view.getDomStrings().showFromRightToLeft);
             }
         });
         //This is for error popup message closing button 
@@ -39,6 +42,43 @@ let MainController = (view => {
         //This is for success popup message closing button 
         _(view.getDomStrings().successMessageCloseButton).addEventListener("click", event => {
             _(view.getDomStrings().successMessageDiv).classList.remove(view.getDomStrings().showPopupMessage);
+        });
+        //This is for popup message closing button 
+        _(view.getDomStrings().popupCloseButton).addEventListener("click", event => {
+            _(view.getDomStrings().popupWindow).classList.remove(view.getDomStrings().showPopupMessage);
+        });
+
+        //This is for opening in progress button 
+        _(view.getDomStrings().inProgressButton).addEventListener("click", event => {
+            console.log("progress button");
+            _(view.getDomStrings().inProgressSection).classList.add(view.getDomStrings().showBoxWrapperSection);
+            //Removing other sections
+            _(view.getDomStrings().yetToStartSection).classList.remove(view.getDomStrings().showBoxWrapperSection);
+            _(view.getDomStrings().completedSection).classList.remove(view.getDomStrings().showBoxWrapperSection);
+        });
+        //This is for opening in completed boxes wrapper button 
+        _(view.getDomStrings().completedBoxButton).addEventListener("click", event => {
+            console.log("completed button");
+            _(view.getDomStrings().completedSection).classList.add(view.getDomStrings().showBoxWrapperSection);
+            //Removing other sections
+            _(view.getDomStrings().yetToStartSection).classList.remove(view.getDomStrings().showBoxWrapperSection);
+            _(view.getDomStrings().inProgressSection).classList.remove(view.getDomStrings().showBoxWrapperSection);
+        });
+        //This is for opening in yet to start boxes wrapper button 
+        _(view.getDomStrings().yetToStartButton).addEventListener("click", event => {
+            console.log("yet to start button");
+            _(view.getDomStrings().yetToStartSection).classList.add(view.getDomStrings().showBoxWrapperSection);
+            //Removing other sections
+            _(view.getDomStrings().completedSection).classList.remove(view.getDomStrings().showBoxWrapperSection);
+            _(view.getDomStrings().inProgressSection).classList.remove(view.getDomStrings().showBoxWrapperSection);
+        });
+        //This is for closing description section
+        _(view.getDomStrings().descriptionCloseButton).addEventListener("click", event => {
+            _(view.getDomStrings().fullDescriptionSection).classList.remove (view.getDomStrings().showFromRightToLeft);
+        }); 
+        //This is for closing edit section
+        _(view.getDomStrings().editBoxCloseButton).addEventListener("click", event => {
+            _(view.getDomStrings().fullEditSection).classList.remove(view.getDomStrings().showFromRightToLeft);
         });
     }
     init();
