@@ -117,6 +117,7 @@ body{
     border-left: 1px solid rgba(0, 0, 0, 0.1);
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     transition: 0.5s;
+    /* z-index: 25px; */
 }
 .side-nav-bar{
     padding-top: 10px;

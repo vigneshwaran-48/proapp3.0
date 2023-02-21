@@ -5,9 +5,11 @@ let MainView = (() => {
         rightSection : ".right-side-sections",
         rightSideCloseButton : "#right-side-section-close-button",
         fullFormSection : ".adding-form",
+        projectSectionButton : ".project-section-button",
         fullDescriptionSection : ".box-description-section",
         fullEditSection : ".box-edit-section",
         newButton: ".add-project-task-button",
+        currentSectionHeading : ".common-middle-section-heading",
         formCloseButton : "#form-adding-section-close-button",
         formCreatingButton : ".add-button",
         errorMessageDiv : ".error-message-wrapper",
@@ -45,7 +47,10 @@ let MainView = (() => {
         descPeopleSearchInput : ".desc-people-search-input",
         editBoxCloseButton : "#box-edit-section-close-button",
         editPeopleSearchInput : ".people-edit-search-input",
-        editSearchPeopleWrapper : ".edit-search-people-wrapper"
+        editSearchPeopleWrapper : ".edit-search-people-wrapper",
+        taskSectionButton : ".task-section-button",
+        taskSection : ".task-middle-section-body",
+        showFromScale : "show-from-scale"
     }
     let getDomStrings = () => domStrings;
 
@@ -86,6 +91,7 @@ let MainView = (() => {
     let showSuccessMessage = message => {
         _(domStrings.successMessagePara).innerText = message;
         _(domStrings.successMessageDiv).classList.add(domStrings.showPopupMessage);
+
         setTimeout(function(){
             _(domStrings.successMessageDiv).classList.remove(domStrings.showPopupMessage);
         }, 3000);
@@ -100,10 +106,10 @@ let MainView = (() => {
     }
     let loadStatisticsData = () => {
         let currentSection;
-        if(CURRENTSECTION == "Project"){
+        // if(CURRENTSECTION == "Project"){
             currentSection = ProjectModel;
-        }
-        //This will be done when task section is finished.
+        // }
+        // This will be done when task section is finished.
         // else {
         //     currentSection 
         // }

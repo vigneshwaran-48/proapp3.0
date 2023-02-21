@@ -10,6 +10,7 @@
     <link href="assets/css/rightpage.css" rel="stylesheet" type="text/css">
     <link href="assets/css/box.css" rel="stylesheet" type="text/css">
     <link href="assets/css/form.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/task.css" rel="stylesheet" type="text/css">
     <title>Task Manager</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
@@ -54,11 +55,11 @@
     </div>
     <section class="side-nav-bar y-axis-flex full-light-theme">
         <img class="top-header-icon" src="assets/images/logo1.png" alt="app-icon">
-        <div class="common-i-tag icons-wrapper y-axis-flex">
+        <div class="common-i-tag icons-wrapper project-section-button y-axis-flex">
             <i class="fa-solid fa-bars-progress"></i>
             <p class="icon-label">Projects</p>
         </div>
-        <div class="common-i-tag icons-wrapper y-axis-flex">
+        <div class="common-i-tag icons-wrapper task-section-button y-axis-flex">
             <i class="fa-solid fa-list-check"></i>
             <p class="icon-label">Tasks</p>
         </div>
@@ -80,7 +81,7 @@
     <section class="middle-main-section light-theme">
         <header class="top-header x-axis-flex full-light-theme">
             <img class="top-header-icon mobile-top-header-icon" src="assets/images/logo1.png" alt="app-icon">
-            <h1 class="top-head-tag">Task Manager</h1>
+            <h1 class="top-head-tag">Project Manager</h1>
             <div class="top-profile-image"></div>
         </header>
     
@@ -101,6 +102,7 @@
                         <button type="button" class="common-button add-project-task-button">New</button>
                     </header>
 
+                    <!-- Project section body starts here -->
                     <section class="common-middle-section-body semi-light-theme x-axis-flex">
                         <section class="main-projects-and-tasks-section common-pro-and-task-section yet-to-start-section show-box-wrapper-section y-axis-flex">
                             <p class="common-pro-and-task-heading">Yet to start</p>
@@ -121,6 +123,388 @@
                             </section>
                         </section>
                     </section>
+                    <!-- Project section body ends here -->
+
+                    <!-- Task section body starts here -->
+                    <section class="task-middle-section-body light-theme y-axis-flex">
+                        <section class="single-project-task-wrapper y-axis-flex">
+                            <h1 class="single-task-heading">Project 001</h1>
+                            <div class="single-task-wrapper light-theme y-axis-flex">
+                                <div class="single-task full-light-theme x-axis-flex">
+                                    <div class="task-name-checkbox-wrapper x-axis-flex">
+                                        <input type="checkbox" id="task1" class="common-task-check-input">
+                                        <h2 class="single-task-heading">Task 001</h2>
+                                    </div> 
+                                    <div class="task-buttons-photos-wrapper x-axis-flex">
+                                        <div class="task-buttons-wrapper x-axis-flex">
+                                            <span class="single-task-icon"><i class="fa-solid fa-trash"></i></span>
+                                            <span class="single-task-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+                                        </div>
+                                        <div class="all-task-people-wrapper x-axis-flex">
+                                            <div class="person-image-wrapper task-person-1 task-outer-image">
+                                                <div class="person-image task-image" style="background-image: url(&quot;assets/images/usersImages/1.png&quot;);"></div>
+                                            </div>
+                                            <div class="person-image-wrapper task-person-2 task-outer-image">
+                                                <div class="person-image task-image" style="background-image: url(&quot;assets/images/usersImages/2.jpeg&quot;);"></div>
+                                            </div>
+                                        </div>
+                                    </div>                                   
+                                </div>
+                                <div class="single-task full-light-theme x-axis-flex">
+                                    <div class="task-name-checkbox-wrapper x-axis-flex">
+                                        <input type="checkbox" id="task1" class="common-task-check-input">
+                                        <h2 class="single-task-heading">Task 001</h2>
+                                    </div> 
+                                    <div class="task-buttons-photos-wrapper x-axis-flex">
+                                        <div class="task-buttons-wrapper x-axis-flex">
+                                            <span class="single-task-icon"><i class="fa-solid fa-trash"></i></span>
+                                            <span class="single-task-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+                                        </div>
+                                        <div class="all-task-people-wrapper x-axis-flex">
+                                            <div class="person-image-wrapper task-person-1 task-outer-image">
+                                                <div class="person-image task-image" style="background-image: url(&quot;assets/images/usersImages/1.png&quot;);"></div>
+                                            </div>
+                                            <div class="person-image-wrapper task-person-2 task-outer-image">
+                                                <div class="person-image task-image" style="background-image: url(&quot;assets/images/usersImages/2.jpeg&quot;);"></div>
+                                            </div>
+                                        </div>
+                                    </div>                                   
+                                </div>
+                                <div class="single-task full-light-theme x-axis-flex">
+                                    <div class="task-name-checkbox-wrapper x-axis-flex">
+                                        <input type="checkbox" id="task1" class="common-task-check-input">
+                                        <h2 class="single-task-heading">Task 001</h2>
+                                    </div> 
+                                    <div class="task-buttons-photos-wrapper x-axis-flex">
+                                        <div class="task-buttons-wrapper x-axis-flex">
+                                            <span class="single-task-icon"><i class="fa-solid fa-trash"></i></span>
+                                            <span class="single-task-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+                                        </div>
+                                        <div class="all-task-people-wrapper x-axis-flex">
+                                            <div class="person-image-wrapper task-person-1 task-outer-image">
+                                                <div class="person-image task-image" style="background-image: url(&quot;assets/images/usersImages/1.png&quot;);"></div>
+                                            </div>
+                                            <div class="person-image-wrapper task-person-2 task-outer-image">
+                                                <div class="person-image task-image" style="background-image: url(&quot;assets/images/usersImages/2.jpeg&quot;);"></div>
+                                            </div>
+                                        </div>
+                                    </div>                                   
+                                </div>
+                                <div class="single-task full-light-theme x-axis-flex">
+                                    <div class="task-name-checkbox-wrapper x-axis-flex">
+                                        <input type="checkbox" id="task1" class="common-task-check-input">
+                                        <h2 class="single-task-heading">Task 001</h2>
+                                    </div> 
+                                    <div class="task-buttons-photos-wrapper x-axis-flex">
+                                        <div class="task-buttons-wrapper x-axis-flex">
+                                            <span class="single-task-icon"><i class="fa-solid fa-trash"></i></span>
+                                            <span class="single-task-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+                                        </div>
+                                        <div class="all-task-people-wrapper x-axis-flex">
+                                            <div class="person-image-wrapper task-person-1 task-outer-image">
+                                                <div class="person-image task-image" style="background-image: url(&quot;assets/images/usersImages/1.png&quot;);"></div>
+                                            </div>
+                                            <div class="person-image-wrapper task-person-2 task-outer-image">
+                                                <div class="person-image task-image" style="background-image: url(&quot;assets/images/usersImages/2.jpeg&quot;);"></div>
+                                            </div>
+                                        </div>
+                                    </div>                                   
+                                </div>
+                                <div class="single-task full-light-theme x-axis-flex">
+                                    <div class="task-name-checkbox-wrapper x-axis-flex">
+                                        <input type="checkbox" id="task1" class="common-task-check-input">
+                                        <h2 class="single-task-heading">Task 001</h2>
+                                    </div> 
+                                    <div class="task-buttons-photos-wrapper x-axis-flex">
+                                        <div class="task-buttons-wrapper x-axis-flex">
+                                            <span class="single-task-icon"><i class="fa-solid fa-trash"></i></span>
+                                            <span class="single-task-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+                                        </div>
+                                        <div class="all-task-people-wrapper x-axis-flex">
+                                            <div class="person-image-wrapper task-person-1 task-outer-image">
+                                                <div class="person-image task-image" style="background-image: url(&quot;assets/images/usersImages/1.png&quot;);"></div>
+                                            </div>
+                                            <div class="person-image-wrapper task-person-2 task-outer-image">
+                                                <div class="person-image task-image" style="background-image: url(&quot;assets/images/usersImages/2.jpeg&quot;);"></div>
+                                            </div>
+                                        </div>
+                                    </div>                                   
+                                </div>
+                                <div class="single-task full-light-theme x-axis-flex">
+                                    <div class="task-name-checkbox-wrapper x-axis-flex">
+                                        <input type="checkbox" id="task1" class="common-task-check-input">
+                                        <h2 class="single-task-heading">Task 001</h2>
+                                    </div> 
+                                    <div class="task-buttons-photos-wrapper x-axis-flex">
+                                        <div class="task-buttons-wrapper x-axis-flex">
+                                            <span class="single-task-icon"><i class="fa-solid fa-trash"></i></span>
+                                            <span class="single-task-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+                                        </div>
+                                        <div class="all-task-people-wrapper x-axis-flex">
+                                            <div class="person-image-wrapper task-person-1 task-outer-image">
+                                                <div class="person-image task-image" style="background-image: url(&quot;assets/images/usersImages/1.png&quot;);"></div>
+                                            </div>
+                                            <div class="person-image-wrapper task-person-2 task-outer-image">
+                                                <div class="person-image task-image" style="background-image: url(&quot;assets/images/usersImages/2.jpeg&quot;);"></div>
+                                            </div>
+                                        </div>
+                                    </div>                                   
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="single-project-task-wrapper y-axis-flex">
+                            <h1 class="single-task-heading">Project 002</h1>
+                            <div class="single-task-wrapper light-theme y-axis-flex">
+                                <div class="single-task full-light-theme x-axis-flex">
+                                    <div class="task-name-checkbox-wrapper x-axis-flex">
+                                        <input type="checkbox" id="task1" class="common-task-check-input">
+                                        <h2 class="single-task-heading">Task 001</h2>
+                                    </div> 
+                                    <div class="task-buttons-photos-wrapper x-axis-flex">
+                                        <div class="task-buttons-wrapper x-axis-flex">
+                                            <span class="single-task-icon"><i class="fa-solid fa-trash"></i></span>
+                                            <span class="single-task-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+                                        </div>
+                                        <div class="all-task-people-wrapper x-axis-flex">
+                                            <div class="person-image-wrapper task-person-1 task-outer-image">
+                                                <div class="person-image task-image" style="background-image: url(&quot;assets/images/usersImages/1.png&quot;);"></div>
+                                            </div>
+                                            <div class="person-image-wrapper task-person-2 task-outer-image">
+                                                <div class="person-image task-image" style="background-image: url(&quot;assets/images/usersImages/2.jpeg&quot;);"></div>
+                                            </div>
+                                        </div>
+                                    </div>                                   
+                                </div>
+                                <div class="single-task full-light-theme x-axis-flex">
+                                    <div class="task-name-checkbox-wrapper x-axis-flex">
+                                        <input type="checkbox" id="task1" class="common-task-check-input">
+                                        <h2 class="single-task-heading">Task 001</h2>
+                                    </div> 
+                                    <div class="task-buttons-photos-wrapper x-axis-flex">
+                                        <div class="task-buttons-wrapper x-axis-flex">
+                                            <span class="single-task-icon"><i class="fa-solid fa-trash"></i></span>
+                                            <span class="single-task-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+                                        </div>
+                                        <div class="all-task-people-wrapper x-axis-flex">
+                                            <div class="person-image-wrapper task-person-1 task-outer-image">
+                                                <div class="person-image task-image" style="background-image: url(&quot;assets/images/usersImages/1.png&quot;);"></div>
+                                            </div>
+                                            <div class="person-image-wrapper task-person-2 task-outer-image">
+                                                <div class="person-image task-image" style="background-image: url(&quot;assets/images/usersImages/2.jpeg&quot;);"></div>
+                                            </div>
+                                        </div>
+                                    </div>                                   
+                                </div>
+                                <div class="single-task full-light-theme x-axis-flex">
+                                    <div class="task-name-checkbox-wrapper x-axis-flex">
+                                        <input type="checkbox" id="task1" class="common-task-check-input">
+                                        <h2 class="single-task-heading">Task 001</h2>
+                                    </div> 
+                                    <div class="task-buttons-photos-wrapper x-axis-flex">
+                                        <div class="task-buttons-wrapper x-axis-flex">
+                                            <span class="single-task-icon"><i class="fa-solid fa-trash"></i></span>
+                                            <span class="single-task-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+                                        </div>
+                                        <div class="all-task-people-wrapper x-axis-flex">
+                                            <div class="person-image-wrapper task-person-1 task-outer-image">
+                                                <div class="person-image task-image" style="background-image: url(&quot;assets/images/usersImages/1.png&quot;);"></div>
+                                            </div>
+                                            <div class="person-image-wrapper task-person-2 task-outer-image">
+                                                <div class="person-image task-image" style="background-image: url(&quot;assets/images/usersImages/2.jpeg&quot;);"></div>
+                                            </div>
+                                        </div>
+                                    </div>                                   
+                                </div>
+                                <div class="single-task full-light-theme x-axis-flex">
+                                    <div class="task-name-checkbox-wrapper x-axis-flex">
+                                        <input type="checkbox" id="task1" class="common-task-check-input">
+                                        <h2 class="single-task-heading">Task 001</h2>
+                                    </div> 
+                                    <div class="task-buttons-photos-wrapper x-axis-flex">
+                                        <div class="task-buttons-wrapper x-axis-flex">
+                                            <span class="single-task-icon"><i class="fa-solid fa-trash"></i></span>
+                                            <span class="single-task-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+                                        </div>
+                                        <div class="all-task-people-wrapper x-axis-flex">
+                                            <div class="person-image-wrapper task-person-1 task-outer-image">
+                                                <div class="person-image task-image" style="background-image: url(&quot;assets/images/usersImages/1.png&quot;);"></div>
+                                            </div>
+                                            <div class="person-image-wrapper task-person-2 task-outer-image">
+                                                <div class="person-image task-image" style="background-image: url(&quot;assets/images/usersImages/2.jpeg&quot;);"></div>
+                                            </div>
+                                        </div>
+                                    </div>                                   
+                                </div>
+                                <div class="single-task full-light-theme x-axis-flex">
+                                    <div class="task-name-checkbox-wrapper x-axis-flex">
+                                        <input type="checkbox" id="task1" class="common-task-check-input">
+                                        <h2 class="single-task-heading">Task 001</h2>
+                                    </div> 
+                                    <div class="task-buttons-photos-wrapper x-axis-flex">
+                                        <div class="task-buttons-wrapper x-axis-flex">
+                                            <span class="single-task-icon"><i class="fa-solid fa-trash"></i></span>
+                                            <span class="single-task-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+                                        </div>
+                                        <div class="all-task-people-wrapper x-axis-flex">
+                                            <div class="person-image-wrapper task-person-1 task-outer-image">
+                                                <div class="person-image task-image" style="background-image: url(&quot;assets/images/usersImages/1.png&quot;);"></div>
+                                            </div>
+                                            <div class="person-image-wrapper task-person-2 task-outer-image">
+                                                <div class="person-image task-image" style="background-image: url(&quot;assets/images/usersImages/2.jpeg&quot;);"></div>
+                                            </div>
+                                        </div>
+                                    </div>                                   
+                                </div>
+                                <div class="single-task full-light-theme x-axis-flex">
+                                    <div class="task-name-checkbox-wrapper x-axis-flex">
+                                        <input type="checkbox" id="task1" class="common-task-check-input">
+                                        <h2 class="single-task-heading">Task 001</h2>
+                                    </div> 
+                                    <div class="task-buttons-photos-wrapper x-axis-flex">
+                                        <div class="task-buttons-wrapper x-axis-flex">
+                                            <span class="single-task-icon"><i class="fa-solid fa-trash"></i></span>
+                                            <span class="single-task-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+                                        </div>
+                                        <div class="all-task-people-wrapper x-axis-flex">
+                                            <div class="person-image-wrapper task-person-1 task-outer-image">
+                                                <div class="person-image task-image" style="background-image: url(&quot;assets/images/usersImages/1.png&quot;);"></div>
+                                            </div>
+                                            <div class="person-image-wrapper task-person-2 task-outer-image">
+                                                <div class="person-image task-image" style="background-image: url(&quot;assets/images/usersImages/2.jpeg&quot;);"></div>
+                                            </div>
+                                        </div>
+                                    </div>                                   
+                                </div>
+                            </div>
+                        </section>
+                        <section class="single-project-task-wrapper y-axis-flex">
+                            <h1 class="single-task-heading">Project 002</h1>
+                            <div class="single-task-wrapper light-theme y-axis-flex">
+                                <div class="single-task full-light-theme x-axis-flex">
+                                    <div class="task-name-checkbox-wrapper x-axis-flex">
+                                        <input type="checkbox" id="task1" class="common-task-check-input">
+                                        <h2 class="single-task-heading">Task 001</h2>
+                                    </div> 
+                                    <div class="task-buttons-photos-wrapper x-axis-flex">
+                                        <div class="task-buttons-wrapper x-axis-flex">
+                                            <span class="single-task-icon"><i class="fa-solid fa-trash"></i></span>
+                                            <span class="single-task-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+                                        </div>
+                                        <div class="all-task-people-wrapper x-axis-flex">
+                                            <div class="person-image-wrapper task-person-1 task-outer-image">
+                                                <div class="person-image task-image" style="background-image: url(&quot;assets/images/usersImages/1.png&quot;);"></div>
+                                            </div>
+                                            <div class="person-image-wrapper task-person-2 task-outer-image">
+                                                <div class="person-image task-image" style="background-image: url(&quot;assets/images/usersImages/2.jpeg&quot;);"></div>
+                                            </div>
+                                        </div>
+                                    </div>                                   
+                                </div>
+                                <div class="single-task full-light-theme x-axis-flex">
+                                    <div class="task-name-checkbox-wrapper x-axis-flex">
+                                        <input type="checkbox" id="task1" class="common-task-check-input">
+                                        <h2 class="single-task-heading">Task 001</h2>
+                                    </div> 
+                                    <div class="task-buttons-photos-wrapper x-axis-flex">
+                                        <div class="task-buttons-wrapper x-axis-flex">
+                                            <span class="single-task-icon"><i class="fa-solid fa-trash"></i></span>
+                                            <span class="single-task-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+                                        </div>
+                                        <div class="all-task-people-wrapper x-axis-flex">
+                                            <div class="person-image-wrapper task-person-1 task-outer-image">
+                                                <div class="person-image task-image" style="background-image: url(&quot;assets/images/usersImages/1.png&quot;);"></div>
+                                            </div>
+                                            <div class="person-image-wrapper task-person-2 task-outer-image">
+                                                <div class="person-image task-image" style="background-image: url(&quot;assets/images/usersImages/2.jpeg&quot;);"></div>
+                                            </div>
+                                        </div>
+                                    </div>                                   
+                                </div>
+                                <div class="single-task full-light-theme x-axis-flex">
+                                    <div class="task-name-checkbox-wrapper x-axis-flex">
+                                        <input type="checkbox" id="task1" class="common-task-check-input">
+                                        <h2 class="single-task-heading">Task 001</h2>
+                                    </div> 
+                                    <div class="task-buttons-photos-wrapper x-axis-flex">
+                                        <div class="task-buttons-wrapper x-axis-flex">
+                                            <span class="single-task-icon"><i class="fa-solid fa-trash"></i></span>
+                                            <span class="single-task-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+                                        </div>
+                                        <div class="all-task-people-wrapper x-axis-flex">
+                                            <div class="person-image-wrapper task-person-1 task-outer-image">
+                                                <div class="person-image task-image" style="background-image: url(&quot;assets/images/usersImages/1.png&quot;);"></div>
+                                            </div>
+                                            <div class="person-image-wrapper task-person-2 task-outer-image">
+                                                <div class="person-image task-image" style="background-image: url(&quot;assets/images/usersImages/2.jpeg&quot;);"></div>
+                                            </div>
+                                        </div>
+                                    </div>                                   
+                                </div>
+                                <div class="single-task full-light-theme x-axis-flex">
+                                    <div class="task-name-checkbox-wrapper x-axis-flex">
+                                        <input type="checkbox" id="task1" class="common-task-check-input">
+                                        <h2 class="single-task-heading">Task 001</h2>
+                                    </div> 
+                                    <div class="task-buttons-photos-wrapper x-axis-flex">
+                                        <div class="task-buttons-wrapper x-axis-flex">
+                                            <span class="single-task-icon"><i class="fa-solid fa-trash"></i></span>
+                                            <span class="single-task-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+                                        </div>
+                                        <div class="all-task-people-wrapper x-axis-flex">
+                                            <div class="person-image-wrapper task-person-1 task-outer-image">
+                                                <div class="person-image task-image" style="background-image: url(&quot;assets/images/usersImages/1.png&quot;);"></div>
+                                            </div>
+                                            <div class="person-image-wrapper task-person-2 task-outer-image">
+                                                <div class="person-image task-image" style="background-image: url(&quot;assets/images/usersImages/2.jpeg&quot;);"></div>
+                                            </div>
+                                        </div>
+                                    </div>                                   
+                                </div>
+                                <div class="single-task full-light-theme x-axis-flex">
+                                    <div class="task-name-checkbox-wrapper x-axis-flex">
+                                        <input type="checkbox" id="task1" class="common-task-check-input">
+                                        <h2 class="single-task-heading">Task 001</h2>
+                                    </div> 
+                                    <div class="task-buttons-photos-wrapper x-axis-flex">
+                                        <div class="task-buttons-wrapper x-axis-flex">
+                                            <span class="single-task-icon"><i class="fa-solid fa-trash"></i></span>
+                                            <span class="single-task-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+                                        </div>
+                                        <div class="all-task-people-wrapper x-axis-flex">
+                                            <div class="person-image-wrapper task-person-1 task-outer-image">
+                                                <div class="person-image task-image" style="background-image: url(&quot;assets/images/usersImages/1.png&quot;);"></div>
+                                            </div>
+                                            <div class="person-image-wrapper task-person-2 task-outer-image">
+                                                <div class="person-image task-image" style="background-image: url(&quot;assets/images/usersImages/2.jpeg&quot;);"></div>
+                                            </div>
+                                        </div>
+                                    </div>                                   
+                                </div>
+                                <div class="single-task full-light-theme x-axis-flex">
+                                    <div class="task-name-checkbox-wrapper x-axis-flex">
+                                        <input type="checkbox" id="task1" class="common-task-check-input">
+                                        <h2 class="single-task-heading">Task 001</h2>
+                                    </div> 
+                                    <div class="task-buttons-photos-wrapper x-axis-flex">
+                                        <div class="task-buttons-wrapper x-axis-flex">
+                                            <span class="single-task-icon"><i class="fa-solid fa-trash"></i></span>
+                                            <span class="single-task-icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+                                        </div>
+                                        <div class="all-task-people-wrapper x-axis-flex">
+                                            <div class="person-image-wrapper task-person-1 task-outer-image">
+                                                <div class="person-image task-image" style="background-image: url(&quot;assets/images/usersImages/1.png&quot;);"></div>
+                                            </div>
+                                            <div class="person-image-wrapper task-person-2 task-outer-image">
+                                                <div class="person-image task-image" style="background-image: url(&quot;assets/images/usersImages/2.jpeg&quot;);"></div>
+                                            </div>
+                                        </div>
+                                    </div>                                   
+                                </div>
+                            </div>
+                        </section>
+                    </section>
+                    <!-- Task section body ends here -->
                 </section>
             </section>
             <!-- Right side section starts here -->

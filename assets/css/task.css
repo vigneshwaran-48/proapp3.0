@@ -1,0 +1,94 @@
+.task-middle-section-body{
+    height: 92%;
+    width: 100%;
+    border-radius: 15px;
+    position: absolute;
+    transform: scale(0);
+    transition: 0.5s;
+    justify-content: flex-start;
+}
+.show-from-scale{
+    transform: scale(1);
+}
+.single-task-heading{
+    width: 100%;
+    font-size: 25px;
+    text-align: left;
+}
+.single-project-task-wrapper{
+    width: 100%;
+    padding: 10px;
+    height: 50%;
+    border-radius: 15px;
+}
+.single-task-wrapper{
+    width: 100%;
+    height: 85%;
+    padding: 10px;
+    overflow: scroll;
+}
+.single-task-wrapper::-webkit-scrollbar {
+    display: none;
+}
+.single-task{
+    padding: 10px;
+    width: 100%;
+    justify-content: space-between;
+    margin: 10px 0px;
+    border-radius: 15px;
+}
+.task-name-checkbox-wrapper, .task-buttons-photos-wrapper{
+    width: 50%;
+}
+.task-buttons-photos-wrapper{
+    justify-content: flex-end;
+}
+.common-task-check-input{
+    padding: 10px;
+    width: 25px;
+    height: 25px;
+    font-size: 30px;
+}
+
+.single-task-heading{
+    margin: 0px 10px;
+}
+.all-task-people-wrapper{
+    width: 120px;
+    position: relative;
+}
+.task-buttons-wrapper{
+    opacity: 0;
+    width: 100px;
+    transition: 0.5s;
+}
+.single-task:hover .task-buttons-wrapper{
+    opacity: 1;
+}
+.single-task-icon{
+    padding: 5px 5px;
+    font-size: 20px;
+}
+.single-task-icon:active {
+    transform: scale(0.9);
+}
+.single-task-icon:hover {
+    background-color: rgb(240, 241, 243);
+}
+.task-person-1{
+    left: 5px;
+}
+.task-person-2{
+    left: 25px;
+}
+
+@media screen and (max-width: 355px){
+    .task-image{
+        width: 30px;
+        height: 30px;
+    }
+    .task-outer-image{
+        width: 32px;
+        height: 32px;
+    }
+}

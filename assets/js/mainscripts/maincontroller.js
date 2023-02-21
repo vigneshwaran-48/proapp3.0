@@ -80,6 +80,20 @@ let MainController = (view => {
         _(view.getDomStrings().editBoxCloseButton).addEventListener("click", event => {
             _(view.getDomStrings().fullEditSection).classList.remove(view.getDomStrings().showFromRightToLeft);
         });
+
+        //This is for opening projects section
+        _(view.getDomStrings().projectSectionButton).addEventListener("click", event => {
+            _(view.getDomStrings().currentSectionHeading).textContent = "Projects";
+            CURRENTSECTION = "Projects";
+            _(view.getDomStrings().taskSection).classList.remove(view.getDomStrings().showFromScale);
+        });
+        
+        //This is for opening task section 
+        _(view.getDomStrings().taskSectionButton).addEventListener("click", event => {
+            _(view.getDomStrings().currentSectionHeading).textContent = "Tasks";
+            CURRENTSECTION = "Tasks";
+            _(view.getDomStrings().taskSection).classList.add(view.getDomStrings().showFromScale);
+        });
     }
     init();
 
