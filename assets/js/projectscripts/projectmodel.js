@@ -18,32 +18,36 @@ let ProjectModel = (() => {
     }
     //This method will send data to server and push it to local projectArray
     let addProjectToServer = (projectName, projectDesc, fromDate, toDate, users) => {
-        let formData = new FormData();
-        let tempCreated = USERID;
-        let tempObj = {
-            projectName : projectName,
-            projectDesc : projectDesc,
-            fromDate : fromDate,
-            toDate : toDate,
-            users : users,
-            createdBy : tempCreated
-        }
-        formData.append("data", JSON.stringify(tempObj));
+        return new Promise((passes, rejected) => {
+            let formData = new FormData();
+            let tempCreated = USERID;
+            let tempObj = {
+                projectName : projectName,
+                projectDesc : projectDesc,
+                fromDate : fromDate,
+                toDate : toDate,
+                users : users,
+                createdBy : tempCreated
+            }
+            formData.append("data", JSON.stringify(tempObj));
+            
+            sendPostRequest("/ProApp/project/add", formData, function(){
+                let serverObject = JSON.parse(this.response); 
+                serverObject.status = "Yet To Start";
+                let project = changeServerObject(serverObject);
+                projectsArray.push(project);
+                // ProjectView.renderProjects(projectsArray);
+                MainView.showSuccessMessage("project added succesfully");
+                passes("success");
+                sendMessage(JSON.stringify({
+                    messageType: "projectUpdate",
+                    projectId : project.id,
+                    userId : USERID,
+                    description : "you have been added to a project by " + USERNAME
+                }))
+            });
+        })
         
-        sendPostRequest("/ProApp/project/add", formData, function(){
-            let serverObject = JSON.parse(this.response); 
-            serverObject.status = "Yet To Start";
-            let project = changeServerObject(serverObject);
-            projectsArray.push(project);
-            ProjectView.renderProjects(projectsArray);
-            MainView.showSuccessMessage("project added succesfully");
-            sendMessage(JSON.stringify({
-                messageType: "projectUpdate",
-                projectId : project.id,
-                userId : USERID,
-                description : "you have been added to a project by " + USERNAME
-            }))
-        });
     }
     
     let getProjectsArray = () => projectsArray.slice();
@@ -56,12 +60,16 @@ let ProjectModel = (() => {
 
     //This method split the object and give details to addProjectToServer.
     let addProject = (projectDetails, isNew) => {
-        if(isNew){
-            addProjectToServer(projectDetails.name, projectDetails.description, projectDetails.fromDate, projectDetails.toDate, projectDetails.people);
-        }
-        else {
-            projectsArray.push(projectDetails);
-        }
+        return new Promise(async (passed, rejected) => {
+            if(isNew){
+                await addProjectToServer(projectDetails.name, projectDetails.description, projectDetails.fromDate, projectDetails.toDate, projectDetails.people);
+                passed("success");
+            }
+            else {
+                projectsArray.push(projectDetails);
+                passed("success");
+            }
+        });
     }
 
     let getDataById = id => {

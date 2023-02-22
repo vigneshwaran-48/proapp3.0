@@ -55,7 +55,7 @@ public class RetrieveProject {
             while (rs.next()) {
                 JSONObject jsonObject = new JSONObject();
                 int pid = rs.getInt("pid");
-                new UpdateProject().changeProjectStatus(con, pid);
+                new UpdateProject().changeProjectStatus(con, pid);  
                 jsonObject.put("id", pid);
                 jsonObject.put("projectName", rs.getString("pname"));
                 jsonObject.put("status", rs.getString("status"));
@@ -74,7 +74,7 @@ public class RetrieveProject {
     }
 
     /*For retriving the pid from tid */
-    public int retrieveTidByPid(Connection con,int tid) {
+    public int retrievePidByTid(Connection con,int tid) {
         int result=0;
         try {
             Statement stmt=con.createStatement();
@@ -82,7 +82,6 @@ public class RetrieveProject {
             rs.next();
             result=rs.getInt("pid");
         } catch (Exception e) {
-            // TODO: handle exception
             e.printStackTrace();
         }
         return result;

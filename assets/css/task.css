@@ -10,35 +10,44 @@
 .show-from-scale{
     transform: scale(1);
 }
-.single-task-heading{
+.single-projects-task-heading{
     width: 100%;
     font-size: 25px;
     text-align: left;
 }
 .single-project-task-wrapper{
+    max-width: 1100px;
     width: 100%;
     padding: 10px;
     height: 50%;
     border-radius: 15px;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.4);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
 }
 .single-task-wrapper{
-    width: 100%;
+    width: 95%;
     height: 85%;
-    padding: 10px;
     overflow: scroll;
+    justify-content: flex-start;
 }
 .single-task-wrapper::-webkit-scrollbar {
     display: none;
 }
 .single-task{
     padding: 10px;
-    width: 100%;
+    width: 98%;
     justify-content: space-between;
     margin: 10px 0px;
     border-radius: 15px;
+    position: relative;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
 }
 .task-name-checkbox-wrapper, .task-buttons-photos-wrapper{
     width: 50%;
+}
+.task-name-checkbox-wrapper{
+    justify-content: flex-start;
 }
 .task-buttons-photos-wrapper{
     justify-content: flex-end;
@@ -81,6 +90,23 @@
 .task-person-2{
     left: 25px;
 }
+.task-options-wrapper{
+    padding: 0px;
+    position: absolute;
+    right: 10px;
+    top: 100%;
+    border-radius: 15px;
+    height: 0;
+    overflow: hidden;
+}
+.task-option{
+    list-style-type: none;
+    padding: 10px;
+}
+.task-option:hover{
+    background-color: rgb(235, 237, 239);
+}
+
 
 @media screen and (max-width: 355px){
     .task-image{

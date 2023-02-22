@@ -1,7 +1,8 @@
 let ProjectController = ((view, model) => {
 
-    let addProject = projectDetails => {
-        model.addProject(projectDetails, true);
+    let addProject = async projectDetails => {
+        await model.addProject(projectDetails, true);
+        view.renderProjects(model.getProjectsArray());
     }
     MainView.loadStatisticsData();
     return {

@@ -29,6 +29,32 @@ let ProjectView = (() => {
     }
     let getDomStrings = () => domStrings;
     
+    let getPhotoSection = (users, allPeopleWrapper, personImageWrapperClass, personImageClass) => {
+        let peopleCount = 1;
+            users.forEach(element => {
+                let personImageWrapper = document.createElement("div");
+                personImageWrapper.classList.add(personImageWrapperClass);
+                if(peopleCount <= 3){
+                    personImageWrapper.classList.add("person-" + peopleCount++);
+                    let personImage = document.createElement("div");
+                    personImage.classList.add(personImageClass);
+                    personImage.style.backgroundImage = `url("assets/images/usersImages/${element.imagePath}")`;
+                    personImageWrapper.append(personImage);
+                    allPeopleWrapper.append(personImageWrapper);
+                }
+                else {
+                    if(peopleCount == 4){
+                        personImageWrapper.classList.add("more-person");
+                        personImageWrapper.append(document.createElement("div").textContent = "+1"); 
+                        allPeopleWrapper.append(personImageWrapper);
+                    }
+                    else {
+                        console.log(imageCount);
+                        allPeopleWrapper.children[3].children[0].textContent = "+" + (imageCount - 3);
+                    }
+                }
+            })
+    }
     
     let renderProjects = projects => {
 
@@ -103,33 +129,9 @@ let ProjectView = (() => {
             allPeopleWrapper.classList.add("x-axis-flex");
             //Adding classes to the elements ends here
 
-            //Creating photo div starts here
-            let peopleCount = 1;
-            elem.users.forEach(element => {
-                let personImageWrapper = document.createElement("div");
-                personImageWrapper.classList.add(domStrings.personImageWrapper);
-                if(peopleCount <= 3){
-                    personImageWrapper.classList.add("person-" + peopleCount++);
-                    let personImage = document.createElement("div");
-                    personImage.classList.add(domStrings.personImage);
-                    personImage.style.backgroundImage = `url("assets/images/usersImages/${element.imagePath}")`;
-                    personImageWrapper.append(personImage);
-                    allPeopleWrapper.append(personImageWrapper);
-                }
-                else {
-                    if(peopleCount == 4){
-                        personImageWrapper.classList.add("more-person");
-                        personImageWrapper.append(document.createElement("div").textContent = "+1"); 
-                        allPeopleWrapper.append(personImageWrapper);
-                    }
-                    else {
-                        console.log(imageCount);
-                        allPeopleWrapper.children[3].children[0].textContent = "+" + (imageCount - 3);
-                    }
-                }
-            })
-            //Creating photo div ends here
-
+            //Creating photo div here
+            getPhotoSection(elem.users, allPeopleWrapper, domStrings.personImageWrapper, domStrings.personImage);
+            
             //Setting contents of the created element starts here
             boxName.textContent = elem.projectName;
             boxDescription.textContent = elem.projectDesc;
@@ -211,6 +213,7 @@ let ProjectView = (() => {
 
     return {
         getDomStrings : getDomStrings,
-        renderProjects : renderProjects
+        renderProjects : renderProjects,
+        getPhotoSection : getPhotoSection
     }
 })();

@@ -2,6 +2,9 @@ package com.databases.task;
 
 import java.sql.*;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import com.databases.project.RetrieveProject;
 import com.databases.project.UpdateProject;
 
@@ -62,7 +65,7 @@ public class UpdateTask {
                 stmt.executeUpdate("update tasks set status = 'On Progress' where tid = " + tid);
             }
             UpdateProject upj=new UpdateProject();
-            upj.changeProjectStatus(con, new RetrieveProject().retrieveTidByPid(con, tid));
+            upj.changeProjectStatus(con, new RetrieveProject().retrievePidByTid(con, tid));
         } 
         catch (Exception e) {
             e.printStackTrace();
@@ -85,5 +88,30 @@ public class UpdateTask {
             e.printStackTrace();
         }
         return result ;
+    }
+
+    public boolean updateTaskData(Connection con, JSONObject jsonObject) {
+        boolean result = false;
+        try {
+            int projectId = Integer.parseInt(String.valueOf(jsonObject.get("projectId"))); 
+            JSONArray users = (JSONArray) jsonObject.get("users");
+
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select tasks.tid,uid from tasks inner join task_relation on tasks.tid=task_relation.tid where pid = "+projectId);
+
+            while (rs.next()) {
+                for (Object newUid : users) {
+                    int uid = rs.getInt("uid");
+                    if(Integer.parseInt(String.valueOf(newUid)) != uid){
+                        int tid =rs.getInt("tid");
+                        stmt.executeUpdate("delete from task_relation where tid = "+tid+" and uid = "+uid);
+                    }
+                }    
+            }   
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 }

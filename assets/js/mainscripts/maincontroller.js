@@ -17,6 +17,13 @@ let MainController = (view => {
             _(FormView.getDomStrings().fromDateInputTag).valueAsDate = new Date();
             _(FormView.getDomStrings().toDateInputTag).valueAsDate = new Date();
 
+            if(CURRENTSECTION == "Project"){
+                _(FormView.getDomStrings().projectChoosingWrapper).classList.remove(FormView.getDomStrings().showProjectsChoosingWrapper);
+            }
+            else {
+                _(FormView.getDomStrings().projectChoosingWrapper).classList.add(FormView.getDomStrings().showProjectsChoosingWrapper); 
+            }
+            FormView.renderProjectOption(ProjectModel.getProjectsArray());
             _(view.getDomStrings().topSmallImage).click();
             _(view.getDomStrings().fullFormSection).classList.add(view.getDomStrings().showFromRightToLeft);
         });
@@ -30,7 +37,12 @@ let MainController = (view => {
         _(view.getDomStrings().formCreatingButton).addEventListener("click", event => {
             let result = FormController.validateForm();
             if(result.status){
-                ProjectController.addProject(result.formDetails);
+                if(CURRENTSECTION == "Project"){
+                    ProjectController.addProject(result.formDetails);
+                }
+                else {
+                    TaskController.addTask(result.formDetails);
+                }
                 _(view.getDomStrings().rightSideCloseButton).click();
                 _(view.getDomStrings().fullFormSection).classList.remove(view.getDomStrings().showFromRightToLeft);
             }
@@ -50,7 +62,6 @@ let MainController = (view => {
 
         //This is for opening in progress button 
         _(view.getDomStrings().inProgressButton).addEventListener("click", event => {
-            console.log("progress button");
             _(view.getDomStrings().inProgressSection).classList.add(view.getDomStrings().showBoxWrapperSection);
             //Removing other sections
             _(view.getDomStrings().yetToStartSection).classList.remove(view.getDomStrings().showBoxWrapperSection);
@@ -58,7 +69,6 @@ let MainController = (view => {
         });
         //This is for opening in completed boxes wrapper button 
         _(view.getDomStrings().completedBoxButton).addEventListener("click", event => {
-            console.log("completed button");
             _(view.getDomStrings().completedSection).classList.add(view.getDomStrings().showBoxWrapperSection);
             //Removing other sections
             _(view.getDomStrings().yetToStartSection).classList.remove(view.getDomStrings().showBoxWrapperSection);
@@ -66,7 +76,6 @@ let MainController = (view => {
         });
         //This is for opening in yet to start boxes wrapper button 
         _(view.getDomStrings().yetToStartButton).addEventListener("click", event => {
-            console.log("yet to start button");
             _(view.getDomStrings().yetToStartSection).classList.add(view.getDomStrings().showBoxWrapperSection);
             //Removing other sections
             _(view.getDomStrings().completedSection).classList.remove(view.getDomStrings().showBoxWrapperSection);
@@ -84,7 +93,7 @@ let MainController = (view => {
         //This is for opening projects section
         _(view.getDomStrings().projectSectionButton).addEventListener("click", event => {
             _(view.getDomStrings().currentSectionHeading).textContent = "Projects";
-            CURRENTSECTION = "Projects";
+            CURRENTSECTION = "Project";
             _(view.getDomStrings().taskSection).classList.remove(view.getDomStrings().showFromScale);
         });
         

@@ -1,6 +1,7 @@
 .project-section{
-    width: 100%;
+    width: 98%;
     height: 100%;
+    margin: 0 auto;
     position: relative;
     overflow: scroll;
 }
@@ -109,9 +110,6 @@
 }
 /* body section styling ends here */
 
-/* @media screen and (max-width: 1650px) {
-    
-} */
 @media screen and (max-width:1240px) {
     .main-projects-and-tasks-section{
         width: 100%;

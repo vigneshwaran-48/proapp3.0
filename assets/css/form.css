@@ -35,7 +35,7 @@
 #adding-desc-input-id::-webkit-scrollbar, #edit-desc-input-id::-webkit-scrollbar{
     display: none;
 }
-.people-adding-wrapper{
+.people-adding-wrapper, .project-choosing-wrapper{
     position: relative;
 }
 .people-options-wrapper, .box-desc-people-options-wrapper, .people-edit-options-wrapper{
@@ -48,6 +48,7 @@
     padding: 0px;
     transition: 0.5s;
     background-color: rgb(235, 237, 239);
+    z-index: 15;
 }
 .search-people-wrapper, .desc-search-people-wrapper, .edit-search-people-wrapper{
     padding: 0;
@@ -106,7 +107,7 @@
 #form-adding-section-close-button:hover {
     background-color: rgb(235, 237, 239);
 }
-.selected-people-display{
+.selected-people-display, .selected-project-display{
     width: 100px;
     position: relative;
     height: 35px;
@@ -132,14 +133,30 @@
 .box-desc-name-value{
     font-size: 25px;
 }
+#project-drop-down-id{
+    font-size: 20px;
+    outline: none;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(52, 156, 254);
+    color: white;
+    padding: 8px 10px;
+    max-width: 150px;
+}
+.project-choosing-wrapper{
+    display: none;
+}
+.show-project-choosing-wrapper{
+    display: flex;
+}
 @media screen and (max-height: 820px){
     #adding-desc-input-id, .desc-description-value, #edit-desc-input-id{
-        height: 130px;
+        height: 100px;
     }
 }
 @media screen and (max-height: 700px){
     #adding-desc-input-id, .desc-description-value, #edit-desc-input-id{
-        height: 100px;
+        height: 60px;
     }
 }
 .show-from-right-to-left{

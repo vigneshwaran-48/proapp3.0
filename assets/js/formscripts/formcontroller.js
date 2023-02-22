@@ -11,6 +11,11 @@ let FormController = (view => {
     let getPeopleArray = peopleInput => peopleInput.map(elem => elem.id);
     
     let validateForm = () => {
+        //Want to add a logic for getting project id for task adding .......
+        let projectId;
+        if(CURRENTSECTION == "Tasks"){
+            projectId = (_(view.getDomStrings().projectOptionsWrapper).value.slice(15));
+        }
         let nameInput = _(view.getDomStrings().nameInputTag).value.trim();
         let descInput = _(view.getDomStrings().descInputTag).innerText.trim();
         let fromDateInput = _(view.getDomStrings().fromDateInputTag).value;
@@ -30,7 +35,8 @@ let FormController = (view => {
                     description : descInput,
                     fromDate : fromDateInput,
                     toDate : toDateInput,
-                    people : people
+                    people : people,
+                    projectId : projectId
                 }
             }
         }
@@ -42,8 +48,10 @@ let FormController = (view => {
         }
     }
     _(view.getDomStrings().peopleAddingLabel).addEventListener("click", event => {
-        view.renderSearchPeople(event.target.value, true, _(view.getDomStrings().peopleSearchWrapper));
-    });
+        if(!event.target.nextElementSibling.checked){
+            view.renderSearchPeople("", true, _(view.getDomStrings().peopleSearchWrapper));
+        }
+    });  
     _(view.getDomStrings().peopleSearchInput).addEventListener("input", event => {
         view.renderSearchPeople(event.target.value, false, _(view.getDomStrings().peopleSearchWrapper));
     });
