@@ -27,30 +27,65 @@ let getCurrentUserDetails = () => {
     }
 }
 let playNotificationSound = () => {
-    new Audio("assets/audio/notification_sound.mp3").play();
+    let audio = new Audio("assets/audio/notification_sound.mp3");
+    audio.play();
 }
-let sendGetRequest = (url, onloadFunction) => {
-    let xhr = new XMLHttpRequest();
-    xhr.open("GET", url);
-    xhr.send();
-    xhr.onload = onloadFunction;
-}
-let sendPostRequest = (url, data, onloadFunction) => {
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", url);
-    xhr.send(data);
-    xhr.onload = onloadFunction;
-}
-let resetProjects = () => {
-    sendGetRequest("/ProApp/project/getall", function(){
-        ProjectModel.resetProject();
-        JSON.parse(this.response).forEach(elem => {
-            ProjectModel.addProject(ProjectModel.changeServerObject(elem), false);
-        });
-        ProjectView.renderProjects(ProjectModel.getProjectsArray());
-        MainView.loadStatisticsData();
-    });
+let sendGetRequest = async url => {
+    return new Promise((resolved, rejected) => {
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", url);
+        xhr.send();
+        xhr.onload = () => {
+            console.log("response recieved");
+            resolved(JSON.parse(xhr.response));   
+        }
+        xhr.onerror = () => {
+            rejected(xhr.status);
+        }
+    })
+
 }
 
+let sendPostRequest = (url, data) => {
+    return new Promise((resolved, rejected) => {
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", url);
+        xhr.send(data);
+        xhr.onload = () => {
+            console.log("post request received");
+            resolved(JSON.parse(xhr.response));
+        }
+        xhr.onerror = () => {
+            rejected(xhr.status);
+        }
+    });
+}
+let resetProjects = async () => {
+    let response = await sendGetRequest("/ProApp/project/getall");
+    ProjectModel.resetProject();
+
+    response.forEach(elem => {
+        ProjectModel.addProject(ProjectModel.changeServerObject(elem), false);
+    });
+    ProjectView.renderProjects(ProjectModel.getProjectsArray());
+    MainView.loadStatisticsData();
+}
+let resetTasks = async () => {
+    console.log("sending request to get tasks ...");
+    let response = await sendGetRequest("/ProApp/task/getall");
+    console.log(response);
+    TaskModel.resetTasks();
+    response.forEach(elem => {
+        TaskModel.addTask(TaskModel.changeServerObject(elem, true), false);
+    });
+    TaskView.renderTasks(ProjectModel.getProjectsArray());
+    console.log("task rendered");
+}
+// let getAllUsers = () => {
+//     sendGetRequest("/ProApp/user/getusers?id=all", function(){
+//         return JSON.parse()
+//     });
+// }
 getCurrentUserDetails();
 resetProjects();
+resetTasks();

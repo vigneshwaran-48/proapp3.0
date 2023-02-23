@@ -46,34 +46,33 @@ let FormView = (() => {
         }
         return false;
     }
-    let renderSearchPeople = (searchInput, renderFull, addToElement) => {
-        sendGetRequest("user/getusers?id=all", function(){
-            resetPeopleSearchView(addToElement);
-            JSON.parse(this.response).forEach(elem => {
-                if(((elem.userName.toLowerCase().includes(searchInput.toLowerCase()) && !isPersonResultAvailable(elem.userId) || searchInput.length == 0) || renderFull) && elem.userId != USERID){
-                    let labelTag = document.createElement("label");
-                    let inputTag = document.createElement("input");
-                    let imageDiv = document.createElement("div");
-                    let p = document.createElement("p");
+    let renderSearchPeople = async (searchInput, renderFull, addToElement) => {
+        let response = await sendGetRequest("user/getusers?id=all");
+        resetPeopleSearchView(addToElement);
+        response.forEach(elem => {
+            if(((elem.userName.toLowerCase().includes(searchInput.toLowerCase()) && !isPersonResultAvailable(elem.userId)) || renderFull) && elem.userId != USERID){
+                let labelTag = document.createElement("label");
+                let inputTag = document.createElement("input");
+                let imageDiv = document.createElement("div");
+                let p = document.createElement("p");
 
-                    //Adding classes to the elements
-                    labelTag.classList.add(domStrings.pepoleSearchLabel);
-                    labelTag.classList.add("x-axis-flex");
-                    imageDiv.classList.add(domStrings.pepoleSearchImageDiv);
-                    inputTag.classList.add(domStrings.peopleSearchCheckBox);
+                //Adding classes to the elements
+                labelTag.classList.add(domStrings.pepoleSearchLabel);
+                labelTag.classList.add("x-axis-flex");
+                imageDiv.classList.add(domStrings.pepoleSearchImageDiv);
+                inputTag.classList.add(domStrings.peopleSearchCheckBox);
 
-                    labelTag.for = elem.userId;
-                    labelTag.dataset.imagePath = `url(/ProApp/assets/images/usersImages/${elem.imagePath})`;    
-                    inputTag.type = "checkbox";
-                    inputTag.name = "selected-people";
-                    inputTag.id = elem.userId;
-                    p.textContent = elem.userName;
-                    imageDiv.style.backgroundImage = `url(/ProApp/assets/images/usersImages/${elem.imagePath})`;
+                labelTag.for = elem.userId;
+                labelTag.dataset.imagePath = `url(/ProApp/assets/images/usersImages/${elem.imagePath})`;    
+                inputTag.type = "checkbox";
+                inputTag.name = "selected-people";
+                inputTag.id = elem.userId;
+                p.textContent = elem.userName;
+                imageDiv.style.backgroundImage = `url(/ProApp/assets/images/usersImages/${elem.imagePath})`;
 
-                    labelTag.append(imageDiv, p, inputTag);
-                    addToElement.append(labelTag);
-                }
-            });
+                labelTag.append(imageDiv, p, inputTag);
+                addToElement.append(labelTag);
+            }
         });
     }
     let getDomStrings = () => domStrings;

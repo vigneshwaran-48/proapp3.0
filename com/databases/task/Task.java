@@ -3,6 +3,7 @@ package com.databases.task;
 import org.json.simple.*;
 
 import com.databases.project.UpdateProject;
+import com.databases.users.RetrieveUser;
 
 import java.sql.*;
 
@@ -61,7 +62,8 @@ public class Task {
             jsObj.put("fromDate", fromDate);
             jsObj.put("description", description);
             jsObj.put("projectId", projectId);
-            jsObj.put("users",userDetails);
+            jsObj.put("users",new RetrieveUser().getUserDetailByTid(con, Integer.parseInt(String.valueOf(tid))));
+
             jsObj.put("percentage", 0);
             jsObj.put("tid", tid);
             UpdateProject upj=new UpdateProject();

@@ -38,9 +38,11 @@ let MainController = (view => {
             let result = FormController.validateForm();
             if(result.status){
                 if(CURRENTSECTION == "Project"){
+                    console.log("going to add project ....");
                     ProjectController.addProject(result.formDetails);
                 }
                 else {
+                    console.log("going to add task ...");
                     TaskController.addTask(result.formDetails);
                 }
                 _(view.getDomStrings().rightSideCloseButton).click();
@@ -103,6 +105,16 @@ let MainController = (view => {
             CURRENTSECTION = "Tasks";
             _(view.getDomStrings().taskSection).classList.add(view.getDomStrings().showFromScale);
         });
+        //This is for opening chat people view
+        _(view.getDomStrings().chatButton).addEventListener("click", event => {
+            _(view.getDomStrings().chatPeopleViewSection).classList.add(view.getDomStrings().showFromRightToLeft);
+        });
+        //This is to close the chat people view
+        _(view.getDomStrings().chatMembersCloseButton).addEventListener("click", event => {
+            _(view.getDomStrings().chatPeopleViewSection).classList.remove(view.getDomStrings().showFromRightToLeft);
+        });
+        //This is for notification audio 
+        _(view.getDomStrings().notificationAudioButton).addEventListener("click", playNotificationSound);
     }
     init();
 

@@ -11,6 +11,7 @@
     <link href="assets/css/box.css" rel="stylesheet" type="text/css">
     <link href="assets/css/form.css" rel="stylesheet" type="text/css">
     <link href="assets/css/task.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/chat.css" rel="stylesheet" type="text/css">
     <title>Task Manager</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
@@ -23,6 +24,7 @@
 </head>
 
 <body>
+    <button type="button" class="audio-button" style="display:none"></button>
     <div class="error-message-wrapper x-axis-flex full-light-theme">
         <div class="error-symbol x-axis-flex"><i class="fa-regular fa-circle-xmark"></i></div>
         <div class="error-message y-axis-flex">
@@ -63,11 +65,7 @@
             <i class="fa-solid fa-list-check"></i>
             <p class="icon-label">Tasks</p>
         </div>
-        <div class="common-i-tag icons-wrapper y-axis-flex">
-            <i class="fa-solid fa-book"></i>
-            <p class="icon-label">Docs</p>
-        </div>
-        <div class="common-i-tag icons-wrapper y-axis-flex">
+        <div class="common-i-tag icons-wrapper chat-section-button y-axis-flex">
             <i class="fa-solid fa-user-group"></i>
             <p class="icon-label">Chat</p>
         </div>
@@ -318,6 +316,32 @@
                 <button type="button" class="common-button edit-box-button">Update</button>
             </section>
             <!-- Box edit section ends here -->
+
+            <!-- Chat people view section starts here -->
+            <section class="chat-people-view-section y-axis-flex full-light-theme">
+                <i id="chat-members-view-close-button" class="fa-solid fa-xmark"></i>
+                <h2>Chat</h2>
+                <input type="search" id="chat-memebers-search-input">
+                <div class="members-list light-theme y-axis-flex">
+                    <div class="single-member-display-wrapper x-axis-flex">
+                        <div class="chat-member-photo semi-light-theme"></div>
+                        <p class="chat-member-search-name">Vicky</p>
+                        <i class="fa-regular fa-message"></i>
+                    </div>
+                </div>
+            </section>
+            <!-- Chat people view section ends here -->
+
+            <!-- Chattig window starts here -->
+            <section class="chatting-window-section y-axis-flex full-light-theme">
+                <i id="chatting-window-close-button" class="fa-solid fa-xmark"></i>
+                <div class="upper-user-details-window y-axis-flex">
+                    <div class="chatting-user-photo"></div>
+                    <h2 class="chatting-user-name"></h2>
+                </div>
+                <div class="messaging-window y-axis-flex"></div>
+            </section>
+            <!-- Chattig window ends here -->
         </section>
     </section>
 </body>
@@ -344,6 +368,12 @@
 <script src="assets/js/taskscripts/taskmodel.js"></script>
 <script src="assets/js/taskscripts/taskcontroller.js"></script>
 <!-- Task scripts ends here -->
+
+<!-- Chat scripts starts here -->
+<script src="assets/js/chatscripts/chatview.js"></script>
+<script src="assets/js/chatscripts/chatmodel.js"></script>
+<script src="assets/js/chatscripts/chatcontroller.js"></script>
+<!-- Chat scripts ends here -->
 
 <!-- Web socket scripts starts here -->
 <script src="assets/js/websocketscript/weblogic.js"></script>

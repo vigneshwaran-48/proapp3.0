@@ -18,7 +18,7 @@ let ProjectModel = (() => {
     }
     //This method will send data to server and push it to local projectArray
     let addProjectToServer = (projectName, projectDesc, fromDate, toDate, users) => {
-        return new Promise((passes, rejected) => {
+        return new Promise(async (passes, rejected) => {
             let formData = new FormData();
             let tempCreated = USERID;
             let tempObj = {
@@ -30,24 +30,21 @@ let ProjectModel = (() => {
                 createdBy : tempCreated
             }
             formData.append("data", JSON.stringify(tempObj));
-            
-            sendPostRequest("/ProApp/project/add", formData, function(){
-                let serverObject = JSON.parse(this.response); 
-                serverObject.status = "Yet To Start";
-                let project = changeServerObject(serverObject);
-                projectsArray.push(project);
-                // ProjectView.renderProjects(projectsArray);
-                MainView.showSuccessMessage("project added succesfully");
-                passes("success");
-                sendMessage(JSON.stringify({
-                    messageType: "projectUpdate",
-                    projectId : project.id,
-                    userId : USERID,
-                    description : "you have been added to a project by " + USERNAME
-                }))
-            });
-        })
-        
+            console.log("request sent ....");
+            let response = await sendPostRequest("/ProApp/project/add", formData);
+            console.log("response recieved");
+            response.status = "Yet To Start";
+            let project = changeServerObject(response);
+            projectsArray.push(project);
+            MainView.showSuccessMessage("project added succesfully");
+            passes("success");
+            sendMessage(JSON.stringify({
+                messageType: "projectUpdate",
+                projectId : project.id,
+                userId : USERID,
+                description : "you have been added to a project by " + USERNAME
+            }));
+        });
     }
     
     let getProjectsArray = () => projectsArray.slice();

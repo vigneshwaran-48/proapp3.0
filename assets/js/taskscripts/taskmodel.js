@@ -33,7 +33,7 @@ let TaskModel = (() => {
     
     let createTask = taskData => {
 
-        return new Promise((passed, rejected) => {
+        return new Promise(async (passed, rejected) => {
             let formData = new FormData();
             console.log(taskData);
             let tempObj = {
@@ -46,26 +46,12 @@ let TaskModel = (() => {
                 createdBy : USERID
             }
             formData.append("taskData", JSON.stringify(tempObj));
-            sendPostRequest("/ProApp/task/add", formData, function(){
-                let serverObject = JSON.parse(this.response);
-                let task =  changeServerObject(serverObject);
-                tasksArray.push(task);
-                console.log("task added .....");
-                passed("success");
-                // TaskView.renderTasks(getTasks());
-            });
+            let resposne = await sendPostRequest("/ProApp/task/add", formData);
+            let task =  changeServerObject(resposne);
+            tasksArray.push(task);
+            console.log("task added .....");
+            passed("success");
         });
-        
-        
-        // let xhr = new XMLHttpRequest();
-        // xhr.open("POST", "/ProApp/task/add");
-        // xhr.send(formData);
-        // xhr.onload = () => {
-        //     let serverObject = JSON.parse(xhr.response);
-        //     let task =  changeServerObject(serverObject);
-        //     addTask(task);
-        //     TaskView.renderTasks(getTasks());
-        // }
     }
     let addTask = (task, isNew) => {
         return new Promise(async (passed, rejected) => {

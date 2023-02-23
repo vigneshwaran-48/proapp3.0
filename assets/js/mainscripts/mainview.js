@@ -50,7 +50,11 @@ let MainView = (() => {
         editSearchPeopleWrapper : ".edit-search-people-wrapper",
         taskSectionButton : ".task-section-button",
         taskSection : ".task-middle-section-body",
-        showFromScale : "show-from-scale"
+        showFromScale : "show-from-scale",
+        chatPeopleViewSection : ".chat-people-view-section",
+        chatButton : ".chat-section-button",
+        chatMembersCloseButton : "#chat-members-view-close-button",
+        notificationAudioButton : ".audio-button"
     }
     let getDomStrings = () => domStrings;
 
@@ -99,7 +103,8 @@ let MainView = (() => {
     let showPopUpSymbol = message => {
         _(domStrings.popupMessage).innerText = message;
         _(domStrings.popupWindow).classList.add(domStrings.showPopupMessage);
-        playNotificationSound();
+        //This is for playing sound (Because we can't directly play the audio in js, the user want to click a button for it).
+        _(domStrings.notificationAudioButton).click();
         setTimeout(function(){
             _(domStrings.popupWindow).classList.remove(domStrings.showPopupMessage);
         }, 3000);

@@ -62,6 +62,9 @@
 .single-task-heading{
     margin: 0px 10px;
 }
+.finish-task{
+    text-decoration: line-through;
+}
 .all-task-people-wrapper{
     width: 120px;
     position: relative;
@@ -106,7 +109,12 @@
 .task-option:hover{
     background-color: rgb(235, 237, 239);
 }
-
+.more-person-task {
+    left: 65px;
+    line-height: 40px;
+    text-align: center;
+    background-color: rgb(221,221,223);
+}
 
 @media screen and (max-width: 355px){
     .task-image{

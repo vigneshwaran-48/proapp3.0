@@ -1,4 +1,4 @@
-.adding-form, .box-description-section, .box-edit-section{
+.adding-form, .box-description-section, .box-edit-section, .chat-people-view-section, .chatting-window-section{
     position: absolute;
     transition: 0.5s;
     width: 100%;
@@ -48,7 +48,7 @@
     padding: 0px;
     transition: 0.5s;
     background-color: rgb(235, 237, 239);
-    z-index: 15;
+    z-index: 15;    
 }
 .search-people-wrapper, .desc-search-people-wrapper, .edit-search-people-wrapper{
     padding: 0;

@@ -103,7 +103,7 @@ let MainRunner = (function (domStrings, view) {
             view.validDisplay("#" + this.id);
         }
         else {
-            view.inValidInputDisplay("#" + this.id, "Name length can be range from 5 to 20 and no special characters");
+            view.inValidInputDisplay("#" + this.id, "Length of the First-Name Should be From 5 to 20 Characters");
         }
     }
 

@@ -26,10 +26,7 @@ public class UpdateTask {
             ResultSet rs = stmt.executeQuery("select * from task_relation where uid = " + uid + " and tid = " + tid);
 
             rs.next();
-            stmt.executeUpdate(
-                    "update task_relation set IsCompleted = '" + !Boolean.parseBoolean(rs.getString("IsCompleted"))
-                            + "' where tid = " + tid + " and uid = " + uid);
-
+            stmt.executeUpdate("update task_relation set IsCompleted = '" + !Boolean.parseBoolean(rs.getString("IsCompleted"))+ "' where tid = " + tid + " and uid = " + uid);
             taskStatusChanger(con, tid);
             result = true;
         } catch (Exception e) {
@@ -46,11 +43,13 @@ public class UpdateTask {
     public void taskStatusChanger(Connection con, int tid) {
         try {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select IsCompleted from task_relation where tid = " + tid);
+            ResultSet rs = stmt.executeQuery("select IsCompleted,uid from task_relation where tid = " + tid);
 
             int j = 0;
             int total = 0;
+            int uid = 0;
             while (rs.next()) {
+                uid = rs.getInt("uid");
                 if (rs.getString("IsCompleted").equals("true")) {
                     j++;
                 }
@@ -64,8 +63,8 @@ public class UpdateTask {
             } else if (j > 0) {
                 stmt.executeUpdate("update tasks set status = 'On Progress' where tid = " + tid);
             }
-            UpdateProject upj=new UpdateProject();
-            upj.changeProjectStatus(con, new RetrieveProject().retrievePidByTid(con, tid));
+            new UpdateProject().changeProjectStatus(con, new RetrieveProject().retrievePidByTid(con, tid));
+            taskRelationStatusChanger(con, uid, tid);
         } 
         catch (Exception e) {
             e.printStackTrace();

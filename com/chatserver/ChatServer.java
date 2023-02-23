@@ -14,7 +14,7 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-import org.json.simple.JSONArray;
+// import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -33,7 +33,8 @@ public class ChatServer {
         Map<String, List<String>> hashMap = s.getRequestParameterMap();
         System.out.println("Connected Successfully");
         System.out.println("hashmap:" + hashMap);
-        if (!alreadyExist(Long.parseLong(String.valueOf(hashMap.get("uid").get(0))))) {
+        if (!alreadyExist(s)) {
+            System.out.println("user " + hashMap.get("uid") +" added");
             arr.add(new User(s,Long.parseLong(hashMap.get("uid").get(0))));
         }
 
@@ -53,16 +54,16 @@ public class ChatServer {
 
            
             for (Long arrList : arrayList) {
-                if(alreadyExist(arrList))
+                if(alreadyExist(session))
                 {
                     for (User user : arr) {
+                        //Changed a condition here
                         if(arrList.equals(user.getUserId()) && arrList!=js.get("userId"))
                         {
                             System.out.println("inside if");
                             try {
                                 user.getSession().getBasicRemote().sendText(JSONObject.toJSONString(js));
                             } catch (IOException e) {
-                                // TODO Auto-generated catch block
                                 e.printStackTrace();
                             }
                         }
@@ -70,6 +71,9 @@ public class ChatServer {
                             System.out.println(user.getUserId() + " is not avaliable");
                         }
                     }
+                }
+                else {
+                    System.out.println(arrList + " is not available");
                 }
             }
         }
@@ -91,12 +95,12 @@ public class ChatServer {
         }
     }
 
-    public boolean alreadyExist(Long uid) {
+    public boolean alreadyExist(Session s) {
         boolean result = false;
         try {
             for (User chatServer : arr) {
-                System.out.println("from method"+chatServer.getUserId());
-                if (chatServer.getUserId()==uid) {
+                // System.out.println("from method"+chatServer.getUserId());
+                if (chatServer.getSession().getId()==s.getId()) {
                     result = true;
                 }
             }

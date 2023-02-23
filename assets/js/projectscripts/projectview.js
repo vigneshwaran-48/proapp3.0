@@ -29,13 +29,23 @@ let ProjectView = (() => {
     }
     let getDomStrings = () => domStrings;
     
-    let getPhotoSection = (users, allPeopleWrapper, personImageWrapperClass, personImageClass) => {
+    let getPhotoSection = (users, allPeopleWrapper, personImageWrapperClass, personImageClass, isTask) => {
+        let photoWrapperSubText;
+        let morePersonClass;
+        if(isTask){
+            photoWrapperSubText = "task-person-";
+            morePersonClass = "more-person-task";
+        }
+        else {
+            photoWrapperSubText = "person-";
+            morePersonClass = "more-person";
+        }
         let peopleCount = 1;
             users.forEach(element => {
                 let personImageWrapper = document.createElement("div");
                 personImageWrapper.classList.add(personImageWrapperClass);
                 if(peopleCount <= 3){
-                    personImageWrapper.classList.add("person-" + peopleCount++);
+                    personImageWrapper.classList.add(photoWrapperSubText + peopleCount++);
                     let personImage = document.createElement("div");
                     personImage.classList.add(personImageClass);
                     personImage.style.backgroundImage = `url("assets/images/usersImages/${element.imagePath}")`;
@@ -44,7 +54,7 @@ let ProjectView = (() => {
                 }
                 else {
                     if(peopleCount == 4){
-                        personImageWrapper.classList.add("more-person");
+                        personImageWrapper.classList.add(morePersonClass);
                         personImageWrapper.append(document.createElement("div").textContent = "+1"); 
                         allPeopleWrapper.append(personImageWrapper);
                     }
