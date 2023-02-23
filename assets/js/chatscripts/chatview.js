@@ -10,14 +10,18 @@ let ChatView = (() => {
         chattingWindow : ".chatting-window-section",
         chattingWindowCloseButton : "#chatting-window-close-button",
         chattingUserImage : ".chatting-user-photo",
-        chattingUserName : ".chatting-user-name"
+        chattingUserName : ".chatting-user-name",
+        chatInput : ".chat-message-input",
+        chatSendIcon : "send-message-button"
     }
     let getDomStrings = () => domStrings;
 
-    let renderChattingWindow = event => {
+    let renderChattingWindow = (event, userId) => {
+        console.log(userId);
         _(domStrings.chattingWindow).classList.add(MainView.getDomStrings().showFromRightToLeft);
         _(domStrings.chattingUserName).textContent = event.target.id;
-        _(domStrings.chattingUserImage).style.backgroundImage = `url(assets/images/usersImage/${event.target.dataset.imagePath})`;
+        _(domStrings.chattingUserImage).style.backgroundImage = `url(assets/images/usersImages/${event.target.dataset.userImage})`;
+        // _(domStrings.chatInput).id = 0;
     }
     let renderChatPeople = users => {
         _(domStrings.chatAllPeopleWrapper).innerHTML = "";
@@ -50,7 +54,7 @@ let ChatView = (() => {
 
             //Adding elements to their respective parent 
             personWrapper.append(personPhoto, personName, chatIcon);
-            personWrapper.addEventListener("click", renderChattingWindow);
+            personWrapper.addEventListener("click", renderChattingWindow, {"users" : elem.userId});
             _(domStrings.chatAllPeopleWrapper).append(personWrapper);
         });
     }
