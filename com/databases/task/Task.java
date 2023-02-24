@@ -2,8 +2,8 @@ package com.databases.task;
 
 import org.json.simple.*;
 
+import com.databases.Image;
 import com.databases.project.UpdateProject;
-import com.databases.users.RetrieveUser;
 
 import java.sql.*;
 
@@ -47,10 +47,13 @@ public class Task {
                 Long uid = Long.parseLong(String.valueOf(users.get(i)));
                 stmt.executeUpdate("insert into task_relation (tid,uid) values(" + tid + "," + uid + ")");
                 rs2 = stmt2.executeQuery("select * from users where uid = "+uid);
+                Image img=new Image();
                 while(rs2.next()){
                     JSONObject jsonObject = new JSONObject();
                     jsonObject.put("userId",rs2.getInt("uid"));
                     jsonObject.put("userName",rs2.getString("uname"));
+                    jsonObject.put("imagePath",img.getImagePath(Integer.parseInt(String.valueOf(uid)), con));
+
                     userDetails.add(jsonObject);
                 }
             }
@@ -62,8 +65,7 @@ public class Task {
             jsObj.put("fromDate", fromDate);
             jsObj.put("description", description);
             jsObj.put("projectId", projectId);
-            jsObj.put("users",new RetrieveUser().getUserDetailByTid(con, Integer.parseInt(String.valueOf(tid))));
-
+            jsObj.put("users",userDetails);
             jsObj.put("percentage", 0);
             jsObj.put("tid", tid);
             UpdateProject upj=new UpdateProject();

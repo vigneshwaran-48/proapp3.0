@@ -220,6 +220,12 @@
                     <label for="adding-last-date-input-id">Last Date</label>
                     <input type="date" required id="adding-last-date-input-id" class="common-input adding-last-date-input">
                 </div>
+                <div class="common-input-wrapper project-choosing-wrapper x-axis-flex">
+                    <label for="project-drop-down-id">Project</label>
+                    <select id="project-drop-down-id">
+                        <option value="default">Default</option>
+                    </select>
+                </div>
                 <div class="common-input-wrapper x-axis-flex">
                     <label for="adding-name-input-id">People</label>
                     <div class="people-adding-wrapper x-axis-flex">
@@ -231,14 +237,6 @@
                             <ul class="search-people-wrapper"></ul>
                         </ul>
                     </div>
-                </div>
-                <div class="common-input-wrapper project-choosing-wrapper x-axis-flex">
-                    <label for="project-drop-down-id">Project</label>
-                    <select id="project-drop-down-id">
-                        <option value="project-1">Project 1</option>
-                        <option value="project-1">Project 1</option>
-                        <option value="project-1">Project 1</option>
-                    </select>
                 </div>
                 <div class="common-input-wrapper desc-adding-wrapper y-axis-flex">
                     <label for="adding-desc-input-id">Description</label>
@@ -332,7 +330,7 @@
             </section>
             <!-- Chat people view section ends here -->
 
-            <!-- Chattig window starts here -->
+            <!-- Chatting window starts here -->
             <section class="chatting-window-section y-axis-flex full-light-theme">
                 <i id="chatting-window-close-button" class="fa-solid fa-xmark"></i>
                 <div class="upper-user-details-window y-axis-flex">
@@ -349,7 +347,7 @@
                         <div class="single-sent-message-wrapper x-axis-flex">
                             <div class="single-message sent-message x-axis-flex">
                                 <p class="chat-content">Hi</p>
-                                <span class="chat-time">7:30</span>
+                                <span class="chat-time y-axis-flex">7:30</span>
                             </div>
                         </div>
                         <div class="single-sent-message-wrapper x-axis-flex">
@@ -365,7 +363,7 @@
                     </div>
                 </div>
             </section>
-            <!-- Chattig window ends here -->
+            <!-- Chatting window ends here -->
         </section>
     </section>
 </body>

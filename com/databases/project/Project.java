@@ -3,7 +3,7 @@ package com.databases.project;
 import java.sql.*;
 import org.json.simple.*;
 
-import com.databases.users.RetrieveUser;
+import com.databases.Image;
 
 /**
  * This class contains methods to add and delete project.
@@ -41,10 +41,12 @@ public class Project {
                 Long uid = Long.parseLong(String.valueOf(users.get(i)));
                 stmt.executeUpdate("insert into project_relation (pid,uid) values(" + pid + "," + uid + ")");
                 rs2 = stmt2.executeQuery("select * from users where uid = "+uid);
+                Image img=new Image();
                 while(rs2.next()){
                     JSONObject jsonObject = new JSONObject();
                     jsonObject.put("userId",rs2.getInt("uid"));
                     jsonObject.put("userName",rs2.getString("uname"));
+                    jsonObject.put("imagePath",img.getImagePath(Integer.parseInt(String.valueOf(uid)), con));
                     userDetails.add(jsonObject);
                 }         
             }
@@ -57,7 +59,8 @@ public class Project {
             resJsObj.put("toDate", todate);
             resJsObj.put("createdBy", createdBy);
             resJsObj.put("percentage", 0);
-            resJsObj.put("users", new RetrieveUser().getUserDetailByPid(con, pid));
+            resJsObj.put("users", userDetails);
+            
         } 
         catch (Exception e) {
             e.printStackTrace();

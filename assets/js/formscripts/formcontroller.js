@@ -47,13 +47,58 @@ let FormController = (view => {
             }
         }
     }
-    _(view.getDomStrings().peopleAddingLabel).addEventListener("click", event => {
+    let getUsersOfSelectedProject = () => {
+        let projectId = _(view.getDomStrings().projectOptionsWrapper).value.slice(15);
+        if(typeof(Number(projectId)) == 'number' && projectId > 0){
+            let project = ProjectModel.getDataById(projectId);
+            return project.users;
+        }
+        else {
+            return false;
+        }
+    }
+    //This is for people adding label click action
+    _(view.getDomStrings().peopleAddingLabel).addEventListener("click", async event => {
         if(!event.target.nextElementSibling.checked){
-            view.renderSearchPeople("", true, _(view.getDomStrings().peopleSearchWrapper));
+            if(CURRENTSECTION != "Project"){
+                let status = getUsersOfSelectedProject();
+                if(status){
+                    view.renderSearchPeople("", false, _(view.getDomStrings().peopleSearchWrapper), status);
+                }
+                else {
+                    _(view.getDomStrings().peopleAddingInputId).checked = false;
+                    MainView.showErrorMessage("please select a project");
+                }
+            }
+            else {
+                let response = await sendGetRequest("user/getusers?id=all");
+                view.renderSearchPeople("", true, _(view.getDomStrings().peopleSearchWrapper), response);
+            } 
         }
     });  
-    _(view.getDomStrings().peopleSearchInput).addEventListener("input", event => {
-        view.renderSearchPeople(event.target.value, false, _(view.getDomStrings().peopleSearchWrapper));
+    //This is for people input searching
+    _(view.getDomStrings().peopleSearchInput).addEventListener("input", async event => {
+        if(CURRENTSECTION != "Project"){
+            let status = getUsersOfSelectedProject();
+            if(status){
+                view.renderSearchPeople("", false, _(view.getDomStrings().peopleSearchWrapper), status);
+            }
+            else {
+                MainView.showErrorMessage("please select a project");
+            }
+        }
+        else {
+            let response = await sendGetRequest("user/getusers?id=all");
+            view.renderSearchPeople(event.target.value, false, _(view.getDomStrings().peopleSearchWrapper), response);
+        }   
+    });
+    //This is for project options
+    _(view.getDomStrings().projectOptionsWrapper).addEventListener("change", async event => {
+        let projectId = event.target.value.slice(15);
+        if(Number.isInteger(projectId)){
+            let project = ProjectModel.getDataById(projectId);
+            view.renderSearchPeople("", false, _(view.getDomStrings().peopleSearchWrapper), project.users);
+        }
     });
     return {
         validateForm : validateForm

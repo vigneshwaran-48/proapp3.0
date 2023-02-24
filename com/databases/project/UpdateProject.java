@@ -1,3 +1,5 @@
+
+
 package com.databases.project;
 
 import java.sql.*;
@@ -51,8 +53,10 @@ public class UpdateProject {
                 }
                 totalCount++;
             }
+            
             //System.out.println("completedCount:" + completedCount + "totalCount:" + totalCount +"on progress ="+onProgressCount);
-            if (totalCount>0){
+            if(totalCount!=0)
+            {
                 if (totalCount == completedCount) {
                     stmt.executeUpdate("update projects set status = 'Completed' where pid = " + pid);
                 } else if (completedCount > 0) {
@@ -61,16 +65,17 @@ public class UpdateProject {
                     stmt.executeUpdate("update projects set status = 'On Progress' where pid = " + pid);
                 } else if (completedCount == 0) {
                     stmt.executeUpdate("update projects set status = 'Yet To Start' where pid = " + pid);
-                } 
+                }
             } 
-        } 
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     public boolean updateProjectData(Connection con , JSONObject jsonObject) {
         boolean result = false;
         try {
+            System.out.println("I AM FROM UPDATED");
             String projectName = (String) jsonObject.get("projectName");
             int projectId = Integer.parseInt(String.valueOf(jsonObject.get("projectId")));
             String fromDate = (String) jsonObject.get("fromDate");
@@ -78,8 +83,9 @@ public class UpdateProject {
             String projectDesc = (String) jsonObject.get("projectDesc");
             String status = (String) jsonObject.get("status");
             JSONArray users = (JSONArray) jsonObject.get("users");
-
-            if(new UpdateTask().updateTaskData(con, jsonObject)){
+            System.out.println("jsonObj:"+jsonObject);
+            if(new UpdateTask().updateTaskUserData(con, jsonObject)){
+                System.out.println("i am from updated Project if");
                 Statement stmt = con.createStatement();
                 stmt.executeUpdate("delete from project_relation where pid = "+projectId);          
 
@@ -91,9 +97,8 @@ public class UpdateProject {
 
                 Statement stmt3 = con.createStatement();
                 stmt3.executeUpdate("update projects set pname = '"+projectName+"' , fromdate = '"+fromDate+"' , todate = '"+toDate+"' , comment = '"+projectDesc+"' , status = '"+status+"' where pid = "+projectId);
-
+                result = true;
             }
-            result = true;
         } catch (Exception e) {
             e.printStackTrace();
         }

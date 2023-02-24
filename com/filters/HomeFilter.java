@@ -53,7 +53,7 @@ public class HomeFilter extends HttpFilter {
                     rd.forward(request, response);
                 }
                 else{
-                    RequestDispatcher rd=request.getRequestDispatcher("Login");
+                    RequestDispatcher rd=request.getRequestDispatcher("login");
                     rd.forward(request, response);
                 }
             } catch (Exception e) {

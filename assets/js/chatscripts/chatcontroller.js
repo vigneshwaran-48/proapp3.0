@@ -11,6 +11,7 @@ let ChatController = ((view, model) => {
                 fromUserId : USERID,
                 toUserId : _(view.getDomStrings().chatInput).id
             }
+            console.log(obj);
             console.log(currentTime.toLocaleDateString());
         }
     }

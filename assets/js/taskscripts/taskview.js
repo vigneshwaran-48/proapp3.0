@@ -22,7 +22,8 @@ let TaskView = (() => {
         taskEditButton : "task-edit-button",
         taskMoreInfoButton : "task-more-info-button",
         taskCompleteButton : "task-complete-button",
-        finishTask : "finish-task"
+        finishTask : "finish-task",
+        noTaskHeading : "no-task-heading"
     }
     
     let getDomStrings = () => domStrings;
@@ -33,7 +34,6 @@ let TaskView = (() => {
             tasks[elem.projectName] = TaskModel.getTasksByProjectId(elem.id);
         });
         _(domStrings.taskMiddleSectionBody).innerHTML = "";
-        console.log(tasks);
         Object.keys(tasks).forEach(singleProject => {
             if(tasks[singleProject].length){
                 //This elements are for whole single task wrapper for a specific project
@@ -49,7 +49,7 @@ let TaskView = (() => {
                 tasksWrapper.classList.add(domStrings.singleTaskWrapper);
                 tasksWrapper.classList.add("semi-light-theme");
                 tasksWrapper.classList.add("y-axis-flex");
-                projectNameTag.textContent = tasks[singleProject][0].taskName;
+                projectNameTag.textContent = singleProject;
 
                 singleProjectTaskSection.append(projectNameTag, tasksWrapper);
                 tasks[singleProject].forEach(task => {
@@ -136,7 +136,13 @@ let TaskView = (() => {
                 _(domStrings.taskMiddleSectionBody).append(singleProjectTaskSection);
             }
             else {
-                console.log("No tasks");
+                if(!_(domStrings.taskMiddleSectionBody).children.length){
+                    let h1Tag = document.createElement("h1");
+                    h1Tag.textContent = "You have no tasks yet";
+                    h1Tag.classList.add(domStrings.noTaskHeading);
+
+                    _(domStrings.taskMiddleSectionBody).append(h1Tag);
+                }
             }
         });
     }

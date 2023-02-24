@@ -2,11 +2,11 @@ let ChatModel = (() => {
 
     let messagesData = [];
 
-    let Message = function(messageId, messageContent, sentTime, isSentByMe, to){
+    let Message = function(messageId, messageContent, sentTime, from, to){
         this.messageId = messageId;
         this.messageContent = messageContent;
         this.sentTime = sentTime;
-        this.isSentByMe = isSentByMe;
+        this.from = from;
         this.to = to;
     }
     

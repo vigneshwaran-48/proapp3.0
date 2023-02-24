@@ -6,6 +6,7 @@ let FormView = (() => {
         fromDateInputTag : "#adding-from-date-input-id",
         toDateInputTag : "#adding-last-date-input-id",
         peopleSearchInput : ".people-search-input",
+        peopleAddingInputId : "#people-adding-input",
         pepoleSearchLabel : "people-option",
         pepoleSearchImageDiv : "people-search-image",
         peopleSearchCheckBox : "people-search-result-input-tag",
@@ -23,6 +24,12 @@ let FormView = (() => {
     }
     let renderProjectOption = projects => {
         _(domStrings.projectOptionsWrapper).innerHTML = "";
+
+        let defaultOption = document.createElement("option");
+        defaultOption.textContent = "Default";
+        defaultOption.value = "default";
+        _(domStrings.projectOptionsWrapper).append(defaultOption);
+
         projects.forEach(elem => {
             let projectOption = document.createElement("option");
             projectOption.value = "project-option-" + elem.id;
@@ -46,10 +53,9 @@ let FormView = (() => {
         }
         return false;
     }
-    let renderSearchPeople = async (searchInput, renderFull, addToElement) => {
-        let response = await sendGetRequest("user/getusers?id=all");
+    let renderSearchPeople = async (searchInput, renderFull, addToElement, people) => {
         resetPeopleSearchView(addToElement);
-        response.forEach(elem => {
+        people.forEach(elem => {
             if(((elem.userName.toLowerCase().includes(searchInput.toLowerCase()) && !isPersonResultAvailable(elem.userId)) || renderFull) && elem.userId != USERID){
                 let labelTag = document.createElement("label");
                 let inputTag = document.createElement("input");

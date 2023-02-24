@@ -35,6 +35,7 @@ let ProjectModel = (() => {
             console.log("response recieved");
             response.status = "Yet To Start";
             let project = changeServerObject(response);
+            console.log(project);
             projectsArray.push(project);
             MainView.showSuccessMessage("project added succesfully");
             passes("success");
@@ -69,21 +70,14 @@ let ProjectModel = (() => {
         });
     }
 
-    let getDataById = id => {
-        return projectsArray.find(elem => {
-            return elem.id == id;
-        })
-    }
+    let getDataById = id => projectsArray.find(elem => elem.id == id);
     
     let changeStatus = (status, id) => projectsArray[getIndexOfProject(id)].status = status;
 
     let getTotalCount = () => projectsArray.length;
 
-    let getStatCount = constraint => {
-        return projectsArray.filter(elem => {
-            return elem.status == constraint;
-        }).length;
-    }
+    let getStatCount = constraint => projectsArray.filter(elem => elem.status == constraint).length;
+    
     let getSectionName = () => "Projects";
     
     return {

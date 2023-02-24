@@ -20,7 +20,7 @@ let getCurrentUserDetails = () => {
         _(".top-profile-image").style.backgroundImage = `url(/ProApp/assets/images/usersImages/${CURRENTUSERPHOTO})`;
         _(".big-profile-image").style.backgroundImage = `url(/ProApp/assets/images/usersImages/${CURRENTUSERPHOTO})`;
         _(".current-user-name").textContent = USERNAME;
-        webSocket = new WebSocket("ws://192.168.1.8:8787/ProApp/chat?uid=" + USERID);
+        webSocket = new WebSocket("ws://10.52.0.38:8787/ProApp/chat?uid=" + USERID);
         webSocket.onmessage = (event) => {
             MainView.showPopUpSymbol(JSON.parse(event.data).description);
         }
@@ -35,8 +35,7 @@ let sendGetRequest = async url => {
         let xhr = new XMLHttpRequest();
         xhr.open("GET", url);
         xhr.send();
-        xhr.onload = () => {
-            console.log("response recieved");
+        xhr.onload = () => {    
             resolved(JSON.parse(xhr.response));   
         }
         xhr.onerror = () => {
@@ -69,17 +68,15 @@ let resetProjects = async () => {
     });
     ProjectView.renderProjects(ProjectModel.getProjectsArray());
     MainView.loadStatisticsData();
+    resetTasks();
 }
 let resetTasks = async () => {
-    console.log("sending request to get tasks ...");
     let response = await sendGetRequest("/ProApp/task/getall");
-    console.log(response);
     TaskModel.resetTasks();
     response.forEach(elem => {
         TaskModel.addTask(TaskModel.changeServerObject(elem, true), false);
     });
     TaskView.renderTasks(ProjectModel.getProjectsArray());
-    console.log("task rendered");
 }
 // let getAllUsers = () => {
 //     sendGetRequest("/ProApp/user/getusers?id=all", function(){
@@ -88,4 +85,3 @@ let resetTasks = async () => {
 // }
 getCurrentUserDetails();
 resetProjects();
-resetTasks();
