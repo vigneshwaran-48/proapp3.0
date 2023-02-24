@@ -95,7 +95,7 @@ let MainView = (() => {
     let showSuccessMessage = message => {
         _(domStrings.successMessagePara).innerText = message;
         _(domStrings.successMessageDiv).classList.add(domStrings.showPopupMessage);
-
+        
         setTimeout(function(){
             _(domStrings.successMessageDiv).classList.remove(domStrings.showPopupMessage);
         }, 3000);
