@@ -30,6 +30,10 @@ let MainController = (view => {
         //This is for closing add form section
         _(view.getDomStrings().formCloseButton).addEventListener("click", event => {
             _(view.getDomStrings().rightSideCloseButton).click();
+            FormController.resetForm();
+            if(_(FormView.getDomStrings().peopleAddingLabel).id == "opened"){
+                _(FormView.getDomStrings().peopleAddingLabel).click();
+            }
             _(view.getDomStrings().fullFormSection).classList.remove(view.getDomStrings().showFromRightToLeft);
         }); 
 

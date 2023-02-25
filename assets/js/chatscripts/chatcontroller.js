@@ -2,17 +2,20 @@ let ChatController = ((view, model) => {
 
     let addMessage = event => {
         if(event.target.id == view.getDomStrings().chatSendIcon || event.key == "Enter"){
-            let formData = new FormData();
             let currentTime = new Date();
             let obj = {
-                message : _(view.getDomStrings().chatInput).innerText,
+                messageType : "textMessage",
+                messageContent : _(view.getDomStrings().chatInput).innerText,
                 date : currentTime.toLocaleDateString(),
                 time : currentTime.toLocaleTimeString(),
                 fromUserId : USERID,
-                toUserId : _(view.getDomStrings().chatInput).id
+                toUserId : _(view.getDomStrings().chatInput).id,
+                description :  `${USERNAME} sent you a message`
             }
-            console.log(obj);
-            console.log(currentTime.toLocaleDateString());
+            sendMessage(JSON.stringify(obj));
+            console.log("reseted message input ....");
+            event.preventDefault();
+            _(view.getDomStrings().chatInput).innerHTML = "";
         }
     }
 

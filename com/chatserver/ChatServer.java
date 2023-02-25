@@ -22,7 +22,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import com.apicall.UsersApiCall;
-import com.databases.*;
+
 import com.databases.message.AddMessage;
 
 /**
@@ -31,20 +31,17 @@ import com.databases.message.AddMessage;
 @ServerEndpoint("/chat")
 public class ChatServer {
     static Set<User> arr = new HashSet<>();
-   
-    
+
     @OnOpen
-    public void connect(Session s) {
-        Map<String, List<String>> hashMap = s.getRequestParameterMap();
+    public void connect(Session session) {
+        Map<String, List<String>> hashMap = session.getRequestParameterMap();
         System.out.println("Connected Successfully");
         System.out.println("hashmap:" + hashMap);
-        if (!alreadyExist(s)) {
-            System.out.println("user " + hashMap.get("uid") +" added");
-            arr.add(new User(s,Long.parseLong(hashMap.get("uid").get(0))));
+        if (!alreadyExist(Long.parseLong(String.valueOf(hashMap.get("uid").get(0))))) {
+            arr.add(new User(session, Long.parseLong(hashMap.get("uid").get(0))));
         }
-        
-        // notifyUsers(session);
 
+        // notifyUsers(session);
 
     }
 
@@ -52,52 +49,85 @@ public class ChatServer {
     public void retriveMessage(Session session, String message) throws ParseException {
         System.out.println("From front end:" + message);
         JSONObject js = (JSONObject) new JSONParser().parse(message);
-     
+
         if (js.get("messageType").equals("projectUpdate")) {
             UsersApiCall api = new UsersApiCall();
             ArrayList<Long> arrayList = api.getUsersByProjectId((Long) js.get("projectId"));
 
-           
             for (Long arrList : arrayList) {
-                if(alreadyExist(session))
-                {
+                if (alreadyExist(arrList)) {
                     for (User user : arr) {
-                        if(arrList.equals(user.getUserId()) && arrList!=js.get("userId"))
-                        {
+
+                        if (arrList.equals(user.getUserId()) && arrList != js.get("userId")) {
+                            System.out.println("i am from if proupdate");
+
                             try {
-                                user.getSession().getBasicRemote().sendText(JSONObject.toJSONString(js));
+                                user.getSession().getBasicRemote()
+                                        .sendText(js.toJSONString());
                             } catch (IOException e) {
+                                // TODO Auto-generated catch block
                                 e.printStackTrace();
                             }
+                        } else {
+                            System.out.println("i am from pu else");
                         }
                     }
                 }
             }
         }
+        // else if (js.get("messageType").equals("taskUpdate")) {
+        //     UsersApiCall api = new UsersApiCall();
+        //     ArrayList<Long> arrayList = api.getUsersByProjectId((Long) js.get("projectId"));
 
-        else if(js.get("messageType").equals("userAdded"))
-        {
+        //     for (Long arrList : arrayList) {
+        //         if (alreadyExist(arrList)) {
+        //             for (User user : arr) {
+
+        //                 if (arrList.equals(user.getUserId()) && arrList != js.get("userId")) {
+        //                     System.out.println("i am from if proupdate");
+
+        //                     try {
+        //                         user.getSession().getBasicRemote()
+        //                                 .sendText(js.toJSONString());
+        //                     } catch (IOException e) {
+        //                         // TODO Auto-generated catch block
+        //                         e.printStackTrace();
+        //                     }
+        //                 } else {
+        //                     System.out.println("i am from pu else");
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+
+
+        else if (js.get("messageType").equals("userAdded")) {
             System.out.println("called");
             notifyUsers("userAdded");
-        }
-        else if(js.get("messageType").equals("textMessage"))
-        {
-            JSONObject jsObj =new JSONObject();
-            jsObj.put("messageType", "textMessage");
-            jsObj.put("messageContent", js.get("messageContent"));
-            jsObj.put("from", js.get("from"));
-            AddMessage add=new AddMessage();
-            
-            for (User user : arr) {
-                if(user.getUserId()==Long.parseLong(String.valueOf(js.get("to"))) && user.getSession().getId()!=session.getId())
-                {
+        } else if (js.get("messageType").equals("textMessage")) {
+            // JSONObject jsObj =new JSONObject();
+            // jsObj.put("messageType", "textMessage");
+            // jsObj.put("messageContent", js.get("messageContent"));
+            // jsObj.put("from", js.get("from"));
+            AddMessage add = new AddMessage();
+
+            for (User user : arr)
+             {
+                System.out.println("user.getUserId:" + (user.getUserId()));
+                System.out.println("long:" + Long.parseLong(String.valueOf(js.get("toUserId"))));
+
+                if (user.getUserId() == Long.parseLong(String.valueOf(js.get("toUserId")))
+                        && user.getSession().getId() != session.getId()) {
                     try {
-                        user.getSession().getBasicRemote().sendText(jsObj.toJSONString());
-                        add.addMessage(js.toJSONString());
+                        user.getSession().getBasicRemote().sendText(js.toJSONString());
                     } catch (IOException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
+                } else {
+                    // System.out.println(" io am form else");
+                    add.addMessage(js.toJSONString());
                 }
             }
         }
@@ -112,20 +142,18 @@ public class ChatServer {
     @OnClose
     public void closing(Session session) {
         for (User user : arr) {
-            if(user.getSession().getId().equals(session.getId()))
-            {
+            if (user.getSession().getId().equals(session.getId())) {
                 arr.remove(user);
             }
         }
     }
 
-    public boolean alreadyExist(Session s) {
+    public boolean alreadyExist(Long uid) {
         boolean result = false;
         try {
             for (User chatServer : arr) {
-                System.out.println("from method"+chatServer.getUserId());
-                 // System.out.println("from method"+chatServer.getUserId());
-                 if (chatServer.getSession().getId()==s.getId()) {
+                System.out.println("from method" + chatServer.getUserId());
+                if (chatServer.getUserId() == uid) {
                     result = true;
                 }
             }
@@ -134,18 +162,17 @@ public class ChatServer {
         }
         return result;
     }
-    public void notifyUsers(String type)
-    {
+
+    public void notifyUsers(String type) {
         // String responseText="";
-        JSONArray jArray=new JSONArray();
+        JSONArray jArray = new JSONArray();
         for (User user : arr) {
             jArray.add(user.getUserId());
         }
-        JSONObject jObj=new JSONObject();
-        jObj.put("messageType",type);
+        JSONObject jObj = new JSONObject();
+        jObj.put("messageType", type);
         jObj.put("users", jArray);
 
-        
         for (User user : arr) {
             try {
                 user.getSession().getBasicRemote().sendText(jObj.toJSONString());

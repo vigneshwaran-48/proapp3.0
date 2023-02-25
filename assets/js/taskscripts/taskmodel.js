@@ -24,11 +24,8 @@ let TaskModel = (() => {
         }
         
     }
-    let getIndexOfTask = id => {
-        return tasksArray.findIndex(elem => {
-            return elem.taskId == id;
-        });
-    }
+    let getIndexOfTask = id => tasksArray.findIndex(elem =>  elem.taskId == id);
+    
     let getTasks = () => tasksArray.slice();
     
     let createTask = taskData => {
@@ -67,17 +64,14 @@ let TaskModel = (() => {
         });
     } 
 
-    let getTasksByProjectId = id => {
-        return tasksArray.filter(elem => {
-            return elem.projectId == id;
-        });
-    }
+    let getTasksByProjectId = id => tasksArray.filter(elem => elem.projectId == id );
+    
     let removeTask = id => tasksArray.splice(getIndexOfTask(id), 1);
 
     //First time trying arrow function for reseting all tasks.
-    let resetTasks = () => {
-        tasksArray = []; 
-    }
+    let resetTasks = () => tasksArray = []; 
+
+    let getTaskByTaskId = taskId => tasksArray[getIndexOfTask(taskId)];
     return {
         addTask : addTask,
         getTasks : getTasks,
@@ -85,6 +79,7 @@ let TaskModel = (() => {
         getIndexOfTask : getIndexOfTask,
         removeTask : removeTask,
         resetTasks : resetTasks,
-        getTasksByProjectId : getTasksByProjectId
+        getTasksByProjectId : getTasksByProjectId,
+        getTaskByTaskId : getTaskByTaskId
     }
 })();

@@ -63,9 +63,13 @@ let TaskView = (() => {
                     let taskButtonsPhotosWrapper = document.createElement("div");
                     let taskButtonsWrapper = document.createElement("div");
                     let taskTrashIconSpan = document.createElement("span");
+                    taskTrashIconSpan.id = "delete-task" + task.taskId;
                     let taskTrashIcon = document.createElement("i");
-                    let taskExitIconSpan = document.createElement("span");
+                    taskTrashIcon.id = "delete-task" + task.taskId;
+                    let taskExitIconSpan = document.createElement("span")
+                    taskTrashIconSpan.id = "delete-task" + task.taskId;
                     let taskExitIcon = document.createElement("i");
+                    taskExitIcon.id = "delete-task" + task.taskId;
                     let taskPeopleWrapper = document.createElement("div");
                     //Setting photos for people
                     ProjectView.getPhotoSection(task.users, taskPeopleWrapper, domStrings.personImageWrapper, domStrings.personImage, true);
@@ -121,12 +125,24 @@ let TaskView = (() => {
                     //Adding contents to the created elements
                     taskCheckBox.addEventListener("click", TaskController.finishTask);
                     taskHeadingTag.textContent = task.taskName;
+                    taskTrashIconSpan.addEventListener("click", event => {
+                        console.log(event.target.id.slice(11));
+                        TaskController.deleteTask(event.target.id.slice(11));
+                    });
+                    taskExitIconSpan.addEventListener("click", event => {
+                        TaskController.exitTask(event.target.id.slice(11));
+                    });
 
                     //Inserting elements to its respective parent
                     taskNameCheckboxWrapper.append(taskCheckBox, taskHeadingTag);
                     taskTrashIconSpan.append(taskTrashIcon);
                     taskExitIconSpan.append(taskExitIcon);
-                    taskButtonsWrapper.append(taskTrashIconSpan, taskExitIconSpan);
+                    if(USERID == task.createdBy){
+                        taskButtonsWrapper.append(taskTrashIconSpan);
+                    }
+                    else {
+                        taskButtonsWrapper.append(taskExitIconSpan);
+                    }
                     taskButtonsPhotosWrapper.append(taskButtonsWrapper, taskPeopleWrapper);
                     taskOptionsWrapper.append(taskOption1, taskOption2, taskOption3);
 

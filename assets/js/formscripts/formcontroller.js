@@ -7,11 +7,12 @@ let FormController = (view => {
         _(view.getDomStrings().toDateInputTag).valueAsDate = new Date();
         _(view.getDomStrings().peopleAddingLabel).checked = false;
         document.getElementsByName("selected-people").forEach(elem => elem.checked = false);
+        console.log(_(view.getDomStrings().peopleSearchWrapper));   
+        _(view.getDomStrings().peopleSearchWrapper).innerHTML = "";
     }
     let getPeopleArray = peopleInput => peopleInput.map(elem => elem.id);
     
     let validateForm = () => {
-        //Want to add a logic for getting project id for task adding .......
         let projectId;
         if(CURRENTSECTION == "Tasks"){
             projectId = (_(view.getDomStrings().projectOptionsWrapper).value.slice(15));
@@ -60,6 +61,7 @@ let FormController = (view => {
     //This is for people adding label click action
     _(view.getDomStrings().peopleAddingLabel).addEventListener("click", async event => {
         if(!event.target.nextElementSibling.checked){
+            _(view.getDomStrings().peopleAddingLabel).id = "opened";
             if(CURRENTSECTION != "Project"){
                 let status = getUsersOfSelectedProject();
                 if(status){
@@ -74,6 +76,9 @@ let FormController = (view => {
                 let response = await sendGetRequest("user/getusers?id=all");
                 view.renderSearchPeople("", true, _(view.getDomStrings().peopleSearchWrapper), response);
             } 
+        }
+        else {
+            _(view.getDomStrings().peopleAddingLabel).id = "closed";
         }
     });  
     //This is for people input searching
@@ -95,12 +100,20 @@ let FormController = (view => {
     //This is for project options
     _(view.getDomStrings().projectOptionsWrapper).addEventListener("change", async event => {
         let projectId = event.target.value.slice(15);
+        //These two lines are for triggering input event in search bar to reset people
+        let manualEvent = new Event("input", {bubbles : true});
+        _(view.getDomStrings().peopleSearchInput).dispatchEvent(manualEvent);
         if(Number.isInteger(projectId)){
             let project = ProjectModel.getDataById(projectId);
             view.renderSearchPeople("", false, _(view.getDomStrings().peopleSearchWrapper), project.users);
         }
+        else {
+            _(view.getDomStrings().peopleSearchWrapper).innerHTML = "";
+            _(view.getDomStrings().peopleAddingLabel).click();
+        }
     });
     return {
-        validateForm : validateForm
+        validateForm : validateForm,
+        resetForm : resetForm
     }
 })(FormView);

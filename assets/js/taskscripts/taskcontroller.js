@@ -16,6 +16,32 @@ let TaskController = ((view, model) => {
             MainView.showErrorMessage("Oops !, something went wrong");
         }
     }
+    
+
+    let deleteTask = async taskId => {
+        let response = await sendPostRequest("task/delete?taskId=" + taskId, "");
+        if(response.status == "success"){
+            model.removeTask(taskId);
+            ProjectView.renderProjects(ProjectModel.getProjectsArray());
+            view.renderTasks(ProjectModel.getProjectsArray());
+            MainView.showSuccessMessage("Successfully deleted task");
+        }
+        else {
+            MainView.showErrorMessage("Oops, something went wrong");
+        }
+    }
+    let exitTask = async taskId => {
+        let formData = new FormData();
+        formData.append("userData", JSON.stringify({
+            userId : USERID,
+            taskId : taskId
+        }));
+        let response = await sendPostRequest("task/user/delete", formData);
+        if(response.status == "success"){
+            model.removeTask(taskId);
+            MainView.showSuccessMessage("Exied from task successfylly");
+        }
+    }
 
     let addTask = async tasks => {
         await model.addTask(tasks, true);
@@ -24,6 +50,8 @@ let TaskController = ((view, model) => {
     } 
     return {
         addTask : addTask,
-        finishTask : finishTask
+        finishTask : finishTask,
+        deleteTask : deleteTask,
+        exitTask : exitTask
     }   
 })(TaskView, TaskModel);

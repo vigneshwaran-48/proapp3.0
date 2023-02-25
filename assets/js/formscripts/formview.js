@@ -56,7 +56,7 @@ let FormView = (() => {
     let renderSearchPeople = async (searchInput, renderFull, addToElement, people) => {
         resetPeopleSearchView(addToElement);
         people.forEach(elem => {
-            if(((elem.userName.toLowerCase().includes(searchInput.toLowerCase()) && !isPersonResultAvailable(elem.userId)) || renderFull) && elem.userId != USERID){
+            if(((elem.userName.toLowerCase().includes(searchInput.toLowerCase()) || renderFull ) && !isPersonResultAvailable(elem.userId)) && elem.userId != USERID){
                 let labelTag = document.createElement("label");
                 let inputTag = document.createElement("input");
                 let imageDiv = document.createElement("div");

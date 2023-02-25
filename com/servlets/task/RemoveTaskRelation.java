@@ -24,11 +24,14 @@ public class RemoveTaskRelation extends HttpServlet{
             JSONObject jsonObject = (JSONObject) new JSONParser().parse(request.getParameter("userData"));
             int tid = Integer.parseInt(String.valueOf(jsonObject.get("taskId")));
             int uid = Integer.parseInt(String.valueOf(jsonObject.get("userId")));
+            JSONObject result = new JSONObject();
             if (new UpdateTask().deleteUserFromTask(con, uid, tid)){
-                response.getWriter().println("Deleted Successfully");
+                result.put("status", "success");
+                response.getWriter().println(result);
             }
             else{
-                response.getWriter().println("Error while deleting the task");
+                result.put("status", "failed");
+                response.getWriter().println(result);
             }
         } catch (Exception e) {
             e.printStackTrace();
