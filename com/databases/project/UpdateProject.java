@@ -76,11 +76,11 @@ public class UpdateProject {
         boolean result = false;
         try {
             System.out.println("I AM FROM UPDATED");
-            String projectName = (String) jsonObject.get("projectName");
-            int projectId = Integer.parseInt(String.valueOf(jsonObject.get("projectId")));
+            String projectName = (String) jsonObject.get("name");
+            int projectId = Integer.parseInt(String.valueOf(jsonObject.get("id")));
             String fromDate = (String) jsonObject.get("fromDate");
             String toDate = (String) jsonObject.get("toDate");
-            String projectDesc = (String) jsonObject.get("projectDesc");
+            String projectDesc = (String) jsonObject.get("description");
             String status = (String) jsonObject.get("status");
             JSONArray users = (JSONArray) jsonObject.get("users");
             System.out.println("jsonObj:"+jsonObject);

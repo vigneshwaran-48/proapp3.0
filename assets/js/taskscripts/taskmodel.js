@@ -25,6 +25,8 @@ let TaskModel = (() => {
         
     }
     let getIndexOfTask = id => tasksArray.findIndex(elem =>  elem.taskId == id);
+
+    let getDataById = id => tasksArray.find(elem => elem.taskId == id);
     
     let getTasks = () => tasksArray.slice();
     
@@ -80,6 +82,7 @@ let TaskModel = (() => {
         removeTask : removeTask,
         resetTasks : resetTasks,
         getTasksByProjectId : getTasksByProjectId,
-        getTaskByTaskId : getTaskByTaskId
+        getTaskByTaskId : getTaskByTaskId,
+        getDataById : getDataById
     }
 })();

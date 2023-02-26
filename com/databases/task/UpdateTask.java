@@ -233,11 +233,11 @@ public class UpdateTask {
         try
         {
 
-            String taskName = (String) jsonObject.get("taskName");
-            int taskId = Integer.parseInt(String.valueOf(jsonObject.get("taskId")));
+            String taskName = (String) jsonObject.get("name");
+            int taskId = Integer.parseInt(String.valueOf(jsonObject.get("id")));
             String fromDate = (String) jsonObject.get("fromDate");
             String toDate = (String) jsonObject.get("toDate");
-            String taskDesc = (String) jsonObject.get("taskDesc");
+            String taskDesc = (String) jsonObject.get("description");
             JSONArray users = (JSONArray) jsonObject.get("users");
 
             Statement stmt=con.createStatement();

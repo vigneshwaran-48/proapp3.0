@@ -8,7 +8,7 @@ let ProjectView = (() => {
         topBoxDetail : "top-box-detail",
         boxName : "box-name",
         threeDotsWrapper : "three-dots-wrapper",
-        threeDotsLabel : "three-dot-label",
+        threeDotsLabel : "three-dotthree-dots-task-input-label",
         iconClass1 : "fa-solid",
         iconClass2 : "fa-ellipsis",
         showBoxOptions : "show-box-options",

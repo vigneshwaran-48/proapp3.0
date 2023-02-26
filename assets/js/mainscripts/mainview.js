@@ -63,7 +63,11 @@ let MainView = (() => {
         if(isProject){
             boxModel = ProjectModel;
         }
+        else {
+            boxModel = TaskModel;
+        }
         _(domStrings.descPeopleWrapper).innerHTML = "";
+        console.log(boxModel.getDataById(id));          
         boxModel.getDataById(id).users.forEach(elem => {
             if((elem.userName.toLowerCase().includes(searchName.toLowerCase()) || searchName.length == 0) || renderFull){
                 let labelTag = document.createElement("label");
@@ -111,13 +115,7 @@ let MainView = (() => {
     }
     let loadStatisticsData = () => {
         let currentSection;
-        // if(CURRENTSECTION == "Project"){
-            currentSection = ProjectModel;
-        // }
-        // This will be done when task section is finished.
-        // else {
-        //     currentSection 
-        // }
+        currentSection = ProjectModel;
         let total = currentSection.getTotalCount();
         let completed = currentSection.getStatCount("Completed");
         _(domStrings.statsSectionName).textContent = currentSection.getSectionName();
@@ -156,30 +154,46 @@ let MainView = (() => {
                 renderSearchPeople(event.target.value, id, true);
             });
         }
+        else {
+            let taskData = TaskModel.getTaskByTaskId(id);
+            _(domStrings.descName).innerText = taskData.taskName;
+            _(domStrings.descFromDate).innerText = taskData.fromDate;
+            _(domStrings.descToDate).innerText = taskData.toDate;
+            _(domStrings.descDescription).innerText = taskData.taskDescription;
+            renderSearchPeople("", id, false, true);
+            _(domStrings.descPeopleSearchInput).addEventListener("input", event => {
+                renderSearchPeople(event.target.value, id, false);
+            });
+        }
     }   
     let renderEditSection = (id, isProject) => {
         if(isProject){
+            _(FormView.getDomStrings().editBoxButton).dataset.projectId = id;
             let projectData = ProjectModel.getDataById(id);
-            _(FormView.getDomStrings().editName).innerText = projectData.projectName;
+            _(FormView.getDomStrings().editName).value = projectData.projectName;
             _(FormView.getDomStrings().editFromDateId).value = projectData.fromDate;
             _(FormView.getDomStrings().editLastDateId).value = projectData.toDate;
             _(FormView.getDomStrings().editDescInputTag).innerText = projectData.projectDesc;
             renderSearchPeople("", id, true, true);
-            _(domStrings.editPeopleSearchInput).addEventListener("input", event => {
-                FormView.renderSearchPeople(event.target.value, false, _(domStrings.editSearchPeopleWrapper));
+            _(domStrings.editPeopleSearchInput).addEventListener("input", async event => {
+                let response = await sendGetRequest("user/getusers?id=all");
+                FormView.renderSearchPeople(event.target.value, false, _(domStrings.editSearchPeopleWrapper), response);
             }); 
         }
         else {
             let taskData = TaskModel.getTaskByTaskId(id);
-            _(FormView.getDomStrings().editName).innerText = taskData.taskName;
+            _(FormView.getDomStrings().editName).value = taskData.taskName;
             _(FormView.getDomStrings().editFromDateId).value = taskData.fromDate;
             _(FormView.getDomStrings().editLastDateId).value = taskData.toDate;
             _(FormView.getDomStrings().editDescInputTag).innerText = taskData.taskDescription;
             renderSearchPeople("", id, false, true);
-            _(domStrings.editPeopleSearchInput).addEventListener("input", event => {
-                FormView.renderSearchPeople(event.target.value, false, _(domStrings.editSearchPeopleWrapper));
+            _(FormView.getDomStrings().editBoxButton).dataset.projectId = taskData.projectId;
+            _(domStrings.editPeopleSearchInput).addEventListener("input", async event => {
+                let response = await sendGetRequest("user/getusers?id=all");
+                FormView.renderSearchPeople(event.target.value, false, _(domStrings.editSearchPeopleWrapper), response);
             }); 
         }
+        _(FormView.getDomStrings().editBoxButton).id = id;
     }
     return {
         getDomStrings : getDomStrings,

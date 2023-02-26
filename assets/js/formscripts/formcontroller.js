@@ -112,6 +112,52 @@ let FormController = (view => {
             _(view.getDomStrings().peopleAddingLabel).click();
         }
     });
+
+    //This is for people editing label click action
+    _(view.getDomStrings().peopleEditLabel).addEventListener("click", async event => {
+        if(!event.target.nextElementSibling.checked){
+            _(view.getDomStrings().peopleEditLabel).id = "opened";
+            if(CURRENTSECTION != "Project"){
+                let status = getUsersOfSelectedProject();
+                if(status){
+                    view.renderSearchPeople("", false, _(view.getDomStrings().peopleSearchWrapper), status);
+                }
+                else {
+                    _(view.getDomStrings().peopleEditInput).checked = false;
+                    MainView.showErrorMessage("please select a project");
+                }
+            }
+            else {
+                let response = await sendGetRequest("user/getusers?id=all");
+                view.renderSearchPeople("", true, _(MainView.getDomStrings().editSearchPeopleWrapper), response);
+            } 
+        }
+        else {
+            _(view.getDomStrings().peopleEditLabel).id = "closed";
+        }
+    });  
+    //This is for box updating button
+    _(view.getDomStrings().editBoxButton).addEventListener("click", async event => {
+        let formData = new FormData();
+        console.log(_(view.getDomStrings().editName));
+        let peopleInput = Array.from(document.getElementsByName("selected-people")).filter(elem => {
+            return elem.checked;
+        });
+        let people = getPeopleArray(peopleInput);
+        let obj = {
+            "name" : _(view.getDomStrings().editName).value,
+            "id" : event.target.id,
+            "description" : _(view.getDomStrings().editDescInputTag).innerText,
+            "fromDate" : _(view.getDomStrings().editFromDateId).value,
+            "toDate" : _(view.getDomStrings().editLastDateId).value,
+            "users" : people,
+            "projectId" : event.target.dataset.projectId
+        }
+        formData.append("updateData", JSON.stringify(obj));
+        console.log(obj);
+        let result = await sendPostRequest("project/update", formData);
+        console.log(result);
+    });
     return {
         validateForm : validateForm,
         resetForm : resetForm

@@ -20,7 +20,10 @@ let FormView = (() => {
         editDescInputTag : "#edit-desc-input-id",
         projectChoosingWrapper : ".project-choosing-wrapper",
         projectOptionsWrapper : "#project-drop-down-id",
-        showProjectsChoosingWrapper : "show-project-choosing-wrapper"
+        showProjectsChoosingWrapper : "show-project-choosing-wrapper",
+        editBoxButton : ".edit-box-button",
+        peopleEditLabel : ".people-edit-label",
+        peopleEditInput : "#people-edit-input"
     }
     let renderProjectOption = projects => {
         _(domStrings.projectOptionsWrapper).innerHTML = "";
@@ -44,8 +47,8 @@ let FormView = (() => {
             }
         });
     }
-    let isPersonResultAvailable = id => {
-        let elements = _(domStrings.peopleSearchWrapper).children;
+    let isPersonResultAvailable = (id, peoplWrapper) => {
+        let elements = peoplWrapper.children;
         for(let i = 0;i < elements.length;i++){
             if(elements[i].children[2].id == id){
                 return true;
@@ -56,7 +59,7 @@ let FormView = (() => {
     let renderSearchPeople = async (searchInput, renderFull, addToElement, people) => {
         resetPeopleSearchView(addToElement);
         people.forEach(elem => {
-            if(((elem.userName.toLowerCase().includes(searchInput.toLowerCase()) || renderFull ) && !isPersonResultAvailable(elem.userId)) && elem.userId != USERID){
+            if(((elem.userName.toLowerCase().includes(searchInput.toLowerCase()) || renderFull ) && !isPersonResultAvailable(elem.userId, addToElement)) && elem.userId != USERID){
                 let labelTag = document.createElement("label");
                 let inputTag = document.createElement("input");
                 let imageDiv = document.createElement("div");

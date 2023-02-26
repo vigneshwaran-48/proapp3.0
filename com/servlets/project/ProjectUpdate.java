@@ -21,7 +21,7 @@ public class ProjectUpdate extends HttpServlet{
         try {
             JSONObject result = new JSONObject();
             Connection con = (Connection) request.getServletContext().getAttribute("Connection");
-            JSONObject jsonObject = (JSONObject) new JSONParser().parse(request.getParameter("updateProjectData"));
+            JSONObject jsonObject = (JSONObject) new JSONParser().parse(request.getParameter("updateData"));
             if (new UpdateProject().updateProjectData(con, jsonObject)){
                 result.put("response", "Success");
             }

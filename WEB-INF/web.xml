@@ -162,6 +162,16 @@
         <url-pattern>/project/getall</url-pattern>
     </servlet-mapping>
 
+    <!-- for updating a project -->
+    <servlet>
+        <servlet-name>ProjectUpdate</servlet-name>
+        <servlet-class>com.servlets.project.ProjectUpdate</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProjectUpdate</servlet-name>
+        <url-pattern>/project/update</url-pattern>
+    </servlet-mapping>
+
 
     <!-- for deleting the project associated user -->
     <servlet>
