@@ -119,6 +119,12 @@
 .no-task-heading{
     font-size: 25px;
 }
+.show-two-option{
+    height: 150px;
+}
+.show-one-option{
+    height: 80px;
+}
 @media screen and (max-width: 355px){
     .task-image{
         width: 30px;

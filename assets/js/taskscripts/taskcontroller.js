@@ -2,6 +2,8 @@ let TaskController = ((view, model) => {
 
     //This function is invoked whenever a task complete chekbox is clicked
     let finishTask = async event => {
+        event.preventDefault();
+        event.stopPropagation();
         event.target.nextElementSibling.classList.toggle(view.getDomStrings().finishTask);
         let formData = new FormData();
         formData.append("taskData", JSON.stringify({

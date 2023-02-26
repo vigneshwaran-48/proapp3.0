@@ -14,6 +14,7 @@ let TaskView = (() => {
         singleTaskIcon : "single-task-icon",
         trashIconClasses : ["fa-solid", "fa-trash"],
         exitIconClasses : ["fa-solid", "fa-right-from-bracket"],
+        threeDotsIconClasses : ["fa-solid", "fa-ellipsis-vertical"],
         allTaskPeopleImageWrapper : "all-task-people-wrapper",
         personImageWrapper : "person-image-wrapper",
         personImage : "person-image",
@@ -23,9 +24,11 @@ let TaskView = (() => {
         taskMoreInfoButton : "task-more-info-button",
         taskCompleteButton : "task-complete-button",
         finishTask : "finish-task",
-        noTaskHeading : "no-task-heading"
+        noTaskHeading : "no-task-heading",
+        showTwoOptions : "show-two-option",
+        showOneOption : "show-one-option",
+        threeDotsInput : "three-dots-task-input"
     }
-    
     let getDomStrings = () => domStrings;
 
     let renderTasks = projects => {
@@ -74,10 +77,16 @@ let TaskView = (() => {
                     //Setting photos for people
                     ProjectView.getPhotoSection(task.users, taskPeopleWrapper, domStrings.personImageWrapper, domStrings.personImage, true);
 
+                    let threeDotsWrapper = document.createElement("div");
+                    let iTag = document.createElement("i");
+                    let dotsLabel = document.createElement("label");
+                    let dotsInput = document.createElement("input");
+                    dotsInput.type = "checkbox";
+                    dotsInput.id = "task-dots-" + task.taskId;
+                    dotsLabel.setAttribute("for", "task-dots-" + task.taskId);
                     let taskOptionsWrapper = document.createElement("ul");
                     let taskOption1 = document.createElement("li");
                     let taskOption2 = document.createElement("li");
-                    let taskOption3 = document.createElement("li");
                     //Creating elements for a single task ends here
 
                     //Adding classes to created task components starts here
@@ -109,30 +118,59 @@ let TaskView = (() => {
                     taskOptionsWrapper.classList.add("full-light-theme");
                     taskOption1.classList.add(domStrings.taskOption);
                     taskOption1.classList.add("task-edit-button");
+                    taskOption1.id = "task-edit-" + task.taskId;
                     taskOption2.classList.add(domStrings.taskOption);
-                    taskOption2.classList.add("task-more-info-button")
-                    taskOption3.classList.add(domStrings.taskOption);
-                    taskOption3.classList.add("task-complete-button");
-
+                    taskOption2.classList.add("task-more-info-button");
+                    taskOption2.id = "task-more-" + task.taskId;
+                    
                     taskPeopleWrapper.classList.add(domStrings.allTaskPeopleImageWrapper);
                     taskPeopleWrapper.classList.add("x-axis-flex");
+                    domStrings.threeDotsIconClasses.forEach(iconClass => {
+                        iTag.classList.add(iconClass);
+                    });
+                    dotsInput.classList.add(domStrings.threeDotsInput);
                     //Making the task div checked if it is completed here
                     if(task.isCompleted){
                         taskCheckBox.checked = true;
                         taskHeadingTag.classList.add(domStrings.finishTask);
                     }
 
-                    //Adding contents to the created elements
+                    //Adding contents and listeners to the created elements
+                    taskOption1.textContent = "Edit";
+                    taskOption2.textContent = "More Info";
                     taskCheckBox.addEventListener("click", TaskController.finishTask);
                     taskHeadingTag.textContent = task.taskName;
                     taskTrashIconSpan.addEventListener("click", event => {
-                        console.log(event.target.id.slice(11));
+                        event.preventDefault();
+                        event.stopPropagation();
                         TaskController.deleteTask(event.target.id.slice(11));
                     });
                     taskExitIconSpan.addEventListener("click", event => {
+                        event.preventDefault();
+                        event.stopPropagation();
                         TaskController.exitTask(event.target.id.slice(11));
                     });
-
+                    // taskOptionsWrapper.addEventListener("click", event => {
+                    //     if(event.target.classList.contains("task-edit-button")){
+                    //         MainView.renderEditSection(event.target.id.slice(10), false);
+                    //         event.target.parentElement.classList.remove(domStrings.showTwoOptions);
+                    //         event.target.parentElement.classList.remove(domStrings.showOneOption);
+                    //     }
+                    //     else if (event.target.classList.contains("task-more-info-button")){
+                    //         _(MainView.getDomStrings().fullDescriptionSection).classList.add(MainView.getDomStrings().showFromRightToLeft);
+                    //         MainView.renderDescriptionDetails(event.target.id.slice(10), false);
+                    //         event.target.parentElement.classList.remove(domStrings.showTwoOptions);
+                    //         event.target.parentElement.classList.remove(domStrings.showOneOption);
+                    //     }
+                    // });
+                    // singleTask.addEventListener("click", event => {
+                    //     if(event.target.classList[0].startsWith("task")){
+                    //         event.target.parentElement.children[2].classList.toggle(domStrings.showTwoOptions);
+                    //     }
+                    //     else {
+                    //         event.target.children[2].classList.toggle(domStrings.showTwoOptions);
+                    //     }
+                    // });
                     //Inserting elements to its respective parent
                     taskNameCheckboxWrapper.append(taskCheckBox, taskHeadingTag);
                     taskTrashIconSpan.append(taskTrashIcon);
@@ -144,9 +182,11 @@ let TaskView = (() => {
                         taskButtonsWrapper.append(taskExitIconSpan);
                     }
                     taskButtonsPhotosWrapper.append(taskButtonsWrapper, taskPeopleWrapper);
-                    taskOptionsWrapper.append(taskOption1, taskOption2, taskOption3);
+                    taskOptionsWrapper.append(taskOption1, taskOption2);
+                    dotsLabel.append(iTag);
+                    threeDotsWrapper.append(dotsLabel, dotsInput, taskOptionsWrapper);
 
-                    singleTask.append(taskNameCheckboxWrapper, taskButtonsPhotosWrapper, taskOptionsWrapper);
+                    singleTask.append(taskNameCheckboxWrapper, taskButtonsPhotosWrapper, threeDotsWrapper);
                     tasksWrapper.append(singleTask);
                 });
                 _(domStrings.taskMiddleSectionBody).append(singleProjectTaskSection);

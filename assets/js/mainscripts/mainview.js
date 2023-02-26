@@ -169,6 +169,17 @@ let MainView = (() => {
                 FormView.renderSearchPeople(event.target.value, false, _(domStrings.editSearchPeopleWrapper));
             }); 
         }
+        else {
+            let taskData = TaskModel.getTaskByTaskId(id);
+            _(FormView.getDomStrings().editName).innerText = taskData.taskName;
+            _(FormView.getDomStrings().editFromDateId).value = taskData.fromDate;
+            _(FormView.getDomStrings().editLastDateId).value = taskData.toDate;
+            _(FormView.getDomStrings().editDescInputTag).innerText = taskData.taskDescription;
+            renderSearchPeople("", id, false, true);
+            _(domStrings.editPeopleSearchInput).addEventListener("input", event => {
+                FormView.renderSearchPeople(event.target.value, false, _(domStrings.editSearchPeopleWrapper));
+            }); 
+        }
     }
     return {
         getDomStrings : getDomStrings,
