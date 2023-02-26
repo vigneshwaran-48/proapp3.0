@@ -81,7 +81,7 @@ public class RetrieveProject {
     }
 
     /*For retriving the pid from tid */
-    public int retrieveTidByPid(Connection con,int tid) {
+    public int retrievePidByTid(Connection con,int tid) {
         int result=0;
         try {
             Statement stmt=con.createStatement();

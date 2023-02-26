@@ -17,16 +17,26 @@ let ChatModel = (() => {
     let getMessagesData = () => messagesData;
 
     let getMessagesByTo = id => messagesData.filter(elem => elem.to == id);
+
+    let getMessagesByFrom = id => messagesData.filter(elem => elem.from == id);
     
     let finIndexOfMessage = id => messagesData.findIndex(elem => id == elem.messageId);
 
     let deleteMessage = messageId => messagesData.splice(1, finIndexOfMessage(messageId));
+
+    let getChatsOfTheUser = id => {
+        let messages = getMessagesByTo(id);
+        messages.push(getMessagesByFrom(id));
+        console.log(messages);
+        return messages;
+    }
 
     return {
         addMessage : addMessage,
         getMessagesByTo : getMessagesByTo,
         getMessagesData : getMessagesData,
         deleteMessage : deleteMessage,
-        changeFromServerObject : changeFromServerObject
+        changeFromServerObject : changeFromServerObject,
+        getChatsOfTheUser : getChatsOfTheUser
     }
 })();

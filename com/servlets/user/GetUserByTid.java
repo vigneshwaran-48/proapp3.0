@@ -13,7 +13,7 @@ public class GetUserByTid extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         try {
             Connection con = (Connection) request.getServletContext().getAttribute("Connection");
-            response.getWriter().println(new RetrieveUser().getUserDetailByTid(con, Integer.parseInt(request.getParameter("taskId"))));
+            response.getWriter().println(new RetrieveUser().getUserDetailByTid(con, Integer.parseInt(request.getParameter("id"))));
         } 
         catch (Exception e) {
             e.printStackTrace();

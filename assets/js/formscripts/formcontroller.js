@@ -118,14 +118,9 @@ let FormController = (view => {
         if(!event.target.nextElementSibling.checked){
             _(view.getDomStrings().peopleEditLabel).id = "opened";
             if(CURRENTSECTION != "Project"){
-                let status = getUsersOfSelectedProject();
-                if(status){
-                    view.renderSearchPeople("", false, _(view.getDomStrings().peopleSearchWrapper), status);
-                }
-                else {
-                    _(view.getDomStrings().peopleEditInput).checked = false;
-                    MainView.showErrorMessage("please select a project");
-                }
+                let users = TaskModel.getTaskByTaskId(event.target.dataset.taskId).users;
+                console.log(users);
+                view.renderSearchPeople("", true, _(MainView.getDomStrings().editSearchPeopleWrapper), users);
             }
             else {
                 let response = await sendGetRequest("user/getusers?id=all");
@@ -144,6 +139,7 @@ let FormController = (view => {
             return elem.checked;
         });
         let people = getPeopleArray(peopleInput);
+        people.push("" + USERID);
         let obj = {
             "name" : _(view.getDomStrings().editName).value,
             "id" : event.target.id,
@@ -155,7 +151,13 @@ let FormController = (view => {
         }
         formData.append("updateData", JSON.stringify(obj));
         console.log(obj);
-        let result = await sendPostRequest("project/update", formData);
+        let result;
+        if(CURRENTSECTION == "Tasks"){
+            result = await sendPostRequest("task/update", formData);
+        }
+        else {
+            result = await sendPostRequest("project/update", formData);
+        }
         console.log(result);
     });
     return {

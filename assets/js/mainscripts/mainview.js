@@ -188,6 +188,7 @@ let MainView = (() => {
             _(FormView.getDomStrings().editDescInputTag).innerText = taskData.taskDescription;
             renderSearchPeople("", id, false, true);
             _(FormView.getDomStrings().editBoxButton).dataset.projectId = taskData.projectId;
+            _(FormView.getDomStrings().peopleEditLabel).dataset.taskId = taskData.taskId;
             _(domStrings.editPeopleSearchInput).addEventListener("input", async event => {
                 let response = await sendGetRequest("user/getusers?id=all");
                 FormView.renderSearchPeople(event.target.value, false, _(domStrings.editSearchPeopleWrapper), response);

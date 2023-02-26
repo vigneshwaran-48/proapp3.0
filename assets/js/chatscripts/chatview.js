@@ -18,7 +18,9 @@ let ChatView = (() => {
         singleMessage : "single-message",
         singleSentMessage : "sent-message",
         singleReceiveMessage : "received-message",
-        chatTime : "chat-time"
+        chatPara : "chat-content",
+        chatTime : "chat-time",
+        fullMessageWrapper : ".message-body"
     }
     let getDomStrings = () => domStrings;
 
@@ -28,6 +30,7 @@ let ChatView = (() => {
         _(domStrings.chattingUserName).textContent = event.target.id;
         _(domStrings.chattingUserImage).style.backgroundImage = `url(assets/images/usersImages/${event.target.dataset.userImage})`;
         _(domStrings.chatInput).id = event.target.dataset.userId;
+        renderMessages(ChatModel.getChatsOfTheUser(event.target.dataset.userId));
     }
     let renderChatPeople = users => {
         _(domStrings.chatAllPeopleWrapper).innerHTML = "";
@@ -75,14 +78,37 @@ let ChatView = (() => {
             if(elem.from == USERID){
                 isFrom = true;
             }
+            //Creating elements
             let singleMessageWrapper = document.createElement("div");
             let singleMessage = document.createElement("div");
             let messageContent = document.createElement("p");
             let chatTime = document.createElement("div");
+            let chatTimePara = document.createElement("p");
 
+            //Adding classes to created elements 
+            singleMessage.classList.add(domStrings.singleMessage);
+            messageContent.classList.add(domStrings.chatPara);
+            chatTime.classList.add(domStrings.chatTime);
             if(isFrom){
-                singleMessageWrapper.classList.add(domStrings)
+                singleMessageWrapper.classList.add(domStrings.fromChatMessageWrapper);
+                singleMessage.classList.add(domStrings.singleSentMessage);
             }
+            else {
+                singleMessageWrapper.classList.add(domStrings.toChatMessageWrapper);
+                singleMessage.classList.add(domStrings.singleReceiveMessage);
+            }
+            singleMessageWrapper.classList.add("x-axis-flex");
+
+            //Setting contents of the created elemets
+            messageContent.textContent = elem.messageContent;
+            chatTimePara.textContent = elem.sentTime;
+
+            //Adding elements to their parents
+            chatTime.append(chatTimePara);
+            singleMessage.append(messageContent, chatTime);
+            singleMessageWrapper.append(singleMessage);
+
+            _(domStrings.fullMessageWrapper).append(singleMessageWrapper);
         });
     }
 

@@ -96,7 +96,7 @@ public class UpdateProject {
                 }
 
                 Statement stmt3 = con.createStatement();
-                stmt3.executeUpdate("update projects set pname = '"+projectName+"' , fromdate = '"+fromDate+"' , todate = '"+toDate+"' , comment = '"+projectDesc+"' , status = '"+status+"' where pid = "+projectId);
+                stmt3.executeUpdate("update projects set pname = '"+projectName+"' , fromdate = '"+fromDate+"' , todate = '"+toDate+"' , comment = '"+projectDesc+"' where pid = "+projectId);
                 result = true;
             }
         } catch (Exception e) {

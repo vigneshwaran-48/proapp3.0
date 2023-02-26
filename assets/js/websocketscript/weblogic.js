@@ -2,12 +2,15 @@ let sendMessage = data => {
     webSocket.send(data);
 }
 let processMessage = data => {
+    MainView.showPopUpSymbol(data.description);
     if(data.messageType == "projectUpdate"){
-        MainView.showPopUpSymbol(data.description);
+        resetProjects();
+        resetTasks();
+    }
+    else if(data.messageType == "taskUpdate"){
         resetProjects();
         resetTasks();
     }
     else if(data.messageType == "textMessage"){
-        MainView.showPopUpSymbol(data.description);
     }
 }

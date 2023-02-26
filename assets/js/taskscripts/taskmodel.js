@@ -48,6 +48,11 @@ let TaskModel = (() => {
             let resposne = await sendPostRequest("/ProApp/task/add", formData);
             let task =  changeServerObject(resposne);
             tasksArray.push(task);
+            sendMessage(JSON.stringify({
+                messageType : "taskUpdate",
+                taskId : task.taskId,
+                description : `You have been added to a task by ${USERNAME}`
+            }));
             console.log("task added .....");
             passed("success");
         });

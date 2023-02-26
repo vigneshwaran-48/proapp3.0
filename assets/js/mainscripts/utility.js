@@ -79,10 +79,8 @@ let resetTasks = async () => {
     });
     TaskView.renderTasks(ProjectModel.getProjectsArray());
 }
-// let getAllUsers = () => {
-//     sendGetRequest("/ProApp/user/getusers?id=all", function(){
-//         return JSON.parse()
-//     });
+// let getMessagesOfUser = () => {
+
 // }
 getCurrentUserDetails();
 resetProjects();

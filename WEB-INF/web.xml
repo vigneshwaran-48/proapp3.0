@@ -203,10 +203,20 @@
         <url-pattern>/task/delete</url-pattern>
     </servlet-mapping>
 
+    <!-- for updating a task -->
+    <servlet>
+        <servlet-name>TaskUpdate</servlet-name>
+        <servlet-class>com.servlets.task.TaskUpdate</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TaskUpdate</servlet-name>
+        <url-pattern>/task/update</url-pattern>
+    </servlet-mapping>
+
     <!-- for retrieving the user details using taskId -->
     <servlet>
         <servlet-name>RetrieveUsersFromTask</servlet-name>
-        <servlet-class>com.servlets.user.RetrieveUsersFromTask</servlet-class>
+        <servlet-class>com.servlets.user.GetUserByTid</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RetrieveUsersFromTask</servlet-name>

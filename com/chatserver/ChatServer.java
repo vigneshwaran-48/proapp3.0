@@ -24,6 +24,7 @@ import org.json.simple.parser.ParseException;
 import com.apicall.UsersApiCall;
 
 import com.databases.message.AddMessage;
+import com.servlets.user.GetUserByTid;
 
 /**
  * ChatServer
@@ -57,7 +58,6 @@ public class ChatServer {
             for (Long arrList : arrayList) {
                 if (alreadyExist(arrList)) {
                     for (User user : arr) {
-
                         if (arrList.equals(user.getUserId()) && arrList != js.get("userId")) {
                             System.out.println("i am from if proupdate");
 
@@ -65,7 +65,6 @@ public class ChatServer {
                                 user.getSession().getBasicRemote()
                                         .sendText(js.toJSONString());
                             } catch (IOException e) {
-                                // TODO Auto-generated catch block
                                 e.printStackTrace();
                             }
                         } else {
@@ -75,37 +74,33 @@ public class ChatServer {
                 }
             }
         }
-        // else if (js.get("messageType").equals("taskUpdate")) {
-        //     UsersApiCall api = new UsersApiCall();
-        //     ArrayList<Long> arrayList = api.getUsersByProjectId((Long) js.get("projectId"));
+        else if (js.get("messageType").equals("taskUpdate")) {
+            UsersApiCall api = new UsersApiCall();
+            ArrayList<Long> arrayList = api.getUsersByTaskId((Long) js.get("taskId"));
 
-        //     for (Long arrList : arrayList) {
-        //         if (alreadyExist(arrList)) {
-        //             for (User user : arr) {
-
-        //                 if (arrList.equals(user.getUserId()) && arrList != js.get("userId")) {
-        //                     System.out.println("i am from if proupdate");
-
-        //                     try {
-        //                         user.getSession().getBasicRemote()
-        //                                 .sendText(js.toJSONString());
-        //                     } catch (IOException e) {
-        //                         // TODO Auto-generated catch block
-        //                         e.printStackTrace();
-        //                     }
-        //                 } else {
-        //                     System.out.println("i am from pu else");
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
-
-
+            for (Long arrList : arrayList) {
+                if (alreadyExist(arrList)) {
+                    for (User user : arr) {
+                        if (arrList.equals(user.getUserId()) && arrList != js.get("userId")) {
+                            System.out.println("i am from if Task update");
+                            try {
+                                user.getSession().getBasicRemote()
+                                        .sendText(js.toJSONString());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            System.out.println("i am from task else");
+                        }
+                    }
+                }
+            }
+        }
         else if (js.get("messageType").equals("userAdded")) {
             System.out.println("called");
             notifyUsers("userAdded");
-        } else if (js.get("messageType").equals("textMessage")) {
+        } 
+        else if (js.get("messageType").equals("textMessage")) {
             // JSONObject jsObj =new JSONObject();
             // jsObj.put("messageType", "textMessage");
             // jsObj.put("messageContent", js.get("messageContent"));

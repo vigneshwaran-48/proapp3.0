@@ -238,15 +238,29 @@ public class UpdateTask {
             String fromDate = (String) jsonObject.get("fromDate");
             String toDate = (String) jsonObject.get("toDate");
             String taskDesc = (String) jsonObject.get("description");
-            JSONArray users = (JSONArray) jsonObject.get("users");
+            JSONArray newUsers = (JSONArray) jsonObject.get("users");
 
             Statement stmt=con.createStatement();
-            stmt.executeUpdate("update tasks set tname='"+taskName+"',fromdate='"+fromDate+"',todate='"+toDate+"',description='"+taskDesc+"' where tid="+taskId );
-            Statement stmt2=con.createStatement();
-            for (Object userObj : users) {
-                stmt2.executeUpdate("delete from task_relation where uid="+userObj+" where tid="+taskId);
+            ResultSet rs = stmt.executeQuery("select * from task_relation where tid = "+taskId);
+
+            ArrayList<String> oldUsers = new ArrayList<>();
+            // int tid=0;
+            while (rs.next()) {
+                oldUsers.add(rs.getString("uid"));
+                // tid = rs.getInt("tid");
             }
-            new UpdateProject().changeProjectStatus(con,new RetrieveProject().retrieveTidByPid(con, taskId));
+
+            for(String oldUserObj:oldUsers){
+                
+                if(!newUsers.contains(oldUserObj))
+                {
+                    deleteUserFromTask(con, Integer.parseInt(oldUserObj), taskId);
+                }
+            }
+
+            stmt.executeUpdate("update tasks set tname='"+taskName+"',fromdate='"+fromDate+"',todate='"+toDate+"',description='"+taskDesc+"' where tid = "+taskId );
+
+            new UpdateProject().changeProjectStatus(con,new RetrieveProject().retrievePidByTid(con, taskId));
             result=true;
         }
         catch(Exception e)
