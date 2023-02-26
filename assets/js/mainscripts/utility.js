@@ -25,6 +25,7 @@ let getCurrentUserDetails = () => {
             processMessage(JSON.parse(event.data));
             // MainView.showPopUpSymbol(JSON.parse(event.data).description);
         }
+        getMessagesOfUser();
     }
 }
 let playNotificationSound = () => {
@@ -79,8 +80,9 @@ let resetTasks = async () => {
     });
     TaskView.renderTasks(ProjectModel.getProjectsArray());
 }
-// let getMessagesOfUser = () => {
-
-// }
+let getMessagesOfUser = async () => {
+    let userMessages = await sendGetRequest("user/chats?userId=" + USERID);
+    console.log(userMessages);
+}
 getCurrentUserDetails();
 resetProjects();

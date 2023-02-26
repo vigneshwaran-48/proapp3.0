@@ -57,6 +57,7 @@ public class Message {
                 jsObj.put("fromUser", rs.getString("fromUser"));
                 jsObj.put("toUser", rs.getString("toUser"));
                 jsObj.put("message", rs.getString("message"));
+                jsObj.put("messageId", rs.getInt("mid"));
                 jarray.add(jsObj);
 
             }
