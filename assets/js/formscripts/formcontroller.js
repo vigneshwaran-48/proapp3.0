@@ -171,7 +171,7 @@ let FormController = (view => {
             else {
                 sendMessage(JSON.stringify({
                     messageType : "projectUpdate",
-                    taskId : parseInt(event.target.id),
+                    projectId : parseInt(event.target.id),
                     description : `${USERNAME} updated a project in which you have been participated`
                 }));
             }

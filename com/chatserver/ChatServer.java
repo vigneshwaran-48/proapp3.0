@@ -57,7 +57,7 @@ public class ChatServer {
             for (Long arrList : arrayList) {
                 if (alreadyExist(arrList)) {
                     for (User user : arr) {
-
+                        System.out.println(arrayList + ", " + js.get("userId") + " ==> " + (arrayList == js.get("userId")));
                         if (arrList.equals(user.getUserId()) && arrList != js.get("userId")) {
                             System.out.println("i am from if proupdate");
 
@@ -100,9 +100,6 @@ public class ChatServer {
                 }
             }
         }
-       
-
-
         else if (js.get("messageType").equals("userAdded")) {
             System.out.println("called");
             notifyUsers("userAdded");

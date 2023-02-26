@@ -2,7 +2,7 @@ let ChatModel = (() => {
 
     let messagesData = [];
 
-    let Message = function(messageId, messageContent, sentTime, from, to){
+    let Message = function(messageId, messageContent, sentDate, sentTime, from, to){
         this.messageId = messageId;
         this.messageContent = messageContent;
         this.sentTime = sentTime;
@@ -10,7 +10,7 @@ let ChatModel = (() => {
         this.to = to;
     }
     
-    let changeFromServerObject = serverObject => new Message(serverObject.messageId, serverObject.messageContent, serverObject.sentTime, serverObject.isSentByMe, serverObject.to);
+    let changeFromServerObject = serverObject => new Message(serverObject.messageId, serverObject.message, serverObject.messageDate, serverObject.sentTime, serverObject.isSentByMe, serverObject.to);
 
     let addMessage = message => messagesData.push(message);
 
