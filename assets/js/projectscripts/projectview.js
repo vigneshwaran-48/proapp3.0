@@ -129,7 +129,7 @@ let ProjectView = (() => {
             threeDotsOption2.id = "more" + elem.id;
             threeDotsOption3.classList.add(domStrings.threeDotsOption);
             threeDotsOption3.classList.add(domStrings.threeDotsCompleteOption);
-            threeDotsOption3.id = "complete" + elem.id;
+            threeDotsOption3.id = "delete" + elem.id;
 
             boxDescription.classList.add(domStrings.boxDescription);
             boxPercentageWrapper.classList.add(domStrings.boxPercentageWrapper);
@@ -148,7 +148,7 @@ let ProjectView = (() => {
             threeDotsLabel.setAttribute("for", domStrings.threeDotsInputId + elem.id);
             threeDotsOption1.textContent = "Edit";
             threeDotsOption2.textContent = "More Info";
-            threeDotsOption3.textContent = "Complete";
+            threeDotsOption3.textContent = "Delete";
             boxPercentageValue.textContent = elem.percentage + "%";
             boxPercentageValue.style.width = elem.percentage + "%";
 
@@ -158,8 +158,9 @@ let ProjectView = (() => {
                     MainView.renderDescriptionDetails(event.target.id.slice(4), true);
                     event.target.parentElement.classList.remove(domStrings.showBoxOptions);
                 }
-                else if (event.target.id.startsWith("complete")){
+                else if (event.target.id.startsWith("delete")){
                     console.log("completed action ........");
+                    ProjectController.deleteProject(event.target.id.slice(6), true)
                     event.target.parentElement.classList.remove(domStrings.showBoxOptions);
                 }
                 else if (event.target.id.startsWith("edit")){

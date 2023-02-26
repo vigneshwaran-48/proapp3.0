@@ -13,8 +13,8 @@ let ChatView = (() => {
         chattingUserName : ".chatting-user-name",
         chatInput : ".chat-message-input",
         chatSendIcon : "send-message-button",
-        fromChatMessageWrapper : "single-receive-message-wrapper",
-        toChatMessageWrapper : "single-sent-message-wrapper",
+        fromChatMessageWrapper : "single-sent-message-wrapper",
+        toChatMessageWrapper : "single-receive-message-wrapper",
         singleMessage : "single-message",
         singleSentMessage : "sent-message",
         singleReceiveMessage : "received-message",
@@ -25,12 +25,12 @@ let ChatView = (() => {
     let getDomStrings = () => domStrings;
 
     let renderChattingWindow = event => {
-        console.log(event.target.dataset.userId);
         _(domStrings.chattingWindow).classList.add(MainView.getDomStrings().showFromRightToLeft);
         _(domStrings.chattingUserName).textContent = event.target.id;
         _(domStrings.chattingUserImage).style.backgroundImage = `url(assets/images/usersImages/${event.target.dataset.userImage})`;
         _(domStrings.chatInput).id = event.target.dataset.userId;
-        renderMessages(ChatModel.getChatsOfTheUser(event.target.dataset.userId));
+        renderMessages(ChatModel.getChatsOfTheUser(event.target.dataset.userId), true);
+        CURRENTMESSAGINTOPERSON = event.target.dataset.userId;
     }
     let renderChatPeople = users => {
         _(domStrings.chatAllPeopleWrapper).innerHTML = "";
@@ -72,12 +72,16 @@ let ChatView = (() => {
         });
     }
 
-    let renderMessages = messages => {
+    let renderMessages = (messages, isReset) => {
+        if(isReset){
+            _(domStrings.fullMessageWrapper).innerHTML = "";
+        }
         messages.forEach(elem => {
             let isFrom;
             if(elem.from == USERID){
                 isFrom = true;
             }
+            
             //Creating elements
             let singleMessageWrapper = document.createElement("div");
             let singleMessage = document.createElement("div");
@@ -87,6 +91,7 @@ let ChatView = (() => {
 
             //Adding classes to created elements 
             singleMessage.classList.add(domStrings.singleMessage);
+            singleMessage.classList.add("x-axis-flex");
             messageContent.classList.add(domStrings.chatPara);
             chatTime.classList.add(domStrings.chatTime);
             if(isFrom){
@@ -101,7 +106,7 @@ let ChatView = (() => {
 
             //Setting contents of the created elemets
             messageContent.textContent = elem.messageContent;
-            chatTimePara.textContent = elem.sentTime;
+            chatTimePara.textContent = elem.sentTime.slice(0, 5);
 
             //Adding elements to their parents
             chatTime.append(chatTimePara);
@@ -110,10 +115,12 @@ let ChatView = (() => {
 
             _(domStrings.fullMessageWrapper).append(singleMessageWrapper);
         });
+        _(domStrings.fullMessageWrapper).scrollTop = _(domStrings.fullMessageWrapper).scrollHeight;
     }
 
     return {
         getDomStrings : getDomStrings,
-        renderChatPeople : renderChatPeople
+        renderChatPeople : renderChatPeople,
+        renderMessages : renderMessages
     }
 })();

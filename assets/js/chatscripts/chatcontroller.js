@@ -3,22 +3,40 @@ let ChatController = ((view, model) => {
     let addMessage = event => {
         if(event.target.id == view.getDomStrings().chatSendIcon || event.key == "Enter"){
             let currentTime = new Date();
+            let messageContent = _(view.getDomStrings().chatInput).innerText;
+            let toUserId = _(view.getDomStrings().chatInput).id;
+            let date = currentTime.toLocaleDateString();
+            let time = currentTime.toLocaleTimeString();
             let obj = {
                 messageType : "textMessage",
-                messageContent : _(view.getDomStrings().chatInput).innerText,
-                date : currentTime.toLocaleDateString(),
-                time : currentTime.toLocaleTimeString(),
+                messageContent : messageContent,
+                date : date,
+                time : time,
                 fromUserId : USERID,
-                toUserId : _(view.getDomStrings().chatInput).id,
+                toUserId : toUserId,
                 description :  `${USERNAME} sent you a message`
             }
             sendMessage(JSON.stringify(obj));
             console.log("reseted message input ....");
             event.preventDefault();
             _(view.getDomStrings().chatInput).innerHTML = "";
+            view.renderMessages([addSingleMessage(messageContent, USERID, toUserId, time, date)]);
         }
     }
 
+    let addSingleMessage = (message, from, to, time, date) => {
+        let obj = {
+            message : message,
+            messageId : "-",
+            messageDate : date,
+            messageTime : time,
+            fromUser : from,
+            toUser : to
+        }
+        let messageObject = ChatModel.changeFromServerObject(obj);
+        ChatModel.addMessage(messageObject);
+        return messageObject;
+    }
     let init = () => {
         //This is for loading users when chat section button is clicked
         _(MainView.getDomStrings().chatButton).addEventListener("click", async event => {
@@ -43,4 +61,8 @@ let ChatController = ((view, model) => {
         _("#" + view.getDomStrings().chatSendIcon).addEventListener("click", addMessage);
     }
     init();
+
+    return {
+        addSingleMessage : addSingleMessage
+    }
 })(ChatView, ChatModel);

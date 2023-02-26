@@ -71,10 +71,10 @@ public class Project {
      * This method is to delete a project
      * @param con Used connect to the DB
      * @param pid Used to delete that particular project
-     * @return returns the String contains the status of deletion.
+     * @return returns a boolean value that indicates status of deletion.
      */
-    public String deleteProject(Connection con,int pid) {
-        String result;
+    public boolean deleteProject(Connection con,int pid) {
+        boolean result;
         ResultSet rs = null;
         try {
             Statement stmt = con.createStatement();
@@ -88,11 +88,11 @@ public class Project {
             stmt.executeUpdate("delete from tasks where pid = "+pid);
             stmt.executeUpdate("delete from projects where pid = "+pid);
             
-            result="Success";
+            result=true;
         } 
         catch (Exception e) {
             e.printStackTrace();
-            result="Invalid Project id";
+            result=false;
         }
         return result;
     }

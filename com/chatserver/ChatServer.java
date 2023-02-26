@@ -58,7 +58,7 @@ public class ChatServer {
                 if (alreadyExist(arrList)) {
                     for (User user : arr) {
                         System.out.println(arrayList + ", " + js.get("userId") + " ==> " + (arrayList == js.get("userId")));
-                        if (arrList.equals(user.getUserId()) && arrList != js.get("userId")) {
+                        if (arrList.equals(user.getUserId()) && user.getUserId() != js.get("userId")) {
                             System.out.println("i am from if proupdate");
 
                             try {
@@ -83,14 +83,13 @@ public class ChatServer {
                 if (alreadyExist(arrList)) {
                     for (User user : arr) {
 
-                        if (arrList.equals(user.getUserId()) && arrList != js.get("userId")) {
+                        if (arrList.equals(user.getUserId()) && user.getUserId() != js.get("userId")) {
                             System.out.println("i am from if Task update");
 
                             try {
                                 user.getSession().getBasicRemote()
                                         .sendText(js.toJSONString());
                             } catch (IOException e) {
-                                // TODO Auto-generated catch block
                                 e.printStackTrace();
                             }
                         } else {
@@ -103,13 +102,11 @@ public class ChatServer {
         else if (js.get("messageType").equals("userAdded")) {
             System.out.println("called");
             notifyUsers("userAdded");
-        } else if (js.get("messageType").equals("textMessage")) {
-            // JSONObject jsObj =new JSONObject();
-            // jsObj.put("messageType", "textMessage");
-            // jsObj.put("messageContent", js.get("messageContent"));
-            // jsObj.put("from", js.get("from"));
+        } 
+        else if (js.get("messageType").equals("textMessage")) {
             Message add = new Message();
-
+            add.addMessage(js.toJSONString());
+            
             for (User user : arr)
              {
                 System.out.println("user.getUserId:" + (user.getUserId()));
@@ -119,14 +116,11 @@ public class ChatServer {
                         && user.getSession().getId() != session.getId()) {
                     try {
                         user.getSession().getBasicRemote().sendText(js.toJSONString());
-                    } catch (IOException e) {
-                        // TODO Auto-generated catch block
+                    } 
+                    catch (IOException e) {
                         e.printStackTrace();
                     }
-                } else {
-                    // System.out.println(" io am form else");
-                    add.addMessage(js.toJSONString());
-                }
+                } 
             }
         }
     }

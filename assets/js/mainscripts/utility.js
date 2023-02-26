@@ -7,6 +7,7 @@ let USERID;
 let USERNAME;
 let CURRENTUSERPHOTO;
 let webSocket;
+let CURRENTMESSAGINTOPERSON;
 
 let getCurrentUserDetails = () => {
     let xhr = new XMLHttpRequest();
@@ -20,7 +21,7 @@ let getCurrentUserDetails = () => {
         _(".top-profile-image").style.backgroundImage = `url(/ProApp/assets/images/usersImages/${CURRENTUSERPHOTO})`;
         _(".big-profile-image").style.backgroundImage = `url(/ProApp/assets/images/usersImages/${CURRENTUSERPHOTO})`;
         _(".current-user-name").textContent = USERNAME;
-        webSocket = new WebSocket("ws://192.168.43.247:8787/ProApp/chat?uid=" + USERID);
+        webSocket = new WebSocket("ws://192.168.156.188:8787/ProApp/chat?uid=" + USERID);
         webSocket.onmessage = (event) => {
             processMessage(JSON.parse(event.data));
             // MainView.showPopUpSymbol(JSON.parse(event.data).description);
@@ -82,7 +83,9 @@ let resetTasks = async () => {
 }
 let getMessagesOfUser = async () => {
     let userMessages = await sendGetRequest("user/chats?userId=" + USERID);
-    console.log(userMessages);
+    userMessages.forEach(elem => {
+        ChatModel.addMessage(ChatModel.changeFromServerObject(elem));
+    });
 }
 getCurrentUserDetails();
 resetProjects();
