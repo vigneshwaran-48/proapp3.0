@@ -158,7 +158,28 @@ let FormController = (view => {
         else {
             result = await sendPostRequest("project/update", formData);
         }
-        console.log(result);
+        //The below conditions are for sending notification to all users about the update
+        if(result.response == "Success"){
+            MainView.showSuccessMessage("updated successfully");
+            if(CURRENTSECTION == "Tasks"){
+                sendMessage(JSON.stringify({
+                    messageType : "taskUpdate",
+                    taskId : parseInt(event.target.id),
+                    description : `${USERNAME} updated a task in which you have been participated`
+                }));
+            }
+            else {
+                sendMessage(JSON.stringify({
+                    messageType : "projectUpdate",
+                    taskId : parseInt(event.target.id),
+                    description : `${USERNAME} updated a project in which you have been participated`
+                }));
+            }
+            _(MainView.getDomStrings().editBoxCloseButton).click();
+        }
+        else {
+            MainView.showErrorMessage("Oops, something went wrong");
+        }
     });
     return {
         validateForm : validateForm,

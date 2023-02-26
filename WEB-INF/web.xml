@@ -131,6 +131,17 @@
         <url-pattern>/user/currentuser</url-pattern>
     </servlet-mapping>
 
+    <!-- This is to get the given user's messages -->
+    <servlet>
+        <servlet-name>GetChats</servlet-name>
+        <servlet-class>com.servlets.chatserver.GetMessages</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>GetChats</servlet-name>
+        <url-pattern>/user/chats</url-pattern>
+    </servlet-mapping>
+
     <!-- project add -->
     <servlet>
         <servlet-name>AddProject</servlet-name>
@@ -255,7 +266,6 @@
         <servlet-name>ChangeTaskStatus</servlet-name>
         <url-pattern>/task/user/changestatus</url-pattern>
     </servlet-mapping>
-
 
     <!-- Login Filter -->
     <filter>

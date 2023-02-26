@@ -3,10 +3,11 @@ package com.databases.message;
 import java.sql.*;
 import java.util.Date;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-public class AddMessage {
+public class Message {
     public static Connection c;
 
     public boolean addMessage(String jsonObject) {
@@ -42,5 +43,27 @@ public class AddMessage {
     public String changeDateFormat(String date) {
         String[] array = date.split("/");
         return array[2] + "-" + array[1] + "-" + array[0];
+    }
+    public JSONArray getMessagesByUid(Connection c, int userId) {
+        JSONArray jarray = new JSONArray();
+        try {
+            Statement stmt = c.createStatement();
+            ResultSet rs = stmt
+                    .executeQuery("select * from messages  where fromUser=" + userId + " or toUser =" + userId);
+            while (rs.next()) {
+                JSONObject jsObj = new JSONObject();
+                jsObj.put("messageDate", rs.getString("messageDate"));
+                jsObj.put("messageTime", rs.getString("messageTime"));
+                jsObj.put("fromUser", rs.getString("fromUser"));
+                jsObj.put("toUser", rs.getString("toUser"));
+                jsObj.put("message", rs.getString("message"));
+                jarray.add(jsObj);
+
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+        return jarray;
     }
 }

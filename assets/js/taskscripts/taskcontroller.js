@@ -4,15 +4,21 @@ let TaskController = ((view, model) => {
     let finishTask = async event => {
         event.preventDefault();
         event.stopPropagation();
+        let taskId = parseInt(event.target.id.slice(4));
         event.target.nextElementSibling.classList.toggle(view.getDomStrings().finishTask);
         let formData = new FormData();
         formData.append("taskData", JSON.stringify({
-            taskId : event.target.id.slice(4),
+            taskId : taskId,
             userId : USERID
         }));
         let response = await sendPostRequest("/ProApp/task/user/changestatus", formData);
         if(response.status){
             resetTasks();
+            sendMessage(JSON.stringify({
+                messageType : "taskUpdate",
+                taskId : taskId,
+                description : USERNAME + " working on " + model.getTaskByTaskId(taskId).taskName
+            }));
         }
         else {
             MainView.showErrorMessage("Oops !, something went wrong");
@@ -27,6 +33,11 @@ let TaskController = ((view, model) => {
             ProjectView.renderProjects(ProjectModel.getProjectsArray());
             view.renderTasks(ProjectModel.getProjectsArray());
             MainView.showSuccessMessage("Successfully deleted task");
+            sendMessage(JSON.stringify({
+                messageType : "taskUpdate",
+                taskId : taskId,
+                description : USERNAME + " deleted the task you have been in"
+            }));
         }
         else {
             MainView.showErrorMessage("Oops, something went wrong");
@@ -42,6 +53,14 @@ let TaskController = ((view, model) => {
         if(response.status == "success"){
             model.removeTask(taskId);
             MainView.showSuccessMessage("Exied from task successfylly");
+            sendMessage(JSON.stringify({
+                messageType : "taskUpdate",
+                taskId : taskId,
+                description : USERNAME + " exited from the task " + model.getTaskByTaskId(taskId).taskName
+            }));
+        }
+        else {
+            MainView.showErrorMessage("Oops, something went wrong");
         }
     }
 

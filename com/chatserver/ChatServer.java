@@ -23,7 +23,8 @@ import org.json.simple.parser.ParseException;
 
 import com.apicall.UsersApiCall;
 
-import com.databases.message.AddMessage;
+import com.databases.message.Message;
+import com.mysql.cj.xdevapi.JsonArray;
 import com.servlets.user.GetUserByTid;
 
 /**
@@ -38,12 +39,10 @@ public class ChatServer {
         Map<String, List<String>> hashMap = session.getRequestParameterMap();
         System.out.println("Connected Successfully");
         System.out.println("hashmap:" + hashMap);
-        if (!alreadyExist(Long.parseLong(String.valueOf(hashMap.get("uid").get(0))))) {
-            arr.add(new User(session, Long.parseLong(hashMap.get("uid").get(0))));
+        Long uid=Long.parseLong(String.valueOf(hashMap.get("uid").get(0)));
+        if (!alreadyExist(uid)) {
+            arr.add(new User(session, uid));
         }
-
-        // notifyUsers(session);
-
     }
 
     @OnMessage
@@ -58,6 +57,7 @@ public class ChatServer {
             for (Long arrList : arrayList) {
                 if (alreadyExist(arrList)) {
                     for (User user : arr) {
+
                         if (arrList.equals(user.getUserId()) && arrList != js.get("userId")) {
                             System.out.println("i am from if proupdate");
 
@@ -65,6 +65,7 @@ public class ChatServer {
                                 user.getSession().getBasicRemote()
                                         .sendText(js.toJSONString());
                             } catch (IOException e) {
+                                // TODO Auto-generated catch block
                                 e.printStackTrace();
                             }
                         } else {
@@ -81,12 +82,15 @@ public class ChatServer {
             for (Long arrList : arrayList) {
                 if (alreadyExist(arrList)) {
                     for (User user : arr) {
+
                         if (arrList.equals(user.getUserId()) && arrList != js.get("userId")) {
                             System.out.println("i am from if Task update");
+
                             try {
                                 user.getSession().getBasicRemote()
                                         .sendText(js.toJSONString());
                             } catch (IOException e) {
+                                // TODO Auto-generated catch block
                                 e.printStackTrace();
                             }
                         } else {
@@ -96,16 +100,18 @@ public class ChatServer {
                 }
             }
         }
+       
+
+
         else if (js.get("messageType").equals("userAdded")) {
             System.out.println("called");
             notifyUsers("userAdded");
-        } 
-        else if (js.get("messageType").equals("textMessage")) {
+        } else if (js.get("messageType").equals("textMessage")) {
             // JSONObject jsObj =new JSONObject();
             // jsObj.put("messageType", "textMessage");
             // jsObj.put("messageContent", js.get("messageContent"));
             // jsObj.put("from", js.get("from"));
-            AddMessage add = new AddMessage();
+            Message add = new Message();
 
             for (User user : arr)
              {
@@ -177,4 +183,5 @@ public class ChatServer {
             }
         }
     }
+    
 }
