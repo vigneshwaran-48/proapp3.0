@@ -24,8 +24,8 @@ import org.json.simple.parser.ParseException;
 import com.apicall.UsersApiCall;
 
 import com.databases.message.Message;
-import com.mysql.cj.xdevapi.JsonArray;
-import com.servlets.user.GetUserByTid;
+// import com.mysql.cj.xdevapi.JsonArray;
+// import com.servlets.user.GetUserByTid;
 
 /**
  * ChatServer
@@ -33,14 +33,15 @@ import com.servlets.user.GetUserByTid;
 @ServerEndpoint("/chat")
 public class ChatServer {
     static Set<User> arr = new HashSet<>();
+    Long uid=0L;
 
     @OnOpen
     public void connect(Session session) {
         Map<String, List<String>> hashMap = session.getRequestParameterMap();
         System.out.println("Connected Successfully");
         System.out.println("hashmap:" + hashMap);
-        Long uid=Long.parseLong(String.valueOf(hashMap.get("uid").get(0)));
-        if (!alreadyExist(uid)) {
+        uid=Long.parseLong(String.valueOf(hashMap.get("uid").get(0)));
+        if (!alreadyExistSession(session)) {
             arr.add(new User(session, uid));
         }
     }
@@ -58,7 +59,7 @@ public class ChatServer {
                 if (alreadyExist(arrList)) {
                     for (User user : arr) {
                         System.out.println(arrayList + ", " + js.get("userId") + " ==> " + (arrayList == js.get("userId")));
-                        if (arrList.equals(user.getUserId()) && user.getUserId() != js.get("userId")) {
+                        if (arrList.equals(user.getUserId()) && user.getUserId() != uid) {
                             System.out.println("i am from if proupdate");
 
                             try {
@@ -83,7 +84,7 @@ public class ChatServer {
                 if (alreadyExist(arrList)) {
                     for (User user : arr) {
 
-                        if (arrList.equals(user.getUserId()) && user.getUserId() != js.get("userId")) {
+                        if (arrList.equals(user.getUserId()) && user.getUserId() != uid) {
                             System.out.println("i am from if Task update");
 
                             try {
@@ -112,8 +113,7 @@ public class ChatServer {
                 System.out.println("user.getUserId:" + (user.getUserId()));
                 System.out.println("long:" + Long.parseLong(String.valueOf(js.get("toUserId"))));
 
-                if (user.getUserId() == Long.parseLong(String.valueOf(js.get("toUserId")))
-                        && user.getSession().getId() != session.getId()) {
+                if (user.getUserId() == Long.parseLong(String.valueOf(js.get("toUserId")))&& user.getSession().getId() != session.getId()) {
                     try {
                         user.getSession().getBasicRemote().sendText(js.toJSONString());
                     } 
@@ -146,6 +146,20 @@ public class ChatServer {
             for (User chatServer : arr) {
                 System.out.println("from method" + chatServer.getUserId());
                 if (chatServer.getUserId() == uid) {
+                    result = true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+    public boolean alreadyExistSession(Session session) {
+        boolean result = false;
+        try {
+            for (User chatServer : arr) {
+                // System.out.println("from method" + chatServer.getUserId());
+                if (chatServer.getSession().getId() == session.getId()) {
                     result = true;
                 }
             }

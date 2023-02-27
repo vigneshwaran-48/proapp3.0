@@ -54,7 +54,10 @@ let MainView = (() => {
         chatPeopleViewSection : ".chat-people-view-section",
         chatButton : ".chat-section-button",
         chatMembersCloseButton : "#chat-members-view-close-button",
-        notificationAudioButton : ".audio-button"
+        notificationAudioButton : ".audio-button",
+        settingSectionButton : ".settings-section-button",
+        settingSection : ".setting-section",
+        settingCloseButton : "#settings-section-close-button"
     }
     let getDomStrings = () => domStrings;
 

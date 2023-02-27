@@ -28,7 +28,7 @@ let ChatController = ((view, model) => {
         let obj = {
             message : message,
             messageId : "-",
-            messageDate : date,
+            messageDate : date.replaceAll("-", "/"),
             messageTime : time,
             fromUser : from,
             toUser : to

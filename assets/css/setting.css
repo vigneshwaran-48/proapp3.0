@@ -1,0 +1,59 @@
+.top-settings-header{
+    width: 100%;
+    height: 30%;
+}
+#settings-section-close-button{
+    top: 0;
+    left: 0;
+    position: absolute;
+    padding: 10px;
+    transition: 0.5s;
+}
+#settings-section-close-button:hover {
+    background-color: rgb(235, 237, 239);
+}
+.top-settings-photo{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: rgb(235, 237, 239);
+    background-size: cover;
+    background-position: center;
+}
+.settings-body{
+    width: 100%;
+    height: 80%;
+    justify-content: space-around;
+}
+.buttons-wrapper {
+    width: 100%;
+    justify-content: space-around;
+    max-height: 450px;
+    height: 30%;
+}
+.settings-button{
+    justify-content: space-between;
+    max-width: 240px;
+    width: 95%;
+    font-size: 20px;
+}
+.normal-setting-icon{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgb(235, 237, 239);
+}
+.normal-setting-click-button{
+    background-color: rgb(235, 237, 239);
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+}
+.edit-profile-button-icon{
+    background-color: rgb(254,238,254);
+    color: rgb(243,117,247);
+}
+.log-out-button-icon {
+    background-color: rgb(232,240,255);
+    color: rgb(89,141,241);
+}

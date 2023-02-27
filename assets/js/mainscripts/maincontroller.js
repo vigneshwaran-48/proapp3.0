@@ -98,6 +98,8 @@ let MainController = (view => {
 
         //This is for opening projects section
         _(view.getDomStrings().projectSectionButton).addEventListener("click", event => {
+            _(view.getDomStrings().chatMembersCloseButton).click();
+            _(view.getDomStrings().settingCloseButton).click();
             _(view.getDomStrings().currentSectionHeading).textContent = "Projects";
             CURRENTSECTION = "Project";
             _(view.getDomStrings().taskSection).classList.remove(view.getDomStrings().showFromScale);
@@ -105,6 +107,9 @@ let MainController = (view => {
         
         //This is for opening task section 
         _(view.getDomStrings().taskSectionButton).addEventListener("click", event => {
+            _(view.getDomStrings().chatMembersCloseButton).click();
+            _(view.getDomStrings().settingCloseButton).click();
+            _(ChatView.getDomStrings().chattingWindow).click();
             _(view.getDomStrings().currentSectionHeading).textContent = "Tasks";
             CURRENTSECTION = "Tasks";
             _(view.getDomStrings().taskSection).classList.add(view.getDomStrings().showFromScale);
@@ -119,6 +124,18 @@ let MainController = (view => {
         });
         //This is for notification audio 
         _(view.getDomStrings().notificationAudioButton).addEventListener("click", playNotificationSound);
+
+        //This is for opening settings page
+        _(view.getDomStrings().settingSectionButton).addEventListener("click", event => {
+            _(view.getDomStrings().chatMembersCloseButton).click();
+            _(SettingsView.getDomStrings().settingsUserPhoto).style.backgroundImage = `url(/ProApp/assets/images/usersImages/${CURRENTUSERPHOTO})`;
+            _(view.getDomStrings().settingSection).classList.add(view.getDomStrings().showFromRightToLeft);
+        });
+
+        //This is for closing settings page
+        _(view.getDomStrings().settingCloseButton).addEventListener("click", event => {
+            _(view.getDomStrings().settingSection).classList.remove(view.getDomStrings().showFromRightToLeft);
+        });
     }
     init();
 

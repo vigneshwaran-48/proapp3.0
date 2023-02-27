@@ -31,6 +31,7 @@
     padding: 0;
     transition: 0.5s;
     border-radius: 15px;
+    z-index: 30;
 }
 .three-dots-option{
     padding: 10px;

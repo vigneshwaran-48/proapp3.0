@@ -17,37 +17,46 @@ let ChatModel = (() => {
 
     let getMessagesData = () => messagesData;
 
-    let getMessagesByTo = id => messagesData.filter(elem => elem.to == id);
-
-    let getMessagesByFrom = id => messagesData.filter(elem => elem.from == id);
+    let getChatsOfTheUser = id => messagesData.filter(elem => (elem.to == id || elem.from == id));
     
     let finIndexOfMessage = id => messagesData.findIndex(elem => id == elem.messageId);
 
     let deleteMessage = messageId => messagesData.splice(1, finIndexOfMessage(messageId));
 
-    let getChatsOfTheUser = id => {
-        let messages = [];
-        let toMessages = getMessagesByTo(id)
-        let fromMessages = getMessagesByFrom(id);
-        if(toMessages.length){
-            toMessages.forEach(elem => {
-                messages.push(elem);
-            });
-        }
-        if(fromMessages.length){
-            fromMessages.forEach(elem => {
-                messages.push(elem);
-            });
-        }
-        return messages;
+    let sortMessagesWithTime = messages => {
+        let sortedMessagesByDate = [];
+        messages.forEach(elem => {
+            if(!sortedMessagesByDate.length){
+                sortedMessagesByDate.push(elem);
+            }
+            else if(elem.sentDate > sortedMessagesByDate[sortedMessagesByDate.length -1].sentDate){
+                sortedMessagesByDate.push(elem);
+            }
+            else {
+                sortedMessagesByDate.unshift(elem);
+            }
+        });
+        let sortedMessagesByTime = [];
+        sortedMessagesByDate.forEach(elem => {
+            let lastElement = sortedMessagesByTime[sortedMessagesByTime.length-1];
+            if(!sortedMessagesByTime.length){
+                sortedMessagesByTime.push(elem);
+            }
+            else if (lastElement.senTime > elem.sentTime && (lastElement.sentDate == elem.sentDate || lastElement.sentDate > elem.sentDate)){
+                sortedMessagesByTime.push(elem);
+            }
+            else {
+                sortedMessagesByTime.unshift(elem);
+            }
+        });
+        return sortedMessagesByTime;
     }
-
     return {
         addMessage : addMessage,
-        getMessagesByTo : getMessagesByTo,
         getMessagesData : getMessagesData,
         deleteMessage : deleteMessage,
         changeFromServerObject : changeFromServerObject,
-        getChatsOfTheUser : getChatsOfTheUser
+        getChatsOfTheUser : getChatsOfTheUser,
+        sortMessagesWithTime: sortMessagesWithTime
     }
 })();

@@ -12,6 +12,7 @@
     <link href="assets/css/form.css" rel="stylesheet" type="text/css">
     <link href="assets/css/task.css" rel="stylesheet" type="text/css">
     <link href="assets/css/chat.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/setting.css" rel="stylesheet" type="text/css">
     <title>Task Manager</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
@@ -69,7 +70,7 @@
             <i class="fa-solid fa-user-group"></i>
             <p class="icon-label">Chat</p>
         </div>
-        <div class="common-i-tag icons-wrapper y-axis-flex">
+        <div class="common-i-tag icons-wrapper settings-section-button y-axis-flex">
             <i class="fa-solid fa-gear"></i>
             <p class="icon-label">Settings</p>
         </div>
@@ -364,6 +365,30 @@
                 </div>
             </section>
             <!-- Chatting window ends here -->
+            
+            <!-- Setting section starts here -->
+            <section class="setting-section y-axis-flex full-light-theme">
+                <i id="settings-section-close-button" class="fa-solid fa-xmark"></i>
+                <div class="top-settings-header y-axis-flex">
+                    <div class="top-settings-photo"></div>
+                </div>
+                <div class="settings-body y-axis-flex">
+                    <h2>Settings</h2>
+                    <div class="buttons-wrapper y-axis-flex">
+                        <div class="settings-button x-axis-flex">
+                            <span class="normal-setting-icon edit-profile-button-icon x-axis-flex"><i class="fa-solid fa-pen-to-square"></i></span>
+                            <p class="">Edit Profile</p>
+                            <span class="normal-setting-click-button edit-profile-button x-axis-flex"><i class="fa-solid fa-angle-right"></i></span>
+                        </div>
+                        <div class="settings-button x-axis-flex">
+                            <span class="normal-setting-icon log-out-button-icon x-axis-flex"><i class="fa-solid fa-right-from-bracket"></i></i></span>
+                            <p class="">Log Out</p>
+                            <span class="normal-setting-click-button log-out-button x-axis-flex"><i class="fa-solid fa-angle-right"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Setting section ends here -->
         </section>
     </section>
 </body>
@@ -396,6 +421,11 @@
 <script src="assets/js/chatscripts/chatmodel.js"></script>
 <script src="assets/js/chatscripts/chatcontroller.js"></script>
 <!-- Chat scripts ends here -->
+
+<!-- Settings scripts starts here -->
+<script src="assets/js/settingsscripts/settingsview.js"></script>
+<script src="assets/js/settingsscripts/settingscontroller.js"></script>
+<!-- Settings scripts ends here -->
 
 <!-- Web socket scripts starts here -->
 <script src="assets/js/websocketscript/weblogic.js"></script>

@@ -73,6 +73,7 @@ let ChatView = (() => {
     }
 
     let renderMessages = (messages, isReset) => {
+        messages = ChatModel.sortMessagesWithTime(messages);
         if(isReset){
             _(domStrings.fullMessageWrapper).innerHTML = "";
         }
@@ -80,6 +81,9 @@ let ChatView = (() => {
             let isFrom;
             if(elem.from == USERID){
                 isFrom = true;
+            }
+            else {
+                isFrom = false;
             }
             
             //Creating elements
