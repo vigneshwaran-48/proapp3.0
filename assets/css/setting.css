@@ -2,17 +2,31 @@
     width: 100%;
     height: 30%;
 }
-#settings-section-close-button{
+#settings-section-close-button, #profile-edit-section-close-button{
     top: 0;
     left: 0;
     position: absolute;
     padding: 10px;
     transition: 0.5s;
 }
-#settings-section-close-button:hover {
+#settings-section-close-button:hover, #profile-edit-section-close-button:hover {
     background-color: rgb(235, 237, 239);
 }
-.top-settings-photo{
+.profile-update-button{
+    padding: 7px 10px;
+    position: absolute;
+    top: 0;
+    right: 5px;
+    background-color: rgb(68,146,240);
+    color: white;
+    font-size: 20px;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+.profile-update-button:active {
+    transform: scale(0.9);
+}
+.top-settings-photo, .profile-update-user-photo{
     width: 150px;
     height: 150px;
     border-radius: 50%;
@@ -56,4 +70,43 @@
 .log-out-button-icon {
     background-color: rgb(232,240,255);
     color: rgb(89,141,241);
+}
+.profile-editing-section{
+    justify-content: flex-end;
+}
+.profile-edit-secton-body{
+    width: 90%;
+    height: 90%;
+    margin: auto;
+    align-items: flex-start;
+}
+.profile-editing-heading{
+    font-size: 40px;
+}
+.profile-update-form{
+    height: 90%;
+    width: 100%;
+    justify-content: space-around;
+}
+.profile-update-user-photo{
+    width: 70px;
+    height: 70px;
+    background-image: url("/ProApp/assets/images/user.jpg");
+    margin-bottom: 10px;
+}
+.common-input-field{
+    width: 100%;
+    justify-content: space-between;
+    font-size: 20px;
+}
+#choose-profile-photo-input{
+    display: none;
+}
+.common-input-tag{
+    border: none;
+    outline: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    width: 50%;
+    max-width: 220px;
+    font-size: 20px;
 }

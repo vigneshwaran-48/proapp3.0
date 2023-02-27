@@ -48,14 +48,19 @@ let sendGetRequest = async url => {
 
 }
 
-let sendPostRequest = (url, data) => {
+let sendPostRequest = (url, data, stopParsing) => {
     return new Promise((resolved, rejected) => {
         let xhr = new XMLHttpRequest();
         xhr.open("POST", url);
         xhr.send(data);
         xhr.onload = () => {
             console.log("post request received");
-            resolved(JSON.parse(xhr.response));
+            if(!stopParsing){
+                resolved(JSON.parse(xhr.response));
+            }
+            else {
+                resolved("success");
+            }
         }
         xhr.onerror = () => {
             rejected(xhr.status);

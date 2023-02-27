@@ -372,6 +372,7 @@
                 <div class="top-settings-header y-axis-flex">
                     <div class="top-settings-photo"></div>
                 </div>
+                <!-- Settings body starts here -->
                 <div class="settings-body y-axis-flex">
                     <h2>Settings</h2>
                     <div class="buttons-wrapper y-axis-flex">
@@ -387,8 +388,41 @@
                         </div>
                     </div>
                 </div>
+                <!-- Settings body ends here -->
             </section>
             <!-- Setting section ends here -->
+
+            <!-- Profile editing starts here -->
+            <section class="profile-editing-section y-axis-flex full-light-theme">
+                <i id="profile-edit-section-close-button" class="fa-solid fa-xmark"></i>
+                <span class="profile-update-button"><i class="fa-solid fa-check"></i></span>
+                <section class="profile-edit-secton-body y-axis-flex">
+                    <h2 class="profile-editing-heading">Account</h2>
+                    <form class="profile-update-form y-axis-flex">
+                        <div class="common-input-field x-axis-flex">
+                            <label>Photo</label>
+                            <div class="photo-updating-body y-axis-flex">
+                                <div class="profile-update-user-photo"></div>
+                                <label for="choose-profile-photo-input">Choose</label>
+                                <input type="file" id="choose-profile-photo-input" accept="image/*">
+                            </div>
+                        </div>
+                        <div class="common-input-field x-axis-flex">
+                            <label for="profile-update-name">Name</label>
+                            <input type="text" id="profile-update-name" class="common-input-tag">
+                        </div>
+                        <div class="common-input-field x-axis-flex">
+                            <label for="profile-update-email">Email</label>
+                            <input type="email" id="profile-update-email" min="5" max="20" class="common-input-tag">
+                        </div>
+                        <div class="common-input-field x-axis-flex">
+                            <label for="profile-update-email">Password</label>
+                            <input type="password" id="profile-update-pass" min="5" max="20" class="common-input-tag">
+                        </div>
+                    </form>
+                </section>
+            </section>
+            <!-- Profile editing ends here -->
         </section>
     </section>
 </body>
