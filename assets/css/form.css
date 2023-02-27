@@ -9,6 +9,7 @@
     max-width: 465px;
     right: 0;
     width: 100%;
+    z-index: 45;
 }
 .common-input-wrapper, .common-desc-wrapper, .common-edit-wrapper{
     width: 100%;

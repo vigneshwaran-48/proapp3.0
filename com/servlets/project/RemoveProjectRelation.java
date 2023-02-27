@@ -20,16 +20,17 @@ public class RemoveProjectRelation extends HttpServlet{
             JSONObject jsonObject = (JSONObject) new JSONParser().parse(request.getParameter("userData"));
             int pid = Integer.parseInt((String) jsonObject.get("projectId"));
             Long uid = Long.parseLong(String.valueOf(jsonObject.get("userId")));
+            JSONObject result = new JSONObject();
             if(new UpdateProject().deleteUserFromProject(uid,pid,con))
             {
-                response.getWriter().print("Deleted Successfully");
+                result.put("status", "success");
             }
             else
             {
-                response.getWriter().print("Oops Error!");
-
+                result.put("status", "unsuccess");
+                
             }
-
+            response.getWriter().print(result);
         }
         catch(Exception e){
             e.printStackTrace();

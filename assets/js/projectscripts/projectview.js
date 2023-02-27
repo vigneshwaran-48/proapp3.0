@@ -97,6 +97,7 @@ let ProjectView = (() => {
             let threeDotsOption1 = document.createElement("li");
             let threeDotsOption2 = document.createElement("li");
             let threeDotsOption3 = document.createElement("li");
+            let threeDotsOption4 = document.createElement("li");
 
             let boxDescription = document.createElement("div");
             let boxPercentageWrapper = document.createElement("div");
@@ -130,6 +131,8 @@ let ProjectView = (() => {
             threeDotsOption3.classList.add(domStrings.threeDotsOption);
             threeDotsOption3.classList.add(domStrings.threeDotsCompleteOption);
             threeDotsOption3.id = "delete" + elem.id;
+            threeDotsOption4.classList.add(domStrings.threeDotsOption);
+            threeDotsOption4.id = "exit" + elem.id;
 
             boxDescription.classList.add(domStrings.boxDescription);
             boxPercentageWrapper.classList.add(domStrings.boxPercentageWrapper);
@@ -149,6 +152,7 @@ let ProjectView = (() => {
             threeDotsOption1.textContent = "Edit";
             threeDotsOption2.textContent = "More Info";
             threeDotsOption3.textContent = "Delete";
+            threeDotsOption4.textContent = "Exit";
             boxPercentageValue.textContent = elem.percentage + "%";
             boxPercentageValue.style.width = elem.percentage + "%";
 
@@ -166,6 +170,11 @@ let ProjectView = (() => {
                 else if (event.target.id.startsWith("edit")){
                     _(MainView.getDomStrings().fullEditSection).classList.add(MainView.getDomStrings().showFromRightToLeft);
                     MainView.renderEditSection(event.target.id.slice(4), true);
+                    event.target.parentElement.classList.remove(domStrings.showBoxOptions);
+                }
+                else if (event.target.id.startsWith("exit")){
+                    console.log("completed action ........");
+                    ProjectController.exitProject(event.target.id.slice(4), true)
                     event.target.parentElement.classList.remove(domStrings.showBoxOptions);
                 }
                 else {
@@ -209,7 +218,7 @@ let ProjectView = (() => {
                 threeDotsOptionsWrapper.append(threeDotsOption1, threeDotsOption2, threeDotsOption3);
             }
             else {
-                threeDotsOptionsWrapper.append(threeDotsOption2);
+                threeDotsOptionsWrapper.append(threeDotsOption2, threeDotsOption4);
             }
             threeDotsWrapper.append(threeDotsLabel, threeDotsInput, threeDotsOptionsWrapper);
 

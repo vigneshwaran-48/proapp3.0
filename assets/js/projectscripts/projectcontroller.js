@@ -15,9 +15,27 @@ let ProjectController = ((view, model) => {
             MainView.showErrorMessage("Oops, something went wrong");
         }
     }
+    let exitProject = async id => {
+        let formData = new FormData();
+        let obj = {
+            projectId : id,
+            userId : USERID
+        }
+        formData.append("userData", JSON.stringify(obj));
+        let result = await sendPostRequest("project/user/delete", formData);
+        if(result.status == "success"){
+            MainView.showSuccessMessage("Successfully exited project");
+            model.removeProject(id);
+            view.renderProjects(ProjectModel.getProjectsArray());
+        }
+        else {
+            MainView.showErrorMessage("Oops, something went wrong");
+        }
+    }
     MainView.loadStatisticsData();
     return {
         addProject : addProject,
-        deleteProject : deleteProject
+        deleteProject : deleteProject,
+        exitProject : exitProject
     }
 })(ProjectView, ProjectModel);
