@@ -21,6 +21,7 @@ import org.json.simple.parser.ParseException;
 import com.apicall.UsersApiCall;
 
 import com.databases.message.Message;
+import com.mysql.cj.xdevapi.JsonParser;
 
 /**
  * ChatServer
@@ -87,6 +88,22 @@ public class ChatServer {
                     }
                 }
             }
+            JSONArray arrs=(JSONArray)js.get("removedUsers");
+            for (User userIndi : arr) {
+                if(arrs.contains(userIndi.getUserId()))
+                {
+                    try {
+                        userIndi.getSession().getBasicRemote().sendText("You have Been Removed");
+                    } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                }
+            }
+            // if(js.get("isRemoved").equals("true"))
+            // {
+
+            // }
         }
         else if (js.get("messageType").equals("textMessage")) {
             Message add = new Message();
