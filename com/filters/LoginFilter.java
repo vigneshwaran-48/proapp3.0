@@ -2,6 +2,8 @@ package com.filters;
 
 import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
+
 import javax.servlet.*;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.*;
@@ -16,7 +18,9 @@ import com.databases.users.RetrieveUser;
 
 @MultipartConfig
 public class LoginFilter extends HttpFilter{
-
+    /**
+     * 
+     */
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
 
@@ -32,13 +36,18 @@ public class LoginFilter extends HttpFilter{
                 if (loginChecker.validater(email, password)) {
                     HttpServletRequest sessionVar = (HttpServletRequest) request; // changing the servlet Requet to http // servelt Request
                     HttpSession session = sessionVar.getSession(); // making a session Var
+                    // session.setMaxInactiveInterval(10);
                     session.setAttribute("emailId", email);
                     session.setAttribute("password", password);
                     // //System.out.println("from lpgin");
                     Class.forName("com.mysql.cj.jdbc.Driver");
                     Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/proapp", "vicky", "vi99g@NESH");
-                    session.setAttribute("uid", new RetrieveUser().getUidByEmail(conn, email));
+                    int uid=new RetrieveUser().getUidByEmail(conn, email);
+                    session.setAttribute("uid", uid);
                     session.setAttribute("userName", new RetrieveUser().getUnameByEmail(conn, email));
+                    ArrayList<Integer> activeUsers=(ArrayList<Integer>)request.getServletContext().getAttribute("ActiveUsers");
+                    activeUsers.add(uid);
+                    request.getServletContext().setAttribute("ActiveUsers",activeUsers);
                     response.getWriter().append("Success");
                 }
                 else{

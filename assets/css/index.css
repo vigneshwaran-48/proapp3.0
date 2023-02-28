@@ -1,0 +1,450 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+}
+.x-axis-flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.y-axis-flex{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.full-body{
+    max-width: 1450px;
+    margin: auto;
+    width: 100%;
+}
+.top-header{
+    width: 100%;
+    position: relative;
+    padding: 10px;
+}
+.top-icon{
+    width: 70px;
+    height: 70px;
+    background-size: cover;
+    background-position: center;
+    background-image: url("/ProApp/assets/images/logo.png");
+}
+#hamburger-icon-id{
+    display: none;
+}
+.hamburger-menu{
+    display: none;
+    font-size: 25px;
+}
+.top-navigation-wrapper{
+    width: 90%;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+.nav-bar-options-wrapper {
+    flex-grow: 1;
+    width: 70%;
+    justify-content: flex-start;
+}
+.login-buttons{
+    width: 20%;
+    justify-content: space-around;
+    transition: 0s;
+}
+.common-button{
+    padding: 10px;
+    background-color: rgb(89,141,241);
+    color: white;
+    border: none;   
+    border-radius: 10px;
+    font-size: 18px;
+    transition: 0.4s;
+}
+.common-button:active {
+    transform: scale(0.9);
+}
+.sign-in-button , .sign-up-button{
+    cursor: pointer;
+}
+.sign-up-button{
+    background-color: white;
+    color: black;
+    border: 1px solid rgba(0,0,0,0.3);
+}
+.sign-up-button:hover{
+    background-color: rgba(0,0,0,0.1);
+}
+.sign-in-button:hover {
+    background-color: rgba(89,141,241,0.85);
+}
+.nav-bar-option{
+    text-decoration: none;
+    color: black;
+    margin: 0px 15px;
+}
+.nav-bar-option li {
+    font-size: 20px;
+    list-style-type: none;
+}
+
+
+
+.center-image-content-section{
+    display: flex;
+    justify-content: space-around;
+    max-width: 1200px;
+    margin: auto;
+}
+.left-content-div{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 21px;
+    text-align: center;
+    line-height: 2;
+}
+.right-image-div img{
+    height: 600px;
+    width: 700px;
+}
+.tab-view-login-buttons{
+    display: none;
+    width: 60%;
+    justify-content: space-evenly;
+}
+
+
+.use-cases-section{
+    margin: auto;
+    max-width: 1350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-top: 100px;
+}
+.use-cases-section > h1{
+    text-align: center;
+    font-size: 40px;
+}
+.common-use-case{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 100px;
+}
+.common-use-case:nth-child(odd){
+    flex-direction: row-reverse;
+}
+.use-case-1{
+    align-items: center;
+    text-align: center;
+}
+.use-case-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+.use-case-content h2{
+    font-size: 30px;
+}
+.use-case-content p{
+    font-size: 22px;
+}
+.common-use-case-image{
+    width: 80%;
+    height: 350px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 1px solid rgba(0,0,0,0.3);
+}
+.image-of-use-case-1{
+    background-image: url("/ProApp/assets/images/FullPage.png");
+}
+.image-of-use-case-2{
+    background-image: url("/ProApp/assets/images/Project.png");
+}
+.image-of-use-case-3{
+    width: 50%;
+    background-image: url("/ProApp/assets/images/Tasks.png");
+}
+.image-of-use-case-4{
+    width: 30%;
+    background-image: url("/ProApp/assets/images/Chat.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.image-of-use-case-5{
+    width: 30%;
+    background-image: url("/ProApp/assets/images/Settings.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+.image-of-use-case-6{
+    width: 25%;
+    height: 300px;
+    background-image: url("/ProApp/assets/images/Notification.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+.developers-section{
+    margin-top: 100px;
+	text-align: center;
+	padding: 60px 0;
+}
+.developers-section > div{
+	width: 85%;
+	padding: 20px 0 40px;
+	margin: auto;
+}
+.heading{
+	color: white;
+	text-align: center;
+	margin: 0 0 20px 0;
+    font-size: 40px;
+}
+.develop-scroll{
+	overflow:hidden;
+	border-radius: 10px;
+	margin: 0 auto;
+	max-width: 1000px;
+	position: relative;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+::-webkit-scrollbar{
+    display: none;
+}
+.develop-inner{
+	display: flex;
+	width: 500%;
+	height: 100%;
+	transition: 0.5s;
+}
+.developer{
+	width: 100%;
+	height: 100%;
+	display: flex;
+}
+.about-developer{
+	text-align: justify;
+	line-height: 2;
+	padding: 30px;
+	font-family: 'Josefin Sans', sans-serif;
+	background-color: white;
+}
+.profile-img{
+	height: 500px;
+	min-width: 400px;
+}
+.profile-img > img{
+	width: 100%;
+	height: 100%;
+}
+
+
+.contact-us-section{
+    background-color: rgb(28,30,44);
+}
+.contact > h2{
+    color: white;
+    text-align: center;
+}
+.contact-info{
+    width: 20%;
+    margin: auto;
+}
+.contact-info-box{
+	display: flex;
+	padding: 10px 20px;
+	transition: 0.4s;
+}
+.cont-name{
+	font-size: 20px;
+	padding: 0 0 0 15px;
+}
+.contact-info > a{
+	text-decoration: none;
+	color: white;
+}
+.contact-info-box:hover{
+	color: deeppink;
+	transform: scale(1.1);
+}
+
+.flip{
+	width: 40px;
+	height: 40px;
+	perspective: 1000px;
+	border-radius: 50%;
+	overflow: hidden;
+	border: 1px solid black;
+}
+.flip-inner{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	transition: 0.6s;
+	transform-style: preserve-3d;
+}
+.contact-info-box:hover .flip-inner{
+	transform: rotateY(180deg);
+}
+.cliq-img,.my-img{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+.cliq-img > img,.my-img > img{
+	width: 100%;
+	height: 100%;
+}
+.cliq-img{
+	width: 40px;
+	height: 40px;
+}
+.my-img{
+	transform: rotateY(180deg);
+}
+.logo-img{
+	cursor: pointer;
+	z-index: 11;
+}
+.logo-img > img{
+	height: 100px;
+	width: 100px;
+}
+
+
+
+footer{
+    text-align: center;
+    padding: 20px;
+    /* margin-top: 50px; */
+    color: white;
+    background-color: rgb(28,30,49);
+}
+
+@media screen and (max-width: 1100px){
+    .right-image-div img{
+        height: 500px;
+        width: 600px;
+    }
+}
+@media screen and (max-width: 1000px){
+    .center-image-content-section{
+        height: 100vh;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+    .left-content-div{
+        width: 50%;
+    }
+    .right-image-div img{
+        height: 600px;
+        width: 700px;
+    }
+    .common-use-case, .common-use-case:nth-child(odd){
+        flex-direction: column;
+        align-items: center;
+    }
+    .image-of-use-case-1, .image-of-use-case-2{
+        width: 80%;
+    }
+}
+@media screen and (max-width: 957px) {
+    .login-buttons{
+        display: none;
+    }
+    .hamburger-menu{
+        display: block;
+    }
+    .nav-bar-options-wrapper{
+        position: absolute;
+        flex-direction: column;
+        top: 100%;
+        width: 95%;
+        padding: 0px;
+        height: 0px;
+        transition: 0.5s;
+        overflow: hidden;
+        background-color: rgb(235,237,239);
+        margin: auto;
+    }
+    .nav-bar-option{
+        text-align: center;
+        padding: 10px;
+        width: 100%;
+    }
+    .nav-bar-option:hover {
+        background-color: white;
+    }
+    #hamburger-icon-id:checked + .nav-bar-options-wrapper{
+        height: 215px;
+    }
+    .tab-view-login-buttons{
+        display: flex;
+    }
+    .profile-img{
+        max-height: 400px;
+        min-width: 300px;
+    }
+    .about-developer{
+        max-height: 400px;
+        line-height: 1.5;
+    }
+}
+
+@media screen and (max-width:700px){
+    .center-image-content-section{
+        height: 80vh;
+    }
+    .left-content-div{
+        line-height: 1.5;
+        width: 70%;
+    }
+    .right-image-div img{
+        height: 500px;
+        width: 500px;
+    }
+    .developer{
+        flex-direction: column;
+    }
+    .developers-section > div{
+        width: 70%;
+    }
+    .profile-img{
+        max-height: 300px;
+        min-width: 100px;
+    }
+
+    .about-developer{
+        max-height: 400px;
+        line-height: 1.5;
+    }
+    .common-use-case-image{
+        height: 300px;
+    }
+    .use-case-content{
+        width: 80%;
+    }
+}
+
+@media screen and (max-width:500px){
+    .right-image-div img{
+        height: 350px;
+        max-width: 400px;
+        width: 100%;
+    }
+}

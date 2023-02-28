@@ -3,7 +3,7 @@
 <web-app>
     <display-name>db</display-name>
     <welcome-file-list>
-        <welcome-file>index.html</welcome-file>
+        <welcome-file>assets/html/index.html</welcome-file>
         <welcome-file>index.jsp</welcome-file>
         <welcome-file>index.htm</welcome-file>
         <welcome-file>default.html</welcome-file>
@@ -13,6 +13,10 @@
     <!-- For the Listner -->
     <listener>
         <listener-class>com.listener.SetConnection</listener-class>
+    </listener>
+     <!-- For the Active Listner -->
+    <listener>
+        <listener-class>com.listener.ActiveUser</listener-class>
     </listener>
     <!-- login -->
     <servlet>

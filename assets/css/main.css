@@ -49,6 +49,7 @@ body{
 .error-message, .success-message, .pop-up-message{
     align-items: flex-start;
     padding: 0px 10px;
+    z-index: 70;
 }
 .error-symbol, .success-symbol, .pop-up-symbol{
     height: 100%;

@@ -213,12 +213,13 @@ let TaskView = (() => {
                         taskExitIconSpan.append(taskExitIcon);
                         if(USERID == task.createdBy){
                             taskButtonsWrapper.append(taskTrashIconSpan);
+                            taskOptionsWrapper.append(taskOption1, taskOption2);
                         }
                         else {
                             taskButtonsWrapper.append(taskExitIconSpan);
+                            taskOptionsWrapper.append(taskOption2);
                         }
                         taskButtonsPhotosWrapper.append(taskButtonsWrapper, taskPeopleWrapper);
-                        taskOptionsWrapper.append(taskOption1, taskOption2);
                         dotsLabel.append(iTag);
                         threeDotsWrapper.append(dotsLabel, dotsInput, taskOptionsWrapper);
 

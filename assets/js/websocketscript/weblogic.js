@@ -1,8 +1,10 @@
 let sendMessage = data => {
     webSocket.send(data);
 }
-let processMessage = data => {
-    MainView.showPopUpSymbol(data.description);
+let processMessage = async data => {
+    if(data.description){
+        MainView.showPopUpSymbol(data.description);
+    }
     if(data.messageType == "projectUpdate"){
         resetProjects();
         resetTasks();
@@ -13,6 +15,10 @@ let processMessage = data => {
     }
     else if(data.messageType == "textMessage"){
         handleTextMessage(data);
+    }
+    else if(data.messageType == "UserJoined" || data.messageType == "UserLeft"){
+        let users = await sendGetRequest("user/getusers?id=all");
+        ChatView.renderStatusOfPeople(users);
     }
 }
 

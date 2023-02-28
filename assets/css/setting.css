@@ -43,11 +43,11 @@
     width: 100%;
     justify-content: space-around;
     max-height: 450px;
-    height: 30%;
+    height: 35%;
 }
 .settings-button{
     justify-content: space-between;
-    max-width: 240px;
+    max-width: 260px;
     width: 95%;
     font-size: 20px;
 }
@@ -73,6 +73,10 @@
 }
 .profile-editing-section{
     justify-content: flex-end;
+}
+.change-photo-button-icon{
+    background-color: rgb(254,238,226);
+    color: rgb(231,128,35);
 }
 .profile-edit-secton-body{
     width: 90%;

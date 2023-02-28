@@ -3,6 +3,8 @@ package com.databases.users;
 import java.sql.*;
 import org.json.simple.JSONObject;
 
+import com.authorize.LoginChecker;
+
 /**
  * This class is used to update user details.
  */
@@ -13,25 +15,56 @@ public class UpdateUser {
      * @param updatedUserData contains newFirstName, newLastName, newEmailId, uid
      * @return returns success or failed in a JSONObject
      */
-    public JSONObject updateUser(Connection con, JSONObject updatedUserData) {
-        JSONObject resultObject = new JSONObject();
+    public String updateUser(Connection con, JSONObject updatedUserData) {
+        String result="";
         try {
-            String newFirstName = (String) updatedUserData.get("newFirstName");
-            String newLastName = (String) updatedUserData.get("newLastName");
-            String newEmailId = (String) updatedUserData.get("newEmailId");
-            String newUserName=(String) updatedUserData.get("newUserName");
+            String newUserName=(String) updatedUserData.get("newName");
+            String newemailid = (String) updatedUserData.get("newEmailId");
+            boolean isPhotoAvailable = Boolean.valueOf((String.valueOf(updatedUserData.get("isPhotoAvailable"))));
+            String oldPassword = (String) updatedUserData.get("oldPassword");
+            String newPassword = (String) updatedUserData.get("newPassword");
+            String newimagePath = (String) updatedUserData.get("imageType");
             Long uid = (Long) updatedUserData.get("uid");
+            
 
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("update users set uname = '" + newUserName + "', firstname = '" + newFirstName
-                    + "', lastname = '" + newLastName + "', emailid = '" + newEmailId + "' where uid = " + uid);
 
-            resultObject.put("result", "Success");
+            if(verifyOldPassword(oldPassword, uid, con)){
+                if(isPhotoAvailable){
+                    stmt.executeUpdate("update users set uname = '" + newUserName + "', emailid = '"+newemailid + "', password = '"+newPassword+"' where uid = " + uid);
+                    Statement stmt2 = con.createStatement();
+                    stmt2.executeUpdate("update images set imagePath = '"+String.valueOf(uid)+newimagePath+"' where uid = "+uid);
+                }
+                else{
+                    stmt.executeUpdate("update users set uname = '" + newUserName + "', emailid = '"+newemailid + "', password = '"+newPassword+"' where uid = " + uid);
+                }
+                result="Success";
+            }
+            else{
+                result="Invalid Password";
+            }
+            
 
         } catch (Exception e) {
-            resultObject.put("result", "Error");
+            result="Error";
             e.printStackTrace();
         }
-        return resultObject;
+        return result;
+    }
+
+    private boolean verifyOldPassword(String oldPassword, long uid, Connection con){
+        boolean result = false;
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select password from users where uid = "+uid);
+            rs.next();
+            if(oldPassword.equals(rs.getString("password"))){
+                result = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
     }
 }

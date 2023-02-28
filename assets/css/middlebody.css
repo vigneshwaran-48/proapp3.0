@@ -152,3 +152,9 @@
 .show-box-wrapper-section{
     display: flex;
 }
+.show-filter {
+    display: block;
+}
+.hide-filter{
+    display: none;
+}

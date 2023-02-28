@@ -15,7 +15,7 @@ public class GetUsers extends HttpServlet{
         Connection c=(Connection)getServletContext().getAttribute("Connection");
         RetrieveUser getUser = new RetrieveUser();
         if(request.getParameter("id").equalsIgnoreCase("all")){
-            response.getWriter().print(getUser.getAllUser(c));
+            response.getWriter().print(getUser.getAllUser(c,request));
         }
         else{
             response.getWriter().print(getUser.getUserDetails(c,request.getParameter("id")));

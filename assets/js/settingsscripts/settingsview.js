@@ -9,8 +9,10 @@ let SettingsView = (() => {
         editProfileNameInput : "#profile-update-name",
         editPhotoInputTag : "#choose-profile-photo-input",
         editEmailIdInput : "#profile-update-email",
-        editProfilePasswordInput : "#profile-update-pass",
-        editProfileUpdateButton : ".profile-update-button"
+        editProfileOldPasswordInput : "#profile-update-old-pass",
+        editProfileUpdateButton : ".profile-update-button",
+        editProfileNewPassword : "#profile-update-new-pass",
+        changePhotoButton : ".change-photo-button-icon"
     }
     let getDomStrings = () => domStrings;
 

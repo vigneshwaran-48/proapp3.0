@@ -32,14 +32,35 @@ public class RetrieveProject {
                 }
                 totalCount++;
             }
-
-            // if(status.equals("On Progress")&& totalCount==1)
-            // {
-            //     result=50;
-            // }
-            // else 
-            if  (totalCount!=0){
+            System.out.println("total count 1 = "+totalCount);
+         
+            if  (totalCount > 1)
+            {
                 result = (completedCount*100)/totalCount;
+            }
+            else if(status.equals("On Progress")&& totalCount==1)
+            {
+                
+                int completedCount2=0;
+                int totalCount2=0;
+                Statement stmt2 = con.createStatement();
+                ResultSet rs2=stmt2.executeQuery("select * from tasks inner join task_relation on tasks.tid = task_relation.tid where pid =  "+pid);
+                while (rs2.next()) {
+                    if (rs2.getString("isCompleted").equals("true")) {
+                        completedCount2++;
+                    }
+                    totalCount2++;
+                }
+                System.out.println("Completed Count:"+completedCount2);
+                System.out.println("Total Count:"+totalCount2);
+                System.out.println("status:"+status);
+                result=(completedCount2*100)/totalCount2;
+                System.err.println("result:"+result);
+
+            }
+            else if(completedCount==totalCount)
+            {
+                result=100;
             }
             
         } catch (Exception e) {

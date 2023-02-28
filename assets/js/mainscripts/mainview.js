@@ -57,7 +57,10 @@ let MainView = (() => {
         notificationAudioButton : ".audio-button",
         settingSectionButton : ".settings-section-button",
         settingSection : ".setting-section",
-        settingCloseButton : "#settings-section-close-button"
+        settingCloseButton : "#settings-section-close-button",
+        fullFilterWrapper : ".full-filter-wrapper",
+        showFilter : "show-filter",
+        hideFilter : "hide-filter"
     }
     let getDomStrings = () => domStrings;
 

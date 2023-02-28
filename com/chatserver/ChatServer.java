@@ -1,13 +1,10 @@
 package com.chatserver;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
@@ -24,26 +21,25 @@ import org.json.simple.parser.ParseException;
 import com.apicall.UsersApiCall;
 
 import com.databases.message.Message;
-// import com.mysql.cj.xdevapi.JsonArray;
-// import com.servlets.user.GetUserByTid;
 
 /**
  * ChatServer
  */
 @ServerEndpoint("/chat")
 public class ChatServer {
-    static Set<User> arr = new HashSet<>();
-    Long uid=0L;
+    static CopyOnWriteArrayList<User> arr = new CopyOnWriteArrayList<User>();
+    Long uid = 0L;
 
     @OnOpen
     public void connect(Session session) {
         Map<String, List<String>> hashMap = session.getRequestParameterMap();
-        System.out.println("Connected Successfully");
+        // System.out.println("Connected Successfully");
         System.out.println("hashmap:" + hashMap);
-        uid=Long.parseLong(String.valueOf(hashMap.get("uid").get(0)));
+        uid = Long.parseLong(String.valueOf(hashMap.get("uid").get(0)));
         if (!alreadyExistSession(session)) {
             arr.add(new User(session, uid));
         }
+        notifyAllUser("UserJoined",uid);
     }
 
     @OnMessage
@@ -58,25 +54,21 @@ public class ChatServer {
             for (Long arrList : arrayList) {
                 if (alreadyExist(arrList)) {
                     for (User user : arr) {
-                        System.out.println(arrayList + ", " + js.get("userId") + " ==> " + (arrayList == js.get("userId")));
+                        System.out.println(
+                                arrayList + ", " + js.get("userId") + " ==> " + (arrayList == js.get("userId")));
                         if (arrList.equals(user.getUserId()) && user.getUserId() != uid) {
-                            System.out.println("i am from if proupdate");
 
                             try {
                                 user.getSession().getBasicRemote()
                                         .sendText(js.toJSONString());
                             } catch (IOException e) {
-                                // TODO Auto-generated catch block
                                 e.printStackTrace();
                             }
-                        } else {
-                            System.out.println("i am from pu else");
-                        }
+                        } 
                     }
                 }
             }
-        }
-        else if (js.get("messageType").equals("taskUpdate")) {
+        } else if (js.get("messageType").equals("taskUpdate")) {
             UsersApiCall api = new UsersApiCall();
             ArrayList<Long> arrayList = api.getUsersByTaskId((Long) js.get("taskId"));
 
@@ -85,42 +77,33 @@ public class ChatServer {
                     for (User user : arr) {
 
                         if (arrList.equals(user.getUserId()) && user.getUserId() != uid) {
-                            System.out.println("i am from if Task update");
-
                             try {
                                 user.getSession().getBasicRemote()
                                         .sendText(js.toJSONString());
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                        } else {
-                            System.out.println("i am from task else");
-                        }
+                        } 
                     }
                 }
             }
         }
-        else if (js.get("messageType").equals("userAdded")) {
-            System.out.println("called");
-            notifyUsers("userAdded");
-        } 
         else if (js.get("messageType").equals("textMessage")) {
             Message add = new Message();
             add.addMessage(js.toJSONString());
-            
-            for (User user : arr)
-             {
+
+            for (User user : arr) {
                 System.out.println("user.getUserId:" + (user.getUserId()));
                 System.out.println("long:" + Long.parseLong(String.valueOf(js.get("toUserId"))));
 
-                if (user.getUserId() == Long.parseLong(String.valueOf(js.get("toUserId")))&& user.getSession().getId() != session.getId()) {
+                if (user.getUserId() == Long.parseLong(String.valueOf(js.get("toUserId")))
+                        && user.getSession().getId() != session.getId()) {
                     try {
                         user.getSession().getBasicRemote().sendText(js.toJSONString());
-                    } 
-                    catch (IOException e) {
+                    } catch (IOException e) {
                         e.printStackTrace();
                     }
-                } 
+                }
             }
         }
     }
@@ -132,12 +115,17 @@ public class ChatServer {
     }
 
     @OnClose
-    public void closing(Session session) {
+    public void closing(Session session) throws IOException {
+        
+
         for (User user : arr) {
             if (user.getSession().getId().equals(session.getId())) {
                 arr.remove(user);
             }
+            
         }
+        notifyAllUser("UserLeft", -8L);
+        
     }
 
     public boolean alreadyExist(Long uid) {
@@ -154,11 +142,11 @@ public class ChatServer {
         }
         return result;
     }
+
     public boolean alreadyExistSession(Session session) {
         boolean result = false;
         try {
             for (User chatServer : arr) {
-                // System.out.println("from method" + chatServer.getUserId());
                 if (chatServer.getSession().getId() == session.getId()) {
                     result = true;
                 }
@@ -169,24 +157,26 @@ public class ChatServer {
         return result;
     }
 
-    public void notifyUsers(String type) {
+    public void notifyAllUser(String message,Long uid) {
         // String responseText="";
         JSONArray jArray = new JSONArray();
         for (User user : arr) {
             jArray.add(user.getUserId());
         }
         JSONObject jObj = new JSONObject();
-        jObj.put("messageType", type);
-        jObj.put("users", jArray);
-
+        jObj.put("messageType", message);
         for (User user : arr) {
-            try {
-                user.getSession().getBasicRemote().sendText(jObj.toJSONString());
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+            if(user.getUserId()!=uid)
+            {
+                try {
+                    user.getSession().getBasicRemote().sendText(jObj.toJSONString());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
+
+    
     
 }

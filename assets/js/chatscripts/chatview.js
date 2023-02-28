@@ -20,7 +20,11 @@ let ChatView = (() => {
         singleReceiveMessage : "received-message",
         chatPara : "chat-content",
         chatTime : "chat-time",
-        fullMessageWrapper : ".message-body"
+        fullMessageWrapper : ".message-body",
+        userStatus : "user-status",
+        userOnline : "user-online",
+        userOffline : "user-offline",
+        chatIconStatusWrapper : "chat-icon-status-wrapper"
     }
     let getDomStrings = () => domStrings;
 
@@ -35,43 +39,75 @@ let ChatView = (() => {
     let renderChatPeople = users => {
         _(domStrings.chatAllPeopleWrapper).innerHTML = "";
         users.forEach(elem => {
-            let personWrapper = document.createElement("div");
-            let personPhoto = document.createElement("div");
-            let personName = document.createElement("p");
-            let chatIcon = document.createElement("i");
+            if(elem.userId != USERID){
+                let personWrapper = document.createElement("div");
+                let personPhoto = document.createElement("div");
+                let personName = document.createElement("p");
+                let chatIcon = document.createElement("i");
+                let activeStatus = document.createElement("div");
+                let chatIconStatusWrapper = document.createElement("div");
 
-            //Adding classes to the created elements
-            personWrapper.classList.add(domStrings.singlePeopleWrapper);
-            personWrapper.classList.add("x-axis-flex");
-            personName.classList.add(domStrings.personName);
-            personPhoto.classList.add(domStrings.personPhotoDiv);
-            domStrings.chatIconClasses.forEach(ele => {
-                chatIcon.classList.add(ele);
-            });
+                //Adding classes to the created elements
+                personWrapper.classList.add(domStrings.singlePeopleWrapper);
+                personWrapper.classList.add("x-axis-flex");
+                personName.classList.add(domStrings.personName);
+                personPhoto.classList.add(domStrings.personPhotoDiv);
+                domStrings.chatIconClasses.forEach(ele => {
+                    chatIcon.classList.add(ele);
+                });
+                activeStatus.classList.add(domStrings.userStatus);
+                if(elem.status == "Online"){
+                    activeStatus.classList.add(domStrings.userOnline);
+                }
+                else {
+                    activeStatus.classList.add(domStrings.userOffline);
+                }
+                chatIconStatusWrapper.classList.add(domStrings.chatIconStatusWrapper);
+                chatIconStatusWrapper.classList.add("x-axis-flex");
 
-            //Adding content to the created elements here 
-            personName.id = elem.userName;
-            personName.dataset.userImage = elem.imagePath;
-            personName.dataset.userId = elem.userId;
-            personName.textContent = elem.userName;
-            personPhoto.style.backgroundImage = `url(assets/images/usersImages/${elem.imagePath})`;
-            personPhoto.id = elem.userName;
-            personPhoto.dataset.userImage = elem.imagePath;
-            personPhoto.dataset.userId = elem.userId;
-            chatIcon.id = elem.userName;
-            chatIcon.dataset.userImage = elem.imagePath;
-            chatIcon.dataset.userId = elem.userId;
-            personWrapper.id = elem.userName;
-            personWrapper.dataset.userImage = elem.imagePath;
-            personWrapper.dataset.userId = elem.userId;
+                //Adding content to the created elements here 
+                personName.id = elem.userName;
+                personName.dataset.userImage = elem.imagePath;
+                personName.dataset.userId = elem.userId;
+                personName.textContent = elem.userName;
+                personPhoto.style.backgroundImage = `url(assets/images/usersImages/${elem.imagePath})`;
+                personPhoto.id = elem.userName;
+                personPhoto.dataset.userImage = elem.imagePath;
+                personPhoto.dataset.userId = elem.userId;
+                chatIcon.id = elem.userName;
+                chatIcon.dataset.userImage = elem.imagePath;
+                chatIcon.dataset.userId = elem.userId;
+                personWrapper.id = elem.userName;
+                personWrapper.dataset.userImage = elem.imagePath;
+                personWrapper.dataset.userId = elem.userId;
+                activeStatus.dataset.userId = elem.userId;
+                activeStatus.dataset.userImage = elem.imagePath;
+                chatIconStatusWrapper.dataset.userId = elem.userId;
+                chatIconStatusWrapper.dataset.userImage = elem.imagePath;
+                activeStatus.id = "people-search-id-" + elem.userId;
 
-            //Adding elements to their respective parent 
-            personWrapper.append(personPhoto, personName, chatIcon);
-            personWrapper.addEventListener("click", renderChattingWindow);
-            _(domStrings.chatAllPeopleWrapper).append(personWrapper);
+                //Adding elements to their respective parent 
+                chatIconStatusWrapper.append(activeStatus, chatIcon);
+                personWrapper.append(personPhoto, personName, chatIconStatusWrapper);
+                personWrapper.addEventListener("click", renderChattingWindow);
+                _(domStrings.chatAllPeopleWrapper).append(personWrapper);
+            }
         });
     }
 
+    let renderStatusOfPeople = users => {
+        users.forEach(elem => {
+            let element = _("#people-search-id-" + elem.userId);
+            if(elem.status == "Online" && element != null){
+                element.classList.remove(domStrings.userOffline);
+                element.classList.add(domStrings.userOnline);
+            }
+            else if(element != null){
+                element.classList.add(domStrings.userOffline);
+                element.classList.remove(domStrings.userOnline);
+            }
+        });
+    }
     let renderMessages = (messages, isReset) => {
         messages = ChatModel.sortMessagesWithTime(messages);
         if(isReset){
@@ -89,7 +125,7 @@ let ChatView = (() => {
             //Creating elements
             let singleMessageWrapper = document.createElement("div");
             let singleMessage = document.createElement("div");
-            let messageContent = document.createElement("p");
+            let messageContent = document.createElement("div");
             let chatTime = document.createElement("div");
             let chatTimePara = document.createElement("p");
 
@@ -125,6 +161,7 @@ let ChatView = (() => {
     return {
         getDomStrings : getDomStrings,
         renderChatPeople : renderChatPeople,
-        renderMessages : renderMessages
+        renderMessages : renderMessages,
+        renderStatusOfPeople: renderStatusOfPeople
     }
 })();

@@ -25,7 +25,7 @@
 </head>
 
 <body>
-    <button type="button" class="audio-button" style="display:none"></button>
+    <button tabindex="-1" type="button" class="audio-button" style="display:none"></button>
     <div class="error-message-wrapper x-axis-flex full-light-theme">
         <div class="error-symbol x-axis-flex"><i class="fa-regular fa-circle-xmark"></i></div>
         <div class="error-message y-axis-flex">
@@ -89,16 +89,16 @@
                 <section class="project-section">
                     <header class="project-section-header common-middle-section-header x-axis-flex">
                         <h1 class="common-middle-section-heading">Projects</h1>
-                        <div class="full-filter-wrapper">
+                        <div class="full-filter-wrapper show-filter">
                             <label for="filter-input" class="filter-label"><i class="bi bi-funnel filter-button"></i></label>
-                            <input type="checkbox" id="filter-input">
+                            <input tabindex="-1" type="checkbox" id="filter-input">
                             <ul class="filter-options-wrapper full-light-theme">
                                 <li class="filter-option yet-to-start-button">Yet to start</li>
                                 <li class="filter-option in-progress-button">On Progress</li>
                                 <li class="filter-option completed-box-button">Completed</li>
                             </ul>
                         </div>
-                        <button type="button" class="common-button add-project-task-button">New</button>
+                        <button tabindex="-1" type="button" class="common-button add-project-task-button">New</button>
                     </header>
 
                     <!-- Project section body starts here -->
@@ -133,7 +133,7 @@
                                 <!-- Single task starts here -->
                                 <div class="single-task light-theme x-axis-flex">
                                     <div class="task-name-checkbox-wrapper x-axis-flex">
-                                        <input type="checkbox" id="task1" class="common-task-check-input">
+                                        <input tabindex="-1" type="checkbox" id="task1" class="common-task-check-input">
                                         <h2 class="single-task-heading">Task 001</h2>
                                     </div> 
                                     <div class="task-buttons-photos-wrapper x-axis-flex">
@@ -211,15 +211,15 @@
                 <i id="form-adding-section-close-button" class="fa-solid fa-xmark"></i>
                 <div class="common-input-wrapper name-adding-wrapper y-axis-flex">
                     <label for="adding-name-input-id">Name</label>
-                    <input type="text" required id="adding-name-input-id" class="common-input adding-name-input">
+                    <input tabindex="-1" type="text" required id="adding-name-input-id" class="common-input adding-name-input">
                 </div>
                 <div class="common-input-wrapper from-date-adding-wrapper y-axis-flex">
                     <label for="adding-from-date-input-id">From Date</label>
-                    <input type="date" required id="adding-from-date-input-id" class="common-input adding-from-date-input">
+                    <input tabindex="-1" type="date" required id="adding-from-date-input-id" class="common-input adding-from-date-input">
                 </div>
                 <div class="common-input-wrapper last-date-adding-wrapper y-axis-flex">
                     <label for="adding-last-date-input-id">Last Date</label>
-                    <input type="date" required id="adding-last-date-input-id" class="common-input adding-last-date-input">
+                    <input tabindex="-1" type="date" required id="adding-last-date-input-id" class="common-input adding-last-date-input">
                 </div>
                 <div class="common-input-wrapper project-choosing-wrapper x-axis-flex">
                     <label for="project-drop-down-id">Project</label>
@@ -232,9 +232,9 @@
                     <div class="people-adding-wrapper x-axis-flex">
                         <div class="selected-people-display"></div>
                         <label for="people-adding-input" class="people-adding-label">Add</i></label>
-                        <input type="checkbox" id="people-adding-input">
+                        <input tabindex="-1" type="checkbox" id="people-adding-input">
                         <ul class="people-options-wrapper full-light-theme">
-                            <input type="search" class="people-search-input">
+                            <input tabindex="-1" type="search" class="people-search-input">
                             <ul class="search-people-wrapper"></ul>
                         </ul>
                     </div>
@@ -243,7 +243,7 @@
                     <label for="adding-desc-input-id">Description</label>
                     <div class="common-input" contenteditable="true" id="adding-desc-input-id"></div>
                 </div>
-                <button type="button" class="common-button add-button">Create</button>
+                <button tabindex="-1" type="button" class="common-button add-button">Create</button>
             </section>
             <!-- Box adding form ends here -->
 
@@ -267,9 +267,9 @@
                     <div class="people-adding-wrapper x-axis-flex">
                         <div class="selected-people-display"></div>
                         <label for="people-show-input" class="people-show-label">show</i></label>
-                        <input type="checkbox" id="people-show-input">
+                        <input tabindex="-1" type="checkbox" id="people-show-input">
                         <ul class="box-desc-people-options-wrapper full-light-theme">
-                            <input type="search" class="people-search-input desc-people-search-input">
+                            <input tabindex="-1" type="search" class="people-search-input desc-people-search-input">
                             <ul class="desc-search-people-wrapper"></ul>
                         </ul>
                     </div>
@@ -286,24 +286,24 @@
                 <i id="box-edit-section-close-button" class="fa-solid fa-xmark"></i>
                 <div class="common-edit-wrapper name-edit-wrapper y-axis-flex">
                     <label for="box-edit-name-id">Name</label>
-                    <input type="text" required id="box-edit-name-id" class="common-input adding-name-input">
+                    <input tabindex="-1" type="text" required id="box-edit-name-id" class="common-input adding-name-input">
                 </div>
                 <div class="common-input-wrapper from-date-adding-wrapper y-axis-flex">
                     <label for="edit-from-date-input-id">From Date</label>
-                    <input type="date" required id="edit-from-date-input-id" class="common-input adding-from-date-input">
+                    <input tabindex="-1" type="date" required id="edit-from-date-input-id" class="common-input adding-from-date-input">
                 </div>
                 <div class="common-input-wrapper last-date-adding-wrapper y-axis-flex">
                     <label for="edit-last-date-input-id">Last Date</label>
-                    <input type="date" required id="edit-last-date-input-id" class="common-input adding-last-date-input">
+                    <input tabindex="-1" type="date" required id="edit-last-date-input-id" class="common-input adding-last-date-input">
                 </div>
                 <div class="common-input-wrapper x-axis-flex">
                     <label for="edit-name-input-id">People</label>
                     <div class="people-adding-wrapper x-axis-flex">
                         <div class="selected-people-display"></div>
                         <label for="people-edit-input" class="people-edit-label">Add</i></label>
-                        <input type="checkbox" id="people-edit-input">
+                        <input tabindex="-1" type="checkbox" id="people-edit-input">
                         <ul class="people-edit-options-wrapper full-light-theme">
-                            <input type="search" class="people-edit-search-input">
+                            <input tabindex="-1" type="search" class="people-edit-search-input">
                             <ul class="edit-search-people-wrapper"></ul>
                         </ul>
                     </div>
@@ -312,7 +312,7 @@
                     <label for="edit-desc-input-id">Description</label>
                     <div class="common-input" contenteditable="true" id="edit-desc-input-id"></div>
                 </div>
-                <button type="button" class="common-button edit-box-button">Update</button>
+                <button tabindex="-1" type="button" class="common-button edit-box-button">Update</button>
             </section>
             <!-- Box edit section ends here -->
 
@@ -320,7 +320,7 @@
             <section class="chat-people-view-section y-axis-flex full-light-theme">
                 <i id="chat-members-view-close-button" class="fa-solid fa-xmark"></i>
                 <h2>Chat</h2>
-                <input type="search" id="chat-memebers-search-input">
+                <input tabindex="-1" type="search" id="chat-memebers-search-input">
                 <div class="members-list light-theme y-axis-flex">
                     <div class="single-member-display-wrapper x-axis-flex">
                         <div class="chat-member-photo semi-light-theme"></div>
@@ -377,13 +377,18 @@
                     <h2>Settings</h2>
                     <div class="buttons-wrapper y-axis-flex">
                         <div class="settings-button x-axis-flex">
+                            <span class="normal-setting-icon change-photo-button-icon x-axis-flex"><i class="bi bi-camera"></i></span>
+                            <p class="normal-settings-text">Change Photo</p>
+                            <span class="normal-setting-click-button change-photo-button x-axis-flex"><i class="fa-solid fa-angle-right"></i></span>
+                        </div>
+                        <div class="settings-button x-axis-flex">
                             <span class="normal-setting-icon edit-profile-button-icon x-axis-flex"><i class="fa-solid fa-pen-to-square"></i></span>
-                            <p class="">Edit Profile</p>
+                            <p class="normal-settings-text">Edit Profile</p>
                             <span class="normal-setting-click-button edit-profile-button x-axis-flex"><i class="fa-solid fa-angle-right"></i></span>
                         </div>
                         <div class="settings-button x-axis-flex">
                             <span class="normal-setting-icon log-out-button-icon x-axis-flex"><i class="fa-solid fa-right-from-bracket"></i></i></span>
-                            <p class="">Log Out</p>
+                            <p class="normal-settings-text">Log Out</p>
                             <span class="normal-setting-click-button log-out-button x-axis-flex"><i class="fa-solid fa-angle-right"></i></span>
                         </div>
                     </div>
@@ -393,31 +398,35 @@
             <!-- Setting section ends here -->
 
             <!-- Profile editing starts here -->
-            <section class="profile-editing-section y-axis-flex full-light-theme">
+            <section tabindex="-1" class="profile-editing-section y-axis-flex full-light-theme">
                 <i id="profile-edit-section-close-button" class="fa-solid fa-xmark"></i>
                 <span class="profile-update-button"><i class="fa-solid fa-check"></i></span>
-                <section class="profile-edit-secton-body y-axis-flex">
+                <section tabindex="-1" class="profile-edit-secton-body y-axis-flex">
                     <h2 class="profile-editing-heading">Account</h2>
-                    <form class="profile-update-form y-axis-flex">
+                    <form tabindex="-1" class="profile-update-form y-axis-flex">
                         <div class="common-input-field x-axis-flex">
                             <label>Photo</label>
                             <div class="photo-updating-body y-axis-flex">
                                 <div class="profile-update-user-photo"></div>
                                 <label for="choose-profile-photo-input">Choose</label>
-                                <input type="file" id="choose-profile-photo-input" accept="image/*">
+                                <input tabindex="-1" type="file" id="choose-profile-photo-input" accept="image/*">
                             </div>
                         </div>
                         <div class="common-input-field x-axis-flex">
                             <label for="profile-update-name">Name</label>
-                            <input type="text" id="profile-update-name" class="common-input-tag">
+                            <input tabindex="-1" type="text" id="profile-update-name" class="common-input-tag">
                         </div>
                         <div class="common-input-field x-axis-flex">
                             <label for="profile-update-email">Email</label>
-                            <input type="email" id="profile-update-email" min="5" max="20" class="common-input-tag">
+                            <input tabindex="-1" type="email" id="profile-update-email" min="5" max="20" class="common-input-tag">
                         </div>
                         <div class="common-input-field x-axis-flex">
-                            <label for="profile-update-email">Password</label>
-                            <input type="password" id="profile-update-pass" min="5" max="20" class="common-input-tag">
+                            <label for="profile-update-old-pass">Old Password</label>
+                            <input tabindex="-1" type="password" id="profile-update-old-pass" min="5" max="20" class="common-input-tag">
+                        </div>
+                        <div class="common-input-field x-axis-flex">
+                            <label for="profile-update-new-pass">New Password</label>
+                            <input tabindex="-1" type="password" id="profile-update-new-pass" min="5" max="20" class="common-input-tag">
                         </div>
                     </form>
                 </section>

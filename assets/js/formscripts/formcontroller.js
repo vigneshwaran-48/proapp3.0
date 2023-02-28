@@ -131,15 +131,32 @@ let FormController = (view => {
             _(view.getDomStrings().peopleEditLabel).id = "closed";
         }
     });  
+    let findRemovedUsers = (id, newUsers) => {
+        let oldArray;
+        if(CURRENTSECTION == "Tasks"){
+            oldArray = TaskModel.getTaskByTaskId(id).users;
+        }
+        else {
+            oldArray = ProjectModel.getDataById(id).users;
+        }
+        let removedUsers = [];
+        oldArray.forEach(elem => {
+            if(!newUsers.includes(elem.userId)){
+                removedUsers.push(elem.userId);
+            }
+        });
+        return removedUsers;
+    }
     //This is for box updating button
     _(view.getDomStrings().editBoxButton).addEventListener("click", async event => {
         let formData = new FormData();
-        console.log(_(view.getDomStrings().editName));
         let peopleInput = Array.from(document.getElementsByName("selected-people")).filter(elem => {
             return elem.checked;
         });
+        
         let people = getPeopleArray(peopleInput);
         people.push("" + USERID);
+        let removedUsers = findRemovedUsers(event.target.id, people);
         let obj = {
             "name" : _(view.getDomStrings().editName).value,
             "id" : event.target.id,
@@ -150,22 +167,22 @@ let FormController = (view => {
             "projectId" : event.target.dataset.projectId
         }
         formData.append("updateData", JSON.stringify(obj));
-        console.log(obj);
-        let result;
+        let response;
         if(CURRENTSECTION == "Tasks"){
-            result = await sendPostRequest("task/update", formData);
+            response = await sendPostRequest("task/update", formData);
         }
         else {
-            result = await sendPostRequest("project/update", formData);
+            response = await sendPostRequest("project/update", formData);
         }
         //The below conditions are for sending notification to all users about the update
-        if(result.response == "Success"){
+        if(response.result == "Success"){
             MainView.showSuccessMessage("updated successfully");
             if(CURRENTSECTION == "Tasks"){
                 sendMessage(JSON.stringify({
                     messageType : "taskUpdate",
                     taskId : parseInt(event.target.id),
-                    description : `${USERNAME} updated a task in which you have been participated`
+                    description : `${USERNAME} updated a task in which you have been participated`,
+                    removedUsers : removedUsers
                 }));
             }
             else {

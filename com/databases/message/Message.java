@@ -8,14 +8,17 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 public class Message {
-    public static Connection c;
-
+    
     public boolean addMessage(String jsonObject) {
         boolean result = false;
         System.out.println(" i am form add");
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            c = DriverManager.getConnection("jdbc:mysql://localhost:3306/proapp", "vicky", "vi99g@NESH");
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+        try (Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/proapp", "vicky", "vi99g@NESH")){
             System.out.println("json:" + jsonObject);
             JSONObject jsonObject2 = (JSONObject) new JSONParser().parse(jsonObject);
 
@@ -37,6 +40,7 @@ public class Message {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
         return result;
     }
 

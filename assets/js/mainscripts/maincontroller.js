@@ -100,6 +100,8 @@ let MainController = (view => {
         _(view.getDomStrings().projectSectionButton).addEventListener("click", event => {
             _(view.getDomStrings().chatMembersCloseButton).click();
             _(view.getDomStrings().settingCloseButton).click();
+            _(view.getDomStrings().fullFilterWrapper).classList.add(view.getDomStrings().showFilter);
+            _(view.getDomStrings().fullFilterWrapper).classList.remove(view.getDomStrings().hideFilter);
             _(view.getDomStrings().currentSectionHeading).textContent = "Projects";
             CURRENTSECTION = "Project";
             _(view.getDomStrings().taskSection).classList.remove(view.getDomStrings().showFromScale);
@@ -110,6 +112,8 @@ let MainController = (view => {
             _(view.getDomStrings().chatMembersCloseButton).click();
             _(view.getDomStrings().settingCloseButton).click();
             _(ChatView.getDomStrings().chattingWindow).click();
+            _(view.getDomStrings().fullFilterWrapper).classList.remove(view.getDomStrings().showFilter);
+            _(view.getDomStrings().fullFilterWrapper).classList.add(view.getDomStrings().hideFilter);
             _(view.getDomStrings().currentSectionHeading).textContent = "Tasks";
             CURRENTSECTION = "Tasks";
             _(view.getDomStrings().taskSection).classList.add(view.getDomStrings().showFromScale);

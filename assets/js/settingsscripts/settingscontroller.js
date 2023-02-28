@@ -1,12 +1,19 @@
 let SettingsController = (view => {
 
-    let updateUserDetails = event => {
+    let resetProfileEditSection = () => {
+        _(view.getDomStrings().editProfileNameInput).value = "";
+        _(view.getDomStrings().editEmailIdInput).value = "";
+        _(view.getDomStrings().editProfileOldPasswordInput).value = "";
+        _(view.getDomStrings().editProfileNewPassword).value = "";
+        _(view.getDomStrings().editPhotoInputTag).value = "";
+    }
+    let updateUserDetails = async event => {
         let formData = new FormData();
         let editName = _(view.getDomStrings().editProfileNameInput).value.trim();
         let editEmailIdInput = _(view.getDomStrings().editEmailIdInput).value.trim();
-        let editProfilePasswordInput = _(view.getDomStrings().editProfilePasswordInput).value;
+        let editProfileOldPasswordInput = _(view.getDomStrings().editProfileOldPasswordInput).value;
+        let editProfileNewPasswordInput = _(view.getDomStrings().editProfileNewPassword).value;
         let editPhoto = _(view.getDomStrings().editPhotoInputTag).files[0];
-        console.log(editPhoto);
         let isPhotoAvailable = false;
         if(editPhoto){
             isPhotoAvailable = true;
@@ -23,19 +30,28 @@ let SettingsController = (view => {
                 //This is to check the email address
                 if(emailRegex.test(editEmailIdInput)){
                     //This if is to check length of user name
-                    if(editProfilePasswordInput.length <= 20 && editProfilePasswordInput.length >= 3){
+                    if(editProfileOldPasswordInput.length <= 20 && editProfileOldPasswordInput.length >= 3 && editProfileNewPasswordInput.length <= 20 && editProfileNewPasswordInput.length >= 3){
                         let obj = {
                             newName : editName,
                             newEmailId : editEmailIdInput,
-                            newPassword : editProfilePasswordInput,
+                            oldPassword : editProfileOldPasswordInput,
+                            newPassword : editProfileNewPasswordInput,
                             uid : USERID,
                             isPhotoAvailable : isPhotoAvailable
                         }
                         if(isPhotoAvailable){
                             obj.imageType =  "." + editPhoto.type.split("/")[1];
                         }
-                        console.log(obj);
                         formData.append("updateData", JSON.stringify(obj));
+                        let response = await sendPostRequest("user/update", formData);
+                        if(response.result == "Success"){
+                            resetProfileEditSection();
+                            getCurrentUserDetails();
+                            _(view.getDomStrings().editProfileCloseButton).click();
+                        }
+                        else {
+                            MainView.showErrorMessage(response.result);
+                        }
                     }
                     else{
                         MainView.showErrorMessage("Password should length should be greater than 3 and lesser than 20");
@@ -56,7 +72,7 @@ let SettingsController = (view => {
     let init = () => {
         //This is for log out action
         _(view.getDomStrings().settingsLogOutButton).addEventListener("click", async event => {
-            await sendPostRequest("logout", "", true);
+            await sendPostRequest("logout?uid=" + USERID, "", true);
             location.reload();
         }); 
         //This is to open the profile editing section
@@ -69,6 +85,15 @@ let SettingsController = (view => {
         });
         //This is to update the user details
         _(view.getDomStrings().editProfileUpdateButton).addEventListener("click", updateUserDetails);
+        //This is for change photo button
+        // _(view.getDomStrings().changePhotoButton).addEventListener("click", event => {
+        //     let formData = new FormData();
+        //     let photo = _(view.getDomStrings().editPhotoInputTag).files[0];
+        //     formData.append("uid", USERID);
+        //     formData.append("imageType", "." + editPhoto.type.split("/")[1]);
+        //     formData.append("userImage", photo);
+        //     sendPostRequest("user/changeimage", formData);
+        // });
     }
     init();
 })(SettingsView);

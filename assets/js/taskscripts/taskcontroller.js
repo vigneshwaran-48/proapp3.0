@@ -13,6 +13,7 @@ let TaskController = ((view, model) => {
         }));
         let response = await sendPostRequest("/ProApp/task/user/changestatus", formData);
         if(response.status){
+            resetProjects();
             resetTasks();
             sendMessage(JSON.stringify({
                 messageType : "taskUpdate",
@@ -30,8 +31,8 @@ let TaskController = ((view, model) => {
         let response = await sendPostRequest("task/delete?taskId=" + taskId, "");
         if(response.status == "success"){
             model.removeTask(taskId);
-            ProjectView.renderProjects(ProjectModel.getProjectsArray());
-            view.renderTasks(ProjectModel.getProjectsArray());
+            resetProjects();
+            resetTasks();
             MainView.showSuccessMessage("Successfully deleted task");
             sendMessage(JSON.stringify({
                 messageType : "taskUpdate",
@@ -50,8 +51,9 @@ let TaskController = ((view, model) => {
             taskId : taskId
         }));
         let response = await sendPostRequest("task/user/delete", formData);
-        if(response.status == "success"){
+        if(response.status == "Success"){
             model.removeTask(taskId);
+            console.log(taskId);
             MainView.showSuccessMessage("Exied from task successfylly");
             sendMessage(JSON.stringify({
                 messageType : "taskUpdate",
@@ -66,7 +68,6 @@ let TaskController = ((view, model) => {
 
     let addTask = async tasks => {
         await model.addTask(tasks, true);
-        console.log("going render .....");
         view.renderTasks(ProjectModel.getProjectsArray());
     } 
     return {
