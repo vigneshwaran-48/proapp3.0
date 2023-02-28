@@ -49,6 +49,7 @@ let TaskView = (() => {
         });
         _(domStrings.taskMiddleSectionBody).innerHTML = "";
         //This if condition is to check any tasks available in any project
+        console.log(tasks);
         if(isTasksAvailable(tasks)){
             Object.keys(tasks).forEach(singleProject => {
                 //This if condition is to check the current project in loop has a task

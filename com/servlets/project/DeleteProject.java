@@ -19,10 +19,10 @@ public class DeleteProject extends HttpServlet {
         JSONObject result = new JSONObject();
         try {
             if(new Project().deleteProject(conn,Integer.parseInt(request.getParameter("projectId")))){
-                result.put("status", "success");
+                result.put("status", "Success");
             }
             else {
-                result.put("status", "unsuccess");
+                result.put("status", "Unsuccess");
             }
             response.getWriter().println(result);
         } catch (Exception e) {

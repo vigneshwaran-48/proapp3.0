@@ -20,7 +20,7 @@ public class DeleteTask extends HttpServlet {
             String result = new Task().deleteTask(conn,Integer.parseInt(request.getParameter("taskId")));
             JSONObject status = new JSONObject();
             if(result.equals("Success")){
-                status.put("status", "success");
+                status.put("status", "Success");
                 response.getWriter().print(status);
             }
             else {

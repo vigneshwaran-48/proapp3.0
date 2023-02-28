@@ -26,7 +26,7 @@ public class RemoveTaskRelation extends HttpServlet{
             int uid = Integer.parseInt(String.valueOf(jsonObject.get("userId")));
             JSONObject result = new JSONObject();
             if (new UpdateTask().deleteUserFromTask(con, uid, tid)){
-                result.put("status", "success");
+                result.put("status", "Success");
                 response.getWriter().println(result);
             }
             else{

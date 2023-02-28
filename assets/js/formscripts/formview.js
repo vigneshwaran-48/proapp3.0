@@ -40,6 +40,14 @@ let FormView = (() => {
             _(domStrings.projectOptionsWrapper).append(projectOption);
         });
     }
+    let resetAllPeopleSearchResults = () => {
+        let editSearchPeople = _(MainView.getDomStrings().editSearchPeopleWrapper);
+        if(editSearchPeople != null){
+            editSearchPeople.innerHTML = "";
+        }
+
+    }
+
     let resetPeopleSearchView = wrapper => {
         Array.from(wrapper.children).forEach(elem => {
             if(!elem.children[2].checked){
@@ -89,6 +97,7 @@ let FormView = (() => {
     return {
         getDomStrings : getDomStrings,
         renderSearchPeople : renderSearchPeople,
-        renderProjectOption : renderProjectOption
+        renderProjectOption : renderProjectOption,
+        resetAllPeopleSearchResults : resetAllPeopleSearchResults
     }
 })();

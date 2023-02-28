@@ -71,7 +71,7 @@ public class ChatServer {
             }
         } else if (js.get("messageType").equals("taskUpdate")) {
             UsersApiCall api = new UsersApiCall();
-            ArrayList<Long> arrayList = api.getUsersByTaskId((Long) js.get("taskId"));
+            ArrayList<Long> arrayList = api.getUsersByTaskId(Long.parseLong(String.valueOf(js.get("taskId"))));
 
             for (Long arrList : arrayList) {
                 if (alreadyExist(arrList)) {
