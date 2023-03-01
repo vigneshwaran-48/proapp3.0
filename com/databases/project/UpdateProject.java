@@ -53,7 +53,7 @@ public class UpdateProject {
                 }
                 totalCount++;
             }
-            
+            // System.out.println("project id = "+pid+" , status = "+ );
             //System.out.println("completedCount:" + completedCount + "totalCount:" + totalCount +"on progress ="+onProgressCount);
             if(totalCount!=0)
             {

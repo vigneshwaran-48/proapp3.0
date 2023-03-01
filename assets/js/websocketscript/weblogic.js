@@ -7,9 +7,11 @@ let processMessage = async data => {
     }
     if(data.messageType == "projectUpdate"){
         resetProjects();
+        resetTasks();
     }
     else if(data.messageType == "taskUpdate"){
         resetProjects();
+        resetTasks();
     }
     else if(data.messageType == "textMessage"){
         handleTextMessage(data);

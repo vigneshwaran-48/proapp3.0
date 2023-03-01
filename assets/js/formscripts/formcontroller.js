@@ -119,12 +119,12 @@ let FormController = (view => {
             _(view.getDomStrings().peopleEditLabel).id = "opened";
             if(CURRENTSECTION != "Project"){
                 let users = TaskModel.getTaskByTaskId(event.target.dataset.taskId).users;
-                console.log(users);
-                view.renderSearchPeople("", true, _(MainView.getDomStrings().editSearchPeopleWrapper), users);
+                view.renderSearchPeople("", true, _(MainView.getDomStrings().editSearchPeopleWrapper), users, true);
             }
             else {
-                let response = await sendGetRequest("user/getusers?id=all");
-                view.renderSearchPeople("", true, _(MainView.getDomStrings().editSearchPeopleWrapper), response);
+                console.log(event.target.dataset.projectId);
+                let response = await sendGetRequest("user/getusers/project?id=" + event.target.dataset.projectId);
+                view.renderSearchPeople("", true, _(MainView.getDomStrings().editSearchPeopleWrapper), response, true);
             } 
         }
         else {

@@ -23,7 +23,7 @@ let ProjectController = ((view, model) => {
         }
         formData.append("userData", JSON.stringify(obj));
         let result = await sendPostRequest("project/user/delete", formData);
-        if(result.status == "success"){
+        if(result.status == "Success"){
             MainView.showSuccessMessage("Successfully exited project");
             model.removeProject(id);
             view.renderProjects(ProjectModel.getProjectsArray());

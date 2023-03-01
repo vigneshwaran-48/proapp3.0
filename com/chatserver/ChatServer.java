@@ -71,7 +71,7 @@ public class ChatServer {
             }
         } else if (js.get("messageType").equals("taskUpdate")) {
             UsersApiCall api = new UsersApiCall();
-            ArrayList<Long> arrayList = api.getUsersByTaskId(Long.parseLong(String.valueOf(js.get("taskId"))));
+            ArrayList<Long> arrayList = api.getUsersByTaskId((Long) js.get("taskId"));
 
             for (Long arrList : arrayList) {
                 if (alreadyExist(arrList)) {
@@ -89,21 +89,21 @@ public class ChatServer {
                 }
             }
             JSONArray arrs=(JSONArray)js.get("removedUsers");
-            for (User userIndi : arr) {
-                if(arrs.contains(userIndi.getUserId()))
-                {
-                    try {
-                        userIndi.getSession().getBasicRemote().sendText("You have Been Removed");
-                    } catch (IOException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
+            System.out.println(arrs);
+            if(arrs != null){
+                for (User userIndi : arr) {
+                    System.out.println(userIndi.getUsername());
+                    if(arrs.contains(userIndi.getUserId()))
+                    {
+                        try {
+                            userIndi.getSession().getBasicRemote().sendText("You have Been Removed");
+                        } catch (IOException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
-            // if(js.get("isRemoved").equals("true"))
-            // {
-
-            // }
         }
         else if (js.get("messageType").equals("textMessage")) {
             Message add = new Message();

@@ -62,6 +62,7 @@ public class RetrieveTask {
                 jsonObject.put("isCompleted", isCompleted(con, uid,rs.getInt("tid")));
                 jsonArray.add(jsonObject);
             }
+            // System.out.println(jsonArray);
         } 
         catch (SQLException e) {
             e.printStackTrace();

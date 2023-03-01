@@ -94,7 +94,6 @@ let MainController = (view => {
         //This is for closing edit section
         _(view.getDomStrings().editBoxCloseButton).addEventListener("click", event => {
             _(view.getDomStrings().fullEditSection).classList.remove(view.getDomStrings().showFromRightToLeft);
-            FormView.resetAllPeopleSearchResults();
         });
 
         //This is for opening projects section

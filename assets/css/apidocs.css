@@ -1,0 +1,305 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+body,
+html {
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+}
+
+.x-axis-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.y-axis-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.top-header {
+    padding: 10px;
+    background-color: rgb(40, 44, 59);
+    color: white;
+    justify-content: space-between;
+    height: 7%;
+    border-bottom: 1px solid white;
+}
+
+.top-heading {
+    text-align: center;
+    flex-grow: 1;
+}
+
+.hamburger-menu-wrapper {
+    font-size: 25px;
+    display: none;
+}
+
+.main-body {
+    width: 100%;
+    justify-content: space-between;
+    height: 93%;
+    overflow: hidden;
+    position: relative;
+}
+
+.side-nav-bar {
+    max-width: 300px;
+    width: 80%;
+    height: 100%;
+    transition: 0.5s;
+    background-color: rgb(40, 44, 59);
+    color: white;
+    padding: 10px;
+    z-index: 20;
+    border-right: 1px solid white;
+    overflow: scroll;
+}
+
+.nav-a-tag {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
+
+.api-doc-heading {
+    display: block;
+    width: 100%;
+    font-size: 27px;
+    margin: 5px;
+    cursor: pointer;
+}
+.api-doc-heading:hover{
+    background-color: rgb(29, 33, 44);
+}
+
+.common-api-li {
+    list-style-type: none;
+    font-size: 20px;
+    width: 100%;
+    padding: 10px;
+}
+
+.common-api-li:hover {
+    background-color: rgb(29, 33, 44);
+}
+
+.common-ul {
+    display: none;
+}
+
+.common-checkbox {
+    display: none;
+}
+
+.common-checkbox:checked+ul {
+    display: block;
+}
+
+.description-section,
+.code-section {
+    width: 45%;
+    height: 100%;
+    overflow: scroll;
+}
+
+.description-section::-webkit-scrollbar,
+.code-section::-webkit-scrollbar,
+.side-nav-bar::-webkit-scrollbar {
+    display: none;
+}
+
+.code-section {
+    transition: 0.5s;
+    background-color: rgb(40, 44, 59);
+    color: white;
+    width: 35%;
+}
+
+.code-section-button {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 25px;
+    background-color: rgb(40, 44, 59);
+    border: 2px solid white;
+    border-radius: 50%;
+    color: white;
+    position: fixed;
+    top: 45%;
+    right: 5px;
+    font-weight: 900;
+    display: none;
+    z-index: 15;
+}
+
+/* API description styling starts here */
+.common-api-decription {
+    border-bottom: 1px solid black;
+}
+
+.api-heading {
+    font-size: 30px;
+}
+
+.users-api-description {
+    padding: 10px;
+}
+
+.all-users-api-wrapper {
+    width: 100%;
+    align-items: flex-start;
+}
+
+.common-api-heading {
+    font-size: 30px;
+}
+
+.common-api-decription {
+    margin: 10px 0px;
+    width: 100%;
+    align-items: flex-start;
+}
+
+.api-desc-para {
+    font-size: 20px;
+    margin: 10px;
+}
+
+/* ----  note wrapper by basith*/
+.note-type-wrapper {
+
+    /* width: 400px; */
+    margin-left: 15px;
+
+}
+
+/* ---- note wrapper by basith end*/
+.request-type-wrapper {
+    width: 250px;
+}
+
+.request-type-value {
+    padding: 5px;
+    margin-top: 5px;
+    font-size: 20px;
+}
+
+.query-params {
+    margin: 15px 0px;
+    width: 100%;
+}
+
+.query-table {
+    margin: 10px 0px;
+    width: 100%;
+    font-size: 20px;
+    justify-content: space-between;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.query-row {
+    width: 100%;
+}
+
+.query-head {
+    padding: 10px;
+    width: 25%;
+    overflow-wrap: break-word;
+}
+
+.query-content {
+    padding: 10px;
+    width: 75%;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    overflow-wrap: break-word;
+}
+
+/* API description styling ends here */
+
+/* API example code styling starts here */
+.common-api-example {
+    margin-top: 5px;
+    border-bottom: 1px solid white;
+}
+
+.code-section {
+    padding: 10px;
+}
+
+.example-body,
+.request-body,
+.response-body,
+.common-example-text {
+    margin: 10px 0px;
+    padding: 10px 0px;
+}
+
+.common-example-text {
+    font-size: 20px;
+}
+
+.api-link {
+    font-size: 20px;
+}
+
+.form-data,
+.response-json {
+    font-size: 20px;
+}
+
+.response-json {
+    margin: 10px;
+}
+
+/* API example code styling ends here */
+
+@media screen and (max-width: 900px) {
+    .side-nav-bar {
+        position: absolute;
+        transform: translateX(-100%);
+    }
+
+    .hamburger-menu-wrapper {
+        display: block;
+    }
+
+    .description-section,
+    .code-section {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .code-section {
+        position: absolute;
+        transform: translateY(-100%);
+        max-width: 500px;
+        width: 100%;
+        z-index: 10;
+    }
+
+    .description-section {
+        width: 100%;
+    }
+
+    .code-section-button {
+        display: block;
+    }
+}
+
+.show-section {
+    transform: translateX(0%);
+}
+
+.show-code-area {
+    transform: translateY(0%);
+}

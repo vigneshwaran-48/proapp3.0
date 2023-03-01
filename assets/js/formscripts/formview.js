@@ -23,7 +23,7 @@ let FormView = (() => {
         showProjectsChoosingWrapper : "show-project-choosing-wrapper",
         editBoxButton : ".edit-box-button",
         peopleEditLabel : ".people-edit-label",
-        peopleEditInput : "#people-edit-input"
+        peopleEditInput : ".people-edit-search-input"
     }
     let renderProjectOption = projects => {
         _(domStrings.projectOptionsWrapper).innerHTML = "";
@@ -40,14 +40,6 @@ let FormView = (() => {
             _(domStrings.projectOptionsWrapper).append(projectOption);
         });
     }
-    let resetAllPeopleSearchResults = () => {
-        let editSearchPeople = _(MainView.getDomStrings().editSearchPeopleWrapper);
-        if(editSearchPeople != null){
-            editSearchPeople.innerHTML = "";
-        }
-
-    }
-
     let resetPeopleSearchView = wrapper => {
         Array.from(wrapper.children).forEach(elem => {
             if(!elem.children[2].checked){
@@ -64,7 +56,7 @@ let FormView = (() => {
         }
         return false;
     }
-    let renderSearchPeople = async (searchInput, renderFull, addToElement, people) => {
+    let renderSearchPeople = async (searchInput, renderFull, addToElement, people, isChecked) => {
         resetPeopleSearchView(addToElement);
         people.forEach(elem => {
             if(((elem.userName.toLowerCase().includes(searchInput.toLowerCase()) || renderFull ) && !isPersonResultAvailable(elem.userId, addToElement)) && elem.userId != USERID){
@@ -84,6 +76,12 @@ let FormView = (() => {
                 inputTag.type = "checkbox";
                 inputTag.name = "selected-people";
                 inputTag.id = elem.userId;
+                if(isChecked){
+                    inputTag.checked = true;
+                }
+                else {
+                    inputTag.checked = false;
+                }
                 p.textContent = elem.userName;
                 imageDiv.style.backgroundImage = `url(/ProApp/assets/images/usersImages/${elem.imagePath})`;
 
@@ -97,7 +95,6 @@ let FormView = (() => {
     return {
         getDomStrings : getDomStrings,
         renderSearchPeople : renderSearchPeople,
-        renderProjectOption : renderProjectOption,
-        resetAllPeopleSearchResults : resetAllPeopleSearchResults
+        renderProjectOption : renderProjectOption
     }
 })();

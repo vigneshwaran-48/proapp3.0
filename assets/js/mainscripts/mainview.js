@@ -91,6 +91,7 @@ let MainView = (() => {
                 imageDiv.style.backgroundImage = `url(/ProApp/assets/images/usersImages/${elem.imagePath})`;
 
                 labelTag.append(imageDiv, p);
+                console.log(labelTag);
                 _(domStrings.descPeopleWrapper).append(labelTag);
             }
         });
@@ -180,6 +181,7 @@ let MainView = (() => {
             _(FormView.getDomStrings().editFromDateId).value = projectData.fromDate;
             _(FormView.getDomStrings().editLastDateId).value = projectData.toDate;
             _(FormView.getDomStrings().editDescInputTag).innerText = projectData.projectDesc;
+            _(FormView.getDomStrings().peopleEditLabel).dataset.projectId = id;
             renderSearchPeople("", id, true, true);
             _(domStrings.editPeopleSearchInput).addEventListener("input", async event => {
                 let response = await sendGetRequest("user/getusers?id=all");
@@ -188,6 +190,7 @@ let MainView = (() => {
         }
         else {
             let taskData = TaskModel.getTaskByTaskId(id);
+            console.log(taskData)
             _(FormView.getDomStrings().editName).value = taskData.taskName;
             _(FormView.getDomStrings().editFromDateId).value = taskData.fromDate;
             _(FormView.getDomStrings().editLastDateId).value = taskData.toDate;
@@ -195,8 +198,11 @@ let MainView = (() => {
             renderSearchPeople("", id, false, true);
             _(FormView.getDomStrings().editBoxButton).dataset.projectId = taskData.projectId;
             _(FormView.getDomStrings().peopleEditLabel).dataset.taskId = taskData.taskId;
+            _(FormView.getDomStrings().peopleEditInput).dataset.taskId = taskData.taskId;
             _(domStrings.editPeopleSearchInput).addEventListener("input", async event => {
-                let response = await sendGetRequest("user/getusers/project?id=" + taskData.projectId);
+                console.log(event.target.dataset.taskId);
+                let projectId = TaskModel.getTaskByTaskId(event.target.dataset.taskId).projectId;
+                let response = await sendGetRequest("user/getusers/project?id=" + projectId);
                 FormView.renderSearchPeople(event.target.value, false, _(domStrings.editSearchPeopleWrapper), response);
             }); 
         }
