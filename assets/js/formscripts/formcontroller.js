@@ -122,7 +122,6 @@ let FormController = (view => {
                 view.renderSearchPeople("", true, _(MainView.getDomStrings().editSearchPeopleWrapper), users, true);
             }
             else {
-                console.log(event.target.dataset.projectId);
                 let response = await sendGetRequest("user/getusers/project?id=" + event.target.dataset.projectId);
                 view.renderSearchPeople("", true, _(MainView.getDomStrings().editSearchPeopleWrapper), response, true);
             } 
@@ -192,6 +191,7 @@ let FormController = (view => {
                     description : `${USERNAME} updated a project in which you have been participated`
                 }));
             }
+            resetProjects();
             _(MainView.getDomStrings().editBoxCloseButton).click();
         }
         else {

@@ -26,7 +26,10 @@ public class CreateUser extends HttpServlet {
             User insertUser = new User();
             JSONObject jsonObject = (JSONObject) new JSONParser().parse(request.getParameter("userData"));
             Connection c = (Connection) request.getServletContext().getAttribute("Connection");
-            insertUser.insertUserData(c, jsonObject, request);    
+            insertUser.insertUserData(c, jsonObject, request);
+            JSONObject object = new JSONObject(); 
+            object.put("result", "Success");   
+            response.getWriter().println(object);
         } 
         catch (Exception e) {
             e.printStackTrace();

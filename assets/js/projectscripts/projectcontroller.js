@@ -8,8 +8,10 @@ let ProjectController = ((view, model) => {
         let result = await sendPostRequest("project/delete?projectId=" + id);
         if(result.status == "success"){
             MainView.showSuccessMessage("Successfully deleted project");
-            model.removeProject(id);
-            view.renderProjects(ProjectModel.getProjectsArray());
+            // model.removeProject(id);
+            // view.renderProjects(ProjectModel.getProjectsArray());
+            resetProjects();
+            resetProjects();
         }
         else {
             MainView.showErrorMessage("Oops, something went wrong");
@@ -23,7 +25,7 @@ let ProjectController = ((view, model) => {
         }
         formData.append("userData", JSON.stringify(obj));
         let result = await sendPostRequest("project/user/delete", formData);
-        if(result.status == "Success"){
+        if(result.status == "success"){
             MainView.showSuccessMessage("Successfully exited project");
             model.removeProject(id);
             view.renderProjects(ProjectModel.getProjectsArray());

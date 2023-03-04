@@ -21,6 +21,7 @@ public class RemoveTaskRelation extends HttpServlet{
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Connection con = (Connection) request.getServletContext().getAttribute("Connection");
         try {
+            System.out.println(request.getParameter("userData"));
             JSONObject jsonObject = (JSONObject) new JSONParser().parse(request.getParameter("userData"));
             int tid = Integer.parseInt(String.valueOf(jsonObject.get("taskId")));
             int uid = Integer.parseInt(String.valueOf(jsonObject.get("userId")));

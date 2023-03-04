@@ -30,9 +30,7 @@ let ProjectModel = (() => {
                 createdBy : tempCreated
             }
             formData.append("data", JSON.stringify(tempObj));
-            console.log("request sent ....");
             let response = await sendPostRequest("/ProApp/project/add", formData);
-            console.log("response recieved");
             response.status = "Yet To Start";
             let project = changeServerObject(response);
             console.log(project);
@@ -43,7 +41,7 @@ let ProjectModel = (() => {
                 messageType: "projectUpdate",
                 projectId : project.id,
                 userId : USERID,
-                description : "you have been added to a project by " + USERNAME
+                description :USERNAME+ " has Added you in Project"
             }));
         });
     }

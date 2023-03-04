@@ -21,11 +21,7 @@ import org.json.simple.parser.ParseException;
 import com.apicall.UsersApiCall;
 
 import com.databases.message.Message;
-import com.mysql.cj.xdevapi.JsonParser;
 
-/**
- * ChatServer
- */
 @ServerEndpoint("/chat")
 public class ChatServer {
     static CopyOnWriteArrayList<User> arr = new CopyOnWriteArrayList<User>();
@@ -34,13 +30,11 @@ public class ChatServer {
     @OnOpen
     public void connect(Session session) {
         Map<String, List<String>> hashMap = session.getRequestParameterMap();
-        // System.out.println("Connected Successfully");
-        System.out.println("hashmap:" + hashMap);
         uid = Long.parseLong(String.valueOf(hashMap.get("uid").get(0)));
         if (!alreadyExistSession(session)) {
             arr.add(new User(session, uid));
+            notifyAllUser("UserJoined",uid);
         }
-        notifyAllUser("UserJoined",uid);
     }
 
     @OnMessage
@@ -71,7 +65,7 @@ public class ChatServer {
             }
         } else if (js.get("messageType").equals("taskUpdate")) {
             UsersApiCall api = new UsersApiCall();
-            ArrayList<Long> arrayList = api.getUsersByTaskId((Long) js.get("taskId"));
+            ArrayList<Long> arrayList = api.getUsersByTaskId(Long.parseLong(String.valueOf(js.get("taskId"))));
 
             for (Long arrList : arrayList) {
                 if (alreadyExist(arrList)) {
@@ -90,15 +84,17 @@ public class ChatServer {
             }
             JSONArray arrs=(JSONArray)js.get("removedUsers");
             System.out.println(arrs);
+            System.out.println(arr);
             if(arrs != null){
                 for (User userIndi : arr) {
-                    System.out.println(userIndi.getUsername());
-                    if(arrs.contains(userIndi.getUserId()))
+                    System.out.println(userIndi.getUserId());
+                    js.put("description", "You have been removed from the task");
+                    System.out.println(js);
+                    if(arrs.contains(String.valueOf(userIndi.getUserId())))
                     {
                         try {
-                            userIndi.getSession().getBasicRemote().sendText("You have Been Removed");
+                            userIndi.getSession().getBasicRemote().sendText(js.toJSONString());
                         } catch (IOException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
                     }

@@ -19,6 +19,7 @@ let TaskController = ((view, model) => {
                 description : USERNAME + " working on " + model.getTaskByTaskId(taskId).taskName
             }));
             resetProjects();
+            resetProjects();
         }
         else {
             MainView.showErrorMessage("Oops !, something went wrong");
@@ -36,7 +37,7 @@ let TaskController = ((view, model) => {
             sendMessage(JSON.stringify({
                 messageType : "taskUpdate",
                 taskId : taskId,
-                description : USERNAME + " deleted the task you have been in"
+                description : USERNAME + " deleted the task you Were in "
             }));
         }
         else {
@@ -50,7 +51,7 @@ let TaskController = ((view, model) => {
             taskId : taskId
         }));
         let response = await sendPostRequest("task/user/delete", formData);
-        if(response.status == "Success"){
+        if(response.status == "success"){
             model.removeTask(taskId);
             console.log(taskId);
             MainView.showSuccessMessage("Exied from task successfylly");

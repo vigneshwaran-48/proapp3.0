@@ -51,7 +51,7 @@ let TaskModel = (() => {
             sendMessage(JSON.stringify({
                 messageType : "taskUpdate",
                 taskId : task.taskId,
-                description : `You have been added to a task by ${USERNAME}`
+                description : `You have been assigned to a task by ${USERNAME}`
             }));
             console.log("task added .....");
             passed("success");

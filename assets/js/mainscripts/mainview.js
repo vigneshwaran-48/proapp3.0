@@ -73,7 +73,6 @@ let MainView = (() => {
             boxModel = TaskModel;
         }
         _(domStrings.descPeopleWrapper).innerHTML = "";
-        console.log(boxModel.getDataById(id));          
         boxModel.getDataById(id).users.forEach(elem => {
             if((elem.userName.toLowerCase().includes(searchName.toLowerCase()) || searchName.length == 0) || renderFull){
                 let labelTag = document.createElement("label");
@@ -136,8 +135,13 @@ let MainView = (() => {
     let loadStatisticsCircle = (total, completed) => {
         let percentage = Math.round((completed / total) * 100);
         let degree = percentage / 100 * 360;
-
-        _(domStrings.statCircleValue).textContent = percentage + "%";
+        console.log(isNaN(percentage));
+        if(isNaN(percentage)){
+            _(domStrings.statCircleValue).textContent = "0%";
+        }
+        else {
+            _(domStrings.statCircleValue).textContent = percentage + "%";
+        }
         let count = 0;
         let intervalId = setInterval(() => {
             if(count <= degree){
@@ -174,6 +178,7 @@ let MainView = (() => {
         }
     }   
     let renderEditSection = (id, isProject) => {
+        console.log("Is project? " + isProject);
         if(isProject){
             _(FormView.getDomStrings().editBoxButton).dataset.projectId = id;
             let projectData = ProjectModel.getDataById(id);

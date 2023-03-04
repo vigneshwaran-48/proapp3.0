@@ -33,7 +33,7 @@ public class UpdateUserDetails extends HttpServlet{
             {
                 if(Boolean.valueOf((String.valueOf(jsonObject.get("isPhotoAvailable")))))
                 {
-                    String location = "/home/vigneshwaran/ApacheTerminal/apache-tomcat-8.5.84/webapps/ProApp/assets/images/usersImages/";
+                    String location = "/home/vigneshwaran/ApacheTerminal/apache-tomcat-8.5.86/webapps/ProApp/assets/images/usersImages/";
                     new Image().updatePhoto(c, req.getPart("userImage") , Integer.parseInt(String.valueOf(jsonObject.get("uid"))), (String) jsonObject.get("imageType"), location);
                     resultObject.put("result","Success");
                     // resp.getWriter().print(result);

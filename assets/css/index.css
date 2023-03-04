@@ -132,6 +132,7 @@ body{
 
 
 .use-cases-section{
+    padding-top: 200px;
     margin: auto;
     display: flex;
     flex-direction: column;

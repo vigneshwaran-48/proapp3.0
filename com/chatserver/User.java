@@ -26,5 +26,7 @@ public class User {
     public String getUsername() {
         return username;
     }
-   
+    public String toString(){
+        return session + ", " + username + ", " + userId;
+    }
 }
