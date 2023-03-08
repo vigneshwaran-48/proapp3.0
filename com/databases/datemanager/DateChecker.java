@@ -26,7 +26,7 @@ public class DateChecker {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        try (Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/proapp", "vicky", "vi99g@NESH");){
+        try (Connection c = DriverManager.getConnection("jdbc:mysql://10.52.0.38:3306/proapp", "vicky", "vi99g@NESH");){
             new DateChecker().projectExpiryDateChecker(c);   
         } catch (Exception e) {
             e.printStackTrace();

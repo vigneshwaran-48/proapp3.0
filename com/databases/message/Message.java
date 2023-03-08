@@ -1,7 +1,6 @@
 package com.databases.message;
 
 import java.sql.*;
-import java.util.Date;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -15,10 +14,9 @@ public class Message {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (Exception e) {
-            // TODO: handle exception
             e.printStackTrace();
         }
-        try (Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/proapp", "vicky", "vi99g@NESH")){
+        try (Connection c = DriverManager.getConnection("jdbc:mysql://10.52.0.38:3306/proapp", "vicky", "vi99g@NESH")){
             System.out.println("json:" + jsonObject);
             JSONObject jsonObject2 = (JSONObject) new JSONParser().parse(jsonObject);
 
@@ -29,9 +27,7 @@ public class Message {
             String message = (String) jsonObject2.get("messageContent");
             messageDate=changeDateFormat(messageDate);
             Statement statement = c.createStatement();
-            // statement.executeUpdate("insert into
-            // messages(messagetime,fromUser,toUser,message,)
-            // values('"+time+"','"+from+"','"+to+"','"+message+"')");
+
             statement.executeUpdate("insert into messages(messageTime,messageDate,fromUser,toUser,message)values('"
                     + messageTime + "' , '" + messageDate + "' , " + from + " , " + to + " , '" + message + "')");
             System.out.println("i am form addmessage");

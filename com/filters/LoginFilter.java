@@ -36,12 +36,12 @@ public class LoginFilter extends HttpFilter{
                 if (loginChecker.validater(email, password)) {
                     HttpServletRequest sessionVar = (HttpServletRequest) request; // changing the servlet Requet to http // servelt Request
                     HttpSession session = sessionVar.getSession(); // making a session Var
-                    // session.setMaxInactiveInterval(10);
+                    
                     session.setAttribute("emailId", email);
                     session.setAttribute("password", password);
-                    // //System.out.println("from lpgin");
+
                     Class.forName("com.mysql.cj.jdbc.Driver");
-                    Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/proapp", "vicky", "vi99g@NESH");
+                    Connection conn= DriverManager.getConnection("jdbc:mysql://10.52.0.38:3306/proapp", "vicky", "vi99g@NESH");
                     int uid=new RetrieveUser().getUidByEmail(conn, email);
                     session.setAttribute("uid", uid);
                     session.setAttribute("userName", new RetrieveUser().getUnameByEmail(conn, email));

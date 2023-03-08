@@ -3,7 +3,6 @@ package com.databases.users;
 import java.sql.*;
 import org.json.simple.JSONObject;
 
-import com.authorize.LoginChecker;
 
 /**
  * This class is used to update user details.
@@ -31,12 +30,10 @@ public class UpdateUser {
 
             if(verifyOldPassword(oldPassword, uid, con)){
                 if(isPhotoAvailable){
-                    stmt.executeUpdate("update users set uname = '" + newUserName + "', emailid = '"+newemailid + "', password = '"+newPassword+"' where uid = " + uid);
-                    Statement stmt2 = con.createStatement();
-                    stmt2.executeUpdate("update images set imagePath = '"+String.valueOf(uid)+newimagePath+"' where uid = "+uid);
+                    stmt.executeUpdate("update users set uname = '" + newUserName + "', emailid = '"+newemailid + "', password = aes_encrypt('"+newPassword+"','secret_key') , imagePath = '"+String.valueOf(uid)+newimagePath+"' where uid = " + uid);
                 }
                 else{
-                    stmt.executeUpdate("update users set uname = '" + newUserName + "', emailid = '"+newemailid + "', password = '"+newPassword+"' where uid = " + uid);
+                    stmt.executeUpdate("update users set uname = '" + newUserName + "', emailid = '"+newemailid + "', password = aes_encrypt('"+newPassword+"','secret_key') where uid = " + uid);
                 }
                 result="Success";
             }
@@ -56,7 +53,7 @@ public class UpdateUser {
         boolean result = false;
         try {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select password from users where uid = "+uid);
+            ResultSet rs = stmt.executeQuery("select cast( aes_decrypt(password,'secret_key') as char) as password from users where uid = "+uid);
             rs.next();
             if(oldPassword.equals(rs.getString("password"))){
                 result = true;

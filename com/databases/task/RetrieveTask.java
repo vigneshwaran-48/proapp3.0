@@ -3,6 +3,8 @@ package com.databases.task;
 import java.sql.*; 
 import org.json.simple.*;
 
+import com.databases.users.RetrieveUser;
+
 /**
  * This class is used to retrieve tasks data
  */
@@ -45,7 +47,7 @@ public class RetrieveTask {
         try {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select * from task_relation inner join tasks on task_relation.tid = tasks.tid where task_relation.uid ="+uid);
-            com.databases.users.RetrieveUser uallTask = new com.databases.users.RetrieveUser();
+            RetrieveUser uallTask = new RetrieveUser();
 
             while (rs.next()) {
                 JSONObject jsonObject = new JSONObject();

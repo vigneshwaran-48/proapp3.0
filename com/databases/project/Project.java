@@ -40,13 +40,13 @@ public class Project {
                 // adding the jsonarray of users by iterating
                 Long uid = Long.parseLong(String.valueOf(users.get(i)));
                 stmt.executeUpdate("insert into project_relation (pid,uid) values(" + pid + "," + uid + ")");
-                rs2 = stmt2.executeQuery("select * from users where uid = "+uid);
+                rs2 = stmt2.executeQuery("select uid,uname,imagePath from users where uid = "+uid);
                 Image img=new Image();
                 while(rs2.next()){
                     JSONObject jsonObject = new JSONObject();
                     jsonObject.put("userId",rs2.getInt("uid"));
                     jsonObject.put("userName",rs2.getString("uname"));
-                    jsonObject.put("imagePath",img.getImagePath(Integer.parseInt(String.valueOf(uid)), con));
+                    jsonObject.put("imagePath",rs2.getString("imagePath"));
                     userDetails.add(jsonObject);
                 }         
             }

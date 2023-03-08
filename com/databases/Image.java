@@ -1,7 +1,6 @@
 package com.databases;
 import java.io.*;
 import java.sql.*;
-import java.util.Arrays;
 
 import javax.servlet.http.Part;
 /**
@@ -52,33 +51,34 @@ public class Image {
      * @param con This Connection object used to connect to DB.
      * @return Returns the extension of the user's image.
      */
-    public String getImagePath(int uid, Connection con){
-        String path = "";
-        try {
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("select imagePath from images where uid = " + uid);
-            rs.next();
-            path = rs.getString(1);
-        } 
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        return path;
-    }
+    // public String getImagePath(int uid, Connection con){
+    //     String path = "";
+    //     try {
+    //         Statement st = con.createStatement();
+    //         ResultSet rs = st.executeQuery("select imagePath from users where uid = " + uid);
+    //         rs.next();
+    //         path = rs.getString(1);
+    //     } 
+    //     catch (Exception e) {
+    //         e.printStackTrace();
+    //     }
+    //     return path;
+    // }
 
     /**
      * This method is used to add a user's image to DB
      * @param uid This id is used to add a image to the particular user to DB
      * @param con This Connection object is used to connect to DB
      */
-    public void insertImage(int uid,Connection con) {
-        try {
-            Statement stmt = con.createStatement();
-            stmt.executeUpdate("insert into images (uid) values("+uid+")");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    // public void insertImage(int uid,Connection con) {
+    //     try {
+    //         Statement stmt = con.createStatement();
+    //         stmt.executeUpdate("insert into images (uid) values("+uid+")");
+    //     } catch (Exception e) {
+    //         e.printStackTrace();
+    //     }
+    // }
+
     /**
      * This method is used to delete the previous image
      * @param id With this user id the image will be deleted

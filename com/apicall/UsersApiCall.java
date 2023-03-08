@@ -13,7 +13,7 @@ public class UsersApiCall {
     public JSONObject getUserByUserId(int value) {
         JSONObject jsonObject = null;
         try {
-            URL url = new URL("http://localhost:8787/ProApp/user/getusers?id=" + value);// url of the api
+            URL url = new URL("http://10.52.0.38:8787/ProApp/user/getusers?id=" + value);// url of the api
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();// opening the url connection using
                                                                                     // the HttpUrlConnection class
             connection.setRequestMethod("GET");// setting the request method as GET
@@ -40,7 +40,7 @@ public class UsersApiCall {
     public JSONArray getAllUsers() {
         JSONArray jsonArray = null;
         try {
-            URL url = new URL("http://localhost:8787/ProApp/user/getusers?id=all");// url of the api
+            URL url = new URL("http://10.52.0.38:8787/ProApp/user/getusers?id=all");// url of the api
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();// opening the url connection using
                                                                                     // the HttpUrlConnection class
             connection.setRequestMethod("GET");// setting the request method as GET
@@ -67,7 +67,7 @@ public class UsersApiCall {
     public ArrayList<Long> getUsersByProjectId(Long pid) {
         ArrayList<Long> userArray = new ArrayList<>();
         try {
-            URL url = new URL("http://localhost:8787/ProApp/user/getusers/project?id=" + pid);// url of the api
+            URL url = new URL("http://10.52.0.38:8787/ProApp/user/getusers/project?id=" + pid);// url of the api
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();// opening the url connection using
                                                                                     // the HttpUrlConnection class
             connection.setRequestMethod("GET");// setting the request method as GET
@@ -101,7 +101,7 @@ public class UsersApiCall {
     public ArrayList<Long> getUsersByTaskId(Long tid) {
         ArrayList<Long> userArray = new ArrayList<>();
         try {
-            URL url = new URL("http://localhost:8787/ProApp/user/getusers/task?id=" + tid);// url of the api
+            URL url = new URL("http://10.52.0.38:8787/ProApp/user/getusers/task?id=" + tid);// url of the api
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();// opening the url connection using
                                                                                     // the HttpUrlConnection class
             connection.setRequestMethod("GET");// setting the request method as GET

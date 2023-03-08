@@ -22,11 +22,11 @@ public class IsExist {
 
         try (
             Statement stmt = c.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from users where uid =" + id)) {
+            ResultSet rs = stmt.executeQuery("select emailid,cast( aes_decrypt(password,'secret_key') as char) as password from users where uid =" + id)) {
             rs.next();
             String emailid=rs.getString("emailid");
             String passwordVar=rs.getString("password");
-            
+            System.out.println(passwordVar);
             
             if(emailid.equals(mail) && passwordVar.equals(password)){
                 result=true;
@@ -55,7 +55,7 @@ public class IsExist {
         String result = "";
         try {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from users");
+            ResultSet rs = stmt.executeQuery("select emailid,uname from users");
             while (rs.next()) {
                 if (rs.getString("emailid").equals(mail)) {
                     result = "Email Id Already Exsist";

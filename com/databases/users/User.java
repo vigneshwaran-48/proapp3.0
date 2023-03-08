@@ -6,7 +6,6 @@ import javax.servlet.http.HttpSession;
 
 import org.json.simple.*;
 import com.authorize.IsExist;
-import com.databases.Image;
 
 /**
  * This class has method to add user
@@ -41,11 +40,9 @@ public class User {
             else
             {
                 stmt = con.createStatement();
-                stmt.executeUpdate("insert into users (uname,firstname,lastname,emailid,password) values(" + "'" + uname + "','" + firstname + "','" + lastname + "','" + emailid + "','" + password + "')");
+                stmt.executeUpdate("insert into users (uname,firstname,lastname,emailid,password) values(" + "'" + uname + "','" + firstname + "','" + lastname + "','" + emailid + "', aes_encrypt('"+password+"','secret_key') )");
                 ResultSet rs = stmt.executeQuery("select uid from users order by uid desc limit 1");
                 rs.next();
-                int uid = rs.getInt("uid");
-                new Image().insertImage(uid, con);
                 resultObject.put("result", "Success");
                 HttpSession session = request.getSession();
                 session.setAttribute("emailId", emailid);

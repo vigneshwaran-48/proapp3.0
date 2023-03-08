@@ -14,9 +14,6 @@ let FormController = (view => {
     
     let validateForm = () => {
         let projectId;
-        if(CURRENTSECTION == "Tasks"){
-            projectId = (_(view.getDomStrings().projectOptionsWrapper).value.slice(15));
-        }
         let nameInput = _(view.getDomStrings().nameInputTag).value.trim();
         let descInput = _(view.getDomStrings().descInputTag).innerText.trim();
         let fromDateInput = _(view.getDomStrings().fromDateInputTag).value;
@@ -24,6 +21,23 @@ let FormController = (view => {
         let peopleInput = Array.from(document.getElementsByName("selected-people")).filter(elem => {
             return elem.checked;
         });
+
+        if(fromDateInput > toDateInput){
+            MainView.showErrorMessage("Last date can't be lesser than From date");
+            return {
+                status: false
+            }
+        }
+        if(CURRENTSECTION == "Tasks"){
+            projectId = (_(view.getDomStrings().projectOptionsWrapper).value.slice(15));
+            let project = ProjectModel.getDataById(projectId);
+            if(!project.fromDate < fromDateInput || !project.toDate > toDateInput){
+                MainView.showErrorMessage("Task date does not match the project date details");
+                return {
+                    status: false
+                }
+            }
+        }
         let people = getPeopleArray(peopleInput);
         people.push(USERID);
         console.log(fromDateInput < toDateInput);

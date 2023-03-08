@@ -19,14 +19,15 @@ public class LoginChecker {
         
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/proapp", "vicky",
+            connection = DriverManager.getConnection("jdbc:mysql://10.52.0.38:3306/proapp", "vicky",
                 "vi99g@NESH");
             PreparedStatement ps;
             ResultSet rs;
-            String sql = "select * from users";
+            String sql = "select emailid,cast( aes_decrypt(password,'secret_key') as char) as password from users";
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
+                System.out.println(rs.getString("password"));
                 if (rs.getString("emailid").equals(email) && rs.getString("password").equals(password)) {
                     //System.out.println("login access");
                     return true;
