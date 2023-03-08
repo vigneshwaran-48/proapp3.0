@@ -73,7 +73,26 @@
         <servlet-name>Register</servlet-name>
         <url-pattern>/register</url-pattern>
     </servlet-mapping>
+    
+    <!-- Redirecting to Api Docs Page -->
+    <servlet>
+        <servlet-name>ApiDocs</servlet-name>
+        <servlet-class>com.servlets.redirect.ApiDocs</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ApiDocs</servlet-name>
+        <url-pattern>/apidocs</url-pattern>
+    </servlet-mapping>
 
+    <!-- Redirecting to User Guide Page -->
+    <servlet>
+        <servlet-name>UserGuide</servlet-name>
+        <servlet-class>com.servlets.redirect.UserGuide</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserGuide</servlet-name>
+        <url-pattern>/userguide</url-pattern>
+    </servlet-mapping>
 
     <!-- insertUser -->
     <servlet>

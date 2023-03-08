@@ -8,8 +8,6 @@ let ProjectController = ((view, model) => {
         let result = await sendPostRequest("project/delete?projectId=" + id);
         if(result.status == "success"){
             MainView.showSuccessMessage("Successfully deleted project");
-            // model.removeProject(id);
-            // view.renderProjects(ProjectModel.getProjectsArray());
             resetProjects();
             resetProjects();
         }

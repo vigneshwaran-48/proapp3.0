@@ -135,7 +135,6 @@ let MainView = (() => {
     let loadStatisticsCircle = (total, completed) => {
         let percentage = Math.round((completed / total) * 100);
         let degree = percentage / 100 * 360;
-        console.log(isNaN(percentage));
         if(isNaN(percentage)){
             _(domStrings.statCircleValue).textContent = "0%";
         }

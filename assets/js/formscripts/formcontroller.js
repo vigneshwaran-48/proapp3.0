@@ -26,6 +26,7 @@ let FormController = (view => {
         });
         let people = getPeopleArray(peopleInput);
         people.push(USERID);
+        console.log(fromDateInput < toDateInput);
 
         if(nameInput.length && descInput.length && peopleInput.length){
             resetForm();

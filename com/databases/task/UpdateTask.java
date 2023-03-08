@@ -8,7 +8,6 @@ import org.json.simple.JSONObject;
 
 import com.databases.project.RetrieveProject;
 import com.databases.project.UpdateProject;
-import com.mysql.cj.xdevapi.JsonArray;
 
 /**
  * This class contains the methods to update tasks.

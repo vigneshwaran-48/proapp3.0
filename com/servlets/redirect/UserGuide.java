@@ -10,6 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 public class UserGuide extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/assets/html/userGuide.html").forward(request, response);
+        request.getRequestDispatcher("/assets/html/userguide.html").forward(request, response);
     }
 }
