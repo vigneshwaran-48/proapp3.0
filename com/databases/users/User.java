@@ -47,8 +47,8 @@ public class User {
                 HttpSession session = request.getSession();
                 session.setAttribute("emailId", emailid);
                 session.setAttribute("password", password);
-                session.setAttribute("uid", new com.databases.users.RetrieveUser().getUidByEmail(con, emailid));
-                session.setAttribute("userName", new com.databases.users.RetrieveUser().getUnameByEmail(con, emailid));
+                session.setAttribute("uid", new RetrieveUser().getUidByEmail(con, emailid));
+                session.setAttribute("userName", new RetrieveUser().getUnameByEmail(con, emailid));
             }
         } 
         catch (Exception e) {

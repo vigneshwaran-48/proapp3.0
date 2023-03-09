@@ -148,7 +148,7 @@ public class UpdateTask {
             JSONArray newUsers = (JSONArray) jsonObject.get("users");
 
             Statement stmt=con.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from task_relation where tid = "+taskId);
+            ResultSet rs = stmt.executeQuery("select uid from task_relation where tid = "+taskId);
 
             ArrayList<String> oldUsers = new ArrayList<>();
             // int tid=0;

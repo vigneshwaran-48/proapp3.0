@@ -131,11 +131,4 @@ public class UsersApiCall {
         }
         return userArray;
     }
-
-    public static void main(String[] args) {
-        UsersApiCall uac = new UsersApiCall();
-        // System.out.println(uac.getUsersByProjectId(70l));
-        System.out.println(uac.getUsersByTaskId(87L));
-        // System.out.println(uac.getAllUsers());
-    }
 }

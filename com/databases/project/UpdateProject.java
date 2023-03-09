@@ -81,11 +81,9 @@ public class UpdateProject {
             String fromDate = (String) jsonObject.get("fromDate");
             String toDate = (String) jsonObject.get("toDate");
             String projectDesc = (String) jsonObject.get("description");
-            String status = (String) jsonObject.get("status");
             JSONArray users = (JSONArray) jsonObject.get("users");
-            System.out.println("jsonObj:"+jsonObject);
+
             if(new UpdateTask().updateTaskUserData(con, jsonObject)){
-                System.out.println("i am from updated Project if");
                 Statement stmt = con.createStatement();
                 stmt.executeUpdate("delete from project_relation where pid = "+projectId);          
 

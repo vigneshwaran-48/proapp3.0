@@ -19,7 +19,7 @@ public class RetrieveTask {
         int status = 0;
         try {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from task_relation where tid=" + tid);
+            ResultSet rs = stmt.executeQuery("select IsCompleted from task_relation where tid=" + tid);
             int trueCount = 0;
             int totalCount = 0;
             while (rs.next()) {
@@ -83,7 +83,7 @@ public class RetrieveTask {
         boolean result=false;
         try {
             Statement stmt=con.createStatement();
-            ResultSet rs=stmt.executeQuery("select * from task_relation where tid="+tid+" and uid="+uid);
+            ResultSet rs=stmt.executeQuery("select IsCompleted from task_relation where tid="+tid+" and uid="+uid);
             rs.next();
             if(rs.getString("IsCompleted").equals("true"))
             {

@@ -46,9 +46,9 @@ public class RetrieveProject {
                 int completedCount2=0;
                 int totalCount2=0;
                 Statement stmt2 = con.createStatement();
-                ResultSet rs2=stmt2.executeQuery("select * from tasks inner join task_relation on tasks.tid = task_relation.tid where pid =  "+pid);
+                ResultSet rs2=stmt2.executeQuery("select IsCompleted from tasks inner join task_relation on tasks.tid = task_relation.tid where pid =  "+pid);
                 while (rs2.next()) {
-                    if (rs2.getString("isCompleted").equals("true")) {
+                    if (rs2.getString("IsCompleted").equals("true")) {
                         completedCount2++;
                     }
                     totalCount2++;
@@ -114,7 +114,6 @@ public class RetrieveProject {
             rs.next();
             result=rs.getInt("pid");
         } catch (Exception e) {
-            // TODO: handle exception
             e.printStackTrace();
         }
         return result;

@@ -2,7 +2,6 @@ package com.databases.task;
 
 import org.json.simple.*;
 
-import com.databases.Image;
 import com.databases.project.UpdateProject;
 
 import java.sql.*;
@@ -36,7 +35,7 @@ public class Task {
                     + "','" + toDate + "'," + projectId +",'"+description+"',"+createdBy +")");
 
             // rendering the latest tid from tasks using pid
-            ResultSet rs = stmt.executeQuery("select * from tasks where pid = "+projectId + " order  by tid desc limit 1");
+            ResultSet rs = stmt.executeQuery("select tid from tasks where pid = "+projectId + " order  by tid desc limit 1");
             rs.next();
             int tid = rs.getInt("tid");
             
@@ -47,7 +46,6 @@ public class Task {
                 Long uid = Long.parseLong(String.valueOf(users.get(i)));
                 stmt.executeUpdate("insert into task_relation (tid,uid) values(" + tid + "," + uid + ")");
                 rs2 = stmt2.executeQuery("select uid,uname,imagePath from users where uid = "+uid);
-                Image img=new Image();
                 while(rs2.next()){
                     JSONObject jsonObject = new JSONObject();
                     jsonObject.put("userId",rs2.getInt("uid"));
@@ -67,8 +65,8 @@ public class Task {
             jsObj.put("users",userDetails);
             jsObj.put("percentage", 0);
             jsObj.put("tid", tid);
-            UpdateProject upj=new UpdateProject();
-            upj.changeProjectStatus(con, Integer.parseInt(String.valueOf(projectId)));
+            new UpdateProject().changeProjectStatus(con, Integer.parseInt(String.valueOf(projectId)));
+
         } catch (Exception e) {
             e.printStackTrace();
         } 
