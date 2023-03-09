@@ -165,6 +165,24 @@
         <url-pattern>/user/chats</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>UserProjectStatus</servlet-name>
+        <servlet-class>com.servlets.user.UserProjectStatus</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserProjectStatus</servlet-name>
+        <url-pattern>/user/project/status</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UserTaskStatus</servlet-name>
+        <servlet-class>com.servlets.user.UserTaskStatus</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserTaskStatus</servlet-name>
+        <url-pattern>/user/task/status</url-pattern>
+    </servlet-mapping>
+
     <!-- project add -->
     <servlet>
         <servlet-name>AddProject</servlet-name>
@@ -205,7 +223,6 @@
         <servlet-name>ProjectUpdate</servlet-name>
         <url-pattern>/project/update</url-pattern>
     </servlet-mapping>
-
 
     <!-- for deleting the project associated user -->
     <servlet>

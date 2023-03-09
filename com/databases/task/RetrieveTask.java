@@ -1,6 +1,8 @@
 package com.databases.task;
 
-import java.sql.*; 
+import java.sql.*;
+import java.util.ArrayList;
+
 import org.json.simple.*;
 
 import com.databases.users.RetrieveUser;
@@ -85,8 +87,7 @@ public class RetrieveTask {
             Statement stmt=con.createStatement();
             ResultSet rs=stmt.executeQuery("select IsCompleted from task_relation where tid="+tid+" and uid="+uid);
             rs.next();
-            if(rs.getString("IsCompleted").equals("true"))
-            {
+            if(rs.getString("IsCompleted").equals("true")){
                 result=true;
             }
         } catch (Exception e) {
@@ -94,6 +95,21 @@ public class RetrieveTask {
 
         }
         return result;
+    }
 
+    public ArrayList<Integer> retreiveTidByUid(Connection con, int uid,int pid) {
+        ArrayList<Integer> tids = new ArrayList<>();
+
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select task_relation.tid from task_relation inner join tasks on task_relation.tid=tasks.tid where uid = "+uid+" and pid = "+pid); 
+            while(rs.next()){
+                tids.add(rs.getInt("tid"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return tids;
     }
 }

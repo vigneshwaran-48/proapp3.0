@@ -1,8 +1,11 @@
 package com.databases.project;
 
 import java.sql.*;
+import java.util.ArrayList;
+
 import org.json.simple.*;
 
+import com.databases.task.RetrieveTask;
 import com.databases.users.RetrieveUser;
 
 /**
@@ -116,6 +119,31 @@ public class RetrieveProject {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return result;
+    }
+
+    public boolean isCompleted(Connection con, int pid, int uid) {
+        boolean result = false;
+        try {
+            RetrieveTask rt = new RetrieveTask();
+            ArrayList<Integer> tids = rt.retreiveTidByUid(con, uid, pid);
+            int totalCount = 0;
+            int completedCount = 0;
+            for (int tid : tids) {
+                if (rt.isCompleted(con, uid, tid)) {
+                    completedCount++;
+                }
+                totalCount++;
+            }
+            if (totalCount>0) {
+                if (totalCount==completedCount) {
+                    result=true;
+                }
+            }
+        } catch (Exception e) {
+           e.printStackTrace();
+        }
+
         return result;
     }
 }

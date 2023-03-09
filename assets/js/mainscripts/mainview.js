@@ -73,6 +73,7 @@ let MainView = (() => {
         let iTag = document.createElement("i");
 
         divElement.classList.add(domStrings.finishedOrNotIconWrapper);
+        divElement.classList.add("x-axis-flex");
         if(isFinished){
             iTag.classList.add("fa-solid");
             iTag.classList.add("fa-circle-check");
@@ -85,8 +86,9 @@ let MainView = (() => {
         divElement.appendChild(iTag);
         return divElement;
     }
-    let renderSearchPeople = (searchName, id, isProject, renderFull) => {
+    let renderSearchPeople = async (searchName, id, isProject, renderFull) => {
         let boxModel;
+        let isUserFinished;
         if(isProject){
             boxModel = ProjectModel;
         }
@@ -94,7 +96,10 @@ let MainView = (() => {
             boxModel = TaskModel;
         }
         _(domStrings.descPeopleWrapper).innerHTML = "";
-        boxModel.getDataById(id).users.forEach(elem => {
+        await boxModel.getDataById(id).users.forEach(async elem => {
+
+            let isFinishedResponse = await sendGetRequest("user/" + (isProject ? "project/status?projectId" : "task/status?taskId") + `=${id}&userId=${elem.userId}`);
+            isUserFinished = isFinishedResponse.result;
             if((elem.userName.toLowerCase().includes(searchName.toLowerCase()) || searchName.length == 0) || renderFull){
                 let labelTag = document.createElement("label");
                 let imageDiv = document.createElement("div");
@@ -110,8 +115,7 @@ let MainView = (() => {
                 p.textContent = elem.userName;
                 imageDiv.style.backgroundImage = `url(/ProApp/assets/images/usersImages/${elem.imagePath})`;
 
-                labelTag.append(imageDiv, p, getBoxFinishedIcon(false));
-                console.log(labelTag);
+                labelTag.append(imageDiv, p, getBoxFinishedIcon(isUserFinished));
                 _(domStrings.descPeopleWrapper).append(labelTag);
             }
         });
