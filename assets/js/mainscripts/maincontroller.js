@@ -1,7 +1,36 @@
 let MainController = (view => {
 
-    let showTopButtons = () => {
-       
+    _(view.getDomStrings().projectSectionButton).classList.add(view.getDomStrings().iconClickEffect);
+
+    let resetIconEffect = activeElement => {
+        let chatIcon =  _(view.getDomStrings().chatButton);
+        let projectIcon = _(view.getDomStrings().projectSectionButton);
+        let taskIcon = _(view.getDomStrings().taskSectionButton);
+        let settingsIcon = _(view.getDomStrings().settingSectionButton);
+        let overdueIcon = _(view.getDomStrings().overDueIcon);
+        let iconsArray = [chatIcon, projectIcon, taskIcon, settingsIcon, overdueIcon];
+        iconsArray.forEach(elem => {
+            if(elem != activeElement){
+                elem.classList.remove(view.getDomStrings().iconClickEffect);
+            }
+        })
+    }
+
+    let resetMainWindows = activeWindow => {
+        let taskSection = _(view.getDomStrings().taskSection);
+        let overdueSection = _(view.getDomStrings().overDueSection);
+
+        let windowsArray = [taskSection, overdueSection];
+        if(!activeWindow){
+            _(view.getDomStrings().newButton).classList.remove(view.getDomStrings().hideComponent);
+            _(view.getDomStrings().fullFilterWrapper).classList.remove(view.getDomStrings().hideComponent);
+        }
+        windowsArray.forEach(elem => {
+            if(elem != activeWindow){
+                elem.classList.remove(view.getDomStrings().showFromRightToLeft);
+                elem.classList.remove(view.getDomStrings().showFromScale);
+            }
+        });
     }
     let init = () => {
         //Adding this listener for right side section
@@ -101,20 +130,21 @@ let MainController = (view => {
 
         //This is for opening projects section
         _(view.getDomStrings().projectSectionButton).addEventListener("click", event => {
+            _(view.getDomStrings().projectSectionButton).classList.add(view.getDomStrings().iconClickEffect);
+            resetIconEffect(_(view.getDomStrings().projectSectionButton));
             _(view.getDomStrings().chatMembersCloseButton).click();
             _(view.getDomStrings().settingCloseButton).click();
             _(view.getDomStrings().fullFilterWrapper).classList.add(view.getDomStrings().showFilter);
             _(view.getDomStrings().fullFilterWrapper).classList.remove(view.getDomStrings().hideFilter);
             _(view.getDomStrings().currentSectionHeading).textContent = "Projects";
             CURRENTSECTION = "Project";
-            _(view.getDomStrings().newButton).classList.remove(view.getDomStrings().hideComponent);
-            _(view.getDomStrings().taskSection).classList.remove(view.getDomStrings().showFromScale);
-            _(view.getDomStrings().overDueSection).classList.remove(view.getDomStrings().showFromScale);
-            _(view.getDomStrings().fullFilterWrapper).classList.remove(view.getDomStrings().hideComponent);
+            resetMainWindows(null);
         });
         
         //This is for opening task section 
         _(view.getDomStrings().taskSectionButton).addEventListener("click", event => {
+            _(view.getDomStrings().taskSectionButton).classList.add(view.getDomStrings().iconClickEffect);
+            resetIconEffect(_(view.getDomStrings().taskSectionButton));
             _(view.getDomStrings().chatMembersCloseButton).click();
             _(view.getDomStrings().settingCloseButton).click();
             _(ChatView.getDomStrings().chattingWindow).click();
@@ -122,13 +152,13 @@ let MainController = (view => {
             _(view.getDomStrings().fullFilterWrapper).classList.add(view.getDomStrings().hideFilter);
             _(view.getDomStrings().currentSectionHeading).textContent = "Tasks";
             CURRENTSECTION = "Tasks";
-            _(view.getDomStrings().newButton).classList.remove(view.getDomStrings().hideComponent);
+            resetMainWindows(_(view.getDomStrings().taskSection));
             _(view.getDomStrings().taskSection).classList.add(view.getDomStrings().showFromScale);
-            _(view.getDomStrings().overDueSection).classList.remove(view.getDomStrings().showFromScale);
-            _(view.getDomStrings().fullFilterWrapper).classList.remove(view.getDomStrings().hideComponent);
-        });
+         });
         //This is for opening chat people view
         _(view.getDomStrings().chatButton).addEventListener("click", event => {
+            _(view.getDomStrings().chatButton).classList.add(view.getDomStrings().iconClickEffect);
+            resetIconEffect(_(view.getDomStrings().chatButton));
             _(view.getDomStrings().chatPeopleViewSection).classList.add(view.getDomStrings().showFromRightToLeft);
         });
         //This is to close the chat people view
@@ -140,6 +170,8 @@ let MainController = (view => {
 
         //This is for opening settings page
         _(view.getDomStrings().settingSectionButton).addEventListener("click", event => {
+            _(view.getDomStrings().settingSectionButton).classList.add(view.getDomStrings().iconClickEffect);
+            resetIconEffect(_(view.getDomStrings().settingSectionButton));
             _(view.getDomStrings().chatMembersCloseButton).click();
             _(SettingsView.getDomStrings().settingsUserPhoto).style.backgroundImage = `url(/ProApp/assets/images/usersImages/${CURRENTUSERPHOTO})`;
             _(view.getDomStrings().settingSection).classList.add(view.getDomStrings().showFromRightToLeft);
@@ -152,9 +184,11 @@ let MainController = (view => {
 
         //This is for opening overdue section
         _(view.getDomStrings().overDueIcon).addEventListener("click", event => {
-            _(view.getDomStrings().taskSection).classList.remove(view.getDomStrings().showFromScale);
+            _(view.getDomStrings().overDueIcon).classList.add(view.getDomStrings().iconClickEffect);
+            resetIconEffect(_(view.getDomStrings().overDueIcon));
             _(view.getDomStrings().overDueSection).classList.add(view.getDomStrings().showFromScale);
             CURRENTSECTION = "OverDue";
+            resetMainWindows(_(view.getDomStrings().overDueSection))
             _(view.getDomStrings().currentSectionHeading).textContent = "OverDue";
             _(view.getDomStrings().newButton).classList.add(view.getDomStrings().hideComponent);
             _(view.getDomStrings().fullFilterWrapper).classList.add(view.getDomStrings().hideComponent);

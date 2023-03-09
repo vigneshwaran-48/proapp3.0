@@ -94,7 +94,7 @@
     height: 95%;
     overflow: scroll;
     justify-content: flex-start;
-    padding-top: 10px;
+    margin-top: 30px;
 }
 .box-wrapper::-webkit-scrollbar{
     display: none;
@@ -105,7 +105,7 @@
     height: 230px;
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    margin: 10px 0px;
+    margin: 2px 0px 20px 0px;
     flex-shrink: 0;
 }
 .project-deprecated-section{
