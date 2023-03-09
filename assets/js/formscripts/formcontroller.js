@@ -31,7 +31,7 @@ let FormController = (view => {
         if(CURRENTSECTION == "Tasks"){
             projectId = (_(view.getDomStrings().projectOptionsWrapper).value.slice(15));
             let project = ProjectModel.getDataById(projectId);
-            if(!project.fromDate < fromDateInput || !project.toDate > toDateInput){
+            if(project.fromDate >  fromDateInput || project.toDate < toDateInput){
                 MainView.showErrorMessage("Task date does not match the project date details");
                 return {
                     status: false

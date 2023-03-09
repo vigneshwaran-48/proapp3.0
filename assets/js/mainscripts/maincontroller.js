@@ -1,5 +1,8 @@
 let MainController = (view => {
 
+    let showTopButtons = () => {
+       
+    }
     let init = () => {
         //Adding this listener for right side section
         _(view.getDomStrings().topSmallImage).addEventListener("click", event => {
@@ -104,7 +107,10 @@ let MainController = (view => {
             _(view.getDomStrings().fullFilterWrapper).classList.remove(view.getDomStrings().hideFilter);
             _(view.getDomStrings().currentSectionHeading).textContent = "Projects";
             CURRENTSECTION = "Project";
+            _(view.getDomStrings().newButton).classList.remove(view.getDomStrings().hideComponent);
             _(view.getDomStrings().taskSection).classList.remove(view.getDomStrings().showFromScale);
+            _(view.getDomStrings().overDueSection).classList.remove(view.getDomStrings().showFromScale);
+            _(view.getDomStrings().fullFilterWrapper).classList.remove(view.getDomStrings().hideComponent);
         });
         
         //This is for opening task section 
@@ -116,7 +122,10 @@ let MainController = (view => {
             _(view.getDomStrings().fullFilterWrapper).classList.add(view.getDomStrings().hideFilter);
             _(view.getDomStrings().currentSectionHeading).textContent = "Tasks";
             CURRENTSECTION = "Tasks";
+            _(view.getDomStrings().newButton).classList.remove(view.getDomStrings().hideComponent);
             _(view.getDomStrings().taskSection).classList.add(view.getDomStrings().showFromScale);
+            _(view.getDomStrings().overDueSection).classList.remove(view.getDomStrings().showFromScale);
+            _(view.getDomStrings().fullFilterWrapper).classList.remove(view.getDomStrings().hideComponent);
         });
         //This is for opening chat people view
         _(view.getDomStrings().chatButton).addEventListener("click", event => {
@@ -140,6 +149,17 @@ let MainController = (view => {
         _(view.getDomStrings().settingCloseButton).addEventListener("click", event => {
             _(view.getDomStrings().settingSection).classList.remove(view.getDomStrings().showFromRightToLeft);
         });
+
+        //This is for opening overdue section
+        _(view.getDomStrings().overDueIcon).addEventListener("click", event => {
+            _(view.getDomStrings().taskSection).classList.remove(view.getDomStrings().showFromScale);
+            _(view.getDomStrings().overDueSection).classList.add(view.getDomStrings().showFromScale);
+            CURRENTSECTION = "OverDue";
+            _(view.getDomStrings().currentSectionHeading).textContent = "OverDue";
+            _(view.getDomStrings().newButton).classList.add(view.getDomStrings().hideComponent);
+            _(view.getDomStrings().fullFilterWrapper).classList.add(view.getDomStrings().hideComponent);
+        });
+
     }
     init();
 

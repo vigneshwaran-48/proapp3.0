@@ -19,7 +19,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,600;1,900&display=swap" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,600;1,900&display=swap" rel="stylesheet"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="icon" type="image/x-icon" href="assets/images/logo2.png">
 </head>
@@ -74,6 +74,10 @@
             <i class="fa-solid fa-gear"></i>
             <p class="icon-label">Settings</p>
         </div>
+        <div class="common-i-tag icons-wrapper deprecated-section-button y-axis-flex">
+            <i class="fa-regular fa-calendar-xmark"></i>
+            <pre class="icon-label">Overdue</pre>
+        </div>
         
     </section>
 
@@ -124,7 +128,15 @@
                     </section>
                     <!-- Project section body ends here -->
 
-                    <!-- Deprecated projects section -->
+                    <!-- Deprecated projects section starts here -->
+                    <section class="project-deprecated-section common-middle-section-body semi-light-theme y-axis-flex">
+                        <div class="overdue-heading x-axis-flex">
+                            <h2>Overdue Projects</h2>
+                        </div>
+                        <section class="deprecated-box-wrapper box-wrapper x-axis-flex">
+                        </section>
+                    </section>
+                    <!-- Deprecated projects section ends here -->
 
                     <!-- Task section body starts here -->
                     <section class="task-middle-section-body light-theme y-axis-flex">
@@ -378,11 +390,6 @@
                 <div class="settings-body y-axis-flex">
                     <h2>Settings</h2>
                     <div class="buttons-wrapper y-axis-flex">
-                        <!-- <div class="settings-button x-axis-flex">
-                            <span class="normal-setting-icon change-photo-button-icon x-axis-flex"><i class="bi bi-camera"></i></span>
-                            <p class="normal-settings-text">Change Photo</p>
-                            <span class="normal-setting-click-button change-photo-button x-axis-flex"><i class="fa-solid fa-angle-right"></i></span>
-                        </div> -->
                         <div class="settings-button x-axis-flex">
                             <span class="normal-setting-icon edit-profile-button-icon x-axis-flex"><i class="fa-solid fa-pen-to-square"></i></span>
                             <p class="normal-settings-text">Edit Profile</p>

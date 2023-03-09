@@ -79,7 +79,7 @@ public class RetrieveTask {
      * @param tid Used to get the given Task
      * @return returns boolean on basis  
      */
-    private boolean isCompleted(Connection con,int uid,int tid) {
+    public boolean isCompleted(Connection con,int uid,int tid) {
         boolean result=false;
         try {
             Statement stmt=con.createStatement();

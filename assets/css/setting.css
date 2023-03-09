@@ -114,3 +114,6 @@
     max-width: 220px;
     font-size: 20px;
 }
+.hide-component{
+    display: none;
+}

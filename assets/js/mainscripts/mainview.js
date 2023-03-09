@@ -60,10 +60,31 @@ let MainView = (() => {
         settingCloseButton : "#settings-section-close-button",
         fullFilterWrapper : ".full-filter-wrapper",
         showFilter : "show-filter",
-        hideFilter : "hide-filter"
+        hideFilter : "hide-filter",
+        overDueIcon : ".deprecated-section-button",
+        overDueSection : ".project-deprecated-section",
+        hideComponent : "hide-component",
+        finishedOrNotIconWrapper : "finished-or-not-icon-wrapper"
     }
     let getDomStrings = () => domStrings;
 
+    let getBoxFinishedIcon = isFinished => {
+        let divElement = document.createElement("div");
+        let iTag = document.createElement("i");
+
+        divElement.classList.add(domStrings.finishedOrNotIconWrapper);
+        if(isFinished){
+            iTag.classList.add("fa-solid");
+            iTag.classList.add("fa-circle-check");
+        }
+        else {
+            iTag.classList.add("bi");
+            iTag.classList.add("bi-x-circle");
+        }
+
+        divElement.appendChild(iTag);
+        return divElement;
+    }
     let renderSearchPeople = (searchName, id, isProject, renderFull) => {
         let boxModel;
         if(isProject){
@@ -89,7 +110,7 @@ let MainView = (() => {
                 p.textContent = elem.userName;
                 imageDiv.style.backgroundImage = `url(/ProApp/assets/images/usersImages/${elem.imagePath})`;
 
-                labelTag.append(imageDiv, p);
+                labelTag.append(imageDiv, p, getBoxFinishedIcon(false));
                 console.log(labelTag);
                 _(domStrings.descPeopleWrapper).append(labelTag);
             }

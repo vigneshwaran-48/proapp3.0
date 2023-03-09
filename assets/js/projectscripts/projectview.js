@@ -25,7 +25,8 @@ let ProjectView = (() => {
         morePerson : "more-person",
         threeDotsEditOption : "three-dots-edit-option",
         threeDotsMoreInfoOption : "three-dots-more-info",
-        threeDotsCompleteOption : "three-dots-complete-option"
+        threeDotsCompleteOption : "three-dots-complete-option",
+        overDueSection : ".deprecated-box-wrapper"
     }
     let getDomStrings = () => domStrings;
     
@@ -72,11 +73,19 @@ let ProjectView = (() => {
         _(domStrings.yetToStartSection).innerHTML = "";
         _(domStrings.inProgressSection).innerHTML = "";
         _(domStrings.completedSection).innerHTML = "";
+        _(domStrings.overDueSection).innerHTML = "";
 
         projects.forEach(elem => {
             //Creating elements starts here
             let parentTag;
-            if(elem.status == "Yet To Start"){
+            let currentDate = new Date();
+            let isOverdue = false;
+
+            if(currentDate.getDate() > elem.toDate.slice(elem.toDate.length-2)){
+                parentTag = _(domStrings.overDueSection);
+                isOverdue = true;
+            }
+            else if(elem.status == "Yet To Start"){
                 parentTag = _(domStrings.yetToStartSection);
             }
             else if (elem.status == "On Progress"){
@@ -214,7 +223,7 @@ let ProjectView = (() => {
             //Appending elements to its respective parent element starts here
             threeDotsLabel.append(iTag);
 
-            if(USERID == elem.createdBy){
+            if(USERID == elem.createdBy && !isOverdue){
                 threeDotsOptionsWrapper.append(threeDotsOption1, threeDotsOption2, threeDotsOption3);
             }
             else {

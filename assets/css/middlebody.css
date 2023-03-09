@@ -108,6 +108,20 @@
     margin: 10px 0px;
     flex-shrink: 0;
 }
+.project-deprecated-section{
+    transition: 0.5s;
+    transform: scale(0);
+}
+.overdue-heading{
+    height: 10%;
+    width: 100%;
+}
+.deprecated-box-wrapper{
+    height: 90%;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: space-around;
+}
 /* body section styling ends here */
 
 @media screen and (max-width:1240px) {
