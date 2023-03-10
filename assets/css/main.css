@@ -39,7 +39,7 @@ body{
     top: -100px;
     height: 80px;
     left: 49%;
-    z-index: 20;
+    z-index: 110;
     justify-content: space-between;
     border-radius: 15px;
     overflow: hidden;

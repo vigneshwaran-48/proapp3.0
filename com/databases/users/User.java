@@ -1,6 +1,8 @@
 package com.databases.users;
 
 import java.sql.*;
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -44,11 +46,16 @@ public class User {
                 ResultSet rs = stmt.executeQuery("select uid from users order by uid desc limit 1");
                 rs.next();
                 resultObject.put("result", "Success");
+                int uid=new RetrieveUser().getUidByEmail(con, emailid);
                 HttpSession session = request.getSession();
                 session.setAttribute("emailId", emailid);
                 session.setAttribute("password", password);
-                session.setAttribute("uid", new RetrieveUser().getUidByEmail(con, emailid));
+                session.setAttribute("uid", uid);
                 session.setAttribute("userName", new RetrieveUser().getUnameByEmail(con, emailid));
+                ArrayList<Integer> activeUsers=(ArrayList<Integer>)request.getServletContext().getAttribute("ActiveUsers");
+                activeUsers.add(uid);
+                session.setAttribute("ActiveUsers",activeUsers);
+                
             }
         } 
         catch (Exception e) {
