@@ -2,16 +2,37 @@ let MainController = (view => {
 
     _(view.getDomStrings().projectSectionButton).classList.add(view.getDomStrings().iconClickEffect);
 
+    //This is for resetting the icon effect in the side nav bar
     let resetIconEffect = activeElement => {
         let chatIcon =  _(view.getDomStrings().chatButton);
         let projectIcon = _(view.getDomStrings().projectSectionButton);
         let taskIcon = _(view.getDomStrings().taskSectionButton);
-        let settingsIcon = _(view.getDomStrings().settingSectionButton);
         let overdueIcon = _(view.getDomStrings().overDueIcon);
-        let iconsArray = [chatIcon, projectIcon, taskIcon, settingsIcon, overdueIcon];
+        let iconsArray = [chatIcon, projectIcon, taskIcon, overdueIcon];
         iconsArray.forEach(elem => {
             if(elem != activeElement){
                 elem.classList.remove(view.getDomStrings().iconClickEffect);
+            }
+        })
+    }
+    // let resetExtraOptionsWindow = () => {
+
+    // }
+    let resetRightWindows = activeElement => {
+        let chatOuterWindow = _(view.getDomStrings().chatPeopleViewSection);
+        let settingsSection = _(view.getDomStrings().settingSection);
+        let profileOverviewWindow = _(view.getDomStrings().rightSection);
+
+        if(activeElement != chatOuterWindow) {
+            _(view.getDomStrings().chatButton).classList.remove(view.getDomStrings().iconClickEffect);
+        }
+        
+        let windows = [chatOuterWindow, profileOverviewWindow, settingsSection];
+        console.log(windows);
+        windows.forEach(elem => {
+            if(elem != activeElement){
+                elem.classList.remove(view.getDomStrings().showFromRightToLeft);
+                console.log(elem);
             }
         })
     }
@@ -34,8 +55,9 @@ let MainController = (view => {
     }
     let init = () => {
         //Adding this listener for right side section
-        _(view.getDomStrings().topSmallImage).addEventListener("click", event => {
+        _(view.getDomStrings().profileButton).addEventListener("click", event => {
             view.loadStatisticsData();
+            resetRightWindows(_(view.getDomStrings().rightSection));
             _(view.getDomStrings().rightSection).classList.toggle(view.getDomStrings().showFromRightToLeft);
         });
 
@@ -164,15 +186,23 @@ let MainController = (view => {
         //This is to close the chat people view
         _(view.getDomStrings().chatMembersCloseButton).addEventListener("click", event => {
             _(view.getDomStrings().chatPeopleViewSection).classList.remove(view.getDomStrings().showFromRightToLeft);
+            _(view.getDomStrings().chatButton).classList.remove(view.getDomStrings().iconClickEffect);
+            // if(CURRENTSECTION == "Project"){
+                // let projectIcon = _(view.getDomStrings().projectSectionButton);
+                // let taskIcon = _(view.getDomStrings().taskSectionButton);
+            //     _(view.getDomStrings().projectSectionButton).classList.add(view.getDomStrings().iconClickEffect);
+            // }
+            // else {
+            //     _(view.getDomStrings().taskSectionButton).classList.add(view.getDomStrings().iconClickEffect);
+            // }
         });
         //This is for notification audio 
         _(view.getDomStrings().notificationAudioButton).addEventListener("click", playNotificationSound);
 
         //This is for opening settings page
         _(view.getDomStrings().settingSectionButton).addEventListener("click", event => {
-            _(view.getDomStrings().settingSectionButton).classList.add(view.getDomStrings().iconClickEffect);
-            resetIconEffect(_(view.getDomStrings().settingSectionButton));
             _(view.getDomStrings().chatMembersCloseButton).click();
+            resetRightWindows(_(view.getDomStrings().settingSection));
             _(SettingsView.getDomStrings().settingsUserPhoto).style.backgroundImage = `url(/ProApp/assets/images/usersImages/${CURRENTUSERPHOTO})`;
             _(view.getDomStrings().settingSection).classList.add(view.getDomStrings().showFromRightToLeft);
         });

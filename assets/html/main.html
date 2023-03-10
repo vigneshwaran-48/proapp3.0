@@ -13,7 +13,7 @@
     <link href="assets/css/task.css" rel="stylesheet" type="text/css">
     <link href="assets/css/chat.css" rel="stylesheet" type="text/css">
     <link href="assets/css/setting.css" rel="stylesheet" type="text/css">
-    <title>Pro App</title>
+    <title>ProApp</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -70,10 +70,10 @@
             <i class="fa-solid fa-user-group"></i>
             <p class="icon-label">Chat</p>
         </div>
-        <div class="common-i-tag icons-wrapper settings-section-button y-axis-flex">
+        <!-- <div class="common-i-tag icons-wrapper  y-axis-flex">
             <i class="fa-solid fa-gear"></i>
             <p class="icon-label">Settings</p>
-        </div>
+        </div> -->
         <div class="common-i-tag icons-wrapper deprecated-section-button y-axis-flex">
             <i class="fa-regular fa-calendar-xmark"></i>
             <pre class="icon-label">Overdue</pre>
@@ -84,8 +84,27 @@
     <section class="middle-main-section light-theme">
         <header class="top-header x-axis-flex full-light-theme">
             <img class="top-header-icon mobile-top-header-icon" src="assets/images/logo1.png" alt="app-icon">
-            <h1 class="top-head-tag">Project Manager</h1>
-            <div class="top-profile-image"></div>
+            <h1 class="top-head-tag">ProApp</h1>
+            <div class="top-profile-wrapper x-axis-flex">
+                <label for="notification-button-id" class="notification-button"><i class="fa-solid fa-bell"></i></label>
+                <input type="checkbox" id="notification-button-id">
+                <ul class="notifcations-list">
+                    <li class="notification-list-option x-axis-flex">
+                        <div class="notification-image"></div>
+                        <div class="message-time-wrapper y-axis-flex">
+                            <p class="notification-content">Basith has Added you in Project</p>
+                            <p class="notification-time">March 03 at 9.30 pm</p>
+                        </div>
+                        <div class="notification-delete-icon x-axis-flex"><i class="fa-solid fa-comment-slash"></i></div>
+                    </li>
+                </ul>
+                <label class="top-profile-image x-axis-flex" for="top-profile-option-photo"></label>
+                <input type="checkbox" id="top-profile-option-photo">
+                <ul class="top-profile-options-wrapper">
+                    <li class="top-profile-options profile-button">Profile</li>
+                    <li class="top-profile-options settings-section-button">Settings</li>
+                </ul>
+            </div>
         </header>
     
         <section class="main-body x-axis-flex light-theme">
@@ -478,6 +497,11 @@
 <script src="assets/js/settingsscripts/settingsview.js"></script>
 <script src="assets/js/settingsscripts/settingscontroller.js"></script>
 <!-- Settings scripts ends here -->
+
+<!-- Notification scripts starts here -->
+<script src="assets/js/notificationscripts/notificationview.js"></script>
+<script src="assets/js/settingsscripts/notificationmodel.js"></script>
+<!-- Notification scripts ends here -->
 
 <!-- Web socket scripts starts here -->
 <script src="assets/js/websocketscript/weblogic.js"></script>

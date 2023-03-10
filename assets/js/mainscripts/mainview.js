@@ -65,7 +65,8 @@ let MainView = (() => {
         overDueSection : ".project-deprecated-section",
         hideComponent : "hide-component",
         finishedOrNotIconWrapper : "finished-or-not-icon-wrapper",
-        iconClickEffect : "common-i-tag-click-effect"
+        iconClickEffect : "common-i-tag-click-effect",
+        profileButton : ".profile-button"
     }
     let getDomStrings = () => domStrings;
 
