@@ -7,8 +7,8 @@ import java.sql.Statement;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-public class RetreiveNotification {
-    public JSONArray reteiveNotification(Connection con,int uid) {
+public class RetrieveNotification {
+    public JSONArray retrieveNotification(Connection con,int uid) {
         JSONArray jsonArray = new JSONArray();
 
         try {

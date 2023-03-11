@@ -66,7 +66,9 @@ let MainView = (() => {
         hideComponent : "hide-component",
         finishedOrNotIconWrapper : "finished-or-not-icon-wrapper",
         iconClickEffect : "common-i-tag-click-effect",
-        profileButton : ".profile-button"
+        profileButton : ".profile-button",
+        topProfilePhotoLabel : ".top-profile-image",
+        notificationLabel : ".notification-button"
     }
     let getDomStrings = () => domStrings;
 

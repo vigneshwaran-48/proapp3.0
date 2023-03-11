@@ -224,6 +224,17 @@ let MainController = (view => {
             _(view.getDomStrings().fullFilterWrapper).classList.add(view.getDomStrings().hideComponent);
         });
 
+        //This is for handling top profile and notification button's actions
+        _(view.getDomStrings().topProfilePhotoLabel).addEventListener("click", event => {
+            if(_(view.getDomStrings().notificationLabel).nextElementSibling.checked){
+                _(view.getDomStrings().notificationLabel).click();
+            }  
+        });
+        _(view.getDomStrings().notificationLabel).addEventListener("click", event => {
+            if(_(view.getDomStrings().topProfilePhotoLabel).nextElementSibling.checked){
+                _(view.getDomStrings().topProfilePhotoLabel).click();
+            }
+        })
     }
     init();
 

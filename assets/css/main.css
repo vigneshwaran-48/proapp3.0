@@ -173,7 +173,7 @@ body{
     height: 0;
     overflow: hidden;
     transition: 0.5s;
-    /* margin-top: 10px; */
+    border-radius: 10px;
 }
 #top-profile-option-photo:checked + .top-profile-options-wrapper {
     height: 80px;

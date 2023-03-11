@@ -124,6 +124,7 @@
 }
 .notifcations-list{
     overflow: scroll;
+    border-radius: 10px;
 }
 .notifcations-list::-webkit-scrollbar {
     display: none;
@@ -156,6 +157,7 @@
 }
 .notification-delete-icon{
     margin-top: 20px;
+    cursor: pointer;
 }
 /* body section styling ends here */
 
