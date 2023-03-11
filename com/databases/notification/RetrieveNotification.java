@@ -17,8 +17,8 @@ public class RetrieveNotification {
             while (rs.next()) {
                 JSONObject jsonObject = new JSONObject();
                 jsonObject.put("message", rs.getString("message"));
-                jsonObject.put("time", "n_time");
-                jsonObject.put("date", "n_date");
+                jsonObject.put("time", rs.getString("n_time"));
+                jsonObject.put("date", rs.getString("n_date"));
                 jsonArray.add(jsonObject);
             }
         } catch (Exception e) {
