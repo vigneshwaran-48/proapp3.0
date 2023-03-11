@@ -78,7 +78,7 @@ let MainController = (view => {
                 _(FormView.getDomStrings().projectChoosingWrapper).classList.add(FormView.getDomStrings().showProjectsChoosingWrapper); 
             }
             FormView.renderProjectOption(ProjectModel.getProjectsArray());
-            _(view.getDomStrings().topSmallImage).click();
+            // _(view.getDomStrings().topSmallImage).click();
             _(view.getDomStrings().fullFormSection).classList.add(view.getDomStrings().showFromRightToLeft);
         });
         //This is for closing add form section
@@ -234,7 +234,7 @@ let MainController = (view => {
             if(_(view.getDomStrings().topProfilePhotoLabel).nextElementSibling.checked){
                 _(view.getDomStrings().topProfilePhotoLabel).click();
             }
-        })
+        });
     }
     init();
 

@@ -26,7 +26,6 @@ public class IsExist {
             rs.next();
             String emailid=rs.getString("emailid");
             String passwordVar=rs.getString("password");
-            System.out.println(passwordVar);
             
             if(emailid.equals(mail) && passwordVar.equals(password)){
                 result=true;

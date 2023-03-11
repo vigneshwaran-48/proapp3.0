@@ -26,6 +26,7 @@ let getCurrentUserDetails = () => {
             processMessage(JSON.parse(event.data));
         }
         getMessagesOfUser();
+        resetNotification();
     }
 }
 let playNotificationSound = () => {
@@ -91,6 +92,14 @@ let getMessagesOfUser = async () => {
         elem.messageDate = elem.messageDate.replaceAll("-", "/");
         ChatModel.addMessage(ChatModel.changeFromServerObject(elem));
     });
+}
+let resetNotification = async () => {
+    let userNotifications = await sendGetRequest("notification/getall?userId=" + USERID);
+        NotificationModel.resetNotification();
+    userNotifications.forEach(elem => {
+        NotificationModel.addNotification(NotificationModel.changeNotificationFromServer(elem));
+    });
+    NotificationView.renderNotifications(NotificationModel.getNotificationsArray());
 }
 getCurrentUserDetails();
 resetProjects();

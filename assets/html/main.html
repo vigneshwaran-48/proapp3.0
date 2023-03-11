@@ -270,7 +270,7 @@
                 </div>
                 <div class="common-input-wrapper desc-adding-wrapper y-axis-flex">
                     <label for="adding-desc-input-id">Description</label>
-                    <div class="common-input" contenteditable="true" id="adding-desc-input-id"></div>
+                    <div class="common-input" tabindex="-1" contenteditable="true" id="adding-desc-input-id"></div>
                 </div>
                 <button tabindex="-1" type="button" class="common-button add-button">Create</button>
             </section>
@@ -366,6 +366,7 @@
                 <div class="upper-user-details-window y-axis-flex">
                     <div class="chatting-user-photo"></div>
                     <h2 class="chatting-user-name"></h2>
+                    <h3 class="chat-window-status">Online</h2>
                 </div>
                 <div class="messaging-window y-axis-flex">
                     <div class="message-body y-axis-flex">
@@ -423,33 +424,33 @@
 
             <!-- Profile editing starts here -->
             <section tabindex="-1" class="profile-editing-section y-axis-flex full-light-theme">
-                <i id="profile-edit-section-close-button" class="fa-solid fa-xmark"></i>
-                <span class="profile-update-button"><i class="fa-solid fa-check"></i></span>
+                <i tabindex="-1" id="profile-edit-section-close-button" class="fa-solid fa-xmark"></i>
+                <span tabindex="-1"  class="profile-update-button"><i tabindex="-1" class="fa-solid fa-check"></i></span>
                 <section tabindex="-1" class="profile-edit-secton-body y-axis-flex">
-                    <h2 class="profile-editing-heading">Account</h2>
+                    <h2 tabindex="-1" class="profile-editing-heading">Account</h2>
                     <form tabindex="-1" class="profile-update-form y-axis-flex">
-                        <div class="common-input-field x-axis-flex">
-                            <label>Photo</label>
-                            <div class="photo-updating-body y-axis-flex">
-                                <div class="profile-update-user-photo"></div>
-                                <label for="choose-profile-photo-input">Choose</label>
+                        <div tabindex="-1" class="common-input-field x-axis-flex">
+                            <label tabindex="-1">Photo</label>
+                            <div tabindex="-1" class="photo-updating-body y-axis-flex">
+                                <div tabindex="-1" class="profile-update-user-photo"></div>
+                                <label tabindex="-1" for="choose-profile-photo-input">Choose</label>
                                 <input tabindex="-1" type="file" id="choose-profile-photo-input" accept="image/*">
                             </div>
                         </div>
-                        <div class="common-input-field x-axis-flex">
-                            <label for="profile-update-name">Name</label>
+                        <div tabindex="-1" class="common-input-field x-axis-flex">
+                            <label tabindex="-1" for="profile-update-name">Name</label>
                             <input tabindex="-1" type="text" id="profile-update-name" class="common-input-tag">
                         </div>
-                        <div class="common-input-field x-axis-flex">
-                            <label for="profile-update-email">Email</label>
+                        <div tabindex="-1" class="common-input-field x-axis-flex">
+                            <label tabindex="-1" for="profile-update-email">Email</label>
                             <input tabindex="-1" type="email" id="profile-update-email" min="5" max="20" class="common-input-tag">
                         </div>
-                        <div class="common-input-field x-axis-flex">
-                            <label for="profile-update-old-pass">Old Password</label>
+                        <div tabindex="-1" class="common-input-field x-axis-flex">
+                            <label tabindex="-1" for="profile-update-old-pass">Old Password</label>
                             <input tabindex="-1" type="password" id="profile-update-old-pass" min="5" max="20" class="common-input-tag">
                         </div>
-                        <div class="common-input-field x-axis-flex">
-                            <label for="profile-update-new-pass">New Password</label>
+                        <div tabindex="-1" class="common-input-field x-axis-flex">
+                            <label tabindex="-1" for="profile-update-new-pass">New Password</label>
                             <input tabindex="-1" type="password" id="profile-update-new-pass" min="5" max="20" class="common-input-tag">
                         </div>
                     </form>
@@ -496,7 +497,7 @@
 
 <!-- Notification scripts starts here -->
 <script src="assets/js/notificationscripts/notificationview.js"></script>
-<script src="assets/js/settingsscripts/notificationmodel.js"></script>
+<script src="assets/js/notificationscripts/notificationmodel.js"></script>
 <!-- Notification scripts ends here -->
 
 <!-- Web socket scripts starts here -->

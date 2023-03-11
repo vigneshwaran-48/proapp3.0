@@ -18,7 +18,7 @@ public class GetUsers extends HttpServlet{
             response.getWriter().print(getUser.getAllUser(c,request));
         }
         else{
-            response.getWriter().print(getUser.getUserDetails(c,request.getParameter("id")));
+            response.getWriter().print(getUser.getUserDetails(c,request.getParameter("id"),request));
         }        
 
     }

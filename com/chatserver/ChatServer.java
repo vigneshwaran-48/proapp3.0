@@ -1,6 +1,11 @@
 package com.chatserver;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Time;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +23,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import com.apicall.NotificationApiCall;
 import com.apicall.UsersApiCall;
 
 import com.databases.message.Message;
@@ -26,7 +32,6 @@ import com.databases.message.Message;
 public class ChatServer {
     static CopyOnWriteArrayList<User> arr = new CopyOnWriteArrayList<User>();
     Long uid = 0L;
-
     @OnOpen
     public void connect(Session session) {
         Map<String, List<String>> hashMap = session.getRequestParameterMap();
@@ -49,13 +54,29 @@ public class ChatServer {
             for (Long arrList : arrayList) {
                 if (alreadyExist(arrList)) {
                     for (User user : arr) {
-                        System.out.println(
-                                arrayList + ", " + js.get("userId") + " ==> " + (arrayList == js.get("userId")));
+                        // System.out.println(
+                        //         arrayList + ", " + js.get("userId") + " ==> " + (arrayList == js.get("userId")));
                         if (arrList.equals(user.getUserId()) && user.getUserId() != uid) {
 
                             try {
                                 user.getSession().getBasicRemote()
                                         .sendText(js.toJSONString());
+                                        // {"date":"2023-03-19","nContent":"gdjhbvcvwrv","time":"12:12:12","userId":1}
+                                JSONObject notificationObject=new JSONObject();
+                                LocalDateTime timeget = LocalDateTime.now();  
+                                LocalDateTime dateget= LocalDateTime.now();
+                                DateTimeFormatter timeformate = DateTimeFormatter.ofPattern("HH:mm:ss");  
+                                DateTimeFormatter dateformate = DateTimeFormatter.ofPattern("YYYY-MM-dd");  
+                                String time=timeget.format(timeformate);
+                                String date=dateget.format(dateformate);
+                                notificationObject.put("nContent", js.get("description"));
+                                
+                                notificationObject.put("time", time);
+                                notificationObject.put("date", date);
+                                notificationObject.put("userId", js.get("userId"));
+                                System.out.println("notification object:"+notificationObject);
+                                NotificationApiCall.addNotificationApiCall(notificationObject);
+
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -63,6 +84,19 @@ public class ChatServer {
                     }
                 }
             }
+            // JSONObject notificationObject=new JSONObject();
+            // LocalDateTime timeget = LocalDateTime.now();  
+            // LocalDateTime dateget= LocalDateTime.now();
+            // DateTimeFormatter timeformate = DateTimeFormatter.ofPattern("HH:mm:ss");  
+            // DateTimeFormatter dateformate = DateTimeFormatter.ofPattern("HH:mm:ss");  
+            // String time=timeget.format(timeformate);
+            // String date=dateget.format(dateformate);
+            // notificationObject.put("nContent", js.get("description"));
+            // notificationObject.put("time", time);
+            // notificationObject.put("date", date);
+            // notificationObject.put("userId", js.get("userId"));
+            // NotificationApiCall.addNotificationApiCall(notificationObject);
+
         } else if (js.get("messageType").equals("taskUpdate")) {
             UsersApiCall api = new UsersApiCall();
             ArrayList<Long> arrayList = api.getUsersByTaskId(Long.parseLong(String.valueOf(js.get("taskId"))));
@@ -119,6 +153,7 @@ public class ChatServer {
                 }
             }
         }
+
     }
 
     @OnError
@@ -145,7 +180,7 @@ public class ChatServer {
         boolean result = false;
         try {
             for (User chatServer : arr) {
-                System.out.println("from method" + chatServer.getUserId());
+                // System.out.println("from method" + chatServer.getUserId());
                 if (chatServer.getUserId() == uid) {
                     result = true;
                 }

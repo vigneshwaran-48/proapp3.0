@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.databases.notification.RetrieveNotification;
 
-public class GetNotification extends HttpServlet{
+public class GetNotifications extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Connection con = (Connection) request.getServletContext().getAttribute("Connection");

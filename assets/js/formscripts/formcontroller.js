@@ -189,7 +189,7 @@ let FormController = (view => {
             response = await sendPostRequest("project/update", formData);
         }
         //The below conditions are for sending notification to all users about the update
-        if(response.result == "Success"){
+        if(response.status == "success"){
             MainView.showSuccessMessage("updated successfully");
             if(CURRENTSECTION == "Tasks"){
                 sendMessage(JSON.stringify({

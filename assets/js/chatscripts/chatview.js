@@ -24,15 +24,28 @@ let ChatView = (() => {
         userStatus : "user-status",
         userOnline : "user-online",
         userOffline : "user-offline",
-        chatIconStatusWrapper : "chat-icon-status-wrapper"
+        chatIconStatusWrapper : "chat-icon-status-wrapper",
+        chatPeopleStatus : ".chat-window-status",
+        activeStatusMessage : "active-status-message",
+        offlineStatusMessage : "offline-status-message"
     }
     let getDomStrings = () => domStrings;
 
-    let renderChattingWindow = event => {
+    let renderChattingWindow = async event => {
+        _(domStrings.chatPeopleStatus).classList.remove(domStrings.activeStatusMessage);
+        _(domStrings.chatPeopleStatus).classList.remove(domStrings.activeStatusMessage);
+        let userDetails = await sendGetRequest("user/getusers?id=" + event.target.dataset.userId);
         _(domStrings.chattingWindow).classList.add(MainView.getDomStrings().showFromRightToLeft);
-        _(domStrings.chattingUserName).textContent = event.target.id;
+        _(domStrings.chattingUserName).innerText = userDetails.userName;
         _(domStrings.chattingUserImage).style.backgroundImage = `url(assets/images/usersImages/${event.target.dataset.userImage})`;
         _(domStrings.chatInput).id = event.target.dataset.userId;
+        _(domStrings.chatPeopleStatus).textContent = userDetails.status;
+        if(userDetails.status == "Offline"){
+            _(domStrings.chatPeopleStatus).classList.add(domStrings.activeStatusMessage);
+        }
+        else {
+            _(domStrings.chatPeopleStatus).classList.add(domStrings.offlineStatusMessage);
+        }
         renderMessages(ChatModel.getChatsOfTheUser(event.target.dataset.userId), true);
         CURRENTMESSAGINTOPERSON = event.target.dataset.userId;
     }
@@ -40,13 +53,14 @@ let ChatView = (() => {
         _(domStrings.chatAllPeopleWrapper).innerHTML = "";
         users.forEach(elem => {
             if(elem.userId != USERID){
+                console.log(elem);
                 let personWrapper = document.createElement("div");
                 let personPhoto = document.createElement("div");
                 let personName = document.createElement("p");
                 let chatIcon = document.createElement("i");
                 let activeStatus = document.createElement("div");
                 let chatIconStatusWrapper = document.createElement("div");
-
+                
                 //Adding classes to the created elements
                 personWrapper.classList.add(domStrings.singlePeopleWrapper);
                 personWrapper.classList.add("x-axis-flex");

@@ -54,7 +54,8 @@ public class User {
                 session.setAttribute("userName", new RetrieveUser().getUnameByEmail(con, emailid));
                 ArrayList<Integer> activeUsers=(ArrayList<Integer>)request.getServletContext().getAttribute("ActiveUsers");
                 activeUsers.add(uid);
-                session.setAttribute("ActiveUsers",activeUsers);
+                System.out.println(activeUsers);
+                request.getServletContext().setAttribute("ActiveUsers",activeUsers);
                 
             }
         } 

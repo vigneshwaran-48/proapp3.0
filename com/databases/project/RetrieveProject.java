@@ -36,7 +36,6 @@ public class RetrieveProject {
                 totalCount++;
 
             }
-            System.out.println("projectid "+pid+"project status = "+status);
             // System.out.println("total count 1 = "+totalCount);
          if (totalCount>0) {
             if  (totalCount > 1)
@@ -98,7 +97,6 @@ public class RetrieveProject {
                 jsonObject.put("projectDesc", rs.getString("comment"));
                 jsonObject.put("percentage", returnPercentage(con, pid, uid));
                 jsonObject.put("status", rs.getString("status"));
-                System.out.println("status in while = "+rs.getString("status"));
                 jsArr.add(jsonObject);
             }
             // System.out.println("projects = "+jsArr);

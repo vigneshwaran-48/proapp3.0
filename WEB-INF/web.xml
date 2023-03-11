@@ -284,10 +284,36 @@
         <url-pattern>/task/getall</url-pattern>
     </servlet-mapping>
 
+    <!-- for getting the all notification regarding to the user -->
+    <servlet>
+        <servlet-name>GetNotification</servlet-name>
+        <servlet-class>com.servlets.notification.GetNotifications</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetNotification</servlet-name>
+        <url-pattern>/notification/getall</url-pattern>
+    </servlet-mapping>
 
+    <!-- for getting the all notification regarding to the user -->
+    <servlet>
+        <servlet-name>AddNotification</servlet-name>
+        <servlet-class>com.servlets.notification.AddNotification</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddNotification</servlet-name>
+        <url-pattern>/notification/add</url-pattern>
+    </servlet-mapping>
+
+    <!-- for getting the all notification regarding to the user -->
+    <servlet>
+        <servlet-name>DeleteNotification</servlet-name>
+        <servlet-class>com.servlets.notification.DeleteNotification</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteNotification</servlet-name>
+        <url-pattern>/notification/delete</url-pattern>
+    </servlet-mapping>
     <!-- for deleting the task associated user -->
-
-
     <servlet>
         <servlet-name>RemoveTaskRelation</servlet-name>
         <servlet-class>com.servlets.task.RemoveTaskRelation</servlet-class>

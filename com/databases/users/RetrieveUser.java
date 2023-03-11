@@ -174,7 +174,7 @@ public class RetrieveUser {
      * @param val This is used to get that particular user.
      * @return return a JSONObject contains user detail
      */
-    public JSONObject getUserDetails(Connection c, String val) {
+    public JSONObject getUserDetails(Connection c, String val, HttpServletRequest request) {
         int uid = Integer.parseInt(val);
         JSONObject jsonObject = new JSONObject();
         try {
@@ -182,10 +182,11 @@ public class RetrieveUser {
             Statement statement = c.createStatement();
             rs = statement.executeQuery("select uid,uname,imagePath from users where uid=" + uid);
             rs.next();
-
+            ArrayList<Integer> users = (ArrayList<Integer>) request.getServletContext().getAttribute("ActiveUsers");
             jsonObject.put("userId", rs.getInt("uid"));
             jsonObject.put("userName", rs.getString("uname"));
             jsonObject.put("imagePath", rs.getString("imagePath"));
+            jsonObject.put("status", isOnline(users, uid));
         } catch (Exception e) {
             e.printStackTrace();
         }

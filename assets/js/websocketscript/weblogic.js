@@ -20,6 +20,13 @@ let processMessage = async data => {
         let users = await sendGetRequest("user/getusers?id=all");
         ChatView.renderStatusOfPeople(users);
     }
+    if(data.messageType != "UserJoined" && data.messageType != "UserLeft"){
+        console.log("Rendering notification");
+        resetNotification();
+    }
+    else {
+        console.log("Some other notifcation .......");
+    }
 }
 
 //This is for handling messages coming from server

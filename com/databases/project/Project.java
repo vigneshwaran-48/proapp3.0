@@ -3,8 +3,6 @@ package com.databases.project;
 import java.sql.*;
 import org.json.simple.*;
 
-import com.databases.Image;
-
 /**
  * This class contains methods to add and delete project.
  */

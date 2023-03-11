@@ -7,12 +7,13 @@ import java.sql.Statement;
 import org.json.simple.JSONObject;
 
 public class Notification {
-    public JSONObject addNotification(Connection con,JSONObject jsonObject) {
+    public JSONObject addNotification(Connection con, JSONObject jsonObject) {
+        
         JSONObject resultObject = new JSONObject();
-        String message = (String) jsonObject.get("message");
+        String message = (String) jsonObject.get("nContent");
         String n_time = (String) jsonObject.get("time");
         String n_date = (String) jsonObject.get("date");
-        String user_id = (String) jsonObject.get("userId");
+        long user_id = Long.parseLong(String.valueOf(jsonObject.get("userId")));
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate("insert into notification (message, n_time, n_date, user_id) values('"+message+"' , '"+n_time+"' , '"+n_date+"' , '"+user_id+"')");
@@ -21,8 +22,8 @@ public class Notification {
             ResultSet rs = stmt1.executeQuery("select * from notification order by nid desc limit 1");
             rs.next();
 
-            resultObject.put("nid", rs.getInt("nid"));
-            resultObject.put("message", rs.getString("message"));
+            resultObject.put("nId", rs.getInt("nid"));
+            resultObject.put("nContent", rs.getString("message"));
             resultObject.put("time", rs.getString("n_time"));
             resultObject.put("date", rs.getString("n_date"));
             resultObject.put("userId", rs.getString("user_id"));
