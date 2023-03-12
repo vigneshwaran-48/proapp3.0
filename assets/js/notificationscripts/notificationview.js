@@ -8,16 +8,26 @@ let NotificationView = (() => {
         notificationContent : "notification-content",
         notificationTime : "notification-time",
         notificationDeleteWrapper : "notification-delete-icon",
-        notificationDeleteIconClasses : ["fa-solid", "fa-circle-xmark"]
+        notificationDeleteIconClasses : ["fa-solid", "fa-circle-xmark"],
+        emptyInbox : "empty-notifcations-list"
     }
 
-    let deleteNotification = event => {
-        
+    let deleteNotification = async event => {
+        let formData = new FormData();
+        formData.append("userId", USERID);
+        formData.append("nid", event.target.dataset.nid);
+        let status = await sendPostRequest("notification/delete", formData);
+        if(status.result){
+            MainView.showSuccessMessage("Notification deleted successfully");
+            resetNotification();    
+        }
     }
 
     let renderNotifications = notifications => {
         _(domStrings.notificationsWrapper).innerHTML = "";
+        
         if(notifications.length){
+            _(domStrings.notificationsWrapper).classList.remove(domStrings.emptyInbox);
             notifications.forEach(elem => {
                 let singleNotification = document.createElement("li");
                 let notificationImage = document.createElement("div");
@@ -58,6 +68,7 @@ let NotificationView = (() => {
             });
         }
         else {
+            _(domStrings.notificationsWrapper).classList.add(domStrings.emptyInbox);
             console.log("No Notification ......");
         }
     }

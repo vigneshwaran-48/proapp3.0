@@ -304,7 +304,7 @@
         <url-pattern>/notification/add</url-pattern>
     </servlet-mapping>
 
-    <!-- for getting the all notification regarding to the user -->
+    <!-- for deleting notification regarding to the user -->
     <servlet>
         <servlet-name>DeleteNotification</servlet-name>
         <servlet-class>com.servlets.notification.DeleteNotification</servlet-class>

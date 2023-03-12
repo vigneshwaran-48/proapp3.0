@@ -127,7 +127,7 @@
     border-radius: 10px;
 }
 .empty-notifcations-list{
-    background-image: url();
+    background-image: url(/ProApp/assets/images/empty_notification.jpg);
     background-size: cover;
     background-position: center;
 }

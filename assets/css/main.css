@@ -177,6 +177,7 @@ body{
 }
 #top-profile-option-photo:checked + .top-profile-options-wrapper {
     height: 80px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 .top-profile-options{
     list-style-type: none;
@@ -210,6 +211,7 @@ body{
 }
 #notification-button-id:checked + .notifcations-list {
     height: 200px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 .notification-list-option{
     list-style-type: none;
@@ -267,5 +269,10 @@ body{
     }
     .icon-label{
         display: none;
+    }
+}
+@media screen and (max-width: 305px){
+    .notifcations-list{
+        width: 240px;
     }
 }
