@@ -16,7 +16,7 @@ public class Message {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        try (Connection c = DriverManager.getConnection("jdbc:mysql://10.52.0.38:3306/proapp", "vicky", "vi99g@NESH")){
+        try (Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/proapp", "vicky", "vi99g@NESH")){
             System.out.println("json:" + jsonObject);
             JSONObject jsonObject2 = (JSONObject) new JSONParser().parse(jsonObject);
 

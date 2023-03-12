@@ -126,6 +126,11 @@
     overflow: scroll;
     border-radius: 10px;
 }
+.empty-notifcations-list{
+    background-image: url();
+    background-size: cover;
+    background-position: center;
+}
 .notifcations-list::-webkit-scrollbar {
     display: none;
 }

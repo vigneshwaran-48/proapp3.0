@@ -8,7 +8,11 @@ let NotificationView = (() => {
         notificationContent : "notification-content",
         notificationTime : "notification-time",
         notificationDeleteWrapper : "notification-delete-icon",
-        notificationDeleteIconClasses : ["fa-solid", "fa-comment-slash"]
+        notificationDeleteIconClasses : ["fa-solid", "fa-circle-xmark"]
+    }
+
+    let deleteNotification = event => {
+        
     }
 
     let renderNotifications = notifications => {
@@ -40,7 +44,11 @@ let NotificationView = (() => {
                 //Adding contents to created elements 
                 notifcationContent.textContent = elem.nContent;
                 notifcationTime.textContent = elem.date + " " + elem.time;
-    
+                notificationDeleteWrapper.dataset.nid = elem.nId;
+                notificationDeleteIcon.dataset.nid = elem.nId;
+
+                //This listener is to delete a notifcation
+                notificationDeleteWrapper.addEventListener("click", deleteNotification);
     
                 //Adding elements to their respective parents
                 notificationDeleteWrapper.append(notificationDeleteIcon);
