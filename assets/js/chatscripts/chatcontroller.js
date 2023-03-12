@@ -20,7 +20,12 @@ let ChatController = ((view, model) => {
             console.log("reseted message input ....");
             event.preventDefault();
             _(view.getDomStrings().chatInput).innerHTML = "";
-            view.renderMessages([addSingleMessage(messageContent, USERID, toUserId, time, date)]);
+            if(_(view.getDomStrings().fullMessageWrapper).children[0].classList.contains(view.getDomStrings().startCoversationWrapper)){
+                view.renderMessages([addSingleMessage(messageContent, USERID, toUserId, time, date)], true);
+            }
+            else {
+                view.renderMessages([addSingleMessage(messageContent, USERID, toUserId, time, date)]);
+            }
         }
     }
 

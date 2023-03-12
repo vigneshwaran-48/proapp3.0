@@ -164,6 +164,24 @@
     margin-top: 20px;
     cursor: pointer;
 }
+.empty-boxes, .empty-task-div {
+    background-image: url(/ProApp/assets/images/empty_boxes.jpg);
+    background-size: cover;
+    background-position: center;
+    width: 82%;
+    height: 100%;
+}
+.empty-box-wrapper, .empty-task-div-wrapper{
+    max-width: 358px;
+    width: 100%;
+    border-radius: 15px;
+    height: 230px;
+    background-color: white;
+}
+.empty-message-box{
+    font-size: 20px;
+    padding: 10px;
+}
 /* body section styling ends here */
 
 @media screen and (max-width:1240px) {

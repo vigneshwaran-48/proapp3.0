@@ -27,7 +27,10 @@ let ChatView = (() => {
         chatIconStatusWrapper : "chat-icon-status-wrapper",
         chatPeopleStatus : ".chat-window-status",
         activeStatusMessage : "active-status-message",
-        offlineStatusMessage : "offline-status-message"
+        offlineStatusMessage : "offline-status-message",
+        startCoversationWrapper : "start-conversation-wrapper",
+        startConversation : "start-conversation",
+        startConversationMessage : "start-conversation-message"
     }
     let getDomStrings = () => domStrings;
 
@@ -170,6 +173,21 @@ let ChatView = (() => {
             _(domStrings.fullMessageWrapper).append(singleMessageWrapper);
         });
         _(domStrings.fullMessageWrapper).scrollTop = _(domStrings.fullMessageWrapper).scrollHeight;
+
+        if(!_(domStrings.fullMessageWrapper).children.length){
+            let startCoversationWrapper = document.createElement("div");
+            let startConversation = document.createElement("div");
+            let startConversationMessage = document.createElement("p");
+
+            startCoversationWrapper.classList.add(domStrings.startCoversationWrapper);
+            startCoversationWrapper.classList.add("y-axis-flex");
+            startConversation.classList.add(domStrings.startConversation);
+            startConversationMessage.classList.add(domStrings.startConversationMessage);
+            startConversationMessage.textContent = "Start a conversation";
+
+            startCoversationWrapper.append(startConversation, startConversationMessage);
+            _(domStrings.fullMessageWrapper).appendChild(startCoversationWrapper);
+        }
     }
 
     return {

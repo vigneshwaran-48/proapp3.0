@@ -34,6 +34,11 @@ let handleTextMessage = data => {
     let messageObject = ChatController.addSingleMessage(data.messageContent, data.fromUserId, data.toUserId, data.time, data.date);
     console.log(messageObject);
     if(CURRENTMESSAGINTOPERSON == messageObject.from){
-        ChatView.renderMessages([messageObject]);
+        if(_(ChatView.getDomStrings().fullMessageWrapper).children[0].classList.contains(ChatView.getDomStrings().startCoversationWrapper)){
+            ChatView.renderMessages([messageObject], true);
+        }
+        else {
+            ChatView.renderMessages([messageObject]);
+        }
     }
 }

@@ -151,4 +151,18 @@
     justify-content: flex-end;
     flex-grow: 1;
 }
+.start-conversation-wrapper {
+    width: 90%;
+    height: 370px;
+}
+.start-conversation-message {
+    font-size: 20px;
+    padding: 10px;
+}
+.start-conversation{
+    background-image: url(/ProApp/assets/images/start_conversation.avif);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
 /* Chatting window styling ends here */

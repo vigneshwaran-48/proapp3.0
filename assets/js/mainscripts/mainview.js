@@ -68,7 +68,11 @@ let MainView = (() => {
         iconClickEffect : "common-i-tag-click-effect",
         profileButton : ".profile-button",
         topProfilePhotoLabel : ".top-profile-image",
-        notificationLabel : ".notification-button"
+        notificationLabel : ".notification-button",
+        emptyBoxes : "empty-boxes",
+        emptyBoxWrapper : "empty-box-wrapper",
+        emptyBoxMessage : "empty-message-box",
+        centerTheBox : "center-the-box"
     }
     let getDomStrings = () => domStrings;
 
@@ -123,6 +127,22 @@ let MainView = (() => {
                 _(domStrings.descPeopleWrapper).append(labelTag);
             }
         });
+    }
+    let generateEmptyBox = () => {
+        let emptyMessageDiv = document.createElement("div");
+        let emptyMessageWrapper = document.createElement("div");
+        let emptyMessage = document.createElement("p");
+
+        emptyMessageWrapper.classList.add(domStrings.emptyBoxWrapper);
+        emptyMessageWrapper.classList.add("y-axis-flex");
+        emptyMessageDiv.classList.add(domStrings.emptyBoxes);
+        emptyMessage.classList.add(domStrings.emptyBoxMessage);
+
+        emptyMessage.textContent = "Nothing here ...";
+
+        emptyMessageWrapper.append(emptyMessageDiv, emptyMessage);
+
+        return emptyMessageWrapper;
     }
     let showErrorMessage = message => {
         _(domStrings.errorMessagePara).innerText = message;
@@ -248,6 +268,7 @@ let MainView = (() => {
         loadStatisticsData : loadStatisticsData,
         showPopUpSymbol : showPopUpSymbol,
         renderDescriptionDetails : renderDescriptionDetails,
-        renderEditSection : renderEditSection
+        renderEditSection : renderEditSection,
+        generateEmptyBox : generateEmptyBox
     }
 })();

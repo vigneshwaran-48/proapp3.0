@@ -28,7 +28,9 @@ let TaskView = (() => {
         showTwoOptions : "show-two-option",
         showOneOption : "show-one-option",
         threeDotsInput : "three-dots-task-input",
-        threeDotsLabel : "task-three-dots-label"
+        threeDotsLabel : "task-three-dots-label",
+        emptyTaskDiv : "empty-task-div",
+        emptyTaskDivWrapper : "empty-task-div-wrapper"
     }
     let getDomStrings = () => domStrings;
 
@@ -50,6 +52,7 @@ let TaskView = (() => {
         _(domStrings.taskMiddleSectionBody).innerHTML = "";
         //This if condition is to check any tasks available in any project
         if(isTasksAvailable(tasks)){
+            _(domStrings.taskMiddleSectionBody).classList.remove(MainView.getDomStrings().centerTheBox);
             Object.keys(tasks).forEach(singleProject => {
                 //This if condition is to check the current project in loop has a task
                 if(tasks[singleProject].length){
@@ -232,10 +235,20 @@ let TaskView = (() => {
             });
         }
         else {
+            let notTaskDivWrapper = document.createElement("div");
+            let notTaskDiv = document.createElement("div");
             let h1Tag = document.createElement("h1");
+
             h1Tag.textContent = "You have no tasks yet";
             h1Tag.classList.add(domStrings.noTaskHeading);
-            _(domStrings.taskMiddleSectionBody).append(h1Tag);
+            notTaskDiv.classList.add(domStrings.emptyTaskDiv);
+            notTaskDivWrapper.classList.add(domStrings.emptyTaskDivWrapper);
+            notTaskDivWrapper.classList.add("y-axis-flex");
+
+            _(domStrings.taskMiddleSectionBody).classList.add(MainView.getDomStrings().centerTheBox);
+
+            notTaskDivWrapper.append(notTaskDiv, h1Tag);
+            _(domStrings.taskMiddleSectionBody).append(notTaskDivWrapper);
         }
     }
 

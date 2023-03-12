@@ -75,6 +75,11 @@ let ProjectView = (() => {
         _(domStrings.completedSection).innerHTML = "";
         _(domStrings.overDueSection).innerHTML = "";
 
+        // _(domStrings.completedSection).classList.remove(MainView.getDomStrings().centerTheBox);
+        // _(domStrings.inProgressSection).classList.remove(MainView.getDomStrings().centerTheBox);
+        // _(domStrings.yetToStartSection).classList.remove(MainView.getDomStrings().centerTheBox);
+        // _(domStrings.overDueSection).classList.remove(MainView.getDomStrings().centerTheBox);
+
         projects.forEach(elem => {
             //Creating elements starts here
             let parentTag;
@@ -238,6 +243,25 @@ let ProjectView = (() => {
             parentTag.append(mainBox);
             //Appending elements to its respective parent element ends here
         });
+
+        //This condition is to check whether all sections are filled
+        
+        if(!_(domStrings.overDueSection).children.length){
+            // _(domStrings.overDueSection).classList.add(MainView.getDomStrings().centerTheBox);
+            _(domStrings.overDueSection).append(MainView.generateEmptyBox());
+        }
+        if(!_(domStrings.yetToStartSection).children.length){
+            // _(domStrings.yetToStartSection).classList.add(MainView.getDomStrings().centerTheBox);
+            _(domStrings.yetToStartSection).append(MainView.generateEmptyBox());
+        }
+        if(!_(domStrings.inProgressSection).children.length){
+            // _(domStrings.inProgressSection).classList.add(MainView.getDomStrings().centerTheBox);
+            _(domStrings.inProgressSection).append(MainView.generateEmptyBox());
+        }
+        if(!_(domStrings.completedSection).children.length){
+            // _(domStrings.completedSection).classList.add(MainView.getDomStrings().centerTheBox);
+            _(domStrings.completedSection).append(MainView.generateEmptyBox());
+        }
     }
 
     return {

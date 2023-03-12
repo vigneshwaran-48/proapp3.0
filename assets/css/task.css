@@ -137,6 +137,38 @@
 .task-three-dots-label:hover {
     background-color: white;
 }
+.empty-task-div{
+    width: 100%;
+    height: 90%;
+    background-image: url(/ProApp/assets/images/empty_task.avif);
+}
+.empty-task-div-wrapper{
+    max-width: 700px;
+    width: 80%;
+    height: 500px;
+    justify-content: space-around;
+    text-align: center;
+}
+@media screen and (max-width: 720px){
+    .empty-task-div{
+        height: 75%;
+    }
+}
+@media screen and (max-width: 610px){
+    .empty-task-div{
+        height: 70%;
+    }
+}
+@media screen and (max-width: 580px){
+    .empty-task-div{
+        height: 60%;
+    }
+}
+@media screen and (max-width: 425px){
+    .empty-task-div-wrapper{
+        height: 400px;
+    }
+}
 @media screen and (max-width: 355px){
     .task-image{
         width: 30px;
@@ -146,4 +178,13 @@
         width: 32px;
         height: 32px;
     }
+    .empty-task-div{
+        height: 60%;
+    }
+    .empty-task-div-wrapper{
+        height: 300px;
+    }
+}
+.center-the-box {
+    justify-content: center;
 }
