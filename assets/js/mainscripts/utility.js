@@ -54,7 +54,6 @@ let sendPostRequest = (url, data, stopParsing) => {
         xhr.open("POST", url);
         xhr.send(data);
         xhr.onload = () => {
-            console.log("post request received");
             if(!stopParsing){
                 resolved(JSON.parse(xhr.response));
             }

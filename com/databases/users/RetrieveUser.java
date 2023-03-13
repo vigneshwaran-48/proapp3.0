@@ -194,7 +194,6 @@ public class RetrieveUser {
     }
 
     public String isOnline(ArrayList<Integer> userInfo,Integer uid) {
-        
         for (Integer integer : userInfo) {
             if(integer==uid)
             {
@@ -202,6 +201,5 @@ public class RetrieveUser {
             }
         }
         return "Offline";
-        
     }
 }

@@ -43,16 +43,24 @@ let FormController = (view => {
         console.log(fromDateInput < toDateInput);
 
         if(nameInput.length && descInput.length && peopleInput.length){
-            resetForm();
-            return {
-                status : true,
-                formDetails : {
-                    name : nameInput,
-                    description : descInput,
-                    fromDate : fromDateInput,
-                    toDate : toDateInput,
-                    people : people,
-                    projectId : projectId
+            if(nameInput.length < 30){
+                resetForm();
+                return {
+                    status : true,
+                    formDetails : {
+                        name : nameInput,
+                        description : descInput,
+                        fromDate : fromDateInput,
+                        toDate : toDateInput,
+                        people : people,
+                        projectId : projectId
+                    }
+                }
+            }
+            else {
+                MainView.showErrorMessage("Name length should be less than 30");
+                return {
+                    status: false
                 }
             }
         }

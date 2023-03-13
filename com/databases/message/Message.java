@@ -62,7 +62,6 @@ public class Message {
 
             }
         } catch (Exception e) {
-            // TODO: handle exception
             e.printStackTrace();
         }
         return jarray;
