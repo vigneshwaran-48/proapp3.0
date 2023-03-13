@@ -160,9 +160,15 @@
     padding: 10px;
 }
 .start-conversation{
-    background-image: url(/ProApp/assets/images/start_conversation.avif);
+    background-image: url(/ProApp/assets/images/start_conversation.png);
     background-size: cover;
     width: 100%;
     height: 100%;
+}
+.active-status-message{
+    color: green;
+}
+.offline-status-message{
+    color: red;
 }
 /* Chatting window styling ends here */

@@ -1,8 +1,6 @@
 package com.apicall;
 
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
@@ -29,12 +27,4 @@ public class NotificationApiCall {
         }
         return jsonObject;
     }
-    // public static void main(String[] args) {
-    //     JSONObject notificationObject=new JSONObject();
-    //                             notificationObject.put("date", "2023-03-19");
-    //                             notificationObject.put("nContent", "sdfsdfsd");
-    //                             notificationObject.put("time", "12:12:12");
-    //                             notificationObject.put("userId", 1);
-    //                             new NotificationApiCall().addNotificationApiCall(notificationObject);
-    // }
 }

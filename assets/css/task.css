@@ -1,3 +1,6 @@
+.fa-circle-check{
+    padding: 0;
+}
 .task-middle-section-body{
     height: 92%;
     width: 100%;
@@ -140,7 +143,7 @@
 .empty-task-div{
     width: 100%;
     height: 90%;
-    background-image: url(/ProApp/assets/images/empty_task.avif);
+    background-image: url(/ProApp/assets/images/empty_task.png);
 }
 .empty-task-div-wrapper{
     max-width: 700px;

@@ -69,7 +69,6 @@ let NotificationView = (() => {
         }
         else {
             _(domStrings.notificationsWrapper).classList.add(domStrings.emptyInbox);
-            console.log("No Notification ......");
         }
     }
 

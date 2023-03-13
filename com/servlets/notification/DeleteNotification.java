@@ -18,7 +18,7 @@ public class DeleteNotification extends HttpServlet{
         int uid = Integer.parseInt(request.getParameter("userId"));
         int nid = Integer.parseInt(request.getParameter("nid"));
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("result", new Notification().deleteNotification(con, uid, nid));
+        jsonObject.put("result", new Notification().deleteNotificationRelation(con, uid, nid));
         response.getWriter().println(jsonObject);
     }
 }

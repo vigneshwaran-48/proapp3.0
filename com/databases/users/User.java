@@ -52,6 +52,7 @@ public class User {
                 session.setAttribute("password", password);
                 session.setAttribute("uid", uid);
                 session.setAttribute("userName", new RetrieveUser().getUnameByEmail(con, emailid));
+                session.setMaxInactiveInterval(60);
                 ArrayList<Integer> activeUsers=(ArrayList<Integer>)request.getServletContext().getAttribute("ActiveUsers");
                 activeUsers.add(uid);
                 System.out.println(activeUsers);

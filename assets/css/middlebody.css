@@ -138,8 +138,7 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.5);
-    background-image: url(/ProApp/assets/images/logo2.png);
+    background-image: url(/ProApp/assets/images/logo.png);
     background-size: cover;
     background-position: center;
 }
@@ -165,7 +164,7 @@
     cursor: pointer;
 }
 .empty-boxes, .empty-task-div {
-    background-image: url(/ProApp/assets/images/empty_boxes.jpg);
+    background-image: url(/ProApp/assets/images/empty_boxes.png);
     background-size: cover;
     background-position: center;
     width: 82%;
@@ -176,7 +175,7 @@
     width: 100%;
     border-radius: 15px;
     height: 230px;
-    background-color: white;
+    /* background-color: white; */
 }
 .empty-message-box{
     font-size: 20px;

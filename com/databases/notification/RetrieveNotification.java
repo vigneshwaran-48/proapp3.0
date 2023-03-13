@@ -13,10 +13,10 @@ public class RetrieveNotification {
 
         try {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select message, n_time, n_date, nid from notification where user_id = "+uid);
+            ResultSet rs = stmt.executeQuery("select * from notification inner join notification_relation on notification.nid=notification_relation.nid where userId = "+uid);
             while (rs.next()) {
                 JSONObject jsonObject = new JSONObject();
-                jsonObject.put("nId", rs.getInt("nId"));
+                jsonObject.put("nId", rs.getInt("nid"));
                 jsonObject.put("nContent", rs.getString("message"));
                 jsonObject.put("time", rs.getString("n_time"));
                 jsonObject.put("date", rs.getString("n_date"));

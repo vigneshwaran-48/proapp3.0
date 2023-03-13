@@ -1,9 +1,6 @@
 package com.chatserver;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Time;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -32,13 +29,14 @@ import com.databases.message.Message;
 public class ChatServer {
     static CopyOnWriteArrayList<User> arr = new CopyOnWriteArrayList<User>();
     Long uid = 0L;
+
     @OnOpen
     public void connect(Session session) {
         Map<String, List<String>> hashMap = session.getRequestParameterMap();
         uid = Long.parseLong(String.valueOf(hashMap.get("uid").get(0)));
         if (!alreadyExistSession(session)) {
             arr.add(new User(session, uid));
-            notifyAllUser("UserJoined",uid);
+            notifyAllUser("UserJoined", uid);
         }
     }
 
@@ -47,95 +45,77 @@ public class ChatServer {
         System.out.println("From front end:" + message);
         JSONObject js = (JSONObject) new JSONParser().parse(message);
 
+        JSONObject notificationObject = new JSONObject();
+        String time = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+        String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("YYYY-MM-dd"));
+        notificationObject.put("nContent", js.get("description"));
+        notificationObject.put("time", time);
+        notificationObject.put("date", date);
+        JSONArray array = new JSONArray();//This array is for users to whom the notification to be sent ....
+        // notificationObject.put("userId", arrList);
         if (js.get("messageType").equals("projectUpdate")) {
             UsersApiCall api = new UsersApiCall();
             ArrayList<Long> arrayList = api.getUsersByProjectId((Long) js.get("projectId"));
-
+            
             for (Long arrList : arrayList) {
-                if (alreadyExist(arrList)) {
                     for (User user : arr) {
-                        // System.out.println(
-                        //         arrayList + ", " + js.get("userId") + " ==> " + (arrayList == js.get("userId")));
-                        if (arrList.equals(user.getUserId()) && user.getUserId() != uid) {
-
+                        if (!arrList.equals(uid) && user.getUserId() != uid) {
                             try {
                                 user.getSession().getBasicRemote()
                                         .sendText(js.toJSONString());
-                                        // {"date":"2023-03-19","nContent":"gdjhbvcvwrv","time":"12:12:12","userId":1}
-                                JSONObject notificationObject=new JSONObject();
-                                LocalDateTime timeget = LocalDateTime.now();  
-                                LocalDateTime dateget= LocalDateTime.now();
-                                DateTimeFormatter timeformate = DateTimeFormatter.ofPattern("HH:mm:ss");  
-                                DateTimeFormatter dateformate = DateTimeFormatter.ofPattern("YYYY-MM-dd");  
-                                String time=timeget.format(timeformate);
-                                String date=dateget.format(dateformate);
-                                notificationObject.put("nContent", js.get("description"));
-                                
-                                notificationObject.put("time", time);
-                                notificationObject.put("date", date);
-                                notificationObject.put("userId", js.get("userId"));
-                                System.out.println("notification object:"+notificationObject);
-                                NotificationApiCall.addNotificationApiCall(notificationObject);
-
+                                array.add(arrList);
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                        } 
+                        }
                     }
-                }
             }
-            // JSONObject notificationObject=new JSONObject();
-            // LocalDateTime timeget = LocalDateTime.now();  
-            // LocalDateTime dateget= LocalDateTime.now();
-            // DateTimeFormatter timeformate = DateTimeFormatter.ofPattern("HH:mm:ss");  
-            // DateTimeFormatter dateformate = DateTimeFormatter.ofPattern("HH:mm:ss");  
-            // String time=timeget.format(timeformate);
-            // String date=dateget.format(dateformate);
-            // notificationObject.put("nContent", js.get("description"));
-            // notificationObject.put("time", time);
-            // notificationObject.put("date", date);
-            // notificationObject.put("userId", js.get("userId"));
-            // NotificationApiCall.addNotificationApiCall(notificationObject);
-
-        } else if (js.get("messageType").equals("taskUpdate")) {
+            notificationObject.put("users", array);
+        } 
+        else if (js.get("messageType").equals("taskUpdate")) {
             UsersApiCall api = new UsersApiCall();
             ArrayList<Long> arrayList = api.getUsersByTaskId(Long.parseLong(String.valueOf(js.get("taskId"))));
 
             for (Long arrList : arrayList) {
-                if (alreadyExist(arrList)) {
                     for (User user : arr) {
 
-                        if (arrList.equals(user.getUserId()) && user.getUserId() != uid) {
+                        if (!arrList.equals(uid) && user.getUserId() != uid) {
                             try {
                                 user.getSession().getBasicRemote()
                                         .sendText(js.toJSONString());
+                                
+                                // notificationObject.put("userId", js.get("userId"));
+                                array.add(arrList);
+                                System.out.println("notification object:" + notificationObject);
+                                // NotificationApiCall.addNotificationApiCall(notificationObject);
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                        } 
+                        }
                     }
-                }
             }
-            JSONArray arrs=(JSONArray)js.get("removedUsers");
+            notificationObject.put("users", array);
+            JSONArray arrs = (JSONArray) js.get("removedUsers");
             System.out.println(arrs);
             System.out.println(arr);
-            if(arrs != null){
+            if (arrs != null) {
                 for (User userIndi : arr) {
                     System.out.println(userIndi.getUserId());
                     js.put("description", "You have been removed from the task");
                     System.out.println(js);
-                    if(arrs.contains(String.valueOf(userIndi.getUserId())))
-                    {
+                    if (arrs.contains(String.valueOf(userIndi.getUserId()))) {
                         try {
                             userIndi.getSession().getBasicRemote().sendText(js.toJSONString());
+                            array.add(userIndi);
+                            System.out.println("notification object:" + notificationObject);
+                            // NotificationApiCall.addNotificationApiCall(notificationObject);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                     }
                 }
             }
-        }
-        else if (js.get("messageType").equals("textMessage")) {
+        } else if (js.get("messageType").equals("textMessage")) {
             Message add = new Message();
             add.addMessage(js.toJSONString());
 
@@ -146,13 +126,16 @@ public class ChatServer {
                 if (user.getUserId() == Long.parseLong(String.valueOf(js.get("toUserId")))
                         && user.getSession().getId() != session.getId()) {
                     try {
+                        array.add(user.getUserId());
                         user.getSession().getBasicRemote().sendText(js.toJSONString());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
             }
+            notificationObject.put("users", array);
         }
+        NotificationApiCall.addNotificationApiCall(notificationObject);
 
     }
 
@@ -164,23 +147,21 @@ public class ChatServer {
 
     @OnClose
     public void closing(Session session) throws IOException {
-        
 
         for (User user : arr) {
             if (user.getSession().getId().equals(session.getId())) {
                 arr.remove(user);
             }
-            
+
         }
         notifyAllUser("UserLeft", -8L);
-        
+
     }
 
     public boolean alreadyExist(Long uid) {
         boolean result = false;
         try {
             for (User chatServer : arr) {
-                // System.out.println("from method" + chatServer.getUserId());
                 if (chatServer.getUserId() == uid) {
                     result = true;
                 }
@@ -205,8 +186,7 @@ public class ChatServer {
         return result;
     }
 
-    public void notifyAllUser(String message,Long uid) {
-        // String responseText="";
+    public void notifyAllUser(String message, Long uid) {
         JSONArray jArray = new JSONArray();
         for (User user : arr) {
             jArray.add(user.getUserId());
@@ -214,8 +194,7 @@ public class ChatServer {
         JSONObject jObj = new JSONObject();
         jObj.put("messageType", message);
         for (User user : arr) {
-            if(user.getUserId()!=uid)
-            {
+            if (user.getUserId() != uid) {
                 try {
                     user.getSession().getBasicRemote().sendText(jObj.toJSONString());
                 } catch (IOException e) {
@@ -225,6 +204,4 @@ public class ChatServer {
         }
     }
 
-    
-    
 }

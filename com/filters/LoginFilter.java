@@ -45,6 +45,7 @@ public class LoginFilter extends HttpFilter{
                     int uid=new RetrieveUser().getUidByEmail(conn, email);
                     session.setAttribute("uid", uid);
                     session.setAttribute("userName", new RetrieveUser().getUnameByEmail(conn, email));
+                    session.setMaxInactiveInterval(60);
                     ArrayList<Integer> activeUsers=(ArrayList<Integer>)request.getServletContext().getAttribute("ActiveUsers");
                     activeUsers.add(uid);
                     request.getServletContext().setAttribute("ActiveUsers",activeUsers);

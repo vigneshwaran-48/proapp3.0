@@ -96,6 +96,9 @@ body{
 }
 .top-head-tag{
     flex-grow: 1;
+    width: 166px;
+    height: 44px;
+    object-fit: cover;
 }
 .top-header-icon{
     width: 50px;
