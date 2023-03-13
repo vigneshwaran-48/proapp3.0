@@ -29,7 +29,7 @@ public class Message {
             Statement statement = c.createStatement();
 
             statement.executeUpdate("insert into messages(messageTime,messageDate,fromUser,toUser,message)values('"
-                    + messageTime + "' , '" + messageDate + "' , " + from + " , " + to + " , '" + message + "')");
+                    + messageTime + "' , '" + messageDate + "' , " + from + " , " + to + " , aes_encrypt('"+message+"','secret_key') )");
             System.out.println("i am form addmessage");
             result = true;
 
@@ -49,7 +49,7 @@ public class Message {
         try {
             Statement stmt = c.createStatement();
             ResultSet rs = stmt
-                    .executeQuery("select * from messages  where fromUser=" + userId + " or toUser =" + userId);
+                    .executeQuery("select mid, messageDate, messageTime, fromUser, toUser, cast( aes_decrypt(message,'secret_key') as char) as message from messages  where fromUser=" + userId + " or toUser =" + userId);
             while (rs.next()) {
                 JSONObject jsObj = new JSONObject();
                 jsObj.put("messageDate", rs.getString("messageDate"));
@@ -65,5 +65,6 @@ public class Message {
             e.printStackTrace();
         }
         return jarray;
+        
     }
 }

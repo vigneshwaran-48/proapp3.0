@@ -46,6 +46,7 @@
     left: 0;
     position: absolute;
     padding: 10px;
+    cursor: pointer;
 }
 #chat-members-view-close-button:hover, #chatting-window-close-button:hover{
     background-color: rgb(235, 237, 239);
