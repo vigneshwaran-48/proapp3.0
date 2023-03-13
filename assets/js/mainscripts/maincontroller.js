@@ -59,6 +59,7 @@ let MainController = (view => {
             view.loadStatisticsData();
             resetRightWindows(_(view.getDomStrings().rightSection));
             _(view.getDomStrings().rightSection).classList.toggle(view.getDomStrings().showFromRightToLeft);
+            _(view.getDomStrings().topRightOptionsInput).checked = false;
         });
 
         //This is for closing right side section
@@ -210,6 +211,7 @@ let MainController = (view => {
         _(view.getDomStrings().settingSectionButton).addEventListener("click", event => {
             _(view.getDomStrings().chatMembersCloseButton).click();
             resetRightWindows(_(view.getDomStrings().settingSection));
+            _(view.getDomStrings().topRightOptionsInput).checked = false;
             _(SettingsView.getDomStrings().settingsUserPhoto).style.backgroundImage = `url(/ProApp/assets/images/usersImages/${CURRENTUSERPHOTO})`;
             _(view.getDomStrings().settingSection).classList.add(view.getDomStrings().showFromRightToLeft);
         });
