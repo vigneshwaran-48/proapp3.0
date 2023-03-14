@@ -232,6 +232,8 @@ let MainController = (view => {
             _(view.getDomStrings().currentSectionHeading).textContent = "OverDue";
             _(view.getDomStrings().newButton).classList.add(view.getDomStrings().hideComponent);
             _(view.getDomStrings().fullFilterWrapper).classList.add(view.getDomStrings().hideComponent);
+            _(view.getDomStrings().chatMembersCloseButton).click();
+            _(view.getDomStrings().settingCloseButton).click();
         });
 
         //This is for handling top profile and notification button's actions
