@@ -31,13 +31,13 @@ CREATE TABLE `messages` (
   `messageTime` time NOT NULL,
   `fromUser` int NOT NULL,
   `toUser` int NOT NULL,
-  `message` text NOT NULL,
+  `message` mediumblob NOT NULL,
   PRIMARY KEY (`mid`),
   KEY `fromUser` (`fromUser`),
   KEY `toUser` (`toUser`),
   CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`fromUser`) REFERENCES `users` (`uid`),
   CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`toUser`) REFERENCES `users` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=276 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=317 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,7 +46,7 @@ CREATE TABLE `messages` (
 
 LOCK TABLES `messages` WRITE;
 /*!40000 ALTER TABLE `messages` DISABLE KEYS */;
-INSERT INTO `messages` VALUES (261,'2023-03-08','18:36:18',1,2,'hi'),(262,'2023-03-08','18:36:34',2,1,'enna da'),(263,'2023-03-09','10:00:34',2,1,'hello bro'),(264,'2023-03-09','14:02:23',1,2,'hu'),(265,'2023-03-09','14:02:30',1,2,'dd'),(266,'2023-03-09','14:02:43',1,2,'ddgfdg'),(267,'2023-03-09','14:02:58',1,2,'kjnkjhbjvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv'),(268,'2023-03-09','18:25:29',2,1,'helo'),(269,'2023-03-10','12:10:37',2,1,'hello'),(270,'2023-03-10','12:10:40',2,1,'hi'),(271,'2023-03-10','12:10:47',2,1,'hi'),(272,'2023-03-10','12:10:51',2,1,'hkjjh'),(273,'2023-03-10','12:10:56',1,2,'ghfy'),(274,'2023-03-10','18:38:59',39,2,'hi bro'),(275,'2023-03-10','18:39:09',39,2,'hlo bro');
+INSERT INTO `messages` VALUES (298,'2023-02-23','18:33:02',2,1,_binary '�T�\���~\�tl�O\�2\�\0B�\�\�\�\��\�\�'),(299,'2023-03-13','19:12:54',1,2,_binary '*\�\�\��9J\��~\�\�PD'),(300,'2023-03-13','19:12:59',2,1,_binary '�$\"0��\�U��\�\�\��\�'),(301,'2023-03-13','19:13:20',2,1,_binary 'i\�K\�E�I\�\�\\�=\"\�'),(302,'2023-03-13','19:13:26',2,1,_binary '\���\�!�G{�lɸ\�'),(303,'2023-03-13','19:13:28',2,1,_binary '>oRё��D��EnDF'),(304,'2023-03-13','19:13:29',2,1,_binary 'k�jX-V^\��U\�\�5\�'),(305,'2023-03-13','19:13:30',2,1,_binary 'k�jX-V^\��U\�\�5\�'),(306,'2023-03-13','19:13:31',2,1,_binary 'oN?]�4\�Z��\��#\�'),(307,'2023-03-13','19:13:31',2,1,_binary 'oN?]�4\�Z��\��#\�'),(308,'2023-03-13','19:13:32',2,1,_binary 'g\�\"xu&3\�:\�,am�'),(309,'2023-03-13','19:13:38',2,1,_binary 'g\�\"xu&3\�:\�,am�'),(310,'2023-03-13','19:13:38',2,1,_binary 'g\�\"xu&3\�:\�,am�'),(311,'2023-03-13','19:13:38',2,1,_binary 'g\�\"xu&3\�:\�,am�'),(312,'2023-03-13','19:13:39',2,1,_binary 'g\�\"xu&3\�:\�,am�'),(313,'2023-03-13','19:13:39',2,1,_binary 'g\�\"xu&3\�:\�,am�'),(314,'2023-03-13','19:13:51',1,2,_binary 'g\�\"xu&3\�:\�,am�'),(315,'2023-03-13','19:14:03',2,1,_binary '\�\�\�Z\�Թ�vO\�HIS'),(316,'2023-03-13','19:14:12',1,2,_binary '�Hӵ{�ǂ�\�x\�\�D\�');
 /*!40000 ALTER TABLE `messages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -62,11 +62,8 @@ CREATE TABLE `notification` (
   `message` varchar(60) NOT NULL,
   `n_time` time NOT NULL,
   `n_date` date NOT NULL,
-  `user_id` int NOT NULL,
-  PRIMARY KEY (`nid`),
-  KEY `user_id` (`user_id`),
-  CONSTRAINT `notification_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  PRIMARY KEY (`nid`)
+) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -75,7 +72,35 @@ CREATE TABLE `notification` (
 
 LOCK TABLES `notification` WRITE;
 /*!40000 ALTER TABLE `notification` DISABLE KEYS */;
+INSERT INTO `notification` VALUES (28,'Vicky has Added you in Project','14:59:58','2023-03-13'),(29,'You have been assigned to a task by Vicky','15:00:44','2023-03-13'),(31,'Vicky exited from the task Chatting Reciver module','15:51:54','2023-03-13'),(32,'Vicky exited from the task Urgent','15:52:03','2023-03-13'),(33,'Vicky exited from the task DO tthiss','15:52:11','2023-03-13'),(34,'Vicky exited from the task finish this','15:52:12','2023-03-13'),(35,'Vicky sent you a message','15:52:38','2023-03-13'),(36,'Basith deleted the task you Were in ','16:05:36','2023-03-13'),(37,'Basith deleted the task you Were in ','16:05:39','2023-03-13'),(38,'Basith has Added you in Project','16:07:30','2023-03-13'),(39,'You have been assigned to a task by Basith','17:23:03','2023-03-13'),(40,'Basith sent you a message','18:22:24','2023-03-13'),(41,'Bharath sent you a message','18:22:28','2023-03-13'),(42,'Bharath sent you a message','18:31:00','2023-03-13'),(43,'Bharath sent you a message','18:31:19','2023-03-13'),(44,'Bharath sent you a message','18:31:37','2023-03-13'),(45,'Bharath sent you a message','18:31:53','2023-03-13'),(46,'Bharath sent you a message','18:32:26','2023-03-13'),(47,'Bharath sent you a message','18:32:41','2023-03-13'),(48,'Bharath sent you a message','18:33:01','2023-03-13'),(49,'Bharath sent you a message','19:12:54','2023-03-13'),(50,'Basith sent you a message','19:12:59','2023-03-13'),(51,'Basith sent you a message','19:13:20','2023-03-13'),(52,'Basith sent you a message','19:13:26','2023-03-13'),(53,'Basith sent you a message','19:13:28','2023-03-13'),(54,'Basith sent you a message','19:13:29','2023-03-13'),(55,'Basith sent you a message','19:13:30','2023-03-13'),(57,'Basith sent you a message','19:13:31','2023-03-13'),(58,'Basith sent you a message','19:13:32','2023-03-13'),(60,'Basith sent you a message','19:13:38','2023-03-13'),(61,'Basith sent you a message','19:13:38','2023-03-13'),(62,'Basith sent you a message','19:13:39','2023-03-13'),(63,'Basith sent you a message','19:13:39','2023-03-13'),(64,'Bharath sent you a message','19:13:51','2023-03-13'),(65,'Basith sent you a message','19:14:03','2023-03-13'),(66,'Bharath sent you a message','19:14:12','2023-03-13'),(67,'Bharath exited from the task Chatting Reciver module','19:21:52','2023-03-13'),(68,'Bharath exited from the task Urgent','19:22:00','2023-03-13'),(69,'Bharath exited from the task CodeServer Backend','19:22:23','2023-03-13'),(70,'Basith deleted the task you Were in ','19:23:04','2023-03-13');
 /*!40000 ALTER TABLE `notification` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `notification_relation`
+--
+
+DROP TABLE IF EXISTS `notification_relation`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `notification_relation` (
+  `nid` int NOT NULL,
+  `userId` int NOT NULL,
+  PRIMARY KEY (`nid`,`userId`),
+  KEY `userId` (`userId`),
+  CONSTRAINT `notification_relation_ibfk_1` FOREIGN KEY (`nid`) REFERENCES `notification` (`nid`) ON DELETE CASCADE,
+  CONSTRAINT `notification_relation_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `users` (`uid`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `notification_relation`
+--
+
+LOCK TABLES `notification_relation` WRITE;
+/*!40000 ALTER TABLE `notification_relation` DISABLE KEYS */;
+INSERT INTO `notification_relation` VALUES (28,1),(29,1),(40,1),(50,1),(51,1),(52,1),(53,1),(54,1),(55,1),(57,1),(58,1),(60,1),(61,1),(62,1),(63,1),(65,1),(41,2),(42,2),(43,2),(45,2),(46,2),(47,2),(48,2),(49,2),(64,2),(66,2),(28,39),(29,39),(28,40);
+/*!40000 ALTER TABLE `notification_relation` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -92,7 +117,7 @@ CREATE TABLE `project_relation` (
   KEY `pid` (`pid`),
   CONSTRAINT `project_relation_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`),
   CONSTRAINT `project_relation_ibfk_2` FOREIGN KEY (`pid`) REFERENCES `projects` (`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -101,7 +126,7 @@ CREATE TABLE `project_relation` (
 
 LOCK TABLES `project_relation` WRITE;
 /*!40000 ALTER TABLE `project_relation` DISABLE KEYS */;
-INSERT INTO `project_relation` VALUES (158,1),(158,2),(159,1),(159,38),(159,2),(160,1),(160,38),(160,2),(161,1),(161,38),(162,1),(162,38),(163,38),(163,2),(164,1),(164,38),(166,1),(166,2),(166,39);
+INSERT INTO `project_relation` VALUES (203,1),(203,38),(203,2),(205,1),(205,2),(206,1),(206,38),(206,2),(210,1),(210,2),(216,1),(216,39),(216,40),(216,2);
 /*!40000 ALTER TABLE `project_relation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -123,7 +148,7 @@ CREATE TABLE `projects` (
   PRIMARY KEY (`pid`),
   KEY `created_by` (`created_by`),
   CONSTRAINT `projects_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `users` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=167 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=221 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -132,7 +157,7 @@ CREATE TABLE `projects` (
 
 LOCK TABLES `projects` WRITE;
 /*!40000 ALTER TABLE `projects` DISABLE KEYS */;
-INSERT INTO `projects` VALUES (158,'Testing','Completed','2023-03-09','2023-03-11','cdsv',2),(159,'veeb','Yet To Start','2023-03-09','2023-03-09','vrbe',2),(160,'vrrww','Yet To Start','2023-03-09','2023-03-24','vrv',2),(161,'vrbwr','Yet To Start','2023-03-01','2023-03-03','cev',2),(162,'ewwvqveq','Yet To Start','2023-02-28','2023-03-02','ve',2),(163,'fdbrbe','Yet To Start','2023-03-09','2023-03-09','vwe',2),(164,'brr','Yet To Start','2023-02-28','2023-03-01','brnr',2),(165,'tesr','Yet To Start','2023-03-09','2023-03-09','dgdgd',2),(166,'Trip','On Progress','2023-03-10','2023-03-18','Task to test',39);
+INSERT INTO `projects` VALUES (203,'Chatting Module','On Progress','2023-03-13','2023-03-13','Finish Chatting Module ASAP!!',2),(205,'Testing Report','Yet To Start','2023-03-13','2023-03-13','For the Review',2),(206,'Module Review','Completed','2023-03-13','2023-03-13','Finish the Pending Review',2),(210,'Reciever Module For Chat','Yet To Start','2023-03-13','2023-03-14','Finish this ASAP!!',2),(216,'Testing 001','Yet To Start','2023-03-13','2023-03-13','rkbjwhv rr',2);
 /*!40000 ALTER TABLE `projects` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -151,7 +176,7 @@ CREATE TABLE `task_relation` (
   KEY `uid` (`uid`),
   CONSTRAINT `task_relation_ibfk_1` FOREIGN KEY (`tid`) REFERENCES `tasks` (`tid`),
   CONSTRAINT `task_relation_ibfk_3` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -160,7 +185,7 @@ CREATE TABLE `task_relation` (
 
 LOCK TABLES `task_relation` WRITE;
 /*!40000 ALTER TABLE `task_relation` DISABLE KEYS */;
-INSERT INTO `task_relation` VALUES (114,1,'true'),(114,2,'true'),(115,1,'true'),(115,2,'true'),(116,1,'false'),(116,39,'true');
+INSERT INTO `task_relation` VALUES (120,2,'true'),(121,2,'true');
 /*!40000 ALTER TABLE `task_relation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -185,7 +210,7 @@ CREATE TABLE `tasks` (
   KEY `created_by` (`created_by`),
   CONSTRAINT `tasks_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `projects` (`pid`),
   CONSTRAINT `tasks_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `users` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -194,7 +219,7 @@ CREATE TABLE `tasks` (
 
 LOCK TABLES `tasks` WRITE;
 /*!40000 ALTER TABLE `tasks` DISABLE KEYS */;
-INSERT INTO `tasks` VALUES (114,'Tetsing task','2023-03-02','2023-03-09','Completed',158,'vberdb',2),(115,'Testing task 22','2023-03-09','2023-03-09','Completed',158,'vdfn',2),(116,'React','2023-03-10','2023-03-12','On Progress',166,'task 1',39);
+INSERT INTO `tasks` VALUES (120,'Chatting Reciver module','2023-03-13','2023-03-13','Completed',203,'COde this',2),(121,'Urgent','2023-03-13','2023-03-13','On Progress',203,'Do this',2);
 /*!40000 ALTER TABLE `tasks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -215,7 +240,7 @@ CREATE TABLE `users` (
   `imagePath` varchar(255) DEFAULT 'default.png',
   PRIMARY KEY (`uid`),
   UNIQUE KEY `emailid` (`emailid`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -224,7 +249,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Bharath','Bharath','L','bharath@proapp.com',_binary '\�\�8�0k�\�ud\�1','1.png'),(2,'Basith','Basith','Ahamed','basith@proapp.com',_binary '\�\�8�0k�\�ud\�1','2.jpeg'),(38,'vicky','vicky','p','vicky@proapp.com',_binary '\�\�8�0k�\�ud\�1','default.png'),(39,'Tester','Tester','Case','test@gmail.com',_binary 't5ی��\�N~B�z��','default.png'),(40,'tester','tester','mee','testerme@proapp.com',_binary '\�\�8�0k�\�ud\�1','default.png');
+INSERT INTO `users` VALUES (1,'Bharath','Bharath','L','bharath@proapp.com',_binary '\�\�8�0k�\�ud\�1','1.png'),(2,'Basith','Basith','Ahamed','basith@proapp.com',_binary '\�\�8�0k�\�ud\�1','2.jpeg'),(38,'Vicky','vicky','p','vicky@proapp.com',_binary '\�\�8�0k�\�ud\�1','38.jpeg'),(39,'Tester','Tester','Case','test@gmail.com',_binary 't5ی��\�N~B�z��','default.png'),(40,'tester','tester','mee','testerme@proapp.com',_binary '\�\�8�0k�\�ud\�1','default.png'),(41,'demouser','demouser','demo','demo@demo.com',_binary '\�\�8�0k�\�ud\�1','default.png'),(42,'fortesting','fortesting','fortesting','testing@tss.com',_binary '\�\�8�0k�\�ud\�1','default.png'),(43,'hibro','hibro','hellobro','hello@proapp.com',_binary '\�\�8�0k�\�ud\�1','default.png');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -237,4 +262,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-10 19:15:38
+-- Dump completed on 2023-03-14  9:41:41
