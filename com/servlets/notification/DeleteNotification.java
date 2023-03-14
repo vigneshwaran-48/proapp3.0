@@ -14,11 +14,16 @@ import com.databases.notification.Notification;
 public class DeleteNotification extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Connection con = (Connection) request.getServletContext().getAttribute("Connection");
-        int uid = Integer.parseInt(request.getParameter("userId"));
-        int nid = Integer.parseInt(request.getParameter("nid"));
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("result", new Notification().deleteNotificationRelation(con, uid, nid));
-        response.getWriter().println(jsonObject);
+        try {
+            Connection con = (Connection) request.getServletContext().getAttribute("Connection");
+            int uid = Integer.parseInt(request.getParameter("userId"));
+            int nid = Integer.parseInt(request.getParameter("nid"));
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("result", new Notification().deleteNotificationRelation(con, uid, nid));
+            response.getWriter().println(jsonObject);
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.getWriter().println(new JSONObject().put("result", "An Error Occured"));
+        }
     }
 }

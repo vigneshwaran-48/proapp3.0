@@ -6,21 +6,28 @@ import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 
+import org.json.simple.JSONObject;
+
 public class LogOut extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {    
-        request.getSession().invalidate();  
-        response.setContentType("text/html");  
-        response.sendRedirect("login"); 
-        ArrayList<Integer> users=(ArrayList<Integer>)request.getServletContext().getAttribute("ActiveUsers");
-        for (Integer integer : users) {
-            if(integer==Integer.parseInt(String.valueOf(request.getParameter("uid"))))
-            {
-                users.remove(integer);
+        try{
+            request.getSession().invalidate();  
+            response.setContentType("text/html");  
+            response.sendRedirect("login"); 
+            ArrayList<Integer> users=(ArrayList<Integer>)request.getServletContext().getAttribute("ActiveUsers");
+            for (Integer integer : users) {
+                if(integer==Integer.parseInt(String.valueOf(request.getParameter("uid"))))
+                {
+                    users.remove(integer);
+                }
             }
+            request.getServletContext().setAttribute("ActiveUsers", users);
         }
-        request.getServletContext().setAttribute("ActiveUsers", users);
-
+        catch(Exception e){
+            e.printStackTrace();
+            response.getWriter().println(new JSONObject().put("result", "An Error Occured"));
+        }
 
     }
 

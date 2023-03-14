@@ -6,8 +6,8 @@
     width: 100%;
     justify-content: space-between;
 }
-.top-box-detail {
-
+.top-box-detail:nth-child(even){
+    cursor: pointer;
 }
 .three-dots-wrapper{
     width: 30px;

@@ -38,6 +38,7 @@ public class ChangeTaskStatus extends HttpServlet {
 
         } catch (ParseException e) {
             e.printStackTrace();
+            response.getWriter().println(new JSONObject().put("result", "An Error Occured"));
         }
     }
 

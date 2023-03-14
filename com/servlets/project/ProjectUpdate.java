@@ -31,6 +31,7 @@ public class ProjectUpdate extends HttpServlet{
             response.getWriter().println(result);
         } catch (Exception e) {
             e.printStackTrace();
+            response.getWriter().println(new JSONObject().put("result", "An Error Occured"));
         }
     }
 }

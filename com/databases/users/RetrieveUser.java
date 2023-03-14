@@ -202,4 +202,21 @@ public class RetrieveUser {
         }
         return "Offline";
     }
+    public String getUserApiKey(int userId){
+       
+        String apiKey = null;
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/proapp", "vicky", "vi99g@NESH");
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery("select cast(aes_decrypt(a_key, 'secret_key') as char) from api_key where uid = " + userId);
+            rs.next();
+            apiKey = rs.getString(1);
+        }
+        catch(Exception e ){
+            e.printStackTrace();
+            System.out.println("User not found");
+        }
+        return apiKey;
+    }
 }

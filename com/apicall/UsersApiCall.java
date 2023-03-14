@@ -9,14 +9,17 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import com.databases.users.RetrieveUser;
+
 public class UsersApiCall {
-    public JSONObject getUserByUserId(int value) {
+    public JSONObject getUserByUserId(int value,Long uid) {
         JSONObject jsonObject = null;
         try {
-            URL url = new URL("http://localhost:8787/ProApp/user/getusers?id=" + value);// url of the api
+            URL url = new URL("http://localhost:8787/ProApp/user/getusers?uid="+uid+"id= + value");// url of the api
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();// opening the url connection using
                                                                                     // the HttpUrlConnection class
             connection.setRequestMethod("GET");// setting the request method as GET
+            connection.setRequestProperty("ApiKey",new RetrieveUser().getUserApiKey(Integer.parseInt(String.valueOf(uid))));
             connection.connect();// connection the HttpUrlConnection object
             int responseCode = connection.getResponseCode();// getting the response code to check
             if (responseCode != 200) {// if the status code not equal to 200 throws a exception
@@ -37,13 +40,14 @@ public class UsersApiCall {
         return jsonObject;
     }
 
-    public JSONArray getAllUsers() {
+    public JSONArray getAllUsers(Long uid) {
         JSONArray jsonArray = null;
         try {
-            URL url = new URL("http://localhost:8787/ProApp/user/getusers?id=all");// url of the api
+            URL url = new URL("http://localhost:8787/ProApp/user/getusers?uid="+uid+"id=all");// url of the api
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();// opening the url connection using
                                                                                     // the HttpUrlConnection class
             connection.setRequestMethod("GET");// setting the request method as GET
+            connection.setRequestProperty("ApiKey",new RetrieveUser().getUserApiKey(Integer.parseInt(String.valueOf(uid))));
             connection.connect();// connection the HttpUrlConnection object
             int responseCode = connection.getResponseCode();// getting the response code to check
             if (responseCode != 200) {// if the status code not equal to 200 throws a exception
@@ -64,13 +68,14 @@ public class UsersApiCall {
         return jsonArray;
     }
 
-    public ArrayList<Long> getUsersByProjectId(Long pid) {
+    public ArrayList<Long> getUsersByProjectId(Long pid,Long uid) {
         ArrayList<Long> userArray = new ArrayList<>();
         try {
-            URL url = new URL("http://localhost:8787/ProApp/user/getusers/project?id=" + pid);// url of the api
+            URL url = new URL("http://localhost:8787/ProApp/user/getusers/project?uid="+uid+"id="+ pid);// url of the api
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();// opening the url connection using
                                                                                     // the HttpUrlConnection class
             connection.setRequestMethod("GET");// setting the request method as GET
+            connection.setRequestProperty("ApiKey",new RetrieveUser().getUserApiKey(Integer.parseInt(String.valueOf(uid))));
             connection.connect();// connection the HttpUrlConnection object
             int responseCode = connection.getResponseCode();// getting the response code to check
             if (responseCode != 200) {// if the status code not equal to 200 throws a exception
@@ -98,13 +103,14 @@ public class UsersApiCall {
         return userArray;
     }
 
-    public ArrayList<Long> getUsersByTaskId(Long tid) {
+    public ArrayList<Long> getUsersByTaskId(Long tid,Long uid) {
         ArrayList<Long> userArray = new ArrayList<>();
         try {
-            URL url = new URL("http://localhost:8787/ProApp/user/getusers/task?id=" + tid);// url of the api
+            URL url = new URL("http://localhost:8787/ProApp/user/getusers/task?uid="+uid+ "&id=" + tid);// url of the api
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();// opening the url connection using
                                                                                     // the HttpUrlConnection class
             connection.setRequestMethod("GET");// setting the request method as GET
+            connection.setRequestProperty("ApiKey",new RetrieveUser().getUserApiKey(Integer.parseInt(String.valueOf(uid))));
             connection.connect();// connection the HttpUrlConnection object
             int responseCode = connection.getResponseCode();// getting the response code to check
             if (responseCode != 200) {// if the status code not equal to 200 throws a exception

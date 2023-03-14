@@ -12,7 +12,11 @@ let SettingsView = (() => {
         editProfileOldPasswordInput : "#profile-update-old-pass",
         editProfileUpdateButton : ".profile-update-button",
         editProfileNewPassword : "#profile-update-new-pass",
-        changePhotoButton : ".change-photo-button-icon"
+        changePhotoButton : ".change-photo-button-icon",
+        singleChangePhotoInput : "#single-photo-upload-input",
+        apiKeyButton : "#api-key-input",
+        apiKeyContent : ".api-key-value",
+        apiKeyClipBoard : ".api-key-clipboard"
     }
     let getDomStrings = () => domStrings;
 

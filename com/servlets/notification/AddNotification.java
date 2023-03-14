@@ -25,7 +25,6 @@ public class AddNotification extends HttpServlet{
             String responseString = "";
             while(sc.hasNext()){
                 responseString += sc.nextLine();
-                // System.out.println(sc.nextLine());
             }
             String refactored = responseString.split("=")[1];
             System.out.println(refactored);
@@ -34,6 +33,7 @@ public class AddNotification extends HttpServlet{
             response.getWriter().println(new Notification().addNotification(con, jsonObject));
         } catch (ParseException e) {
             e.printStackTrace();
+            response.getWriter().println(new JSONObject().put("result", "An Error Occured"));
         }
     }
 }

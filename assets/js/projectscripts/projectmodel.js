@@ -74,7 +74,14 @@ let ProjectModel = (() => {
 
     let getTotalCount = () => projectsArray.length;
 
-    let getStatCount = constraint => projectsArray.filter(elem => elem.status == constraint).length;
+    let getStatCount = constraint => projectsArray.filter(elem => {
+        if(constraint == "Yet To Start"){
+            return elem.status == constraint && (elem.toDate.slice(8) >= new Date().getDate());
+        }
+        else {
+            return elem.status == constraint;
+        } 
+    }).length;
     
     let getSectionName = () => "Projects";
     

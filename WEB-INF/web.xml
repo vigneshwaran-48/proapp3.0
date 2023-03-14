@@ -154,6 +154,16 @@
         <url-pattern>/user/currentuser</url-pattern>
     </servlet-mapping>
 
+    <!-- This is to get the api of the current user -->
+    <servlet>
+        <servlet-name>ApiKey</servlet-name>
+        <servlet-class>com.servlets.login.ApiKey</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ApiKey</servlet-name>
+        <url-pattern>/user/getapikey</url-pattern>
+    </servlet-mapping>
+
     <!-- This is to get the given user's messages -->
     <servlet>
         <servlet-name>GetChats</servlet-name>
@@ -353,4 +363,24 @@
         <url-pattern>/home</url-pattern>
     </filter-mapping>
 
+    <!-- apikey Checker -->
+
+    <!-- for the filter header -->
+
+
+    <!-- for the home filter -->
+    <filter>
+        <filter-name>ApiChecker</filter-name>
+        <filter-class>com.filters.ApiKeyFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>ApiChecker</filter-name>
+        <url-pattern>/project/getall,/user/getusers,/user/update,/user/changeimage,/user/getusers/project,/user/currentuser,/user/chats,/user/project/status,/user/task/status,/project/add,/project/delete,/project/getall,/project/update,/project/user/delete,/task/add,/task/delete,/task/update,/user/getusers/task,/task/getall,/notification/getall,/notification/add,/notification/delete,/task/user/delete,/task/user/changestatus
+        
+        </url-pattern>
+    </filter-mapping>
+   
+
+
+    <!-- end -->
 </web-app>

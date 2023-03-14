@@ -235,6 +235,7 @@ let TaskView = (() => {
             });
         }
         else {
+            console.log("No tasks available");
             let notTaskDivWrapper = document.createElement("div");
             let notTaskDiv = document.createElement("div");
             let h1Tag = document.createElement("h1");

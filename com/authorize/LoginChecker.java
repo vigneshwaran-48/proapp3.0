@@ -27,6 +27,9 @@ public class LoginChecker {
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
+                // if ((rs.getString("emailid").equals(email) || rs.getString("uname").equals(email))&& rs.getString("password").equals(password)) {
+                //     return true;
+                // }
                 if (rs.getString("emailid").equals(email) && rs.getString("password").equals(password)) {
                     return true;
                 }

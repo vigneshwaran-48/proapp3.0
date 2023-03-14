@@ -17,16 +17,20 @@ public class IsExist {
      * @param password user password for verification
      * @return returns a boolean value indicates the result wheather the details is valid or not
      */
-    public Boolean checker(Connection c, Integer id,String mail,String password)  {
+    public Boolean checker(Connection c, Integer id, String mail, String password)  {
         boolean result=false;
 
         try (
             Statement stmt = c.createStatement();
-            ResultSet rs = stmt.executeQuery("select emailid,cast( aes_decrypt(password,'secret_key') as char) as password from users where uid =" + id)) {
+            ResultSet rs = stmt.executeQuery("select uname, emailid, cast( aes_decrypt(password,'secret_key') as char) as password from users where uid =" + id)) {
             rs.next();
+            // String userName = rs.getString("uname");
             String emailid=rs.getString("emailid");
             String passwordVar=rs.getString("password");
             
+            // if((emailid.equals(mail) || userName.equals(mail))&& passwordVar.equals(password)){
+            //     result=true;
+            // }
             if(emailid.equals(mail) && passwordVar.equals(password)){
                 result=true;
             }

@@ -51,11 +51,13 @@ public class ChatServer {
         notificationObject.put("nContent", js.get("description"));
         notificationObject.put("time", time);
         notificationObject.put("date", date);
+        Long userid=new ChatServer().getUesrId(session);
         JSONArray array = new JSONArray();//This array is for users to whom the notification to be sent ....
         // notificationObject.put("userId", arrList);
         if (js.get("messageType").equals("projectUpdate")) {
             UsersApiCall api = new UsersApiCall();
-            ArrayList<Long> arrayList = api.getUsersByProjectId((Long) js.get("projectId"));
+            
+            ArrayList<Long> arrayList = api.getUsersByProjectId((Long) js.get("projectId"),userid);
             
             for (Long arrList : arrayList) {
                     for (User user : arr) {
@@ -74,7 +76,7 @@ public class ChatServer {
         } 
         else if (js.get("messageType").equals("taskUpdate")) {
             UsersApiCall api = new UsersApiCall();
-            ArrayList<Long> arrayList = api.getUsersByTaskId(Long.parseLong(String.valueOf(js.get("taskId"))));
+            ArrayList<Long> arrayList = api.getUsersByTaskId(Long.parseLong(String.valueOf(js.get("taskId"))),userid);
 
             for (Long arrList : arrayList) {
                     for (User user : arr) {
@@ -204,4 +206,12 @@ public class ChatServer {
         }
     }
 
+    private long getUesrId(Session s) {
+        for(User user : arr){
+            if(user.getSession().getId().equals(s.getId())){
+                return user.getUserId();
+            }
+        }
+        return 0;
+    }
 }

@@ -20,6 +20,7 @@ let TaskController = ((view, model) => {
             }));
             resetProjects();
             resetProjects();
+            MainView.loadStatisticsData();
         }
         else {
             MainView.showErrorMessage("Oops !, something went wrong");
@@ -39,6 +40,7 @@ let TaskController = ((view, model) => {
                 description : USERNAME + " deleted the task you Were in "
             }));
             model.removeTask(taskId);
+            MainView.loadStatisticsData();
         }
         else {
             MainView.showErrorMessage("Oops, something went wrong");
@@ -60,6 +62,7 @@ let TaskController = ((view, model) => {
                 description : USERNAME + " exited from the task " + model.getTaskByTaskId(taskId).taskName
             }));
             model.removeTask(taskId);
+            MainView.loadStatisticsData();
         }
         else {
             MainView.showErrorMessage("Oops, something went wrong");
@@ -69,6 +72,7 @@ let TaskController = ((view, model) => {
     let addTask = async tasks => {
         await model.addTask(tasks, true);
         view.renderTasks(ProjectModel.getProjectsArray());
+        MainView.loadStatisticsData();
     } 
     return {
         addTask : addTask,

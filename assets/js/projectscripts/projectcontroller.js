@@ -3,6 +3,7 @@ let ProjectController = ((view, model) => {
     let addProject = async projectDetails => {
         await model.addProject(projectDetails, true);
         view.renderProjects(model.getProjectsArray());
+        MainView.loadStatisticsData();
     }
     let deleteProject = async id => {
         let result = await sendPostRequest("project/delete?projectId=" + id);
@@ -10,6 +11,7 @@ let ProjectController = ((view, model) => {
             MainView.showSuccessMessage("Successfully deleted project");
             resetProjects();
             resetProjects();
+            MainView.loadStatisticsData();
         }
         else {
             MainView.showErrorMessage("Oops, something went wrong");
@@ -27,6 +29,7 @@ let ProjectController = ((view, model) => {
             MainView.showSuccessMessage("Successfully exited project");
             model.removeProject(id);
             view.renderProjects(ProjectModel.getProjectsArray());
+            MainView.loadStatisticsData();
         }
         else {
             MainView.showErrorMessage("Oops, something went wrong");

@@ -15,9 +15,7 @@ let MainController = (view => {
             }
         })
     }
-    // let resetExtraOptionsWindow = () => {
-
-    // }
+    
     let resetRightWindows = activeElement => {
         let chatOuterWindow = _(view.getDomStrings().chatPeopleViewSection);
         let settingsSection = _(view.getDomStrings().settingSection);
@@ -59,7 +57,7 @@ let MainController = (view => {
             view.loadStatisticsData();
             resetRightWindows(_(view.getDomStrings().rightSection));
             _(view.getDomStrings().rightSection).classList.toggle(view.getDomStrings().showFromRightToLeft);
-            _(view.getDomStrings().topRightOptionsInput).checked = false;
+            // _(view.getDomStrings().topRightOptionsInput).checked = false;
         });
 
         //This is for closing right side section
@@ -208,12 +206,15 @@ let MainController = (view => {
         _(view.getDomStrings().notificationAudioButton).addEventListener("click", playNotificationSound);
 
         //This is for opening settings page
-        _(view.getDomStrings().settingSectionButton).addEventListener("click", event => {
-            _(view.getDomStrings().chatMembersCloseButton).click();
-            resetRightWindows(_(view.getDomStrings().settingSection));
-            _(view.getDomStrings().topRightOptionsInput).checked = false;
-            _(SettingsView.getDomStrings().settingsUserPhoto).style.backgroundImage = `url(/ProApp/assets/images/usersImages/${CURRENTUSERPHOTO})`;
-            _(view.getDomStrings().settingSection).classList.add(view.getDomStrings().showFromRightToLeft);
+        _All(view.getDomStrings().settingSectionButton).forEach(elem => {
+            console.log("Opening settings page ........");
+                elem.addEventListener("click", event => {
+                    _(view.getDomStrings().chatMembersCloseButton).click();
+                    resetRightWindows(_(view.getDomStrings().settingSection));
+                    // _(view.getDomStrings().topRightOptionsInput).checked = false;
+                    _(SettingsView.getDomStrings().settingsUserPhoto).style.backgroundImage = `url(/ProApp/assets/images/usersImages/${CURRENTUSERPHOTO})`;
+                    _(view.getDomStrings().settingSection).classList.add(view.getDomStrings().showFromRightToLeft);
+                });
         });
 
         //This is for closing settings page
@@ -239,11 +240,11 @@ let MainController = (view => {
                 _(view.getDomStrings().notificationLabel).click();
             }  
         });
-        _(view.getDomStrings().notificationLabel).addEventListener("click", event => {
-            if(_(view.getDomStrings().topProfilePhotoLabel).nextElementSibling.checked){
-                _(view.getDomStrings().topProfilePhotoLabel).click();
-            }
-        });
+        // _(view.getDomStrings().notificationLabel).addEventListener("click", event => {
+        //     if(_(view.getDomStrings().topProfilePhotoLabel).nextElementSibling.checked){
+        //         _(view.getDomStrings().topProfilePhotoLabel).click();
+        //     }
+        // });
     }
     init();
 

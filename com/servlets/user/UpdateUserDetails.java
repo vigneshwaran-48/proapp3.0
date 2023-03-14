@@ -6,7 +6,6 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -22,7 +21,7 @@ import java.sql.*;
 public class UpdateUserDetails extends HttpServlet{
 
    @Override
-   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+   protected void doPost(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
         Connection c=(Connection)getServletContext().getAttribute("Connection");
         try{
             JSONObject jsonObject = (JSONObject) new JSONParser().parse(req.getParameter("updateData"));
@@ -43,11 +42,12 @@ public class UpdateUserDetails extends HttpServlet{
             {
                 resultObject.put("result", result);
             }
-            resp.getWriter().print(resultObject);
+            response.getWriter().print(resultObject);
 
         }
         catch(Exception e){
             e.printStackTrace();
+            response.getWriter().println(new JSONObject().put("result", "An Error Occured"));
         }
 
    }

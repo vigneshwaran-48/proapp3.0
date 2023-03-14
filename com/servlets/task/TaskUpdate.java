@@ -33,6 +33,7 @@ public class TaskUpdate extends HttpServlet{
             response.getWriter().println(resultObject);
         } catch (ParseException e) {
             e.printStackTrace();
+            response.getWriter().println(new JSONObject().put("result", "An Error Occured"));
         }
     }
 }

@@ -33,6 +33,7 @@ public class CreateUser extends HttpServlet {
         } 
         catch (Exception e) {
             e.printStackTrace();
+            response.getWriter().println(new JSONObject().put("result", "An Error Occured"));
         }
     }
 }

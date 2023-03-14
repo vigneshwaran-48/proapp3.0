@@ -9,7 +9,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-family: 'Poppins', sans-serif;
+    font-family : "Zoho_Puvi_Regular"
 }
 .x-axis-flex {
     display: flex;
@@ -22,6 +22,16 @@ body{
     justify-content: center;
     align-items: center;
 }
+.common-icon-style{
+    width: 23px;
+}
+.common-close-icon{
+    width: 35px;
+}
+.bell-icon-style{
+    padding-top: 10px;
+    width: 20px;
+}
 .full-light-theme {
     background-color: white;
     color: black;
@@ -33,7 +43,8 @@ body{
     background-color: rgb(246,246,248);
 }
 .error-message-wrapper, .success-message-wrapper, .pop-up-message-wrapper{
-    width: 300px;
+    max-width: 300px;
+    width: 95%;
     position: fixed;
     transform: translate(-50%, -50%);
     top: -100px;
@@ -72,6 +83,7 @@ body{
     padding-right: 10px;
     color: rgba(0, 0, 0, 0.3);
     transition: 0.5s;
+    cursor: pointer;
 }
 .error-close-button:hover {
     color: red;
@@ -80,7 +92,7 @@ body{
     color: green;
 }
 .pop-up-close-button:hover {
-    color: rgb(64,142,238);   
+    color: rgb(64,142,238);  
 }
 .show-popup-message {
     top: 100px;
@@ -151,7 +163,7 @@ body{
     width: 75%;
     height: 100%;
 }
-.top-profile-image{
+.top-profile-image, .top-profile-image-desktop{
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -159,6 +171,13 @@ body{
     background-size: cover;
     cursor: pointer;
     background-color: rgb(235, 237, 239);
+    display: none;
+}
+.top-profile-image-desktop{
+    display: block;
+}
+.settings-section-mobile-icon{
+    display: none;
 }
 .top-profile-wrapper{
     position: relative;
@@ -230,6 +249,12 @@ body{
     }
     .middle-body{
         width: 100%;
+    }
+    .top-profile-image, .settings-section-mobile-icon{
+        display: block;
+    }
+    .top-profile-image-desktop{
+        display: none;
     }
 }
 

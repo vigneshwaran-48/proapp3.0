@@ -86,7 +86,7 @@ let ProjectView = (() => {
             let currentDate = new Date();
             let isOverdue = false;
 
-            if(currentDate.getDate() > elem.toDate.slice(elem.toDate.length-2)){
+            if(currentDate.getDate() > elem.toDate.slice(elem.toDate.length-2) && elem.status != "Completed"){
                 parentTag = _(domStrings.overDueSection);
                 isOverdue = true;
             }
@@ -247,19 +247,15 @@ let ProjectView = (() => {
         //This condition is to check whether all sections are filled
         
         if(!_(domStrings.overDueSection).children.length){
-            // _(domStrings.overDueSection).classList.add(MainView.getDomStrings().centerTheBox);
             _(domStrings.overDueSection).append(MainView.generateEmptyBox());
         }
         if(!_(domStrings.yetToStartSection).children.length){
-            // _(domStrings.yetToStartSection).classList.add(MainView.getDomStrings().centerTheBox);
             _(domStrings.yetToStartSection).append(MainView.generateEmptyBox());
         }
         if(!_(domStrings.inProgressSection).children.length){
-            // _(domStrings.inProgressSection).classList.add(MainView.getDomStrings().centerTheBox);
             _(domStrings.inProgressSection).append(MainView.generateEmptyBox());
         }
         if(!_(domStrings.completedSection).children.length){
-            // _(domStrings.completedSection).classList.add(MainView.getDomStrings().centerTheBox);
             _(domStrings.completedSection).append(MainView.generateEmptyBox());
         }
     }
