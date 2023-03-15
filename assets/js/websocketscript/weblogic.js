@@ -8,9 +8,12 @@ let processMessage = async data => {
             if(permission == "granted"){
                 let notification = new Notification("ProApp", {
                     body: data.description,
-                    icon : "https://192.168.1.8:8443/ProApp/assets/images/logo.png"
+                    icon : "https://192.168.1.8:8443/ProApp/assets/images/logo.png",
+                    vibrate : [200, 100, 200]
                 });
-                setTimeout(() => notification.close(), 3000);
+                notification.onclick = event => {
+                    window.open("https://192.168.1.8:8443/ProApp/home", "_blank");
+                }
             }
         });
     }

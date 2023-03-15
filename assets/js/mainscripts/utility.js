@@ -139,10 +139,14 @@ let note = Notification.requestPermission();
 note.then(permission => {
     console.log(permission);
     if(permission == "granted"){
-        new Notification("ProApp", {
+        let notification = new Notification("ProApp", {
             body: "Hello there",
-            icon : "https://192.168.1.8:8443/ProApp/assets/images/logo.png"
+            icon : "https://192.168.1.8:8443/ProApp/assets/images/logo.png",
+            vibrate : [200, 100, 200],
         });
+        notification.onclick = event => {
+            window.open("https://192.168.1.8:8443/ProApp/home", "_blank");
+        }
     }
 })
 
