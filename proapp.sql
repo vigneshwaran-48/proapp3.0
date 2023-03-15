@@ -18,7 +18,9 @@
 --
 -- Table structure for table `api_key`
 --
-
+DROP DATABASE IF EXISTS `proapp`;
+CREATE DATABASE `proapp`;
+USE `proapp`;
 DROP TABLE IF EXISTS `api_key`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -28,7 +30,7 @@ CREATE TABLE `api_key` (
   PRIMARY KEY (`uid`,`a_key`),
   UNIQUE KEY `a_key` (`a_key`),
   CONSTRAINT `api_key_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +39,7 @@ CREATE TABLE `api_key` (
 
 LOCK TABLES `api_key` WRITE;
 /*!40000 ALTER TABLE `api_key` DISABLE KEYS */;
-INSERT INTO `api_key` VALUES (49,_binary 'Jˆn…ùk¼3\ãRªFÎ¾ªmŸÁ.Á6\÷`±\à¥R9\ág\İ\"xu&3\Æ:\å,am'),(48,_binary '/M5…\Z\åL\ä\èPİ—\'Š\Â-7J\Â?\áA‡UN\Æ-g\İ\"xu&3\Æ:\å,am'),(50,_binary '1J ­\×şD)\Ê-™b>‘\å8\Ø\ÌQ\ÓÕ¯\ç>`g\İ\"xu&3\Æ:\å,am'),(51,_binary 'E\Şı“¦\å\Zr\ÓKúR±~fHHO–ƒ&‹bmÉµee{g\İ\"xu&3\Æ:\å,am'),(47,_binary 'iN\Z§eS#QÀ¯\\ü»Dıº\\‘!d\Ã­Á¹¡\"\Çg\İ\"xu&3\Æ:\å,am'),(52,_binary 'lÜ»?\ÆÀ\Ü6\Ş NrŒ²!·¦\Ş\Öø\ÏY3^\îVEg\İ\"xu&3\Æ:\å,am');
+INSERT INTO `api_key` VALUES (49,_binary 'ï¿½Jï¿½nï¿½ï¿½ï¿½kï¿½3\ï¿½Rï¿½FÎ¾ï¿½mï¿½ï¿½.ï¿½6\ï¿½`ï¿½\ï¿½R9\ï¿½g\ï¿½\"xu&3\ï¿½:\ï¿½,amï¿½'),(48,_binary '/M5ï¿½\Z\ï¿½L\ï¿½\ï¿½Pİ—\'ï¿½\ï¿½-7J\ï¿½?\ï¿½Aï¿½UN\ï¿½-g\ï¿½\"xu&3\ï¿½:\ï¿½,amï¿½'),(50,_binary '1Jï¿½ï¿½\ï¿½ï¿½D)\ï¿½-ï¿½ï¿½b>ï¿½\ï¿½8\ï¿½\ï¿½Q\ï¿½Õ¯\ï¿½>`g\ï¿½\"xu&3\ï¿½:\ï¿½,amï¿½'),(51,_binary 'E\ï¿½ï¿½ï¿½ï¿½\ï¿½\Zr\ï¿½Kï¿½Rï¿½ï¿½~fHHOï¿½ï¿½&ï¿½bmÉµee{g\ï¿½\"xu&3\ï¿½:\ï¿½,amï¿½'),(47,_binary 'iN\Zï¿½eS#Qï¿½ï¿½\\ï¿½ï¿½Dï¿½ï¿½\\ï¿½!d\ï¿½ï¿½ï¿½ï¿½ï¿½\"\ï¿½g\ï¿½\"xu&3\ï¿½:\ï¿½,amï¿½'),(52,_binary 'lÜ»?\ï¿½ï¿½\ï¿½ï¿½6\ï¿½ Nrï¿½ï¿½!ï¿½ï¿½\ï¿½\ï¿½ï¿½\ï¿½Y3^\ï¿½VEg\ï¿½\"xu&3\ï¿½:\ï¿½,amï¿½');
 /*!40000 ALTER TABLE `api_key` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -60,7 +62,7 @@ CREATE TABLE `messages` (
   KEY `toUser` (`toUser`),
   CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`fromUser`) REFERENCES `users` (`uid`),
   CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`toUser`) REFERENCES `users` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=396 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=396 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,7 +71,7 @@ CREATE TABLE `messages` (
 
 LOCK TABLES `messages` WRITE;
 /*!40000 ALTER TABLE `messages` DISABLE KEYS */;
-INSERT INTO `messages` VALUES (329,'2023-03-15','12:08:11',48,47,_binary 'oÀ’~¬\âÁ|¡©	ã³‚,'),(330,'2023-03-15','12:32:11',48,47,_binary '=X\èt\êsf¶\Å\÷cÈ‘~'),(331,'2023-03-15','12:32:21',47,48,_binary '\Ø\ê\ÒpšSÄ¯c\é\n#­9'),(332,'2023-03-15','12:56:34',51,49,_binary 'iªN@zZ\ßù|­\òœPmZÜ’\ô’¨\í\Å{‰]2}o?\òO\Ó²F\İ\'\áY'),(333,'2023-03-15','12:56:38',51,49,_binary 'g\İ\"xu&3\Æ:\å,am'),(334,'2023-03-15','13:39:12',48,49,_binary '>\ß,\Ô\ÕøD²´@0=A{8\õ<W\â–v^\Zš¦<*/&\é\Íby\nˆ`™%jèŸ’`\Å\Û)'),(335,'2023-03-15','13:39:24',48,49,_binary 'PÒ«i*…³\Êªl;}µ'),(336,'2023-03-15','13:50:47',48,49,_binary '*\ó\å\Åü9J\Èú~\è\á´PD'),(337,'2023-03-15','13:50:59',49,48,_binary '0á…€\ËGÁ\"\Â\Å'),(338,'2023-03-15','13:57:50',48,49,_binary 'oÀ’~¬\âÁ|¡©	ã³‚,'),(339,'2023-03-15','13:58:00',49,48,_binary '¸HÓµ{“Ç‚¦\Êx\Û\ãD\Â'),(340,'2023-03-15','14:33:39',48,49,_binary 'ºdÍ‘‘f\âa|9—À41\Ñ'),(341,'2023-03-15','14:33:47',49,48,_binary 'YŠ¥o,\öŠV/\Òo´\èú'),(342,'2023-03-15','14:37:56',49,48,_binary '1Aa¬\â\÷•¸¡c\á“Ò˜W\Ë'),(343,'2023-03-15','14:38:08',48,49,_binary '¸HÓµ{“Ç‚¦\Êx\Û\ãD\Â'),(344,'2023-03-15','14:44:47',48,49,_binary 'oÀ’~¬\âÁ|¡©	ã³‚,'),(345,'2023-03-15','14:44:52',49,48,_binary '¸HÓµ{“Ç‚¦\Êx\Û\ãD\Â'),(346,'2023-03-15','14:48:54',48,49,_binary '¸HÓµ{“Ç‚¦\Êx\Û\ãD\Â'),(347,'2023-03-15','14:48:59',49,48,_binary '\Úw\å\ëHû\Ô3I\óˆA•\È\é'),(348,'2023-03-15','14:54:00',48,49,_binary 'C©\Û|¢\ê\ç-Ï´a®+–†%'),(349,'2023-03-15','14:54:02',49,48,_binary '¸HÓµ{“Ç‚¦\Êx\Û\ãD\Â'),(350,'2023-03-15','14:57:10',48,49,_binary '¸HÓµ{“Ç‚¦\Êx\Û\ãD\Â'),(351,'2023-03-15','14:57:13',49,48,_binary '¸HÓµ{“Ç‚¦\Êx\Û\ãD\Â'),(352,'2023-03-15','15:01:36',48,49,_binary 'D@\Ô6\ë\ØQş\Î6\Ì=U‰\Z„'),(353,'2023-03-15','15:01:42',49,48,_binary '¸HÓµ{“Ç‚¦\Êx\Û\ãD\Â'),(354,'2023-03-15','15:17:48',48,49,_binary '1Aa¬\â\÷•¸¡c\á“Ò˜W\Ë'),(355,'2023-03-15','15:17:56',49,48,_binary '¼!\Şüß°\\&H \Å\È'),(356,'2023-03-15','15:39:14',48,49,_binary '¸HÓµ{“Ç‚¦\Êx\Û\ãD\Â'),(357,'2023-03-15','15:47:27',48,49,_binary '¡5¹0ƒ™ˆd/U5\İ\Æ™'),(358,'2023-03-15','15:47:34',49,48,_binary 'D@\Ô6\ë\ØQş\Î6\Ì=U‰\Z„'),(359,'2023-03-15','15:50:08',48,49,_binary 'l³\Ë^<³Ld\Â<\ë\ãŸ'),(360,'2023-03-15','15:50:19',49,48,_binary '¸HÓµ{“Ç‚¦\Êx\Û\ãD\Â'),(361,'2023-03-15','15:57:40',48,49,_binary 'w¡e&\åJ›¨Ï©w>¿'),(362,'2023-03-15','15:57:52',49,48,_binary 'D@\Ô6\ë\ØQş\Î6\Ì=U‰\Z„'),(363,'2023-03-15','16:16:14',48,49,_binary '\'em*Å¹°qÜƒhİ£V'),(364,'2023-03-15','16:16:20',49,48,_binary '¸HÓµ{“Ç‚¦\Êx\Û\ãD\Â'),(365,'2023-03-15','16:34:24',48,49,_binary '¸HÓµ{“Ç‚¦\Êx\Û\ãD\Â'),(366,'2023-03-15','16:34:30',49,48,_binary '\ó\r„\èlb$tqÀ{Ÿ®'),(367,'2023-03-15','16:48:23',48,49,_binary '/`îº«\Zü¼AM}\ó™X\Ş\È'),(368,'2023-03-15','16:48:31',49,48,_binary '\Í\ñEÀr¸iÖ©\n/|ø'),(369,'2023-03-15','16:48:37',48,49,_binary '<\Í\È[”G‰\ÏÉ°şW¥'),(370,'2023-03-15','17:03:25',49,48,_binary 'E8\×ú\æB\ßKiZ\Ë\ãl'),(371,'2023-03-15','17:05:31',48,49,_binary '¸HÓµ{“Ç‚¦\Êx\Û\ãD\Â'),(372,'2023-03-15','17:05:33',49,48,_binary '‚>B&\ğb H\0’²½}'),(373,'2023-03-15','17:18:35',49,48,_binary '*\ó\å\Åü9J\Èú~\è\á´PD'),(374,'2023-03-15','17:18:39',48,49,_binary '›ÔŸ¾…¬ƒû\çv\0\ÖS'),(375,'2023-03-15','17:23:13',49,48,_binary '\ğÙ‹¬	B¹\ÍIf\çÁ@3µ'),(376,'2023-03-15','17:23:19',48,49,_binary 'D@\Ô6\ë\ØQş\Î6\Ì=U‰\Z„'),(377,'2023-03-15','17:23:28',49,48,_binary '\Í\ñEÀr¸iÖ©\n/|ø'),(378,'2023-03-15','17:28:28',49,48,_binary '¸HÓµ{“Ç‚¦\Êx\Û\ãD\Â'),(379,'2023-03-15','17:28:36',48,49,_binary 'D@\Ô6\ë\ØQş\Î6\Ì=U‰\Z„'),(380,'2023-03-15','17:32:47',48,49,_binary '¸HÓµ{“Ç‚¦\Êx\Û\ãD\Â'),(381,'2023-03-15','17:33:12',48,49,_binary '¸HÓµ{“Ç‚¦\Êx\Û\ãD\Â'),(382,'2023-03-15','17:33:20',48,49,_binary 'D@\Ô6\ë\ØQş\Î6\Ì=U‰\Z„'),(383,'2023-03-15','17:33:30',49,48,_binary '¸HÓµ{“Ç‚¦\Êx\Û\ãD\Â'),(384,'2023-03-15','17:35:56',49,48,_binary '¸HÓµ{“Ç‚¦\Êx\Û\ãD\Â'),(385,'2023-03-15','17:37:23',48,49,_binary 'l³\Ë^<³Ld\Â<\ë\ãŸ'),(386,'2023-03-15','17:37:30',49,48,_binary '´ªSŸ¦ˆ­\ã[U]\ê—'),(387,'2023-03-15','17:40:57',48,47,_binary '\ÔIP¾\â\Ú…)ø\ÚSxùQûjyœƒ\ì\nNhFx’\Õ\Ã=d\Ë\Ö\æ>Š\Ä\êıv@ËœYI\ã\Û\í0\ßk\ì¬\æ¹X8\ß\î¯\ï\İ\'j\Ì9¤˜u¸Š+-\á\É!\Û>2¡‰o¤q{\Ô3>yµ#O\ö\Çp¨½Ê„\ê»{ˆu™™\0×»5«\ã¥\Ç1'),(388,'2023-03-15','17:43:45',48,52,_binary '0\÷Q\Û\ç·\æ5\ë\å<Ÿ‹‘'),(389,'2023-03-15','17:44:14',48,52,_binary '1±IgÃ²¢‚\èš\õ9v±\Ûznc\Ä\"|w\"ÿ„'),(390,'2023-03-15','17:44:18',48,52,_binary '/q|«Á®Ï™Œ\íŸ\Ç\÷\Í\ò'),(391,'2023-03-15','17:51:56',49,48,_binary '¸HÓµ{“Ç‚¦\Êx\Û\ãD\Â'),(392,'2023-03-15','17:52:09',48,49,_binary '1Aa¬\â\÷•¸¡c\á“Ò˜W\Ë'),(393,'2023-03-15','18:04:51',48,49,_binary '¸HÓµ{“Ç‚¦\Êx\Û\ãD\Â'),(394,'2023-03-15','18:04:58',48,49,_binary '¸HÓµ{“Ç‚¦\Êx\Û\ãD\Â'),(395,'2023-03-15','18:05:11',49,48,_binary '\Z—iÉ¦\ô&m°=\ä\î%');
+INSERT INTO `messages` VALUES (329,'2023-03-15','12:08:11',48,47,_binary 'ï¿½oï¿½ï¿½~ï¿½\ï¿½ï¿½|ï¿½ï¿½	ã³‚,'),(330,'2023-03-15','12:32:11',48,47,_binary '=X\ï¿½t\ï¿½sfï¿½\ï¿½\ï¿½cÈ‘~'),(331,'2023-03-15','12:32:21',47,48,_binary '\ï¿½\ï¿½\ï¿½pï¿½ï¿½SÄ¯c\ï¿½\n#ï¿½9'),(332,'2023-03-15','12:56:34',51,49,_binary 'iï¿½N@zZ\ï¿½ï¿½|ï¿½\ï¿½PmZÜ’\ï¿½ï¿½ï¿½\ï¿½\ï¿½{ï¿½ï¿½]2}oï¿½?\ï¿½O\ï¿½ï¿½ï¿½F\ï¿½\'\ï¿½Y'),(333,'2023-03-15','12:56:38',51,49,_binary 'g\ï¿½\"xu&3\ï¿½:\ï¿½,amï¿½'),(334,'2023-03-15','13:39:12',48,49,_binary '>\ï¿½,\ï¿½\ï¿½ï¿½Dï¿½ï¿½@0=A{8\ï¿½<W\ï¿½v^\Zï¿½ï¿½<*/&\ï¿½\ï¿½by\nï¿½`ï¿½%jèŸ’`\ï¿½\ï¿½)'),(335,'2023-03-15','13:39:24',48,49,_binary 'PÒ«i*ï¿½ï¿½\ï¿½ï¿½ï¿½l;}ï¿½'),(336,'2023-03-15','13:50:47',48,49,_binary '*\ï¿½\ï¿½\ï¿½ï¿½9J\ï¿½ï¿½~\ï¿½\ï¿½PD'),(337,'2023-03-15','13:50:59',49,48,_binary '0á…ï¿½\ï¿½Gï¿½\"\ï¿½\ï¿½'),(338,'2023-03-15','13:57:50',48,49,_binary 'ï¿½oï¿½ï¿½~ï¿½\ï¿½ï¿½|ï¿½ï¿½	ã³‚,'),(339,'2023-03-15','13:58:00',49,48,_binary 'ï¿½HÓµ{ï¿½Ç‚ï¿½\ï¿½x\ï¿½\ï¿½D\ï¿½'),(340,'2023-03-15','14:33:39',48,49,_binary 'ï¿½dÍ‘ï¿½f\ï¿½a|9ï¿½ï¿½41\ï¿½'),(341,'2023-03-15','14:33:47',49,48,_binary 'Yï¿½ï¿½o,\ï¿½ï¿½V/\ï¿½oï¿½\ï¿½ï¿½'),(342,'2023-03-15','14:37:56',49,48,_binary '1Aaï¿½\ï¿½\ï¿½ï¿½ï¿½ï¿½c\ï¿½Ò˜W\ï¿½'),(343,'2023-03-15','14:38:08',48,49,_binary 'ï¿½HÓµ{ï¿½Ç‚ï¿½\ï¿½x\ï¿½\ï¿½D\ï¿½'),(344,'2023-03-15','14:44:47',48,49,_binary 'ï¿½oï¿½ï¿½~ï¿½\ï¿½ï¿½|ï¿½ï¿½	ã³‚,'),(345,'2023-03-15','14:44:52',49,48,_binary 'ï¿½HÓµ{ï¿½Ç‚ï¿½\ï¿½x\ï¿½\ï¿½D\ï¿½'),(346,'2023-03-15','14:48:54',48,49,_binary 'ï¿½HÓµ{ï¿½Ç‚ï¿½\ï¿½x\ï¿½\ï¿½D\ï¿½'),(347,'2023-03-15','14:48:59',49,48,_binary '\ï¿½w\ï¿½\ï¿½Hï¿½\ï¿½3I\ï¿½Aï¿½\ï¿½\ï¿½'),(348,'2023-03-15','14:54:00',48,49,_binary 'Cï¿½\ï¿½|ï¿½\ï¿½\ï¿½-Ï´aï¿½+ï¿½ï¿½%'),(349,'2023-03-15','14:54:02',49,48,_binary 'ï¿½HÓµ{ï¿½Ç‚ï¿½\ï¿½x\ï¿½\ï¿½D\ï¿½'),(350,'2023-03-15','14:57:10',48,49,_binary 'ï¿½HÓµ{ï¿½Ç‚ï¿½\ï¿½x\ï¿½\ï¿½D\ï¿½'),(351,'2023-03-15','14:57:13',49,48,_binary 'ï¿½HÓµ{ï¿½Ç‚ï¿½\ï¿½x\ï¿½\ï¿½D\ï¿½'),(352,'2023-03-15','15:01:36',48,49,_binary 'D@\ï¿½6\ï¿½\ï¿½Qï¿½\ï¿½6\ï¿½=Uï¿½\Zï¿½'),(353,'2023-03-15','15:01:42',49,48,_binary 'ï¿½HÓµ{ï¿½Ç‚ï¿½\ï¿½x\ï¿½\ï¿½D\ï¿½'),(354,'2023-03-15','15:17:48',48,49,_binary '1Aaï¿½\ï¿½\ï¿½ï¿½ï¿½ï¿½c\ï¿½Ò˜W\ï¿½'),(355,'2023-03-15','15:17:56',49,48,_binary 'ï¿½!\ï¿½ï¿½ß°\\&Hï¿½\ï¿½\ï¿½'),(356,'2023-03-15','15:39:14',48,49,_binary 'ï¿½HÓµ{ï¿½Ç‚ï¿½\ï¿½x\ï¿½\ï¿½D\ï¿½'),(357,'2023-03-15','15:47:27',48,49,_binary 'ï¿½5ï¿½0ï¿½ï¿½ï¿½d/U5\ï¿½\ï¿½ï¿½'),(358,'2023-03-15','15:47:34',49,48,_binary 'D@\ï¿½6\ï¿½\ï¿½Qï¿½\ï¿½6\ï¿½=Uï¿½\Zï¿½'),(359,'2023-03-15','15:50:08',48,49,_binary 'lï¿½\ï¿½^<ï¿½Lï¿½d\ï¿½<\ï¿½\ï¿½'),(360,'2023-03-15','15:50:19',49,48,_binary 'ï¿½HÓµ{ï¿½Ç‚ï¿½\ï¿½x\ï¿½\ï¿½D\ï¿½'),(361,'2023-03-15','15:57:40',48,49,_binary 'wï¿½e&ï¿½\ï¿½Jï¿½ï¿½ï¿½Ï©w>ï¿½'),(362,'2023-03-15','15:57:52',49,48,_binary 'D@\ï¿½6\ï¿½\ï¿½Qï¿½\ï¿½6\ï¿½=Uï¿½\Zï¿½'),(363,'2023-03-15','16:16:14',48,49,_binary '\'em*Å¹ï¿½qÜƒhİ£V'),(364,'2023-03-15','16:16:20',49,48,_binary 'ï¿½HÓµ{ï¿½Ç‚ï¿½\ï¿½x\ï¿½\ï¿½D\ï¿½'),(365,'2023-03-15','16:34:24',48,49,_binary 'ï¿½HÓµ{ï¿½Ç‚ï¿½\ï¿½x\ï¿½\ï¿½D\ï¿½'),(366,'2023-03-15','16:34:30',49,48,_binary '\ï¿½\rï¿½\ï¿½lb$tqï¿½{ï¿½ï¿½ï¿½'),(367,'2023-03-15','16:48:23',48,49,_binary '/`îº«\Zï¿½ï¿½AM}\ï¿½X\ï¿½\ï¿½'),(368,'2023-03-15','16:48:31',49,48,_binary '\ï¿½\ï¿½Eï¿½rï¿½iÖ©\n/|ï¿½'),(369,'2023-03-15','16:48:37',48,49,_binary '<\ï¿½\ï¿½[ï¿½ï¿½Gï¿½\ï¿½Éï¿½ï¿½Wï¿½'),(370,'2023-03-15','17:03:25',49,48,_binary 'E8\ï¿½ï¿½\ï¿½B\ï¿½KiZ\ï¿½\ï¿½l'),(371,'2023-03-15','17:05:31',48,49,_binary 'ï¿½HÓµ{ï¿½Ç‚ï¿½\ï¿½x\ï¿½\ï¿½D\ï¿½'),(372,'2023-03-15','17:05:33',49,48,_binary 'ï¿½>B&\ï¿½b H\0ï¿½ï¿½ï¿½}'),(373,'2023-03-15','17:18:35',49,48,_binary '*\ï¿½\ï¿½\ï¿½ï¿½9J\ï¿½ï¿½~\ï¿½\ï¿½PD'),(374,'2023-03-15','17:18:39',48,49,_binary 'ï¿½ÔŸï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\ï¿½v\0\ï¿½S'),(375,'2023-03-15','17:23:13',49,48,_binary '\ï¿½Ù‹ï¿½	Bï¿½\ï¿½If\ï¿½ï¿½@3ï¿½'),(376,'2023-03-15','17:23:19',48,49,_binary 'D@\ï¿½6\ï¿½\ï¿½Qï¿½\ï¿½6\ï¿½=Uï¿½\Zï¿½'),(377,'2023-03-15','17:23:28',49,48,_binary '\ï¿½\ï¿½Eï¿½rï¿½iÖ©\n/|ï¿½'),(378,'2023-03-15','17:28:28',49,48,_binary 'ï¿½HÓµ{ï¿½Ç‚ï¿½\ï¿½x\ï¿½\ï¿½D\ï¿½'),(379,'2023-03-15','17:28:36',48,49,_binary 'D@\ï¿½6\ï¿½\ï¿½Qï¿½\ï¿½6\ï¿½=Uï¿½\Zï¿½'),(380,'2023-03-15','17:32:47',48,49,_binary 'ï¿½HÓµ{ï¿½Ç‚ï¿½\ï¿½x\ï¿½\ï¿½D\ï¿½'),(381,'2023-03-15','17:33:12',48,49,_binary 'ï¿½HÓµ{ï¿½Ç‚ï¿½\ï¿½x\ï¿½\ï¿½D\ï¿½'),(382,'2023-03-15','17:33:20',48,49,_binary 'D@\ï¿½6\ï¿½\ï¿½Qï¿½\ï¿½6\ï¿½=Uï¿½\Zï¿½'),(383,'2023-03-15','17:33:30',49,48,_binary 'ï¿½HÓµ{ï¿½Ç‚ï¿½\ï¿½x\ï¿½\ï¿½D\ï¿½'),(384,'2023-03-15','17:35:56',49,48,_binary 'ï¿½HÓµ{ï¿½Ç‚ï¿½\ï¿½x\ï¿½\ï¿½D\ï¿½'),(385,'2023-03-15','17:37:23',48,49,_binary 'lï¿½\ï¿½^<ï¿½Lï¿½d\ï¿½<\ï¿½\ï¿½'),(386,'2023-03-15','17:37:30',49,48,_binary 'ï¿½ï¿½ï¿½Sï¿½ï¿½ï¿½ï¿½\ï¿½[U]\ï¿½'),(387,'2023-03-15','17:40:57',48,47,_binary '\ï¿½IPï¿½\ï¿½\ï¿½ï¿½)ï¿½\ï¿½Sxï¿½Qï¿½jyï¿½ï¿½\ï¿½\nNhFxï¿½\ï¿½\ï¿½=d\ï¿½\ï¿½\ï¿½>ï¿½\ï¿½\ï¿½ï¿½v@ËœYI\ï¿½\ï¿½\ï¿½0\ï¿½k\ï¿½ï¿½\ï¿½X8\ï¿½\ï¿½\ï¿½\ï¿½\'j\ï¿½9ï¿½ï¿½uï¿½ï¿½+-\ï¿½\ï¿½!\ï¿½>2ï¿½ï¿½oï¿½q{\ï¿½3>yï¿½ï¿½#O\ï¿½\ï¿½pï¿½ï¿½Ê„\ï¿½{ï¿½uï¿½ï¿½\0×»5ï¿½\ï¿½\ï¿½1'),(388,'2023-03-15','17:43:45',48,52,_binary 'ï¿½0\ï¿½Q\ï¿½\ï¿½\ï¿½5\ï¿½\ï¿½<ï¿½ï¿½ï¿½'),(389,'2023-03-15','17:44:14',48,52,_binary '1ï¿½IgÃ²ï¿½ï¿½\ï¿½\ï¿½9vï¿½\ï¿½znc\ï¿½\"|w\"ï¿½ï¿½'),(390,'2023-03-15','17:44:18',48,52,_binary '/q|ï¿½ï¿½ï¿½Ï™ï¿½\ï¿½\ï¿½\ï¿½\ï¿½\ï¿½'),(391,'2023-03-15','17:51:56',49,48,_binary 'ï¿½HÓµ{ï¿½Ç‚ï¿½\ï¿½x\ï¿½\ï¿½D\ï¿½'),(392,'2023-03-15','17:52:09',48,49,_binary '1Aaï¿½\ï¿½\ï¿½ï¿½ï¿½ï¿½c\ï¿½Ò˜W\ï¿½'),(393,'2023-03-15','18:04:51',48,49,_binary 'ï¿½HÓµ{ï¿½Ç‚ï¿½\ï¿½x\ï¿½\ï¿½D\ï¿½'),(394,'2023-03-15','18:04:58',48,49,_binary 'ï¿½HÓµ{ï¿½Ç‚ï¿½\ï¿½x\ï¿½\ï¿½D\ï¿½'),(395,'2023-03-15','18:05:11',49,48,_binary '\Zï¿½iÉ¦\ï¿½&mï¿½=\ï¿½\ï¿½%');
 /*!40000 ALTER TABLE `messages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,7 +88,7 @@ CREATE TABLE `notification` (
   `n_time` time NOT NULL,
   `n_date` date NOT NULL,
   PRIMARY KEY (`nid`)
-) ENGINE=InnoDB AUTO_INCREMENT=315 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=315 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -113,7 +115,7 @@ CREATE TABLE `notification_relation` (
   KEY `userId` (`userId`),
   CONSTRAINT `notification_relation_ibfk_1` FOREIGN KEY (`nid`) REFERENCES `notification` (`nid`) ON DELETE CASCADE,
   CONSTRAINT `notification_relation_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `users` (`uid`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -140,7 +142,7 @@ CREATE TABLE `project_relation` (
   KEY `pid` (`pid`),
   CONSTRAINT `project_relation_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`),
   CONSTRAINT `project_relation_ibfk_2` FOREIGN KEY (`pid`) REFERENCES `projects` (`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -171,7 +173,7 @@ CREATE TABLE `projects` (
   PRIMARY KEY (`pid`),
   KEY `created_by` (`created_by`),
   CONSTRAINT `projects_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `users` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=274 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=274 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -199,7 +201,7 @@ CREATE TABLE `task_relation` (
   KEY `uid` (`uid`),
   CONSTRAINT `task_relation_ibfk_1` FOREIGN KEY (`tid`) REFERENCES `tasks` (`tid`),
   CONSTRAINT `task_relation_ibfk_3` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -233,7 +235,7 @@ CREATE TABLE `tasks` (
   KEY `created_by` (`created_by`),
   CONSTRAINT `tasks_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `projects` (`pid`),
   CONSTRAINT `tasks_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `users` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=162 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=162 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -264,7 +266,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`uid`),
   UNIQUE KEY `emailid` (`emailid`),
   UNIQUE KEY `uname` (`uname`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -273,7 +275,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (47,'Vicky','Vicky','Warren','vicky@proapp.com',_binary '\â\è8º0k€\Âud\å1','47.jpeg'),(48,'basi','Basith','Ahamed','basith@proapp.com',_binary '\â\è8º0k€\Âud\å1','48.png'),(49,'Bharath','Bharath','L','bharath@proapp.com',_binary '\â\è8º0k€\Âud\å1','49.jpeg'),(50,'Harish','Harish','M.S.','m416harish@gamil.com',_binary 'f\×&\Ôş©¢¶x+\'tJ¬','50.jpeg'),(51,'Siva','Sivasankar','G','siva17@proapp.com',_binary '\â\è8º0k€\Âud\å1','51.png'),(52,'Vigneshwaran','Vigneshwaran','P','p3487260@gmail.com',_binary 'D~ãˆ9\í?ı:5›=','52.png');
+INSERT INTO `users` VALUES (47,'Vicky','Vicky','Warren','vicky@proapp.com',_binary '\ï¿½\ï¿½8ï¿½0kï¿½\ï¿½ud\ï¿½1','47.jpeg'),(48,'basi','Basith','Ahamed','basith@proapp.com',_binary '\ï¿½\ï¿½8ï¿½0kï¿½\ï¿½ud\ï¿½1','48.png'),(49,'Bharath','Bharath','L','bharath@proapp.com',_binary '\ï¿½\ï¿½8ï¿½0kï¿½\ï¿½ud\ï¿½1','49.jpeg'),(50,'Harish','Harish','M.S.','m416harish@gamil.com',_binary 'f\ï¿½&\ï¿½ï¿½ï¿½ï¿½ï¿½x+\'tï¿½Jï¿½','50.jpeg'),(51,'Siva','Sivasankar','G','siva17@proapp.com',_binary '\ï¿½\ï¿½8ï¿½0kï¿½\ï¿½ud\ï¿½1','51.png'),(52,'Vigneshwaran','Vigneshwaran','P','p3487260@gmail.com',_binary 'D~ãˆ9\ï¿½?ï¿½:5ï¿½ï¿½=','52.png');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

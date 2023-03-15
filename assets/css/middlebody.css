@@ -77,15 +77,18 @@
     width: 100%;
     border-radius: 15px;
     position: absolute;
+    justify-content: space-between;
 }   
 .common-pro-and-task-section{
     width: 33%;
     padding-top: 10px;
     justify-content: space-between;
     height: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
 }
 .common-pro-and-task-heading{
-    font-size: 20px;
+    font-size: 30px;
     width: 80%;
     text-align: left;
 }
@@ -111,6 +114,7 @@
 .project-deprecated-section{
     transition: 0.5s;
     transform: scale(0);
+    z-index: 31;
 }
 .overdue-heading{
     height: 10%;

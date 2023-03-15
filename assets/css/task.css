@@ -9,6 +9,7 @@
     transform: scale(0);
     transition: 0.5s;
     justify-content: flex-start;
+    z-index: 31;
 }
 .show-from-scale{
     transform: scale(1);

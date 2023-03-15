@@ -180,6 +180,10 @@ let ProjectView = (() => {
             threeDotsWrapper.addEventListener("click", event => {
                 if(event.target.id.startsWith("more")){
                     _(MainView.getDomStrings().fullDescriptionSection).classList.add(MainView.getDomStrings().showFromRightToLeft);
+                    _(MainView.getDomStrings().fullEditSection).classList.remove(MainView.getDomStrings().showFromRightToLeft);
+                    _(MainView.getDomStrings().chatMembersCloseButton).click();
+                    _(ChatView.getDomStrings().chattingWindowCloseButton).click();
+
                     MainView.renderDescriptionDetails(event.target.id.slice(4), true);
                     event.target.parentElement.classList.remove(domStrings.showBoxOptions);
                 }
@@ -189,7 +193,10 @@ let ProjectView = (() => {
                     event.target.parentElement.classList.remove(domStrings.showBoxOptions);
                 }
                 else if (event.target.id.startsWith("edit")){
+                    _(MainView.getDomStrings().fullDescriptionSection).classList.remove(MainView.getDomStrings().showFromRightToLeft);
                     _(MainView.getDomStrings().fullEditSection).classList.add(MainView.getDomStrings().showFromRightToLeft);
+                    _(MainView.getDomStrings().chatMembersCloseButton).click();
+                    _(ChatView.getDomStrings().chattingWindowCloseButton).click();
                     MainView.renderEditSection(event.target.id.slice(4), true);
                     event.target.parentElement.classList.remove(domStrings.showBoxOptions);
                 }

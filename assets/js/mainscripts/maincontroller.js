@@ -168,6 +168,8 @@ let MainController = (view => {
             _(view.getDomStrings().currentSectionHeading).textContent = "Projects";
             CURRENTSECTION = "Project";
             resetMainWindows(null);
+            _(view.getDomStrings().descriptionCloseButton).click();
+            _(view.getDomStrings().editBoxCloseButton).click();
         });
         
         //This is for opening task section 
@@ -183,6 +185,8 @@ let MainController = (view => {
             CURRENTSECTION = "Tasks";
             resetMainWindows(_(view.getDomStrings().taskSection));
             _(view.getDomStrings().taskSection).classList.add(view.getDomStrings().showFromScale);
+            _(view.getDomStrings().descriptionCloseButton).click();
+            _(view.getDomStrings().editBoxCloseButton).click();
          });
         //This is for opening chat people view
         _(view.getDomStrings().chatButton).addEventListener("click", event => {
@@ -191,19 +195,13 @@ let MainController = (view => {
             _(view.getDomStrings().chatButton).classList.add(view.getDomStrings().iconClickEffect);
             resetIconEffect(_(view.getDomStrings().chatButton));
             _(view.getDomStrings().chatPeopleViewSection).classList.add(view.getDomStrings().showFromRightToLeft);
+            _(view.getDomStrings().descriptionCloseButton).click();
+            _(view.getDomStrings().editBoxCloseButton).click();
         });
         //This is to close the chat people view
         _(view.getDomStrings().chatMembersCloseButton).addEventListener("click", event => {
             _(view.getDomStrings().chatPeopleViewSection).classList.remove(view.getDomStrings().showFromRightToLeft);
             _(view.getDomStrings().chatButton).classList.remove(view.getDomStrings().iconClickEffect);
-            // if(CURRENTSECTION == "Project"){
-                // let projectIcon = _(view.getDomStrings().projectSectionButton);
-                // let taskIcon = _(view.getDomStrings().taskSectionButton);
-            //     _(view.getDomStrings().projectSectionButton).classList.add(view.getDomStrings().iconClickEffect);
-            // }
-            // else {
-            //     _(view.getDomStrings().taskSectionButton).classList.add(view.getDomStrings().iconClickEffect);
-            // }
         });
         //This is for notification audio 
         _(view.getDomStrings().notificationAudioButton).addEventListener("click", playNotificationSound);
@@ -237,6 +235,8 @@ let MainController = (view => {
             _(view.getDomStrings().fullFilterWrapper).classList.add(view.getDomStrings().hideComponent);
             _(view.getDomStrings().chatMembersCloseButton).click();
             _(view.getDomStrings().settingCloseButton).click();
+            _(view.getDomStrings().descriptionCloseButton).click();
+            _(view.getDomStrings().editBoxCloseButton).click();
         });
 
         //This is for handling top profile and notification button's actions
