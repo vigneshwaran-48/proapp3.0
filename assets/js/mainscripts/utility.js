@@ -55,7 +55,7 @@ let getCurrentUserDetails = async () => {
             _(".big-profile-image").style.backgroundImage = `url(/ProApp/assets/images/usersImages/${CURRENTUSERPHOTO})`;
             _(".top-profile-image-desktop").style.backgroundImage = `url(/ProApp/assets/images/usersImages/${CURRENTUSERPHOTO})`;
             _(".current-user-name").textContent = USERNAME;
-            webSocket = new WebSocket("ws://192.168.1.8:8787/ProApp/chat?uid=" + USERID);
+            webSocket = new WebSocket("wss://192.168.1.8:8443/ProApp/chat?uid=" + USERID);
             webSocket.onmessage = (event) => {
                 processMessage(JSON.parse(event.data));
             }
@@ -135,12 +135,15 @@ let resetNotification = async () => {
     }
     NotificationView.renderNotifications(NotificationModel.getNotificationsArray());
 }
+let note = Notification.requestPermission();
+note.then(permission => {
+    console.log(permission);
+    if(permission == "granted"){
+        new Notification("ProApp", {
+            body: "Hello there",
+            icon : "https://192.168.1.8:8443/ProApp/assets/images/logo.png"
+        });
+    }
+})
 
 getCurrentUserDetails();
-// resetProjects();
-
-// setInterval(async () => {
-//     let users = await sendGetRequest("user/getusers?id=all");
-//     ChatView.renderStatusOfPeople(users);
-//     console.log(users);
-// }, 60000);
