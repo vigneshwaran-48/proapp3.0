@@ -61,11 +61,12 @@ body {
 .about-head {
   line-height: 1.4;
   font-family: 'Poppins', sans-serif;
+  color: #408EEE;
 }
 
 .app-icon {
-  width: 80px;
-  height: 80px;
+  width: 450px;
+  height: 110px;
   object-fit: cover;
 }
 
@@ -204,6 +205,10 @@ body {
 
 .show-message-wrapper {
   opacity: 1;
+}
+.redcolortext
+{
+  color: red;
 }
 
 @media screen and (max-width: 1150px) {

@@ -547,10 +547,10 @@ footer{
     font-family: 'Poppins', sans-serif;
     font-size: 20px;
 }
-
 body {
     /* background-color: #02BFD5; */
     height: 100vh;
+    /* width: 100%; */
     background: url("/ProApp/assets/images/wave.jpeg");
     background-size: contain;
     background-repeat: no-repeat;
@@ -624,7 +624,7 @@ body {
     background-color: rgb(89, 141, 241);
     color: white;
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
     font-size: 18px;
     transition: 0.4s;
 }
@@ -645,7 +645,7 @@ body {
 }
 
 .sign-up-button:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .sign-in-button:hover {
@@ -1084,6 +1084,12 @@ padding: 0px;
 font-size: 25px;
 }
 /* end */
+.logofooter
+{
+    width: 300px;
+    height: 100px;
+}
+
 
 @media screen and (max-width:1400px){
 .contact-info{
@@ -1237,4 +1243,15 @@ body{
     width: 100%;
 }
 
+}
+
+#redcolortext
+{
+    color: red;
+    font-size: 30px;
+}
+.bluecolortext
+{
+    color: #408EEE;
+    font-size: 30px;
 }

@@ -9,6 +9,19 @@ let DocsController = (view => {
         _(view.getDomStrings().codeAreaButton).addEventListener("click", event => {
             _(view.getDomStrings().codeAreaSection).classList.toggle(view.getDomStrings().showCodeArea);
         });
+
+        // _All(view.getDomStrings().navTag).forEach(elem => {
+        //     elem.addEventListener("click", event => {
+        //         let newLocation = elem.href + "-api";
+        //         console.log(newLocation);
+        //         let divId = newLocation.split("#")[1];
+        //         console.log(divId);
+        //         console.log(_("#" + divId).scrollTop);
+        //         _(view.getDomStrings().descriptionSection).scrollTop = _("#" + divId).scrollHeight;
+        //         _(view.getDomStrings().codeAreaSection).scrollTop = _("#" + divId).scrollHeight;
+        //         // location.href = newLocation;
+        //     })
+        // })
     }
     init();
     return {

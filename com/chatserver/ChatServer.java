@@ -57,7 +57,7 @@ public class ChatServer {
         if (js.get("messageType").equals("projectUpdate")) {
             UsersApiCall api = new UsersApiCall();
             
-            ArrayList<Long> arrayList = api.getUsersByProjectId((Long) js.get("projectId"),userid);
+            ArrayList<Long> arrayList = api.getUsersByProjectId(Long.parseLong(String.valueOf(js.get("projectId"))),userid);
             
             for (Long arrList : arrayList) {
                     for (User user : arr) {

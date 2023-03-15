@@ -55,6 +55,7 @@ let MainController = (view => {
         //Adding this listener for right side section
         _(view.getDomStrings().profileButton).addEventListener("click", event => {
             view.loadStatisticsData();
+            _(view.getDomStrings().chatMembersCloseButton).click();
             resetRightWindows(_(view.getDomStrings().rightSection));
             _(view.getDomStrings().rightSection).classList.toggle(view.getDomStrings().showFromRightToLeft);
             // _(view.getDomStrings().topRightOptionsInput).checked = false;
@@ -185,6 +186,8 @@ let MainController = (view => {
          });
         //This is for opening chat people view
         _(view.getDomStrings().chatButton).addEventListener("click", event => {
+            _(view.getDomStrings().settingCloseButton).click();
+            _(view.getDomStrings().rightSideCloseButton).click();
             _(view.getDomStrings().chatButton).classList.add(view.getDomStrings().iconClickEffect);
             resetIconEffect(_(view.getDomStrings().chatButton));
             _(view.getDomStrings().chatPeopleViewSection).classList.add(view.getDomStrings().showFromRightToLeft);

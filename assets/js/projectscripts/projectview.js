@@ -85,8 +85,15 @@ let ProjectView = (() => {
             let parentTag;
             let currentDate = new Date();
             let isOverdue = false;
-
-            if(currentDate.getDate() > elem.toDate.slice(elem.toDate.length-2) && elem.status != "Completed"){
+            
+            // console.log(currentDate .get+ ", " + elem.toDate);
+            // elem.status == "Completed"
+            let tempDate = currentDate.getFullYear() + "-";
+            tempDate += currentDate.getMonth() < 10 ? "0" + currentDate.getMonth() : currentDate.getMonth();
+            tempDate += "-" + currentDate.getDate();
+            console.log(tempDate);
+            console.log(tempDate > elem.toDate);
+            if(tempDate > elem.toDate){
                 parentTag = _(domStrings.overDueSection);
                 isOverdue = true;
             }

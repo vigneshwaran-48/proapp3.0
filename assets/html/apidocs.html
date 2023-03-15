@@ -22,13 +22,13 @@
         <div class="hamburger-menu-wrapper">
             <i class="fa-solid fa-bars hamburger-menu-button"></i>
         </div>
-        <h1 class="top-heading">ProAppDocs</h1>
+        <h1 class="top-heading"><img src="assets/images/logoll.png" alt=""></h1>
     </header>
     <section class="main-body x-axis-flex">
         <!-- API navigation starts here -->
         <section class="side-nav-bar">
             <!-- Users api starts here -->
-            <label for="users-doc-id" class="api-doc-heading">Users</label>
+            <label for="users-doc-id" class="api-doc-heading">Users <span><i class="fa-solid fa-angle-right common-arrow-icon"></i><i class="fa-solid fa-angle-down common-arrow-icon " id="down-arrow-icon"></i></span></label>
             <input type="checkbox" id="users-doc-id" class="common-checkbox">
             <ul class="users-apis-ul common-ul">
                 <a class="nav-a-tag" href="#create-user">
@@ -47,7 +47,7 @@
             <!-- Users api ends here -->
 
             <!-- Project api starts here -->
-            <label for="project-doc-id" class="api-doc-heading">Project</label>
+            <label for="project-doc-id" class="api-doc-heading">Project <span><i class="fa-solid fa-angle-right common-arrow-icon"></i><i class="fa-solid fa-angle-down common-arrow-icon " id="down-arrow-icon"></i></span></label>
             <input type="checkbox" id="project-doc-id" class="common-checkbox">
             <ul class="project-apis-ul common-ul">
                 <a class="nav-a-tag" href="#create-project">
@@ -63,7 +63,7 @@
             <!-- Project api ends here -->
 
             <!-- Task api starts here -->
-            <label for="task-doc-id" class="api-doc-heading">Task</label>
+            <label for="task-doc-id" class="api-doc-heading">Task <span><i class="fa-solid fa-angle-right common-arrow-icon"></i><i class="fa-solid fa-angle-down common-arrow-icon " id="down-arrow-icon"></i></span></label>
             <input type="checkbox" id="task-doc-id" class="common-checkbox">
             <ul class="task-apis-ul common-ul">
                 <a class="nav-a-tag" href="#add-task">
@@ -72,6 +72,9 @@
                 <a class="nav-a-tag" href="#delete-task">
                     <li class="common-api-li delete-task-li">Delete Task</li>
                 </a>
+                <!-- <a class="nav-a-tag" href="#get-all-task">
+                    <li class="common-api-li get-all-tasks">Get All Tasks</li>
+                </a> -->
             </ul>
             <!-- Task api ends here -->
         </section>
@@ -121,6 +124,13 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="Note-section x-axis-flex">
+                            <h1 class="note-head">Note: </h1>
+                            <p class="note-desc">&nbsp; You have to add Your Api Key 
+                            Have to add parameter userId=YourId</p>
+                        </div>
+
+
                     </div>
                     <!-- Create user API description ends here -->
 
@@ -162,6 +172,11 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="Note-section x-axis-flex">
+                            <h1 class="note-head">Note: </h1>
+                            <p class="note-desc">&nbsp; You have to add Your Api Key 
+                            Have to add parameter userId=YourId</p>
+                        </div>
                     </div>
                     <!-- Get users API ends here -->
 
@@ -201,6 +216,11 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="Note-section x-axis-flex">
+                            <h1 class="note-head">Note: </h1>
+                            <p class="note-desc">&nbsp; You have to add Your Api Key 
+                            Have to add parameter userId=YourId</p>
                         </div>
                     </div>
                     <!-- Get users by Project API ends here -->
@@ -244,6 +264,11 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="Note-section x-axis-flex">
+                            <h1 class="note-head">Note: </h1>
+                            <p class="note-desc">&nbsp; You have to add Your Api Key 
+                            Have to add parameter userId=YourId</p>
+                        </div>
                     </div>
                     <!-- Update user API start here -->
 
@@ -286,6 +311,11 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="Note-section x-axis-flex">
+                            <h1 class="note-head">Note: </h1>
+                            <p class="note-desc">&nbsp; You have to add Your Api Key 
+                            Have to add parameter userId=YourId</p>
+                        </div>
                     </div>
                     <!-- Add project API ends here -->
 
@@ -326,9 +356,58 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="Note-section x-axis-flex">
+                            <h1 class="note-head">Note: </h1>
+                            <p class="note-desc">&nbsp; You have to add Your Api Key 
+                            Have to add parameter userId=YourId</p>
+                        </div>
                     </div>
                     <!-- Delete project API end here -->
-                    
+                    <!-- Getall project API start here -->
+                    <!-- <div id="delete-project" class="common-api-decription y-axis-flex">
+                        <h1 class="common-api-heading">Getall Project </h1>
+                        <p class="api-desc-para">This API will retrive the Projects which are assigned to the user </p>
+                        <div class="request-type-wrapper x-axis-flex">
+                            <h2>Request type : </h2>
+                            <p class="request-type-value">GET</p>
+                        </div>
+                        <div class="note-type-wrapper x-axis-flex">
+                            <h2>NOTE:</h2>
+                            <p class="request-type-value">This API works only if you have logged in </p>
+                        </div>
+                        <h2 class="note-head">Note:</h2>
+                        <p class="request-type-value">GET</p> -->
+                    <!-- <div class="query-params">
+                            <h2 class="common-query-params-heading">Query Params</h2>
+                            <div class="query-table y-axis-flex">
+                                <div class="query-row x-axis-flex">
+                                    <div class="query-head">
+                                        <h4>User Id</h4>
+                                    </div>
+                                    <div class="query-content">
+                                        <p>None</p>
+                                    </div>
+                                </div>
+                                <div class="query-row x-axis-flex">
+                                    <div class="query-head">
+                                        <h4>format</h4>
+                                    </div>
+                                    <div class="query-content">
+                                        <p>Int</p>
+                                    </div>
+                                </div>
+                                <div class="query-row x-axis-flex">
+                                    <div class="query-head">
+                                        <h4>Return</h4>
+                                    </div>
+                                    <div class="query-content">
+                                        <p>JSON</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- Getall project API end here -->
                     <!-- Deleting the user on the project -->
                     <div id="delete-user-from-project" class="common-api-decription y-axis-flex">
                         <h1 class="common-api-heading">Delete the user on the Project </h1>
@@ -369,10 +448,16 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="Note-section x-axis-flex">
+                            <h1 class="note-head">Note: </h1>
+                            <p class="note-desc">&nbsp; You have to add Your Api Key 
+                            Have to add parameter userId=YourId</p>
+                        </div>
                     </div>
 
 
                     <!-- Deleting the user on the project end-->
+
 
 
                     <!-- Add task API start here -->
@@ -415,8 +500,16 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="Note-section x-axis-flex">
+                            <h1 class="note-head">Note: </h1>
+                            <p class="note-desc">&nbsp; You have to add Your Api Key 
+                            Have to add parameter userId=YourId</p>
+                        </div>
                     </div>
+
+
                     <!-- Add task API end here-->
+
 
 
                     <!-- Delete task API start here -->
@@ -459,10 +552,62 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="Note-section x-axis-flex">
+                            <h1 class="note-head">Note: </h1>
+                            <p class="note-desc">&nbsp; You have to add Your Api Key 
+                            Have to add parameter userId=YourId</p>
+                        </div>
                     </div>
+
 
                     <!-- Delete task API end here-->
 
+
+
+                    <!-- Get all task API start here -->
+                    <!-- <div id="get-all-task" class="common-api-decription y-axis-flex">
+                        <h1 class="common-api-heading">Get all Task</h1>
+                        <p class="api-desc-para">Use this API to Get all the task on the Project </p>
+                        <div class="request-type-wrapper x-axis-flex">
+                            <h2>Request type : </h2>
+                            <p class="request-type-value">GET</p>
+                        </div> -->
+
+                    <!-- <h2 class="note-head">Note:</h2>
+                        <p class="request-type-value">GET</p> -->
+                    <!-- <div class="query-params">
+                            <h2 class="common-query-params-heading">Query Params</h2>
+                            <div class="query-table y-axis-flex">
+                                <div class="query-row x-axis-flex">
+                                    <div class="query-head">
+                                        <h4>taskId</h4>
+                                    </div>
+                                    <div class="query-content">
+                                        <p>taskId</p>
+                                    </div>
+                                </div>
+                                <div class="query-row x-axis-flex">
+                                    <div class="query-head">
+                                        <h4>format</h4>
+                                    </div>
+                                    <div class="query-content">
+                                        <p>Integer</p>
+                                    </div>
+                                </div>
+                                <div class="query-row x-axis-flex">
+                                    <div class="query-head">
+                                        <h4>Return</h4>
+                                    </div>
+                                    <div class="query-content">
+                                        <p>String</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+
+                    <!-- Get all task API end here-->
                 </section>
             </section>
         </section>
@@ -473,7 +618,7 @@
             <!-- User API starts here -->
             <section class="user-api-examples">
                 <!-- Create user API starts here -->
-                <div id="create-user" class="common-api-example">
+                <div id="create-user-api" class="common-api-example">
                     <div>
                         <h2>Create user example</h2>
                     </div>
@@ -501,7 +646,7 @@
                 <!-- Create user API ends here -->
 
                 <!-- Get users API starts here -->
-                <div id="get-user" class="common-api-example">
+                <div id="get-user-api" class="common-api-example">
                     <div>
                         <h2>Get users example</h2>
                     </div>
@@ -528,7 +673,7 @@
                 <!-- Get users API ends here  -->
 
                 <!-- Get users by project API starts here -->
-                <div id="get-user-API" class="common-api-example">
+                <div id="get-user-api" class="common-api-example">
                     <div>
                         <h2>Get users by project example</h2>
                     </div>
@@ -567,9 +712,9 @@
                 <!-- Get users by project API ends here -->
 
                 <!-- Update user API starts here -->
-                <div id="update-user-API" class="common-api-example">
+                <div id="update-user-api" class="common-api-example">
                     <div>
-                        <h2>Update user example</h2>
+                        <h2>Update user</h2>
                     </div>
                     <div class="example-body">
                         <div class="request-body">
@@ -601,9 +746,9 @@
             <!-- Project API starts here -->
             <section class="project-api-examples">
                 <!-- Add project API starts here -->
-                <div id="add-project-API" class="common-api-example">
+                <div id="add-project-api" class="common-api-example">
                     <div>
-                        <h2>Add project example</h2>
+                        <h2>Add project</h2>
                     </div>
                     <div class="example-body">
                         <div class="request-body">
@@ -615,7 +760,7 @@
                                 <p>"projectName":"Vigneshwaran",</p><br>
                                 <p>"fromDate":"2023-02-12",</p><br>
                                 <p>"toDate":"2023-02-17",</p><br>
-                                <p>"users":"["2","4"]"</p><br>
+                                <p>"users":"["2","4"]",</p><br>
                                 <p>"createdBy":5</p><br>
                                 <p>}</p>
                             </code>
@@ -631,9 +776,9 @@
                 <!-- Add project API ends here -->
 
                 <!-- Delete project start here -->
-                <div id="delete-project-API" class="common-api-example">
+                <div id="delete-project-api" class="common-api-example">
                     <div>
-                        <h2>Delete project example</h2>
+                        <h2>Delete project</h2>
                     </div>
                     <div class="example-body">
                         <div class="request-body">
@@ -654,11 +799,32 @@
                     </div>
                 </div>
                 <!-- Delete project end here -->
+                <!-- GetAll project start here -->
+                <!-- <div id="create-project" class="common-api-example">
+                    <div>
+                        <h2>Get All Projects</h2>
+                    </div>
+                    <div class="example-body">
+                        <div class="request-body">
 
+
+                            <p class="common-example-text">Param : None</p>
+
+                            <p class="common-example-text api-link">URL: http://ipaddress:8787/ProApp/project/getall</p>
+
+                        </div>
+                        <div class="response-body">
+                            <h3>Response:</h3>
+                             <h3>Response</h3>
+                            <p class="common-example-text">success</p> -->
+                <!-- </div>
+                    </div>
+                </div>  -->
+                <!-- GetAll project end here -->
                 <!-- Delete User  start here -->
                 <div id="delete-user-project" class="common-api-example">
                     <div>
-                        <h2>Delete user on the Projects example</h2>
+                        <h2>Delete user on the Projects</h2>
                     </div>
                     <div class="example-body">
                         <div class="request-body">
@@ -695,7 +861,7 @@
             <!-- Add task API starts here -->
             <div id="add-task-API" class="common-api-example">
                 <div>
-                    <h2>Add task example</h2>
+                    <h2>Add task</h2>
                 </div>
                 <div class="example-body">
                     <div class="request-body">
@@ -707,8 +873,8 @@
                             <p>"taskName":"Testing",</p><br>
                             <p>"fromDate":"2023-02-12",</p><br>
                             <p>"toDate":"2023-02-17",</p><br>
-                            <p>"projectId":27</p><br>
-                            <p>"users":"["2","4"]"</p><br>
+                            <p>"projectId":27,</p><br>
+                            <p>"users":"["2","4"]",</p><br>
                             <p>"createdBy":5</p><br>
                             <p>}</p>
                         </code>
@@ -752,9 +918,9 @@
 
 
             <!-- Delete task API start here -->
-            <div id="delete-task-API" class="common-api-example">
+            <div id="delete-task-api" class="common-api-example">
                 <div>
-                    <h2>Delete Task example</h2>
+                    <h2>Delete Task</h2>
                 </div>
                 <div class="example-body">
                     <div class="request-body">
@@ -775,8 +941,37 @@
                 </div>
             </div>
             <!-- Delete task API end here -->
+
+
+
+            <!-- Get all task API start here -->
+            <!-- <div id="get-all-task-API" class="common-api-example">
+                <div>
+                    <h2>Get all Tasks</h2>
+                </div>
+                <div class="example-body">
+                    <div class="request-body">
+                        <h3 class="common-example-text">Request: POST</h3> -->
+            <!-- <p class="common-example-text">POST</p> -->
+
+            <!-- <p class="common-example-text">taskId : 2</p>
+
+                        <p class="common-example-text api-link">URL:
+                            http://ipaddress:8787/ProApp/task/getall</p>
+
+                    </div>
+                    <div class="response-body"> -->
+            <!-- <h3>Response: Success</h3> -->
+            <!-- <h3>Response</h3>
+                        <p class="common-example-text">success</p> -->
+            <!-- </div>
+                </div>
+            </div> -->
+            <!-- Delete task API end here -->
         </section>
-        <span class="code-section-button"> > </span>
+        <!-- API example ends herez -->
+            <span class="code-section-button">> </span>
+        </section>
 </body>
 
 <script src="/ProApp/assets/js/apidocscripts/docsview.js"></script>

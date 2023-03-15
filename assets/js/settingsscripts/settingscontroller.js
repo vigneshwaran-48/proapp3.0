@@ -5,7 +5,7 @@ let SettingsController = (view => {
         _(view.getDomStrings().editEmailIdInput).value = "";
         _(view.getDomStrings().editProfileOldPasswordInput).value = "";
         _(view.getDomStrings().editProfileNewPassword).value = "";
-        _(view.getDomStrings().editPhotoInputTag).value = "";
+        // _(view.getDomStrings().editPhotoInputTag).value = "";
     }
     let updateUserDetails = async event => {
         let formData = new FormData();
@@ -13,12 +13,12 @@ let SettingsController = (view => {
         let editEmailIdInput = _(view.getDomStrings().editEmailIdInput).value.trim();
         let editProfileOldPasswordInput = _(view.getDomStrings().editProfileOldPasswordInput).value;
         let editProfileNewPasswordInput = _(view.getDomStrings().editProfileNewPassword).value;
-        let editPhoto = _(view.getDomStrings().editPhotoInputTag).files[0];
-        let isPhotoAvailable = false;
-        if(editPhoto){
-            isPhotoAvailable = true;
-            formData.append("userImage", editPhoto);
-        }
+        // let editPhoto = _(view.getDomStrings().editPhotoInputTag).files[0];
+        // let isPhotoAvailable = false;
+        // if(editPhoto){
+        //     isPhotoAvailable = true;
+        //     formData.append("userImage", editPhoto);
+        // }
 
         let nameRegex = new RegExp("[^a-zA-Z0-9]");
         let emailRegex = new RegExp("^[a-zA-Z0-9.]{1,}@.{4,25}.com$");
@@ -37,17 +37,18 @@ let SettingsController = (view => {
                             oldPassword : editProfileOldPasswordInput,
                             newPassword : editProfileNewPasswordInput,
                             uid : USERID,
-                            isPhotoAvailable : isPhotoAvailable
+                            // isPhotoAvailable : isPhotoAvailable
                         }
-                        if(isPhotoAvailable){
-                            obj.imageType =  "." + editPhoto.type.split("/")[1];
-                        }
+                        // if(isPhotoAvailable){
+                        //     obj.imageType =  "." + editPhoto.type.split("/")[1];
+                        // }
                         formData.append("updateData", JSON.stringify(obj));
                         let response = await sendPostRequest("user/update", formData);
                         if(response.result == "Success"){
                             resetProfileEditSection();
                             getCurrentUserDetails();
                             _(view.getDomStrings().editProfileCloseButton).click();
+                            MainView.showSuccessMessage("Profile updated successfully");
                         }
                         else {
                             MainView.showErrorMessage(response.result);

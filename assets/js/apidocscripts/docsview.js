@@ -10,6 +10,8 @@ let DocsView = (() => {
         codeAreaButton : ".code-section-button",
         codeAreaSection : ".code-section",
         showCodeArea : "show-code-area",
+        navTag : ".nav-a-tag",
+        descriptionSection : ".description-section"
     }
     let getDomStrings = () => domStrings;
 

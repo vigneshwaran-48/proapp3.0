@@ -59,13 +59,13 @@ let getCurrentUserDetails = async () => {
             webSocket.onmessage = (event) => {
                 processMessage(JSON.parse(event.data));
             }
-        getMessagesOfUser();
         resetNotification();
     }
     apiKeyResult = await sendGetRequest("user/getapikey");
     APIKEY = apiKeyResult.apiKey;
     console.log(APIKEY);
     resetProjects();
+    
 }
 let playNotificationSound = () => {
     let audio = new Audio("assets/audio/notification_sound.mp3");
@@ -102,10 +102,13 @@ let resetProjects = async () => {
         resetTasks();
     }  
     ProjectView.renderProjects(ProjectModel.getProjectsArray());
+    resetTasks();
+    getMessagesOfUser();
 }
 let resetTasks = async () => {
     let response = await sendGetRequest("/ProApp/task/getall");
     TaskModel.resetTasks();
+    console.log(response);
     if(response && response.length){
         response.forEach(elem => {
             TaskModel.addTask(TaskModel.changeServerObject(elem, true), false);
@@ -136,8 +139,8 @@ let resetNotification = async () => {
 getCurrentUserDetails();
 // resetProjects();
 
-setInterval(async () => {
-    let users = await sendGetRequest("user/getusers?id=all");
-    ChatView.renderStatusOfPeople(users);
-    console.log(users);
-}, 60000);
+// setInterval(async () => {
+//     let users = await sendGetRequest("user/getusers?id=all");
+//     ChatView.renderStatusOfPeople(users);
+//     console.log(users);
+// }, 60000);

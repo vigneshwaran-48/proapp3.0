@@ -12,6 +12,11 @@ let ProjectController = ((view, model) => {
             resetProjects();
             resetProjects();
             MainView.loadStatisticsData();
+            sendMessage(JSON.stringify({
+                messageType : "projectUpdate",
+                projectId : id,
+                description : USERNAME + " deleted the project you were in "
+            }));
         }
         else {
             MainView.showErrorMessage("Oops, something went wrong");
@@ -30,6 +35,11 @@ let ProjectController = ((view, model) => {
             model.removeProject(id);
             view.renderProjects(ProjectModel.getProjectsArray());
             MainView.loadStatisticsData();
+            sendMessage(JSON.stringify({
+                messageType : "projectUpdate",
+                projectId : id,
+                description : USERNAME + " exited from the project you were in "
+            }));
         }
         else {
             MainView.showErrorMessage("Oops, something went wrong");

@@ -31,8 +31,7 @@ let TaskController = ((view, model) => {
     let deleteTask = async taskId => {
         let response = await sendPostRequest("task/delete?taskId=" + taskId, "");
         if(response.status == "success"){
-            resetProjects();
-            resetTasks();
+            
             MainView.showSuccessMessage("Successfully deleted task");
             sendMessage(JSON.stringify({
                 messageType : "taskUpdate",
@@ -40,6 +39,8 @@ let TaskController = ((view, model) => {
                 description : USERNAME + " deleted the task you Were in "
             }));
             model.removeTask(taskId);
+            resetProjects();
+            resetTasks();
             MainView.loadStatisticsData();
         }
         else {
@@ -62,6 +63,8 @@ let TaskController = ((view, model) => {
                 description : USERNAME + " exited from the task " + model.getTaskByTaskId(taskId).taskName
             }));
             model.removeTask(taskId);
+            resetProjects();
+            resetTasks();
             MainView.loadStatisticsData();
         }
         else {
