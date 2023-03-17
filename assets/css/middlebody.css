@@ -153,7 +153,13 @@
     justify-content: space-between;
     padding: 10px;
     align-items: flex-start;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    transition: 0.5s;
+    /* border-bottom: 1px solid rgba(0, 0, 0, 0.1); */
+    /* border-image: linear-gradient(red, blue) 27 / 35px; */
+    /* border-bottom: groove; */
+}
+.notification-list-option:hover {
+    background-color: rgb(235, 237, 239);
 }
 .message-time-wrapper{
     width: 70%;
