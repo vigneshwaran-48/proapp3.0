@@ -2,6 +2,11 @@ let _ = element => document.querySelector(element);
 
 let _All = element => document.querySelectorAll(element);
 
+document.addEventListener("keydown", event => {
+    if(event.code == "Tab"){
+        event.preventDefault();
+    }
+});
 let CURRENTSECTION = "Project";
 let USERID;
 let USERNAME;
@@ -55,7 +60,7 @@ let getCurrentUserDetails = async () => {
             _(".big-profile-image").style.backgroundImage = `url(/ProApp/assets/images/usersImages/${CURRENTUSERPHOTO})`;
             _(".top-profile-image-desktop").style.backgroundImage = `url(/ProApp/assets/images/usersImages/${CURRENTUSERPHOTO})`;
             _(".current-user-name").textContent = USERNAME;
-            webSocket = new WebSocket("wss://192.168.1.8:8443/ProApp/chat?uid=" + USERID);
+            webSocket = new WebSocket("wss://10.52.0.38:9191/ProApp/chat?uid=" + USERID);
             webSocket.onmessage = (event) => {
                 processMessage(JSON.parse(event.data));
             }
@@ -135,19 +140,19 @@ let resetNotification = async () => {
     }
     NotificationView.renderNotifications(NotificationModel.getNotificationsArray());
 }
-let note = Notification.requestPermission();
-note.then(permission => {
-    console.log(permission);
-    if(permission == "granted"){
-        let notification = new Notification("ProApp", {
-            body: "Hello there",
-            icon : "https://192.168.1.8:8443/ProApp/assets/images/logo.png",
-            vibrate : [200, 100, 200],
-        });
-        notification.onclick = event => {
-            window.open("https://192.168.1.8:8443/ProApp/home", "_blank");
-        }
-    }
-})
+// let note = Notification.requestPermission();
+// note.then(permission => {
+//     console.log(permission);
+//     if(permission == "granted"){
+//         let notification = new Notification("ProApp", {
+//             body: "Hello there",
+//             icon : "https://10.52.0.38:9191/ProApp/assets/images/logo.png",
+//             vibrate : [200, 100, 200],
+//         });
+//         notification.onclick = event => {
+//             window.open("https://10.52.0.38:9191/ProApp/home", "_blank");
+//         }
+//     }
+// })
 
 getCurrentUserDetails();

@@ -17,6 +17,7 @@ public class GetUserByTid extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             Connection con = (Connection) request.getServletContext().getAttribute("Connection");
+            System.out.println("From GetUserByTid servlet, id ----> " + request.getParameter("id"));
             response.getWriter().println(new RetrieveUser().getUserDetailByTid(con, Integer.parseInt(request.getParameter("id"))));
         } 
         catch (Exception e) {

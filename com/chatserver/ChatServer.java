@@ -42,7 +42,6 @@ public class ChatServer {
 
     @OnMessage
     public void retriveMessage(Session session, String message) throws ParseException {
-        System.out.println("From front end:" + message);
         JSONObject js = (JSONObject) new JSONParser().parse(message);
 
         JSONObject notificationObject = new JSONObject();
@@ -51,15 +50,23 @@ public class ChatServer {
         notificationObject.put("nContent", js.get("description"));
         notificationObject.put("time", time);
         notificationObject.put("date", date);
-        Long userid=new ChatServer().getUesrId(session);
+        Long userid=new ChatServer().getUserId(session);
+        System.out.println("user id ---> " + userid);
         JSONArray array = new JSONArray();//This array is for users to whom the notification to be sent ....
         // notificationObject.put("userId", arrList);
         if (js.get("messageType").equals("projectUpdate")) {
-            UsersApiCall api = new UsersApiCall();
-            
-            ArrayList<Long> arrayList = api.getUsersByProjectId(Long.parseLong(String.valueOf(js.get("projectId"))),userid);
-            
-            for (Long arrList : arrayList) {
+            UsersApiCall api = new UsersApiCall();   
+            JSONArray arrayList = null;
+            if(Boolean.parseBoolean(String.valueOf(js.get("isDeleted")))){
+                arrayList = (JSONArray) js.get("deletedUsers");
+            } 
+            else if(Boolean.parseBoolean(String.valueOf(js.get("isExited")))){
+                arrayList = (JSONArray) js.get("remainingUsers");
+            }
+            else {
+                arrayList = api.getUsersByProjectId(Long.parseLong(String.valueOf(js.get("projectId"))),userid);
+            }
+            for (Object arrList : arrayList) {
                     for (User user : arr) {
                         if (!arrList.equals(uid) && user.getUserId() != uid) {
                             try {
@@ -76,9 +83,19 @@ public class ChatServer {
         } 
         else if (js.get("messageType").equals("taskUpdate")) {
             UsersApiCall api = new UsersApiCall();
-            ArrayList<Long> arrayList = api.getUsersByTaskId(Long.parseLong(String.valueOf(js.get("taskId"))),userid);
-
-            for (Long arrList : arrayList) {
+            JSONArray arrayList = null;
+            if(Boolean.parseBoolean(String.valueOf(js.get("isDeleted")))){
+                arrayList = (JSONArray) js.get("deletedUsers");
+            }
+            else if(Boolean.parseBoolean(String.valueOf(js.get("isExited")))){
+                arrayList = (JSONArray) js.get("remainingUsers");
+            }
+            else {
+                arrayList = api.getUsersByTaskId(Long.parseLong(String.valueOf(js.get("taskId"))),userid);
+            }
+            
+            System.out.println("users ----> " + arrayList);
+            for (Object arrList : arrayList) {
                     for (User user : arr) {
 
                         if (!arrList.equals(uid) && user.getUserId() != uid) {
@@ -88,7 +105,7 @@ public class ChatServer {
                                 
                                 // notificationObject.put("userId", js.get("userId"));
                                 array.add(arrList);
-                                System.out.println("notification object:" + notificationObject);
+                    
                                 // NotificationApiCall.addNotificationApiCall(notificationObject);
                             } catch (IOException e) {
                                 e.printStackTrace();
@@ -96,20 +113,20 @@ public class ChatServer {
                         }
                     }
             }
+            
+            
             notificationObject.put("users", array);
             JSONArray arrs = (JSONArray) js.get("removedUsers");
-            System.out.println(arrs);
-            System.out.println(arr);
             if (arrs != null) {
                 for (User userIndi : arr) {
-                    System.out.println(userIndi.getUserId());
+        
                     js.put("description", "You have been removed from the task");
-                    System.out.println(js);
+        
                     if (arrs.contains(String.valueOf(userIndi.getUserId()))) {
                         try {
                             userIndi.getSession().getBasicRemote().sendText(js.toJSONString());
                             array.add(userIndi);
-                            System.out.println("notification object:" + notificationObject);
+                
                             // NotificationApiCall.addNotificationApiCall(notificationObject);
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -122,9 +139,6 @@ public class ChatServer {
             add.addMessage(js.toJSONString());
 
             for (User user : arr) {
-                System.out.println("user.getUserId:" + (user.getUserId()));
-                System.out.println("long:" + Long.parseLong(String.valueOf(js.get("toUserId"))));
-
                 if (user.getUserId() == Long.parseLong(String.valueOf(js.get("toUserId")))
                         && user.getSession().getId() != session.getId()) {
                     try {
@@ -138,7 +152,6 @@ public class ChatServer {
             notificationObject.put("users", array);
         }
         NotificationApiCall.addNotificationApiCall(notificationObject);
-
     }
 
     @OnError
@@ -154,7 +167,6 @@ public class ChatServer {
             if (user.getSession().getId().equals(session.getId())) {
                 arr.remove(user);
             }
-
         }
         notifyAllUser("UserLeft", -8L);
 
@@ -206,7 +218,7 @@ public class ChatServer {
         }
     }
 
-    private long getUesrId(Session s) {
+    private long getUserId(Session s) {
         for(User user : arr){
             if(user.getSession().getId().equals(s.getId())){
                 return user.getUserId();

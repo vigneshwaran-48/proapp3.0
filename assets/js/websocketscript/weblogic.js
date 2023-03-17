@@ -3,17 +3,19 @@ let sendMessage = data => {
 }
 let processMessage = async data => {
     if(data.description){
-        MainView.showPopUpSymbol(data.description);
         Notification.requestPermission().then(permission => {
             if(permission == "granted"){
                 let notification = new Notification("ProApp", {
                     body: data.description,
-                    icon : "https://192.168.1.8:8443/ProApp/assets/images/logo.png",
+                    icon : "https://10.52.0.38:9191/ProApp/assets/images/logo.png",
                     vibrate : [200, 100, 200]
                 });
                 notification.onclick = event => {
-                    window.open("https://192.168.1.8:8443/ProApp/home", "_blank");
+                    window.open("https://10.52.0.38:9191/ProApp/home", "_blank");
                 }
+            }
+            else {
+                MainView.showPopUpSymbol(data.description);
             }
         });
     }

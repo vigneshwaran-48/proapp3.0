@@ -2,6 +2,7 @@ package com.listener;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.servlet.*;
 
@@ -17,7 +18,7 @@ public class SetConnection implements ServletContextListener{
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/proapp", "vicky", "vi99g@NESH");
             event.getServletContext().setAttribute("Connection", c);
-            ArrayList<Integer> activeUsers=new ArrayList<>();
+            CopyOnWriteArrayList<Integer> activeUsers=new CopyOnWriteArrayList<>();
             event.getServletContext().setAttribute("ActiveUsers",activeUsers);
         }
         catch(Exception e){

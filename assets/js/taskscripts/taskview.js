@@ -157,7 +157,7 @@ let TaskView = (() => {
                         taskOption1.textContent = "Edit";
                         taskOption2.textContent = "More Info";
                         taskCheckBox.addEventListener("click", TaskController.finishTask);
-                        taskHeadingTag.textContent = task.taskName;
+                        taskHeadingTag.textContent = task.taskName.slice(0, 15);
                         taskTrashIconSpan.addEventListener("click", event => {
                             event.preventDefault();
                             event.stopPropagation();

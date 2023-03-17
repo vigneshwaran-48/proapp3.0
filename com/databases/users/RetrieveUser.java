@@ -2,6 +2,7 @@ package com.databases.users;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
@@ -149,7 +150,7 @@ public class RetrieveUser {
             ResultSet rs;
             Statement statement=c.createStatement();
             rs=statement.executeQuery("select uid,uname,imagePath from users");
-            ArrayList<Integer> activeUsers=(ArrayList<Integer>) request.getServletContext().getAttribute("ActiveUsers");
+            CopyOnWriteArrayList<Integer> activeUsers=(CopyOnWriteArrayList<Integer>) request.getServletContext().getAttribute("ActiveUsers");
 
             while(rs.next()){
                 JSONObject jsonObject=new JSONObject();
@@ -182,7 +183,7 @@ public class RetrieveUser {
             Statement statement = c.createStatement();
             rs = statement.executeQuery("select uid,uname,imagePath from users where uid=" + uid);
             rs.next();
-            ArrayList<Integer> users = (ArrayList<Integer>) request.getServletContext().getAttribute("ActiveUsers");
+            CopyOnWriteArrayList<Integer> users = (CopyOnWriteArrayList<Integer>) request.getServletContext().getAttribute("ActiveUsers");
             jsonObject.put("userId", rs.getInt("uid"));
             jsonObject.put("userName", rs.getString("uname"));
             jsonObject.put("imagePath", rs.getString("imagePath"));
@@ -193,7 +194,7 @@ public class RetrieveUser {
         return jsonObject;
     }
 
-    public String isOnline(ArrayList<Integer> userInfo,Integer uid) {
+    public String isOnline(CopyOnWriteArrayList<Integer> userInfo,Integer uid) {
         for (Integer integer : userInfo) {
             if(integer==uid)
             {

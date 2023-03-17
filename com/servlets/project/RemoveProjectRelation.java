@@ -7,9 +7,12 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import com.databases.project.*;
+import com.databases.users.RetrieveUser;
 
 @MultipartConfig
 public class RemoveProjectRelation extends HttpServlet{
@@ -21,9 +24,11 @@ public class RemoveProjectRelation extends HttpServlet{
             int pid = Integer.parseInt((String) jsonObject.get("projectId"));
             Long uid = Long.parseLong(String.valueOf(jsonObject.get("userId")));
             JSONObject result = new JSONObject();
+            JSONArray remainingUsers = new RetrieveUser().getUserDetailByPid(con, pid);
             if(new UpdateProject().deleteUserFromProject(uid,pid,con))
             {
                 result.put("status", "success");
+                result.put("remainingUsers", remainingUsers);
             }
             else
             {

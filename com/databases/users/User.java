@@ -5,6 +5,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.UUID;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -65,7 +66,7 @@ public class User {
                 session.setAttribute("userName", new RetrieveUser().getUnameByEmail(con, emailid));
                 session.setAttribute("apiKey", apiKey);
                 // session.setMaxInactiveInterval(60);
-                ArrayList<Integer> activeUsers=(ArrayList<Integer>)request.getServletContext().getAttribute("ActiveUsers");
+                CopyOnWriteArrayList<Integer> activeUsers=(CopyOnWriteArrayList<Integer>)request.getServletContext().getAttribute("ActiveUsers");
                 activeUsers.add(uid);
                 System.out.println(activeUsers);
                 request.getServletContext().setAttribute("ActiveUsers",activeUsers);

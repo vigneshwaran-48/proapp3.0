@@ -29,7 +29,7 @@ public class AddNotification extends HttpServlet{
             String refactored = responseString.split("=")[1];
             System.out.println(refactored);
             JSONObject jsonObject = (JSONObject) new JSONParser().parse(refactored);
-            System.out.println("notification from servlet ="+request.getParameter("notificationData"));
+            // System.out.println("notification from servlet ="+request.getParameter("notificationData"));
             response.getWriter().println(new Notification().addNotification(con, jsonObject));
         } catch (ParseException e) {
             e.printStackTrace();

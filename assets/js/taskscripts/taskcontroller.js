@@ -35,7 +35,9 @@ let TaskController = ((view, model) => {
             MainView.showSuccessMessage("Successfully deleted task");
             sendMessage(JSON.stringify({
                 messageType : "taskUpdate",
-                taskId : taskId,
+                taskId : taskId,  
+                isDeleted : true,
+                deletedUsers : response.deletedUsers,  
                 description : USERNAME + " deleted the task you Were in "
             }));
             model.removeTask(taskId);
@@ -60,6 +62,8 @@ let TaskController = ((view, model) => {
             sendMessage(JSON.stringify({
                 messageType : "taskUpdate",
                 taskId : taskId,
+                isExited : true,
+                remainingUsers : response.remainingUsers,
                 description : USERNAME + " exited from the task " + model.getTaskByTaskId(taskId).taskName
             }));
             model.removeTask(taskId);

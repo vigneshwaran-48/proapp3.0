@@ -8,9 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import com.databases.project.Project;
+import com.databases.users.RetrieveUser;
 
 public class DeleteProject extends HttpServlet {
     @Override
@@ -18,8 +20,10 @@ public class DeleteProject extends HttpServlet {
         Connection conn=(Connection)getServletContext().getAttribute("Connection");
         JSONObject result = new JSONObject();
         try {
+            JSONArray deletedUsers = new RetrieveUser().getUserDetailByPid(conn, Integer.parseInt(request.getParameter("projectId")));
             if(new Project().deleteProject(conn,Integer.parseInt(request.getParameter("projectId")))){
                 result.put("status", "success");
+                result.put("deletedUsers", deletedUsers);
             }
             else {
                 result.put("status", "unsuccess");

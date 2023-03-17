@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta https-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="assets/css/main.css" rel="stylesheet" type="text/css">
     <link href="assets/css/middlebody.css" rel="stylesheet" type="text/css">
@@ -57,7 +57,7 @@
     <section class="side-nav-bar y-axis-flex full-light-theme">
         <img class="top-header-icon" src="assets/images/logo.png" alt="app-icon">
         <div class="common-i-tag icons-wrapper project-section-button y-axis-flex">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="https://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd"
                     d="M5.5 2h6.559a2 2 0 0 1 1.897 1.368L14.5 5h7c1.105 0 2 .831 2 1.857v9.286c0 1.026-.895 1.857-2 1.857h-1v1.143c0 1.026-.895 1.857-2 1.857h-16c-1.105 0-2-.831-2-1.857V9.857c0-.142.017-.28.05-.413A2.007 2.007 0 0 1 .5 9V7a2 2 0 0 1 2-2h1V4a2 2 0 0 1 2-2Zm0 3H5V4a.5.5 0 0 1 .5-.5h6.559a.5.5 0 0 1 .474.342L13 5.5l.266 1H21.5c.3 0 .5.186.5.357v9.286c0 .171-.2.357-.5.357h-1V9.857c0-1.026-.895-1.857-2-1.857h-7l-.544-1.632A2 2 0 0 0 9.058 5H5.5Zm2.4 1.5H2.5A.5.5 0 0 0 2 7v1.059A2.15 2.15 0 0 1 2.5 8h7.419l-.386-1.158a.5.5 0 0 0-.475-.342H7.9Zm-5.4 3c-.3 0-.5.186-.5.357v9.286c0 .171.2.357.5.357h16c.3 0 .5-.186.5-.357V9.857c0-.171-.2-.357-.5-.357h-16Z"
                     fill="currentColor"></path>
@@ -65,15 +65,15 @@
             <p class="icon-label">Projects</p>
         </div>
         <div class="common-i-tag icons-wrapper task-section-button y-axis-flex">
-            <i class="fa-regular fa-circle-check"></i>
+            <i  tabindex="-1"  class="fa-regular fa-circle-check"></i>
             <p class="icon-label">Tasks</p>
         </div>
         <div class="common-i-tag icons-wrapper chat-section-button y-axis-flex">
-            <i class="fa-regular fa-message"></i>
+            <i  tabindex="-1" class="fa-regular fa-message"></i>
             <p class="icon-label">Chat</p>
         </div>
         <div class="common-i-tag icons-wrapper deprecated-section-button y-axis-flex">
-            <i class="fa-regular fa-calendar-xmark"></i>
+            <i  tabindex="-1" class="fa-regular fa-calendar-xmark"></i>
             <pre class="icon-label">Overdue</pre>
         </div>
 
@@ -89,7 +89,7 @@
             <div class="top-profile-wrapper x-axis-flex">
                 <span class="settings-section-button settings-section-mobile-icon"><i class="fa-solid fa-gear"></i></span>
                 <label for="notification-button-id" class="notification-button"><i class="fa-solid fa-bell"></i></label>
-                <input type="checkbox" id="notification-button-id">
+                <input  tabindex="-1" type="checkbox" id="notification-button-id">
                 <ul class="notifcations-list">
                     <li class="notification-list-option x-axis-flex">
                         <div class="notification-image"></div>
@@ -127,11 +127,11 @@
                                 <li class="filter-option completed-box-button">Completed</li>
                             </ul>
                         </div>
-                        <button tabindex="-1" type="button" class="common-button add-project-task-button">New</button>
+                        <button tabindex="-1" type="button" class="common-button add-project-task-button">Add</button>
                     </header>
 
                     <!-- Project section body starts here -->
-                    <section class="common-middle-section-body semi-light-theme x-axis-flex">
+                    <section class="common-middle-section-body light-theme x-axis-flex">
                         <section
                             class="main-projects-and-tasks-section common-pro-and-task-section yet-to-start-section show-box-wrapper-section y-axis-flex">
                             <h2 class="common-pro-and-task-heading">Yet to start</h2>
@@ -211,7 +211,7 @@
             </section>
             <!-- Right side section starts here -->
             <section class="right-side-sections y-axis-flex full-light-theme">
-                <i id="right-side-section-close-button" class="fa-solid fa-xmark"></i>
+                <i  tabindex="-1" id="right-side-section-close-button" class="fa-solid fa-xmark"></i>
                 <div class="user-profile-top-details y-axis-flex">
                     <div class="big-profile-image"></div>
                     <h2 class="current-user-name">Lee Everett</h2>
@@ -253,7 +253,7 @@
 
             <!-- Box adding form starts here -->
             <section class="adding-form y-axis-flex full-light-theme">
-                <i id="form-adding-section-close-button" class="fa-solid fa-xmark"></i>
+                <i  tabindex="-1" id="form-adding-section-close-button" class="fa-solid fa-xmark"></i>
                 <div class="common-input-wrapper name-adding-wrapper y-axis-flex">
                     <label for="adding-name-input-id">Name</label>
                     <input tabindex="-1" type="text" required id="adding-name-input-id"
@@ -369,14 +369,14 @@
 
             <!-- Chat people view section starts here -->
             <section class="chat-people-view-section y-axis-flex full-light-theme">
-                <i id="chat-members-view-close-button" class="fa-solid fa-xmark"></i>
+                <i tabindex="-1" id="chat-members-view-close-button" class="fa-solid fa-xmark"></i>
                 <h2>Chat</h2>
                 <input tabindex="-1" type="search" id="chat-memebers-search-input">
                 <div class="members-list light-theme y-axis-flex">
                     <div class="single-member-display-wrapper x-axis-flex">
                         <div class="chat-member-photo semi-light-theme"></div>
                         <p class="chat-member-search-name">Vicky</p>
-                        <i class="fa-regular fa-message"></i>
+                        <i tabindex="-1" class="fa-regular fa-message"></i>
                     </div>
                 </div>
             </section>
@@ -384,7 +384,7 @@
 
             <!-- Chatting window starts here -->
             <section class="chatting-window-section y-axis-flex full-light-theme">
-                <i id="chatting-window-close-button" class="fa-solid fa-xmark"></i>
+                <i tabindex="-1" id="chatting-window-close-button" class="fa-solid fa-xmark"></i>
                 <div class="upper-user-details-window y-axis-flex">
                     <div class="chatting-user-photo"></div>
                     <h2 class="chatting-user-name"></h2>
@@ -417,7 +417,7 @@
                     </div>
                     <div class="message-input-area x-axis-flex">
                         <div class="chat-message-input" contenteditable="true"></div>
-                        <i id="send-message-button" class="fa-solid fa-paper-plane"></i>
+                        <i tabindex="-1" id="send-message-button" class="fa-solid fa-paper-plane"></i>
                     </div>
                 </div>
             </section>
@@ -553,5 +553,4 @@
 <!-- Web socket scripts starts here -->
 <script src="assets/js/websocketscript/weblogic.js"></script>
 <!-- Web socket scripts ends here -->
-
 </html>

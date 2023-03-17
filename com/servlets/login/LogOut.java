@@ -2,6 +2,7 @@ package com.servlets.login;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
@@ -15,7 +16,7 @@ public class LogOut extends HttpServlet {
             request.getSession().invalidate();  
             response.setContentType("text/html");  
             response.sendRedirect("login"); 
-            ArrayList<Integer> users=(ArrayList<Integer>)request.getServletContext().getAttribute("ActiveUsers");
+            CopyOnWriteArrayList<Integer> users=(CopyOnWriteArrayList<Integer>)request.getServletContext().getAttribute("ActiveUsers");
             for (Integer integer : users) {
                 if(integer==Integer.parseInt(String.valueOf(request.getParameter("uid"))))
                 {

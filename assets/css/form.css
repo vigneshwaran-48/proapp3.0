@@ -11,6 +11,17 @@
     width: 100%;
     z-index: 45;
 }
+.people-adding-label{
+    padding: 10px;
+    background-color: rgb(52, 156, 254);
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.people-adding-label:active {
+    transform: scale(0.9);
+}
 .common-input-wrapper, .common-desc-wrapper, .common-edit-wrapper{
     width: 100%;
     padding: 10px;
@@ -89,7 +100,7 @@
     font-size: 20px;
     padding: 5px;
     outline: none;
-    width: 150px;
+    width: 100%;
     border-radius: 10px;
 }
 .people-option:hover {

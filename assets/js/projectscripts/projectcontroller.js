@@ -15,6 +15,8 @@ let ProjectController = ((view, model) => {
             sendMessage(JSON.stringify({
                 messageType : "projectUpdate",
                 projectId : id,
+                isDeleted : true,
+                deletedUsers : result.deletedUsers,
                 description : USERNAME + " deleted the project you were in "
             }));
         }
@@ -38,6 +40,8 @@ let ProjectController = ((view, model) => {
             sendMessage(JSON.stringify({
                 messageType : "projectUpdate",
                 projectId : id,
+                isExited : true,
+                remainingUsers : result.remainingUsers,
                 description : USERNAME + " exited from the project you were in "
             }));
         }

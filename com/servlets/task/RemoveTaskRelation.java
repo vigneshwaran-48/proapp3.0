@@ -9,10 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import com.databases.task.*;
+import com.databases.users.RetrieveUser;
 
 
 @MultipartConfig
@@ -25,9 +27,11 @@ public class RemoveTaskRelation extends HttpServlet{
             JSONObject jsonObject = (JSONObject) new JSONParser().parse(request.getParameter("userData"));
             int tid = Integer.parseInt(String.valueOf(jsonObject.get("taskId")));
             int uid = Integer.parseInt(String.valueOf(jsonObject.get("userId")));
+            JSONArray remainingUsers = new RetrieveUser().getUserDetailByTid(con, tid);
             JSONObject result = new JSONObject();
             if (new UpdateTask().deleteUserFromTask(con, uid, tid)){
                 result.put("status", "success");
+                result.put("remainingUsers", remainingUsers);
                 response.getWriter().println(result);
             }
             else{

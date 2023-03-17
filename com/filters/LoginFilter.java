@@ -3,6 +3,7 @@ package com.filters;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.servlet.*;
 import javax.servlet.annotation.MultipartConfig;
@@ -34,7 +35,7 @@ public class LoginFilter extends HttpFilter{
 
             try {
                 if (loginChecker.validater(email, password)) {
-                    HttpServletRequest sessionVar = (HttpServletRequest) request; // changing the servlet Requet to http // servelt Request
+                    HttpServletRequest sessionVar = (HttpServletRequest) request; // changing the servlet Requet to https // servelt Request
                     HttpSession session = sessionVar.getSession(); // making a session Var
                     
                     session.setAttribute("emailId", email);
@@ -45,7 +46,7 @@ public class LoginFilter extends HttpFilter{
                     int uid=new RetrieveUser().getUidByEmail(conn, email);
                     session.setAttribute("uid", uid);
                     session.setAttribute("userName", new RetrieveUser().getUnameByEmail(conn, email));
-                    ArrayList<Integer> activeUsers=(ArrayList<Integer>)request.getServletContext().getAttribute("ActiveUsers");
+                    CopyOnWriteArrayList<Integer> activeUsers=(CopyOnWriteArrayList<Integer>)request.getServletContext().getAttribute("ActiveUsers");
                     activeUsers.add(uid);
                     request.getServletContext().setAttribute("ActiveUsers",activeUsers);
                     response.getWriter().append("Success");
