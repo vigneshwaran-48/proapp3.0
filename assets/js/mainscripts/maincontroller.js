@@ -56,6 +56,7 @@ let MainController = (view => {
         _(view.getDomStrings().profileButton).addEventListener("click", event => {
             view.loadStatisticsData();
             _(view.getDomStrings().chatMembersCloseButton).click();
+            _(ChatView.getDomStrings().chattingWindowCloseButton).click();
             resetRightWindows(_(view.getDomStrings().rightSection));
             _(view.getDomStrings().rightSection).classList.toggle(view.getDomStrings().showFromRightToLeft);
             // _(view.getDomStrings().topRightOptionsInput).checked = false;
@@ -161,6 +162,7 @@ let MainController = (view => {
         _(view.getDomStrings().projectSectionButton).addEventListener("click", event => {
             _(view.getDomStrings().projectSectionButton).classList.add(view.getDomStrings().iconClickEffect);
             resetIconEffect(_(view.getDomStrings().projectSectionButton));
+            _(ChatView.getDomStrings().chattingWindowCloseButton).click();
             _(view.getDomStrings().chatMembersCloseButton).click();
             _(view.getDomStrings().settingCloseButton).click();
             _(view.getDomStrings().fullFilterWrapper).classList.add(view.getDomStrings().showFilter);
@@ -176,6 +178,7 @@ let MainController = (view => {
         _(view.getDomStrings().taskSectionButton).addEventListener("click", event => {
             _(view.getDomStrings().taskSectionButton).classList.add(view.getDomStrings().iconClickEffect);
             resetIconEffect(_(view.getDomStrings().taskSectionButton));
+            _(ChatView.getDomStrings().chattingWindowCloseButton).click();
             _(view.getDomStrings().chatMembersCloseButton).click();
             _(view.getDomStrings().settingCloseButton).click();
             _(ChatView.getDomStrings().chattingWindow).click();
@@ -209,13 +212,14 @@ let MainController = (view => {
         //This is for opening settings page
         _All(view.getDomStrings().settingSectionButton).forEach(elem => {
             console.log("Opening settings page ........");
-                elem.addEventListener("click", event => {
-                    _(view.getDomStrings().chatMembersCloseButton).click();
-                    resetRightWindows(_(view.getDomStrings().settingSection));
-                    // _(view.getDomStrings().topRightOptionsInput).checked = false;
-                    _(SettingsView.getDomStrings().settingsUserPhoto).style.backgroundImage = `url(/ProApp/assets/images/usersImages/${CURRENTUSERPHOTO})`;
-                    _(view.getDomStrings().settingSection).classList.add(view.getDomStrings().showFromRightToLeft);
-                });
+            elem.addEventListener("click", event => {
+                _(ChatView.getDomStrings().chattingWindowCloseButton).click();
+                _(view.getDomStrings().chatMembersCloseButton).click();
+                resetRightWindows(_(view.getDomStrings().settingSection));
+                // _(view.getDomStrings().topRightOptionsInput).checked = false;
+                _(SettingsView.getDomStrings().settingsUserPhoto).style.backgroundImage = `url(/ProApp/assets/images/usersImages/${CURRENTUSERPHOTO})`;
+                _(view.getDomStrings().settingSection).classList.add(view.getDomStrings().showFromRightToLeft);
+            });
         });
 
         //This is for closing settings page
@@ -227,6 +231,7 @@ let MainController = (view => {
         _(view.getDomStrings().overDueIcon).addEventListener("click", event => {
             _(view.getDomStrings().overDueIcon).classList.add(view.getDomStrings().iconClickEffect);
             resetIconEffect(_(view.getDomStrings().overDueIcon));
+            _(ChatView.getDomStrings().chattingWindowCloseButton).click();
             _(view.getDomStrings().overDueSection).classList.add(view.getDomStrings().showFromScale);
             CURRENTSECTION = "OverDue";
             resetMainWindows(_(view.getDomStrings().overDueSection))

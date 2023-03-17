@@ -66,6 +66,7 @@ let ChatController = ((view, model) => {
         _("#" + view.getDomStrings().chatSendIcon).addEventListener("click", addMessage);
     }
     init();
+    
 
     return {
         addSingleMessage : addSingleMessage

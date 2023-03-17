@@ -9,6 +9,9 @@
 .top-box-detail:nth-child(even){
     cursor: pointer;
 }
+.fa-ellipsis{
+    cursor: pointer;
+}
 .three-dots-wrapper{
     width: 30px;
     padding: 0px 10px;
