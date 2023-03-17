@@ -9,7 +9,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-family : "Zoho_Puvi_Regular"
+    font-family : "Zoho_Puvi_Regular";
 }
 .x-axis-flex {
     display: flex;

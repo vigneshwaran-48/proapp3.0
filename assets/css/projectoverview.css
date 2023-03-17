@@ -1,0 +1,95 @@
+.middle-project-overview{
+    transform: scale(0);
+    transition: 0.5s;
+}
+.project-overview-left-page{
+    width: 60%;
+    height: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    justify-content: space-between;
+    /* position: relative; */
+}
+.project-overview-right-page{
+    width: 20%;
+    height: 100%;
+}
+.project-overview-navbar{
+    width: 100%;
+    justify-content: space-around;
+    /* padding: 10px; */
+    height: 7%;
+}
+.common-project-overview-navbar{
+    font-size: 22px;
+    font-family : "Zoho_Puvi_Regular";
+    padding: 7px 10px;
+    transition: 0.5s;
+    border-bottom: 5px solid white;
+}
+.common-project-overview-navbar:hover {
+    border-bottom: 5px solid rgb(63,142,238);
+    color: rgb(63,142,238);
+}
+.project-overview-body-wrapper{
+    width: 100%;
+    height: 93%;
+    overflow: hidden;
+    position: relative;
+}
+.common-project-overview-body{
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid red;
+    position: absolute;
+    transform: translateX(100%);
+}
+.project-overview-details-info{
+    width: 100%;
+    height: 40%;
+    border: 1px solid green;
+    padding: 10px;
+}
+.single-project-info-div{
+    width: 100%;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    /* padding: 10px 0px; */
+}
+.single-project-info-div-left, .single-project-info-div-right {
+    width: 50%;
+    font-size: 18px;
+    font-family : "Zoho_Puvi_Regular";
+    padding: 10px 4px;
+}
+.single-project-info-div-right:hover {
+    background-color: rgb(235, 237, 239);
+}
+.single-project-info-div-outer-progress{
+    width: 90%;
+    border-radius: 10px;
+    background-color: rgb(235, 237, 239);
+    height: 20px;
+}
+.single-project-info-div-inner-progress{
+    background-color: rgb(63,142,238);
+    width: 60%;
+    height: 100%;
+    border-radius: 10px;
+    color: white;
+    padding-left: 10px;
+    line-height: 30px;
+    justify-content: flex-start;
+}
+.single-project-info-div-inner-progress-value{
+    font-size: 14px;
+}
+
+
+
+.show-from-scale{
+    transform: scale(1);
+}
+.show-from-right-to-left{
+    transform: translateX(0%);
+}

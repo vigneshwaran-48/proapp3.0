@@ -73,7 +73,8 @@ let MainView = (() => {
         emptyBoxWrapper : "empty-box-wrapper",
         emptyBoxMessage : "empty-message-box",
         centerTheBox : "center-the-box",
-        topRightOptionsInput : "#top-profile-option-photo"
+        topRightOptionsInput : "#top-profile-option-photo",
+        projectOverviewSection : ".middle-project-overview"
     }
     let getDomStrings = () => domStrings;
 

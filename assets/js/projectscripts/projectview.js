@@ -91,8 +91,7 @@ let ProjectView = (() => {
             let tempDate = currentDate.getFullYear() + "-";
             tempDate += currentDate.getMonth() < 10 ? "0" + currentDate.getMonth() : currentDate.getMonth();
             tempDate += "-" + currentDate.getDate();
-            console.log(tempDate);
-            console.log(tempDate > elem.toDate);
+            
             if(tempDate > elem.toDate){
                 parentTag = _(domStrings.overDueSection);
                 isOverdue = true;
@@ -236,6 +235,13 @@ let ProjectView = (() => {
                     }
                 }
             });
+
+            //This listener is for getting the project overview page 
+            mainBox.addEventListener("click", event => {
+                console.log("hi");
+                _(MainView.getDomStrings().projectOverviewSection).classList.add(MainView.getDomStrings().showFromScale);
+            }); 
+
 
             //Setting contents of the created element ends here
 

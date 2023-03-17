@@ -13,6 +13,7 @@
     <link href="assets/css/task.css" rel="stylesheet" type="text/css">
     <link href="assets/css/chat.css" rel="stylesheet" type="text/css">
     <link href="assets/css/setting.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/projectoverview.css" rel="stylesheet" type="text/css">
     <title>ProApp</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
@@ -103,11 +104,6 @@
                 </ul>
                 <label class="top-profile-image profile-button x-axis-flex" for="top-profile-option-photo"></label>
                 <label class="top-profile-image-desktop settings-section-button x-axis-flex" for="top-profile-option-photo"></label>
-                <!-- <input type="checkbox" id="top-profile-option-photo">
-                <ul class="top-profile-options-wrapper">
-                    <li tabindex="-1" class="top-profile-options profile-button">Profile</li> -->
-                    <!-- <li tabindex="-1" class="top-profile-options settings-section-button">Settings</li> -->
-                <!-- </ul>            <i class="fa-solid fa-bars-progress"></i> -->
 
             </div>
         </header>
@@ -153,6 +149,55 @@
                         </section>
                     </section>
                     <!-- Project section body ends here -->
+
+                    <!-- Project clicking overview section start here -->
+                    <section class="common-middle-section-body middle-project-overview full-light-theme x-axis-flex">
+                        <div class="project-overview-left-page y-axis-flex">
+                            <nav class="project-overview-navbar x-axis-flex">
+                                <span class="common-project-overview-navbar project-overview-details">Details</span>
+                                <span class="common-project-overview-navbar project-overview-tasks">Tasks</span>
+                                <span class="common-project-overview-navbar project-overview-users">Users</span>
+                            </nav>
+                            <div class="project-overview-body-wrapper y-axis-flex">
+                                <!-- Project overview details starts section here -->
+                                <div class="common-project-overview-body project-overview-details-body y-axis-flex show-from-right-to-left">
+                                    <div class="project-overview-details-info">
+                                        <div class="single-project-info-div x-axis-flex">
+                                            <span class="single-project-info-div-left">Name</span>
+                                            <span class="single-project-info-div-right project-name">Project 01</span>
+                                        </div>
+                                        <div class="single-project-info-div x-axis-flex">
+                                            <span class="single-project-info-div-left">Start Date</span>
+                                            <span class="single-project-info-div-right project-start-date">12-04-2023</span>
+                                        </div>
+                                        <div class="single-project-info-div x-axis-flex">
+                                            <span class="single-project-info-div-left">Last Date</span>
+                                            <span class="single-project-info-div-right project-last-date">26-04-2023</span>
+                                        </div>
+                                        <div class="single-project-info-div x-axis-flex">
+                                            <span class="single-project-info-div-left">Owner</span>
+                                            <span class="single-project-info-div-right project-owner">Basith</span>
+                                        </div>
+                                        <div class="single-project-info-div x-axis-flex">
+                                            <span class="single-project-info-div-left">Progress</span>
+                                            <div class="single-project-info-div-right project-progress">
+                                                <div class="single-project-info-div-outer-progress">
+                                                    <div class="single-project-info-div-inner-progress x-axis-flex">
+                                                        <span class="single-project-info-div-inner-progress-value">60%</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Project overview details ends section here -->
+                                <div class="common-project-overview-body project-overview-tasks-body"></div>
+                                <div class="common-project-overview-body project-overview-users-body"></div>
+                            </div>
+                        </div>
+                        <div class="project-overview-right-page"></div>
+                    </section>
+                    <!-- Project clicking overview section ends here -->
 
                     <!-- Deprecated projects section starts here -->
                     <section class="project-deprecated-section common-middle-section-body semi-light-theme y-axis-flex">
@@ -476,14 +521,6 @@
                 <section tabindex="-1" class="profile-edit-secton-body y-axis-flex">
                     <h2 tabindex="-1" class="profile-editing-heading">Account</h2>
                     <form tabindex="-1" class="profile-update-form y-axis-flex">
-                        <!-- <div tabindex="-1" class="common-input-field x-axis-flex">
-                            <label tabindex="-1">Photo</label>
-                            <div tabindex="-1" class="photo-updating-body y-axis-flex">
-                                <div tabindex="-1" class="profile-update-user-photo"></div>
-                                <label tabindex="-1" for="choose-profile-photo-input">Choose</label>
-                                <input tabindex="-1" type="file" id="choose-profile-photo-input" accept="image/*">
-                            </div>
-                        </div> -->
                         <div tabindex="-1" class="common-input-field x-axis-flex">
                             <label tabindex="-1" for="profile-update-name">Name</label>
                             <input tabindex="-1" type="text" id="profile-update-name" class="common-input-tag">
