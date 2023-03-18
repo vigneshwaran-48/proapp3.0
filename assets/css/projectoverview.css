@@ -3,24 +3,25 @@
     transition: 0.5s;
 }
 .project-overview-left-page{
-    width: 60%;
+    width: 59%;
     height: 100%;
-    border: 1px solid rgba(0, 0, 0, 0.4);
+    /* border: 1px solid rgba(0, 0, 0, 0.4); */
     justify-content: space-between;
-    /* position: relative; */
 }
 .project-overview-right-page{
-    width: 20%;
+    width: 39%;
     height: 100%;
+    border-radius: 15px;
 }
 .project-overview-navbar{
-    width: 100%;
+    width: 97%;
     justify-content: space-around;
-    /* padding: 10px; */
     height: 7%;
+    border-radius: 15px;
 }
 .common-project-overview-navbar{
     font-size: 22px;
+    font-weight: 800;
     font-family : "Zoho_Puvi_Regular";
     padding: 7px 10px;
     transition: 0.5s;
@@ -40,21 +41,20 @@
     height: 100%;
     width: 100%;
     padding: 10px;
-    border: 1px solid red;
     position: absolute;
     transform: translateX(100%);
+    justify-content: space-between;
 }
-.project-overview-details-info{
+.project-overview-details-info, .project-overview-details-tasks{
     width: 100%;
-    height: 40%;
-    border: 1px solid green;
+    height: 340px;
     padding: 10px;
+    border-radius: 15px;
 }
 .single-project-info-div{
     width: 100%;
     justify-content: space-between;
     border-bottom: 1px solid rgba(0, 0, 0, 0.4);
-    /* padding: 10px 0px; */
 }
 .single-project-info-div-left, .single-project-info-div-right {
     width: 50%;
@@ -84,8 +84,100 @@
 .single-project-info-div-inner-progress-value{
     font-size: 14px;
 }
+.single-project-info-div-description-wrapper{
+    align-items: flex-start;
+}
+.project-description{
+    height: 100px;
+    /* border: 1px solid; */
+    overflow: scroll;
+}
+.project-description::-webkit-scrollbar {
+    display: none;
+}
+.project-overview-details-tasks{
+    height: 50%;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.project-overview-details-tasks-wrapper {
+    height: 90%;
+    width: 100%;
+    /* border: 1px solid red; */
+}
 
+/* Right part of section style starts here */
+.project-overview-right-page{
+    /* border: 1px solid teal; */
+    justify-content: space-between;
+    padding: 15px;
+    align-items: flex-start;
+}
+.project-overview-right-page-body {
+    height: 95%;
+    width: 100%;
+    justify-content: space-between;
+    padding: 10px;
+}
+.project-overview-right-page-outer-circle{
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background-image: conic-gradient(
+        rgb(64, 142, 238) 0%,
+        rgb(64, 142, 238) 60%, 
+        rgb(255, 165, 0) 60%,
+        rgb(255, 165, 0) 80%, 
+        green 80%,
+        green 100%
+        );
+}
+.project-overview-right-page-body-stats-wrapper{
+    width: 100%;
+    height: 50%;
+    min-height: 350px;
+    justify-content: space-between;
+}
+.color-desc-wrapper{
+    width: 100%;
+    align-items: flex-start;
+}
+.stat-color-wrapper{
+    padding: 5px 0px;
+}
+.stat-color{
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+.stat-color-yet {
+    background-color: rgb(64, 142, 238);
+}
+.stat-color-progress{
+    background-color: rgb(255, 165, 0);
+}
+.stat-color-completed {
+    background-color: green;
+}
+/* Right part of section style ends here */
 
+@media screen and (max-width: 820px){
+    .project-overview-right-page{
+        display: none;
+    }
+    .project-overview-left-page{
+        width: 100%;
+    }
+}
+@media screen and (max-height: 750px) {
+    .project-overview-details-tasks{
+        display: none;
+    }
+    .project-overview-details-info{
+        height: 100%;
+
+    }
+}
 
 .show-from-scale{
     transform: scale(1);

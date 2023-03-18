@@ -151,9 +151,9 @@
                     <!-- Project section body ends here -->
 
                     <!-- Project clicking overview section start here -->
-                    <section class="common-middle-section-body middle-project-overview full-light-theme x-axis-flex">
+                    <section class="common-middle-section-body middle-project-overview light-theme x-axis-flex">
                         <div class="project-overview-left-page y-axis-flex">
-                            <nav class="project-overview-navbar x-axis-flex">
+                            <nav class="project-overview-navbar full-light-theme x-axis-flex">
                                 <span class="common-project-overview-navbar project-overview-details">Details</span>
                                 <span class="common-project-overview-navbar project-overview-tasks">Tasks</span>
                                 <span class="common-project-overview-navbar project-overview-users">Users</span>
@@ -161,7 +161,8 @@
                             <div class="project-overview-body-wrapper y-axis-flex">
                                 <!-- Project overview details starts section here -->
                                 <div class="common-project-overview-body project-overview-details-body y-axis-flex show-from-right-to-left">
-                                    <div class="project-overview-details-info">
+                                    <!-- Project overview details info section starts here -->
+                                    <div class="project-overview-details-info full-light-theme y-axis-flex">
                                         <div class="single-project-info-div x-axis-flex">
                                             <span class="single-project-info-div-left">Name</span>
                                             <span class="single-project-info-div-right project-name">Project 01</span>
@@ -188,14 +189,50 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="single-project-info-div single-project-info-div-description-wrapper x-axis-flex">
+                                            <span class="single-project-info-div-left">Description</span>
+                                            <div class="single-project-info-div-right project-description">
+                                                <p>This is description  .....</p>
+                                            </div>
+                                        </div>
                                     </div>
+                                    <!-- Project overview details info section ends here -->
+
+                                    <!-- Project overview details tasks section start here -->
+                                    <div class="project-overview-details-tasks full-light-theme y-axis-flex">
+                                        <h2>Recently created Tasks</h2>
+                                        <div class="project-overview-details-tasks-wrapper"></div>
+                                    </div>                                        
+                                    <!-- Project overview details tasks section ends here -->
                                 </div>
                                 <!-- Project overview details ends section here -->
                                 <div class="common-project-overview-body project-overview-tasks-body"></div>
                                 <div class="common-project-overview-body project-overview-users-body"></div>
                             </div>
                         </div>
-                        <div class="project-overview-right-page"></div>
+                        <div class="project-overview-right-page full-light-theme y-axis-flex">
+                            <h2>Statistics</h2>
+                            <div class="project-overview-right-page-body y-axis-flex">
+                                <div class="project-overview-right-page-body-stats-wrapper y-axis-flex">
+                                    <div class="project-overview-right-page-outer-circle x-axis-flex"></div>
+                                    <div class="color-desc-wrapper y-axis-flex">
+                                        <div class="stat-color-wrapper x-axis-flex">
+                                            <span class="stat-color stat-color-yet"></span>
+                                            <span>Yet to Start</span>
+                                        </div>
+                                        <div class="stat-color-wrapper x-axis-flex">
+                                            <span class="stat-color stat-color-progress"></span>
+                                            <span>In Progress</span>
+                                        </div>
+                                        <div class="stat-color-wrapper x-axis-flex">
+                                            <span class="stat-color stat-color-completed"></span>
+                                            <span>Completed</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
                     </section>
                     <!-- Project clicking overview section ends here -->
 
