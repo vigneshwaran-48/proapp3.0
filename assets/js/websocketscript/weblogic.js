@@ -7,11 +7,11 @@ let processMessage = async data => {
             if(permission == "granted"){
                 let notification = new Notification("ProApp", {
                     body: data.description,
-                    icon : "https://10.52.0.38:9191/ProApp/assets/images/logo.png",
+                    icon : "https://10.252.93.131:8050/ProApp/assets/images/logo.png",
                     vibrate : [200, 100, 200]
                 });
                 notification.onclick = event => {
-                    window.open("https://10.52.0.38:9191/ProApp/home", "_blank");
+                    window.open("https://10.252.93.131:8050/ProApp/home", "_blank");
                 }
             }
             else {

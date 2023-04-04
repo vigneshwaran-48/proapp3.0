@@ -19,8 +19,8 @@ public class LoginChecker {
         
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/proapp", "vicky",
-                "vi99g@NESH");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/proapp", "todoadmins",
+                "todo@111");
             PreparedStatement ps;
             ResultSet rs;
             String sql = "select emailid,cast( aes_decrypt(password,'secret_key') as char) as password from users";

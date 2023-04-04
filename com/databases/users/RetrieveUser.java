@@ -208,7 +208,7 @@ public class RetrieveUser {
         String apiKey = null;
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/proapp", "vicky", "vi99g@NESH");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/proapp", "todoadmins", "todo@111");
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery("select cast(aes_decrypt(a_key, 'secret_key') as char) from api_key where uid = " + userId);
             rs.next();
