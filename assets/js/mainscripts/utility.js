@@ -60,7 +60,7 @@ let getCurrentUserDetails = async () => {
             _(".big-profile-image").style.backgroundImage = `url(/ProApp/assets/images/usersImages/${CURRENTUSERPHOTO})`;
             _(".top-profile-image-desktop").style.backgroundImage = `url(/ProApp/assets/images/usersImages/${CURRENTUSERPHOTO})`;
             _(".current-user-name").textContent = USERNAME;
-            webSocket = new WebSocket("wss://10.252.93.131:8050/ProApp/chat?uid=" + USERID);
+            webSocket = new WebSocket("wss://192.168.235.32:8080/ProApp/chat?uid=" + USERID);
             webSocket.onmessage = (event) => {
                 processMessage(JSON.parse(event.data));
             }

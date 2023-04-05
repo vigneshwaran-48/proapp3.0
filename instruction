@@ -1,0 +1,24 @@
+Basic guide to start proapp
+
+--> First of all add the proapp.sql database file to your MYSql server 
+
+--> Delete the details from table (this is optional) --> if Any error occurs try this 
+
+--> Configure tomcat server From HTTP to HTTPS your tomcat  ( the instrctions to change can be found here https://mkyong.com/tomcat/how-to-configure-tomcat-to-support-ssl-or-https/)
+
+--> change the database connection credentials in our com/listener/SetConnection.java file and also try to locate the every db credentials and change as per yours
+
+
+--> try to locate the file in the assets/js/websocketscript/weblogic.js change the locate the ip address in the line line 14 change your ip address and port 
+
+After doing all these changes we have to compile the java go to your project root location execute the this command
+
+ javac -d WEB-INF/classes/ ./com/*/*.java ./com/*/*/*.java
+
+!!!! FOR THIS TO WORK YOU HAVE TO SET CLASSPATH WHICH IS REQUIRED FOR RUNNING THIS PROGRAM SO THE .JAR FILE CAN BE FOUND IN OUR LIB FOLDER !!!!
+
+Once you have completed every feel free to go to 
+https://yourip:port/ProApp/
+
+this is our repo link if the source if corrupted 
+https://github.com/vigneshwaran-48/proapp3.0.git
